@@ -36,7 +36,13 @@ jobs:
       - name: Zip files
         if: success()
         run: |
-          zip -rf GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis_template.cls reference.bib -x includefile/\*.aux
+          zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis_template.cls reference.bib -x includefile/\*.aux
+
+      - name: Show files
+        run: |
+          ls -R
+
+
 
       # Upload compiled pdf to artifacts if compiled successfully
       - name: Upload zips
