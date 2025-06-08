@@ -28,12 +28,12 @@ jobs:
           # pre_compile: "fc-cache -f && rm -rf gdufe_master_thesis_template.pdf"
           # # post_compile: "latexmk -c"
 
-      - name: Upload compiled PDF
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: compare.pdf
-          path: compare.pdf
+      # - name: Upload compiled PDF
+      #   uses: actions/upload-artifact@v2
+      #   if: success()
+      #   with:
+      #     name: compare.pdf
+      #     path: compare.pdf
 
 
       # - name: Compile opening
