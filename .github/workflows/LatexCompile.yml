@@ -35,7 +35,7 @@ jobs:
 
       # Upload compiled pdf to artifacts if compiled successfully
       - name: Upload pdf
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: success()
         with:
           name: compare.pdf
