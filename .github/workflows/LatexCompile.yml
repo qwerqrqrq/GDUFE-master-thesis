@@ -48,7 +48,7 @@ jobs:
 
 
   download_and_release:
-    needs: build
+    needs: build_and_upload
     runs-on: ubuntu-latest
     steps:
       - name: 下载 artifact
