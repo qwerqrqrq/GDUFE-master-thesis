@@ -29,7 +29,7 @@ jobs:
           # # post_compile: "latexmk -c"
 
       - name: Upload compiled PDF
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         if: success()
         with:
           name: compare.pdf
