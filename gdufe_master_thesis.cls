@@ -35,10 +35,10 @@
 \setCJKsansfont{simhei.ttf}
 \setCJKmonofont{simfang.ttf}
 
-\setCJKfamilyfont{zhsong}{fonts/simsun.ttc}
-\setCJKfamilyfont{zhhei}{fonts/simhei.ttf}
-\setCJKfamilyfont{zhfs}{fonts/simfang.ttf}
-\setCJKfamilyfont{zhkai}{fonts/simkai.ttf}
+\setCJKfamilyfont{zhsong}{simsun.ttc}
+\setCJKfamilyfont{zhhei}{simhei.ttf}
+\setCJKfamilyfont{zhfs}{simfang.ttf}
+\setCJKfamilyfont{zhkai}{simkai.ttf}
 
 % \newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
 % \newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体

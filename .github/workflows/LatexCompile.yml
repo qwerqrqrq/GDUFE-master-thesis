@@ -23,48 +23,20 @@ jobs:
         with:
           root_file: compare.tex
           # root_file: gdufe_master_thesis_template.tex
-          args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
+          args: -xelatex
+          # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
           extra_fonts: |
             ./fonts/*.ttf
             ./fonts/*.ttc
           # extra_system_packages: "fontconfig"
-          # pre_compile: "fc-cache -f && rm -rf gdufe_master_thesis_template.pdf"
+          pre_compile: "fc-cache -f"
           # # post_compile: "latexmk -c"
 
-      # - name: Upload compiled PDF
-      #   uses: actions/upload-artifact@v2
-      #   if: success()
-      #   with:
-      #     name: compare.pdf
-      #     path: compare.pdf
 
-
-      # - name: Compile opening
-      #   uses: xu-cheng/latex-action@v2
-      #   with:
-      #     root_file: opening-demo.tex
-      #     args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
-      #     extra_system_packages: "fontconfig"
-      #     pre_compile: "fc-cache -f && rm -rf opening-demo.pdf"
-
-      # # Upload compiled pdf to artifacts if compiled successfully
-      # - name: Upload whu-thesis
-      #   uses: actions/upload-artifact@v2
-      #   if: success()
-      #   with:
-      #     name: whu-thesis-demo.pdf
-      #     path: whu-thesis-demo.pdf
-
-      # - name: Upload opening
-      #   uses: actions/upload-artifact@v2
-      #   if: success()
-      #   with:
-      #     name: opening-demo.pdf
-      #     path: opening-demo.pdf
-
-      # - name: Upload spine
-      #   uses: actions/upload-artifact@v2
-      #   if: success()
-      #   with:
-      #     name: whu-thesis-demo-spine.pdf
-      #     path: whu-thesis-demo-spine.pdf
+      # Upload compiled pdf to artifacts if compiled successfully
+      - name: Upload pdf
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: compare.pdf
+          path: compare.pdf
