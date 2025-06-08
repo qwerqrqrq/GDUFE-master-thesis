@@ -370,7 +370,7 @@
                           }
                           }
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 
 %%% ---- 图表标题设置 ----- %%%%
