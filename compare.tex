@@ -1,0 +1,59 @@
+\documentclass[class = professional, oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
+% class=academic: 学术学位论文
+% class=professional: 专业学位论文
+% AutoFakeBold=3.17,AutoFakeSlant=0.2  设置字体伪粗体和伪斜体
+
+% \documentclass[forprint,class=academic]{gdufe_master_thesis}% 选项 forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
+
+% \usepackage{xeCJKfntef}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+% 使用biblatex.手写参考文献请注释掉下一行
+\addbibresource{reference.bib}
+
+% \usepackage{pdfpages}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\begin{document}
+\chapter{章的标题：三号黑体}
+正文：这篇文章，使用了宋体和 Times New Roman 字体。下面是一些字体命
+令的效果对比。
+
+This article uses SimSun and Times New Roman fonts. Below is a comparison of the
+effects of some font commands.
+\section{节的标题：小三号黑体，段前 6 磅，段后 6 磅}
+正文：这篇文章，使用了宋体和 Times New Roman 字体。下面是一些字体命
+令的效果对比。
+
+This article uses SimSun and Times New Roman fonts. Below is a comparison of the
+effects of some font commands.
+\subsection{条的标题：四号黑体，段前 3 磅，段后 3 磅}
+正文：这篇文章，使用了宋体和 Times New Roman 字体。下面是一些字体命
+令的效果对比。
+
+This article uses SimSun and Times New Roman fonts. Below is a comparison of the
+effects of some font commands.
+
+\subsubsection{款的标题：小四号黑体}
+正文：这篇文章，使用了宋体和 Times New Roman 字体。下面是一些字体命
+令的效果对比。
+
+This article uses SimSun and Times New Roman fonts. Below is a comparison of the
+effects of some font commands.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        测试类型 & {\songti 宋体}             & {\heiti 黑体}                    & {\kaishu 楷书}                    & {\fangsong 仿宋}                    &Times new roman\\
+        \midrule
+        伪粗体  & {\bfseries 字体测试}          & {\bfseries\heiti 字体测试}          & {\bfseries\kaishu 字体测试}          & {\bfseries\fangsong 字体测试}          &{\bfseries Font test}\\
+        伪斜体  & {\itshape 字体测试}           & {\itshape\heiti 字体测试}           & {\itshape\kaishu 字体测试}           & {\itshape\fangsong 字体测试}           &{\itshape Font test}\\
+        叠加测试 & {\bfseries\itshape 字体测试} & {\bfseries\itshape\heiti 字体测试} & {\bfseries\itshape\kaishu 字体测试} & {\bfseries\itshape\fangsong 字体测试} &{\bfseries\itshape Font test} \\
+        \bottomrule
+    \end{tabular}
+    \caption{不同字体下伪粗体、伪斜体及叠加效果测试}
+\end{table}
+
+
+\end{document}
