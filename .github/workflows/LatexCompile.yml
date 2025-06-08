@@ -7,7 +7,8 @@ on:
   push:
     tags:
       - 'v*'         # 仅在 master 分支下推送 v* tag 时触发
-
+    brahnches:
+      - master       # 仅在 master 分支下推送时触发
 jobs:
   build_and_upload:
     runs-on: ubuntu-latest
