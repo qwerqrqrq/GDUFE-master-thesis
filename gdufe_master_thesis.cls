@@ -17,7 +17,7 @@
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
-\PassOptionsToClass{zihao=-4,fontset=windows}{ctexbook}
+\PassOptionsToClass{zihao=-4}{ctexbook}
 % 消除 fix diff 需要的选项
 \PassOptionsToPackage{no-math}{fontspec}
 \ProcessOptions\relax
@@ -35,10 +35,10 @@
 \setCJKsansfont{simhei.ttf}
 \setCJKmonofont{simfang.ttf}
 
-\setCJKfamilyfont{zhsong}{simsun.ttc}
-\setCJKfamilyfont{zhhei}{simhei.ttf}
-\setCJKfamilyfont{zhfs}{simfang.ttf}
-\setCJKfamilyfont{zhkai}{simkai.ttf}
+\setCJKfamilyfont{zhsong}{fonts/simsun.ttc}
+\setCJKfamilyfont{zhhei}{fonts/simhei.ttf}
+\setCJKfamilyfont{zhfs}{fonts/simfang.ttf}
+\setCJKfamilyfont{zhkai}{fonts/simkai.ttf}
 
 % \newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
 % \newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体

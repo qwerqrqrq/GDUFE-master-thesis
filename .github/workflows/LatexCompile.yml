@@ -11,24 +11,31 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Compile the LaTeX document with XeLaTeX
       - name: Compile gdufe_master_thesis_template
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
-          root_file: gdufe_master_thesis_template.tex
+          root_file: compare.tex
+          # root_file: gdufe_master_thesis_template.tex
           args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
-          extra_system_packages: "fontconfig"
-          pre_compile: "fc-cache -f && rm -rf gdufe_master_thesis_template.pdf"
-          # post_compile: "latexmk -c"
+          # extra_system_packages: "fontconfig"
+          # pre_compile: "fc-cache -f && rm -rf gdufe_master_thesis_template.pdf"
+          # # post_compile: "latexmk -c"
+
+      - name: Upload compiled PDF
+        uses: actions/upload-artifact@v3
+        if: success()
+        with:
+          name: compare.pdf
+          path: compare.pdf
+
+
       # - name: Compile opening
       #   uses: xu-cheng/latex-action@v2
       #   with:
