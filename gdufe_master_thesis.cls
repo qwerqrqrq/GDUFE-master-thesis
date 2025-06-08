@@ -17,20 +17,33 @@
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
-\PassOptionsToClass{zihao=-4}{ctexbook}
+\PassOptionsToClass{zihao=-4,fontset=windows}{ctexbook}
 % 消除 fix diff 需要的选项
 \PassOptionsToPackage{no-math}{fontspec}
 \ProcessOptions\relax
 % 加载ctexbook类
 \LoadClass{ctexbook}
+
+%% ------------------------ 字体设置 -----------------------------------
+\defaultfontfeatures{Path = fonts/}
 % 设置英文字体
-\setmainfont{Times New Roman}
+\setmainfont[BoldFont = timesbd.ttf,
+    ItalicFont = timesi.ttf,
+    BoldItalicFont = timesbi.ttf]{times.ttf}
 % 设置中文字体
-\setCJKmainfont{SimSun}
-% 这个不知道能不能删，设置中文无衬线字体：
-\setCJKsansfont{SimHei}
-% 这个不知道能不能删，设置中文等宽字体：
-\setCJKmonofont{FangSong}
+\setCJKmainfont{simsun.ttc}
+\setCJKsansfont{simhei.ttf}
+\setCJKmonofont{simfang.ttf}
+
+\setCJKfamilyfont{zhsong}{simsun.ttc}
+\setCJKfamilyfont{zhhei}{simhei.ttf}
+\setCJKfamilyfont{zhfs}{simfang.ttf}
+\setCJKfamilyfont{zhkai}{simkai.ttf}
+
+% \newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
+% \newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
+% \newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
+% \newcommand*{\fangsong}{\CJKfamily{zhfs}} % 仿宋
 
 
 %%------------------------常用宏包-----------------------------------
