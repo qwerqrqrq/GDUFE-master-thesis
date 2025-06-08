@@ -5,12 +5,13 @@ name: LaTeX Compile
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master       # 仅在 master 分支 push 时触发
+    tags:
+      - 'v*'         # 仅在 master 分支下推送 v* tag 时触发
 
 jobs:
-  build:
+  build_and_upload:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +22,8 @@ jobs:
       - name: Compile gdufe_master_thesis_template
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: compare.tex
-          # root_file: gdufe_master_thesis_template.tex
+          # root_file: compare.tex
+          root_file: gdufe_master_thesis_template.tex
           args: -xelatex
           # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
           extra_fonts: |
@@ -30,13 +31,34 @@ jobs:
             ./fonts/*.ttc
           # extra_system_packages: "fontconfig"
           pre_compile: "fc-cache -f"
-          # # post_compile: "latexmk -c"
+          post_compile: "latexmk -c"
 
+      - name: Zip files
+        if: success()
+        run: |
+          zip -rf GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis_template.cls reference.bib -x includefile/\*.aux
 
       # Upload compiled pdf to artifacts if compiled successfully
-      - name: Upload pdf
+      - name: Upload zips
         uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: compare.pdf
-          path: compare.pdf
+          name: GDUFE-master-thsis.zip
+          path: GDUFE-master-thsis.zip
+
+
+  download_and_release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: 下载 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: GDUFE-master-thsis.zip
+
+      - name: 上传到 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: GDUFE-master-thsis.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
