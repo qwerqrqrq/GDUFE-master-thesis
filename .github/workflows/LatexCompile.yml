@@ -11,9 +11,8 @@ on:
     branches:
       - master       # 仅在 master 分支下推送时触发
 jobs:
-  build_and_upload:
+  compile_to_release:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,39 +33,24 @@ jobs:
           post_compile: "latexmk -c"
 
 
-      # Upload compiled pdf to artifacts if compiled successfully
-      - name: Upload pdf
-        uses: actions/upload-artifact@v4
-        if: success()
-        with:
-          name: gdufe_master_thesis_template.pdf
-          path: gdufe_master_thesis_template.pdf
-
-
-  download_and_release:
-    needs: build_and_upload
-    runs-on: ubuntu-latest
-    if: startsWith(${{github.ref}}, 'refs/tags/')
-    steps:
-      - name: 下载 artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: gdufe_master_thesis_template.pdf
-
       - name: Zip files
-        if: success()
+        if: startsWith(${{github.ref}}, 'refs/tags/v')
         run: |
           zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis.cls reference.bib -x includefile/\*.aux
+
+      - name: show files
+        run: |
+          ls -R ${{ github.workspace}}
       - name: 上传到 Release
+        if: startsWith(${{github.ref}}, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
           files: GDUFE-master-thsis.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
-
   Explore-GitHub-Actions:
-    needs: build_and_upload
+    needs: compile_to_release
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."

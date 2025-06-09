@@ -358,14 +358,13 @@
 }
 
 
-%%% ---- 正文章节标题设置 ----- %%%%
-\ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
+%%% ----章节标题设置 ----- %%%%
+\ctexset{chapter={  format={\zihao{3}\heiti\raggedright},
                     number={\arabic{chapter}},
                     name={,},
                     afterskip={1em},
                     beforeskip={0em},
-                    aftername={\quad},
-                    pagestyle={master-mainmatter}
+                    aftername={\quad}
                     }
                     }
 \ctexset{section={format={\heiti\zihao{-3}\raggedright},
@@ -394,15 +393,14 @@
 \RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
 \captionsetup[figure]{font={bf,small}}  %
 \captionsetup[table]{font={bf,small}}  %
-\renewcommand\figurename{\bfseries \zihao{5} 图}
-\renewcommand\tablename{\bfseries \zihao{5} 表}
+\renewcommand{\figurename}{\bfseries \zihao{5} 图}
+\renewcommand{\tablename}{\bfseries \zihao{5} 表}
 
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 
 %%% ------ 目录设置 ------- %%%%
 \ctexset{contentsname={\heiti\zihao{-2} { }\hfill \ziju{2}{目录} \hfill { }}}
-
 \RequirePackage[titles]{tocloft}
 \renewcommand\cftaftertoctitle{\par 1\par 1}
 
@@ -429,9 +427,17 @@
 
 % frontmatter mainmatter appendix 设置 使得自动调整章节格式
 \RequirePackage{etoolbox}  % 确保引入 etoolbox（只需一次）
-\apptocmd{\frontmatter}{\pagenumbering{Roman}}{}{}
-\apptocmd{\mainmatter}{\pagestyle{master-mainmatter}}{}{}
-\apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}}{}{}
+\apptocmd{\frontmatter}{\pagenumbering{Roman}%
+\pagestyle{plain}%
+\ctexset{chapter={format+={\centering},pagestyle={plain}}}%
+}{}{}
+\apptocmd{\mainmatter}{\pagestyle{master-mainmatter}%
+\ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
+pagestyle={master-mainmatter}}%
+}
+}{}{}
+\apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
+}{}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
