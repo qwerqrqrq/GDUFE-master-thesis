@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master_thesis}[2025/05/17 Master Thesis template for GDUFE v0.3.0]
+\ProvidesClass{gdufe_master_thesis}[2025/05/17 Master Thesis template for GDUFE v0.3.1]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术} % 默认值
@@ -17,7 +17,7 @@
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
-\PassOptionsToClass{zihao=-4}{ctexbook}
+\PassOptionsToClass{zihao=-4, a4paper}{ctexbook}
 % 消除 fix diff 需要的选项
 \PassOptionsToPackage{no-math}{fontspec}
 \ProcessOptions\relax
@@ -40,10 +40,6 @@
 \setCJKfamilyfont{zhfs}{simfang.ttf}
 \setCJKfamilyfont{zhkai}{simkai.ttf}
 
-% \newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
-% \newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
-% \newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
-% \newcommand*{\fangsong}{\CJKfamily{zhfs}} % 仿宋
 
 
 %%------------------------常用宏包-----------------------------------
@@ -60,11 +56,19 @@
 \RequirePackage{tikz}
 
 %------------------------ Page layout ----------------------------------
-\RequirePackage[top=2.54truecm,bottom=2.54truecm,left=3truecm,right=2.2truecm,headheight=1.5truecm,footskip=1.75cm,includefoot,xetex]{geometry}    % 页面设置%
+\RequirePackage[top=2.54truecm,
+                bottom=2.54truecm,
+                left=3truecm,
+                right=2.2truecm,
+                paper=a4paper,
+                xetex]{geometry}    % 页面设置%
 \RequirePackage{zhlineskip}
 \RequirePackage{setspace}
 \RequirePackage{booktabs}
 \RequirePackage{fancyhdr}
+\setlength{\headsep}{1.04truecm}
+\setlength{\headheight}{16pt}
+\setlength{\footskip}{0.79truecm}
 \RequirePackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,bookmarksnumbered=true]{hyperref}
 
 \hypersetup{pdfencoding=auto}  %%% 邓东升修改
@@ -251,66 +255,66 @@
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
-\makeatletter \setlength\partopsep{0pt}
-\def\@listI{\leftmargin\leftmargini
-    \parsep 0pt
-    \topsep \parsep
-    \itemsep \parsep}
-\@listI
-\def\@listii {\leftmargin\leftmarginii
-    \labelwidth\leftmarginii
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listiii{\leftmargin\leftmarginiii
-    \labelwidth\leftmarginiii
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listiv{\leftmargin\leftmarginiv
-    \labelwidth\leftmarginiv
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listv{\leftmargin\leftmarginv
-    \labelwidth\leftmarginv
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listvi{\leftmargin\leftmarginvi
-    \labelwidth\leftmarginvi
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-%
-% Change default margins for \list environments
-\setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
-{\leftmargini} \setlength\leftmarginiii {\leftmargini}
-\setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
-{\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
-{\leftmargini} \setlength\labelsep      {.5\ccwd}
-\setlength\labelwidth    {\leftmargini}
-%
-\setlength\listparindent{2\ccwd}
-% Change \listparindent to 2\ccwd in \list
-\def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
-    \else \global\advance\@listdepth\@ne \fi
-    \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
-    \csname @list\romannumeral\the\@listdepth\endcsname
-    \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
-    \@trivlist
-    \parskip\parsep \parindent\listparindent
-    \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
-    \advance\@totalleftmargin \leftmargin
-    \parshape \@ne \@totalleftmargin \linewidth
-    \ignorespaces}
+% \makeatletter \setlength\partopsep{0pt}
+% \def\@listI{\leftmargin\leftmargini
+%     \parsep 0pt
+%     \topsep \parsep
+%     \itemsep \parsep}
+% \@listI
+% \def\@listii {\leftmargin\leftmarginii
+%     \labelwidth\leftmarginii
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listiii{\leftmargin\leftmarginiii
+%     \labelwidth\leftmarginiii
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listiv{\leftmargin\leftmarginiv
+%     \labelwidth\leftmarginiv
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listv{\leftmargin\leftmarginv
+%     \labelwidth\leftmarginv
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listvi{\leftmargin\leftmarginvi
+%     \labelwidth\leftmarginvi
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% %
+% % Change default margins for \list environments
+% \setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
+% {\leftmargini} \setlength\leftmarginiii {\leftmargini}
+% \setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
+% {\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
+% {\leftmargini} \setlength\labelsep      {.5\ccwd}
+% \setlength\labelwidth    {\leftmargini}
+% %
+% \setlength\listparindent{2\ccwd}
+% % Change \listparindent to 2\ccwd in \list
+% \def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
+%     \else \global\advance\@listdepth\@ne \fi
+%     \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
+%     \csname @list\romannumeral\the\@listdepth\endcsname
+%     \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
+%     \@trivlist
+%     \parskip\parsep \parindent\listparindent
+%     \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
+%     \advance\@totalleftmargin \leftmargin
+%     \parshape \@ne \@totalleftmargin \linewidth
+%     \ignorespaces}
 
-\makeatother
+% \makeatother
 
 %%%%%%%%listings 设置%%%%%%%%%%%%
 \usepackage{listings}
@@ -324,7 +328,7 @@
     language=TeX,
     basicstyle=\scriptsize,
     upquote=true,
-    aboveskip={1.5\baselineskip},
+    aboveskip={\baselineskip},
     columns=fixed,
     showstringspaces=false,
     extendedchars=true,
@@ -347,14 +351,14 @@
 {
     \fancyhead{}                                    % clear all header fields
     \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
-    \fancyhead[R]{\zihao{5}\@title}
+    \fancyhead[R]{\zihao{5} \@title}
     \renewcommand{\headrulewidth}{0.3pt}
     \fancyfoot{}                                    % clear all footer fields
     \fancyfoot[C]{\thepage}
 }
 
 
-%%% ---- 章节标题设置 ----- %%%%
+%%% ---- 正文章节标题设置 ----- %%%%
 \ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
                     number={\arabic{chapter}},
                     name={,},
@@ -425,7 +429,6 @@
 
 % frontmatter mainmatter appendix 设置 使得自动调整章节格式
 \RequirePackage{etoolbox}  % 确保引入 etoolbox（只需一次）
-
 \apptocmd{\frontmatter}{\pagenumbering{Roman}}{}{}
 \apptocmd{\mainmatter}{\pagestyle{master-mainmatter}}{}{}
 \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}}{}{}
@@ -434,7 +437,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{figures/}}        % 图片文件路径
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\allowdisplaybreaks
+% \allowdisplaybreaks
 
 \endlinechar `\^^M
 \endinput
