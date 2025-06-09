@@ -33,24 +33,14 @@ jobs:
           pre_compile: "fc-cache -f"
           post_compile: "latexmk -c"
 
-      - name: Zip files
-        if: success()
-        run: |
-          zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis.cls reference.bib -x includefile/\*.aux
-
-      - name: Show files
-        run: |
-          ls -R
-
-
 
       # Upload compiled pdf to artifacts if compiled successfully
-      - name: Upload zips
+      - name: Upload pdf
         uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: GDUFE-master-thsis.zip
-          path: GDUFE-master-thsis.zip
+          name: gdufe_master_thesis_template.pdf
+          path: gdufe_master_thesis_template.pdf
 
 
   download_and_release:
@@ -61,8 +51,12 @@ jobs:
       - name: 下载 artifact
         uses: actions/download-artifact@v4
         with:
-          name: GDUFE-master-thsis.zip
+          name: gdufe_master_thesis_template.pdf
 
+      - name: Zip files
+        if: success()
+        run: |
+          zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis.cls reference.bib -x includefile/\*.aux
       - name: 上传到 Release
         uses: softprops/action-gh-release@v2
         with:
@@ -72,6 +66,7 @@ jobs:
 
 
   Explore-GitHub-Actions:
+    needs: build_and_upload
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -83,5 +78,5 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls -R ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
