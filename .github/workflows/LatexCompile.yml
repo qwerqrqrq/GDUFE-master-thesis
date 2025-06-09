@@ -50,7 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
   Explore-GitHub-Actions:
-    needs: compile_to_release
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
