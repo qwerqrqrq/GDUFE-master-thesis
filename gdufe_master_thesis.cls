@@ -402,7 +402,7 @@
 %%% ------ 目录设置 ------- %%%%
 \ctexset{contentsname={\heiti\zihao{-2} { }\hfill \ziju{2}{目录} \hfill { }}}
 \RequirePackage[titles]{tocloft}
-\renewcommand\cftaftertoctitle{\par 1\par 1}
+% \renewcommand{\cftaftertoctitle}{\newline\newline}
 
 \renewcommand{\cfttoctitlefont}{\centering}
 \renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
@@ -429,11 +429,12 @@
 \RequirePackage{etoolbox}  % 确保引入 etoolbox（只需一次）
 \apptocmd{\frontmatter}{\pagenumbering{Roman}%
 \pagestyle{plain}%
-\ctexset{chapter={format+={\centering},pagestyle={plain}}}%
+\ctexset{chapter={format+={\centering},pagestyle={plain},afterskip={2em}}}%
 }{}{}
 \apptocmd{\mainmatter}{\pagestyle{master-mainmatter}%
 \ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
-pagestyle={master-mainmatter}}%
+pagestyle={master-mainmatter},
+afterskip={1em}}%
 }
 }{}{}
 \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
