@@ -34,7 +34,7 @@ jobs:
 
 
       - name: Zip files
-        if: startsWith(${{github.ref}}, 'refs/tags/v')
+        if: ${{ startsWith(${{github.ref}}, 'refs/tags/v')}}
         run: |
           zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis.cls reference.bib -x includefile/\*.aux
 
@@ -42,7 +42,7 @@ jobs:
         run: |
           ls -R ${{ github.workspace}}
       - name: 上传到 Release
-        if: startsWith(${{github.ref}}, 'refs/tags/v')
+        if: ${{startsWith(${{github.ref}}, 'refs/tags/v')}}
         uses: softprops/action-gh-release@v2
         with:
           files: GDUFE-master-thsis.zip
