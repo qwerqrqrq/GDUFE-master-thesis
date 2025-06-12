@@ -58,9 +58,15 @@
 % 设置行距
 % \RequirePackage{zhlineskip}
 % \RequirePackage{setspace}
-
 % \setlength{\baselineskip}{20pt}
+\RequirePackage{etoolbox}
+\apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
+\apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
+\apptocmd{\fangsong}{\setlength{\baselineskip}{20pt}}{}{}
+\apptocmd{\kaishu}{\setlength{\baselineskip}{20pt}}{}{}
 
+\apptocmd{\@ctex@setfontsize}
+  {\setlength{\baselineskip}{20pt}} {} {}
 
 %------------------------ Page layout ----------------------------------
 \RequirePackage[top=2.54truecm,
@@ -362,7 +368,7 @@
                     aftername={\quad}
                     }
                     }
-\ctexset{section={format={\heiti\zihao{-3}\raggedright},
+\ctexset{section={format={\zihao{-3}\heiti\raggedright},
                           afterskip={6pt},
                           beforeskip={6pt},
                           aftername={\quad}
@@ -395,11 +401,12 @@
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 
 %%% ------ 目录设置 ------- %%%%
-\ctexset{contentsname={\heiti\zihao{-2} { }\hfill \ziju{2}{目录} \hfill { }}}
-\RequirePackage[titles]{tocloft}
-% \renewcommand{\cftaftertoctitle}{\newline\newline}
 
-\renewcommand{\cfttoctitlefont}{\centering}
+\RequirePackage[titles]{tocloft}
+\setlength{\cftaftertoctitleskip}{40pt}
+\renewcommand{\cfttoctitlefont}{}
+\ctexset{contentsname={{ }\hfill{\heiti\ziju{2}目录} \hfill { }}}
+
 \renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
 \renewcommand{\cftsecfont}{\songti\zihao{-4}}        % 节标题
 \renewcommand{\cftsubsecfont}{\songti\zihao{-4}}     % 条标题
@@ -421,15 +428,17 @@
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
 %% -----frontmatter mainmatter appendix 设置 使得自动调整章节格式-----
-\RequirePackage{etoolbox}
+
 \apptocmd{\frontmatter}{\pagenumbering{Roman}%
 \pagestyle{plain}%
-\ctexset{chapter={format+={\centering},pagestyle={plain},afterskip={2em}}}%
+\ctexset{chapter={format+={\centering},%
+pagestyle={plain},
+afterskip={2\baselineskip}}}%
 }{}{}
 \apptocmd{\mainmatter}{\pagestyle{master-mainmatter}%
 \ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
 pagestyle={master-mainmatter},
-afterskip={1em}}%
+afterskip={1\baselineskip}}%
 }
 }{}{}
 \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
