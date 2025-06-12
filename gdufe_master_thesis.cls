@@ -17,7 +17,7 @@
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
-\PassOptionsToClass{zihao=-4, a4paper}{ctexbook}
+\PassOptionsToClass{zihao=-4, a4paper,openany}{ctexbook}
 % 消除 fix diff 需要的选项
 \PassOptionsToPackage{no-math}{fontspec}
 \ProcessOptions\relax
@@ -57,16 +57,20 @@
 
 % 设置行距
 % \RequirePackage{zhlineskip}
-% \RequirePackage{setspace}
-% \setlength{\baselineskip}{20pt}
 \RequirePackage{etoolbox}
 \apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\fangsong}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\kaishu}{\setlength{\baselineskip}{20pt}}{}{}
+\apptocmd{\bfseries}{\setlength{\baselineskip}{20pt}}{}{}
 
-\apptocmd{\@ctex@setfontsize}
-  {\setlength{\baselineskip}{20pt}} {} {}
+\let\orig@zihao\zihao
+
+% 重新定义 \zihao 命令
+\renewcommand{\zihao}[1]{%
+  \orig@zihao{#1}% 执行原始的字号设置
+  \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
+}
 
 %------------------------ Page layout ----------------------------------
 \RequirePackage[top=2.54truecm,
@@ -76,8 +80,7 @@
                 paper=a4paper,
                 headsep=1.04truecm,
                 footskip=0.79truecm,
-                headheight=16pt,
-                showframe]{geometry}    % 页面设置%
+                headheight=16pt]{geometry}    % 页面设置%
 
 \RequirePackage{booktabs}
 \RequirePackage{fancyhdr}
@@ -118,7 +121,7 @@
 %     % \par
 %     % \vspace*{1.1cm} %插入空白
 %     \rule{0.9\textwidth}{1pt}
-%     \vskip 12pt
+%     \vspace{12pt}
 %     % {\bfseries \zihao{1} \makebox[5cm][s]{学术学位硕士论文}}\\
 %     {\heiti \fontsize{48pt}{\baselinestretch} {学术学位硕士论文}}\\
 %     \vspace{60pt}
@@ -139,11 +142,11 @@
 %       \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间} & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{}  \\%\hline
 %      \end{tabular}
 %     }
-%   \vskip 1.5cm
+%   \vspace{1.5cm}
 % {
 %   \fangsong\zihao{3} \bfseries ~~~~~年~~~~~月~~~~~日
 % }
-%   \vskip 1em
+%   \vspace{1em}
 % % \begin{tikzpicture}
 % %   \draw[draw=black!70,fill=black!70](0,0)rectangle node[below=1pt]{\zihao{-4}\textcolor[rgb]{0.3,0.3,0.3}{广东财经大学教务处 \ \ 制}}(\textwidth,4pt);
 % % \end{tikzpicture}
@@ -155,9 +158,9 @@
 % \vspace*{0.75cm}
 % \begin{center}
 %   {\songti \zihao{0} 学术学位硕士论文}
-% \vskip 2.5cm
+% \vspace{2.5cm}
 % {\heiti \zihao{-2} \@title \par \the\Engtitle}
-% \vskip 2.1cm
+% \vspace{2.1cm}
 % {\heiti\zihao{4}
 %  \renewcommand{\arraystretch}{1.5}
 %     \begin{tabular}{ll}
@@ -168,13 +171,13 @@
 %       \makebox[3.25cm][s]{学\hfill 号} & { {}\underline{\makebox[5.75cm][c]{\the\StudentNumber}}}\hfill{}  \\%\hline
 %       \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间} & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{}  \\%\hline
 %      \end{tabular}
-%      \vskip 2em
+%      \vspace{2em}
 %      \begin{tabular}{lr}
 %       %\hline
 %         \makebox[4.25cm][s]{论文提交时间}&{ {}\makebox[4.75cm][r]{\the\SubmitDate}}\hfill{}\\%\hline
 %         \makebox[4.25cm][s]{论文答辩时间}&{ {}\makebox[4.75cm][r]{\the\DefenseDate}}\hfill{} \\%\hline
 %       \end{tabular}
-%       \vskip 1em
+%       \vspace{1em}
 %       \begin{tabular}{lr}
 %           \makebox[4.25cm][s]{答辩委员会主席}&{ {}\underline{\makebox[4.75cm][s]{}}}\hfill{}\\%\hline
 %           \makebox[4.25cm][s]{答辩委员会委员}&{ {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
@@ -190,7 +193,7 @@
 %   \vspace*{0.8cm}
 %   {\heiti \zihao{3} \bfseries 广东财经大学学位论文原创性声明}
 % \end{center}
-% \vskip 0.72cm
+% \vspace{0.72cm}
 
 % \begin{spacing}{2.0}
 % \fangsong \zihao{4}
@@ -201,7 +204,7 @@
 %   \makebox[11cm][r]{签字日期:}&{ {}{\makebox[3.75cm][l]{\the\SignDate}}}\hfill{} \\%\hline
 % \end{tabular}
 % \end{spacing}
-% \vskip 1em
+% \vspace{1em}
 % \begin{spacing}{1.5}
 % \begin{center}
 %   {\heiti \bfseries \zihao{3} 广东财经大学学位论文版权使用授权书}
@@ -394,8 +397,8 @@
 \RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
 \captionsetup[figure]{font={bf,small}}  %
 \captionsetup[table]{font={bf,small}}  %
-\renewcommand{\figurename}{\bfseries \zihao{5} 图}
-\renewcommand{\tablename}{\bfseries \zihao{5} 表}
+\renewcommand{\figurename}{\bfseries \zihao{5} \songti 图}
+\renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
 
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
@@ -403,9 +406,11 @@
 %%% ------ 目录设置 ------- %%%%
 
 \RequirePackage[titles]{tocloft}
-\setlength{\cftaftertoctitleskip}{40pt}
+% \setlength{\cftaftertoctitleskip}{40pt}
+
 \renewcommand{\cfttoctitlefont}{}
-\ctexset{contentsname={{ }\hfill{\heiti\ziju{2}目录} \hfill { }}}
+% \renewcommand{\cftaftertoctitle}{\hfill}
+\ctexset{contentsname={\heiti\ziju{2} 目录}}
 
 \renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
 \renewcommand{\cftsecfont}{\songti\zihao{-4}}        % 节标题
@@ -455,14 +460,13 @@ afterskip={1\baselineskip}}%
     \else
       \hbox{}%
       \thispagestyle{empty}%
-      \stepcounter{page}\addtocounter{page}{-1}% 先加 1 再减 1，避免页码递增
       \newpage
       \if@twocolumn\hbox{}\newpage\fi
     \fi
   \fi
 }
 
-\makeatother
+% \makeatother
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

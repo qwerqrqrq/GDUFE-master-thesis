@@ -22,7 +22,6 @@
 \usepackage{algpseudocode}
 
 \begin{document}
-\setlength{\baselineskip}{20pt}  % 设置全局行距
 % 中文标题
 \title{广东财经大学学术硕士论文 \LaTeX{}模板}
 
@@ -32,6 +31,7 @@
 % 封面文件需要自己在doc文件修改后导出pdf文件，注意修改文件名。
 \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
 % \maketitle
+\setlength{\baselineskip}{20pt} % 设置全局行距
 \frontmatter
 %-----------------------------------------------------------------------------
 \include{includefile/abstract.tex}    % 加入摘要.
@@ -57,8 +57,8 @@
 %%%=== 参考文献 ========%%%
 % % 手写参考文献
 \begin{thebibliography}{00}
-    \bibitem {huangzh}黄正华. \url{http://aff.whu.edu.cn/huangzh/}.
-    \bibitem{r1} 作者. 文章题目 [J].  期刊名, 出版年份，卷号(期数): 起止页码.
+    \bibitem {huangzh}黄正华. \url{http://aff.whu.edu.cn/huangzh/}.\the\baselineskip
+    \bibitem{r1} 作者. 文章题目 [J].  期刊名, 出版年份，卷号(期数): 起止页码.\the\baselineskip
     \bibitem{r2} 作者. 书名 [M]. 版次. 出版地：出版单位，出版年份：起止页码.
     \bibitem{r3} 邓建松等, 《\LaTeXe~科技排版指南》, 科学出版社.
     \bibitem{r4} 吴凌云, 《CTeX~FAQ (常见问题集)》, \textit{Version~0.4}, June 21, 2004.
@@ -82,6 +82,5 @@
 
 \include{includefile/appendix.tex}
 
-\cleardoublepage
 \include{includefile/acknowledgment.tex} %%%致谢
 \end{document}
