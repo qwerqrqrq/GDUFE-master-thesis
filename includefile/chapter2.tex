@@ -136,11 +136,12 @@
 另见文献\cite[49]{r3}\parencite[106]{r4}
 
 
-使用 \verb|\cite \parencite| 的参考文献是顺序编码制, 其余的引用方式请参考 biblatex, biblatex-gb7714-2015 的文档.
+使用 \verb|\cite \parencite| 的参考文献是顺序编码制, 其余的引用方式请参考 biblatex, biblatex-gb7714-2015 的文档.\the\baselineskip
 
 
-\subsubsection{手写 thebibliography 参考文献}
-不想使用 biblatex 管理参考文献, 要得到形如~{\cite{r1,r3,r4,r5}} 的参考文献连续引用, 需要用到 cite 宏包. 但cite宏包和biblatex宏包有冲突, 因此使用此方案务必注释文件开头的\\
+\subsubsection{手写 thebibliography 参考文献\the\baselineskip}
+\the\baselineskip
+不想使用 biblatex 管理参考文献, 要得到形如~{\cite{r1,r3,r4,r5}} 的参考文献连续引用, 需要用到 cite 宏包. 但cite宏包和biblatex宏包有冲突, 因此使用此方案务必注释文件开头的\the\baselineskip\\
 \verb|\usepackage[style=gb7714-2015, backend=biber]{biblatex}|\\
 \verb|\addbibresource{reference.bib}|\\
 以及末尾的\\

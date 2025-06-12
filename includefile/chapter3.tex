@@ -1,25 +1,26 @@
-\chapter{显示测试}
-\section{字体测试}
-中文宋体正常 \textbf{中文宋体加粗} \textit{中文宋体斜体}
+\chapter{显示测试\the\baselineskip}
+\the\baselineskip
+\section{字体测试\the\baselineskip}
+中文宋体正常 \textbf{中文宋体加粗} \textit{中文宋体斜体}\the\baselineskip
 
-English \textbf{English} \textit{English}
-\section{数学公式测试}
-带编号公式
+English \textbf{English} \textit{English}\the\baselineskip
+\section{数学公式测试\the\baselineskip}
+带编号公式\the\baselineskip
 \begin{equation}
-    \int_0^1 x^2 \mathrm{d}x = \frac{1}{3}.
+    \int_0^1 x^2 \mathrm{d}x = \frac{1}{3}.\the\baselineskip
 \end{equation}
 
-不带编号公式
+不带编号公式\the\baselineskip
 \begin{equation*}
-    \int_0^1 x^2 \mathrm{d}x = \frac{1}{3}.
+    \int_0^1 x^2 \mathrm{d}x = \frac{1}{3}.\the\baselineskip
 \end{equation*}
 
 \section{图片测试}
-单图测试
+单图测试\the\baselineskip
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{lake.jpeg}
-    \caption{单图片}
+    \caption{单图片\the\baselineskip}
     \label{fig:singlePic}
 \end{figure}
 
@@ -29,8 +30,8 @@ English \textbf{English} \textit{English}
     \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
     \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
     \includegraphics[width=0.3\textwidth]{lake.jpeg}
-    \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985---2005）}
-    {\zihao{5} \songti 资料来源：xxx}
+    \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985---2005）\the\baselineskip}
+    {\zihao{5} \songti 资料来源：xxx\the\baselineskip}
     \label{fig:MultiPic1}
 \end{figure}
 

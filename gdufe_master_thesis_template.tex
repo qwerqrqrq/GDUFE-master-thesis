@@ -23,9 +23,9 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
-% 设置行距
-\setlength{\baselineskip}{20pt} \selectfont
+
 \begin{document}
+\setlength{\baselineskip}{20pt}  % 设置全局行距
 % 中文标题
 \title{广东财经大学学术硕士论文 \LaTeX{}模板}
 
@@ -44,9 +44,13 @@
 
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%--------main matter-------%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
 \include{includefile/chapter1.tex}
+\cleardoublepage
 \include{includefile/chapter2.tex}
+\cleardoublepage
 \include{includefile/chapter3.tex}
+\cleardoublepage
 \include{includefile/chapter4.tex}
 
 %%%============正文之后的页眉页脚格式========%%%

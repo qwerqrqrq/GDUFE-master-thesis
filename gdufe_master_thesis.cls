@@ -24,6 +24,20 @@
 % 加载ctexbook类
 \LoadClass{ctexbook}
 
+%%------------------------常用宏包-----------------------------------
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{ntheorem}
+% \RequirePackage[amsmath,thmmarks]{ntheorem}% AMSLaTeX宏包.
+\RequirePackage{graphicx}                 % 图形
+\RequirePackage{color,xcolor}             %支持彩色
+\RequirePackage{mathrsfs}   % 不同于\mathcal or \mathfrak 之类的英文花体字体
+\RequirePackage{url}
+\RequirePackage{enumerate}
+\RequirePackage{pdfpages}
+\RequirePackage {fixdif}
+\RequirePackage{tikz}
+
+
 %% ------------------------ 字体设置 -----------------------------------
 \defaultfontfeatures{Path = fonts/}
 % 设置英文字体
@@ -41,19 +55,12 @@
 \setCJKfamilyfont{zhkai}{simkai.ttf}
 
 
+% 设置行距
+% \RequirePackage{zhlineskip}
+% \RequirePackage{setspace}
 
-%%------------------------常用宏包-----------------------------------
-\RequirePackage{amsmath,amssymb}
-\RequirePackage{ntheorem}
-% \RequirePackage[amsmath,thmmarks]{ntheorem}% AMSLaTeX宏包.
-\RequirePackage{graphicx}                 % 图形
-\RequirePackage{color,xcolor}             %支持彩色
-\RequirePackage{mathrsfs}   % 不同于\mathcal or \mathfrak 之类的英文花体字体
-\RequirePackage{url}
-\RequirePackage{enumerate}
-\RequirePackage{pdfpages}
-\RequirePackage {fixdif}
-\RequirePackage{tikz}
+% \setlength{\baselineskip}{20pt}
+
 
 %------------------------ Page layout ----------------------------------
 \RequirePackage[top=2.54truecm,
@@ -61,14 +68,16 @@
                 left=3truecm,
                 right=2.2truecm,
                 paper=a4paper,
-                xetex]{geometry}    % 页面设置%
-\RequirePackage{zhlineskip}
-\RequirePackage{setspace}
+                headsep=1.04truecm,
+                footskip=0.79truecm,
+                headheight=16pt,
+                showframe]{geometry}    % 页面设置%
+
 \RequirePackage{booktabs}
 \RequirePackage{fancyhdr}
-\setlength{\headsep}{1.04truecm}
-\setlength{\headheight}{16pt}
-\setlength{\footskip}{0.79truecm}
+% \setlength{\headsep}{1.04truecm}
+% \setlength{\headheight}{16pt}
+% \setlength{\footskip}{0.79truecm}
 \RequirePackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,bookmarksnumbered=true]{hyperref}
 
 \hypersetup{pdfencoding=auto}  %%% 邓东升修改
@@ -77,7 +86,6 @@
 \else
     \hypersetup{citecolor=magenta,linkcolor=blue}
 \fi
-
 
 
 % 重定义maketitle命令使得不会出现多余的空白页
@@ -208,23 +216,10 @@
 
 %------------------------ Abstract & Keywords -------------------------
 % 格式在摘要页调整
-\newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }#1}
+\newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }\songti\zihao{-4}#1}
 \newcommand\cnkeywordsname{关键词}
-\newcommand\enkeywords[1]{ {\noindent\bfseries\zihao{-4}\enkeywordsname: }#1}
+\newcommand\enkeywords[1]{ {\noindent\bfseries\zihao{-4}\enkeywordsname: }\zihao{-4}#1}
 \newcommand\enkeywordsname{Key Words}
-
-% \newenvironment{cnabstract}{
-%   \chapter[摘要]{\heiti \ziju{1}{摘要}}
-%   }  %%%终于解决了书签乱码的问题 2005-04-12.huangzh
-%    {\songti\zihao{-4}
-%     \@afterheading}
-%     {\par}
-% \newenvironment{enabstract}{
-%     \chapter[ABSTRACT]{\bfseries \centering ABSTRACT}}
-%     {\noindent \zihao{-4}
-%     \@afterheading
-%     }{\par}
-
 
 %%----------------------- Theorems -----------------------------------
 \theoremstyle{plain}
@@ -352,7 +347,7 @@
     \fancyhead{}                                    % clear all header fields
     \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
     \fancyhead[R]{\zihao{5} \@title}
-    \renewcommand{\headrulewidth}{0.3pt}
+    \renewcommand{\headrulewidth}{0.1pt}
     \fancyfoot{}                                    % clear all footer fields
     \fancyfoot[C]{\thepage}
 }
@@ -363,7 +358,7 @@
                     number={\arabic{chapter}},
                     name={,},
                     afterskip={1em},
-                    beforeskip={0em},
+                    beforeskip={0pt},
                     aftername={\quad}
                     }
                     }
@@ -425,8 +420,8 @@
 % 点线设置
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
-% frontmatter mainmatter appendix 设置 使得自动调整章节格式
-\RequirePackage{etoolbox}  % 确保引入 etoolbox（只需一次）
+%% -----frontmatter mainmatter appendix 设置 使得自动调整章节格式-----
+\RequirePackage{etoolbox}
 \apptocmd{\frontmatter}{\pagenumbering{Roman}%
 \pagestyle{plain}%
 \ctexset{chapter={format+={\centering},pagestyle={plain},afterskip={2em}}}%
@@ -439,6 +434,26 @@ afterskip={1em}}%
 }{}{}
 \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
 }{}{}
+
+
+%% 设置清除双面打印时的空白页
+\makeatletter
+\def\cleardoublepage{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page
+      % 当前是奇数页，不插空白页
+    \else
+      \hbox{}%
+      \thispagestyle{empty}%
+      \stepcounter{page}\addtocounter{page}{-1}% 先加 1 再减 1，避免页码递增
+      \newpage
+      \if@twocolumn\hbox{}\newpage\fi
+    \fi
+  \fi
+}
+
+\makeatother
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
