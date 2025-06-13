@@ -9,31 +9,21 @@
 
     \item[Step 2]  打开主文档 gdufe\_master\_thesis\_template.tex, 填写题目、作者等等信息, 撰写正文. 主文档的文件名可以修改，但要求用英文名.
 
-    \item[Step 3]  使用 XeLaTeX 编译. 具体见 \ref{sec-compile} 节.
+    \item[Step 3]  编译. 具体见 \ref{sec-compile} 节.
 
 \end{description}
 
 \section{编译的方法}\label{sec-compile}
-
-默认使用 XeLaTeX 编译, 直接生成~pdf 文件. \the\baselineskip
-
 若另存为新文档, 请确保文档保存类型为 \verb|:UTF-8|. 当然目前很多编辑器默认文字编码为 UTF-8.
 WinEdt 9.0 之后的版本都是默认保存为 UTF-8 的. \the\baselineskip
 
 使用~XeLaTeX 编译, 直接生成~pdf 文件.
 pdf 文件也可以反向搜索! 双击~pdf 中要修改的文字, 将直接跳转到源文件中相应位置.
 
-如果使用 bib 文件管理参考文献，需要经过
-\begin{enumerate}
-    \item XeLaTeX
-
-    \item Biber
-
-    \item XeLaTeX
-
-    \item XeLaTeX
-\end{enumerate}
-四次编译 \the\baselineskip
+如果不使用bib文件管理参考文献, 需要用 Xelatex 编译两次.
+如果使用 bib 文件管理参考文献，需要经过\\
+XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX 四次编译. \the\baselineskip
+或者用latexmk --Xelatex 参数自动编译.
 
 % \section{文档类型选择}
 % 文档类型有 2 种情形:
@@ -57,15 +47,20 @@ pdf 文件也可以反向搜索! 双击~pdf 中要修改的文字, 将直接跳�
     \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无''(Adobe Reader XI 是选择``实际大小'').
           有可能页面放缩方式默认为``适合可打印区域'', 会导致打印为原页面大小的 $97\%$.
           文字不要居中打印, 是因为考虑到装订, 左侧的空白留得稍多一点(模板已作预留). \the\baselineskip
-    \item  遗留问题: 封面需要打印部重新制作.  校内打印部通常有现成的模板.
-          我们自己做的封面, 打印部不一定好用.
+    \item  \sout{遗留问题: 封面需要打印部重新制作.  校内打印部通常有现成的模板.
+          我们自己做的封面, 打印部不一定好用.} 使用了 doc 文件导出的 pdf 文件, 直接打印即可.
+    \item  还不支持书脊, 需要和打印店老板沟通.
 \end{enumerate}
 
 \textbf{问}: {\kaishu 生成 PDF 文件时，不能去掉目录和文章的引用彩色方框，请问怎么解决？\the\baselineskip} \the\baselineskip
 
 \textbf{答}: {\kaishu 方框表示超级链接, 只在电脑上看得见. 实际打印时, 是没有的. 另外, 文档类型加选项 forprint 之后, 这些框框会隐掉的. }
 
+\textbf{注}: {\kaishu 不知道删了什么, 没有框框出现.}
+
 \section{文档中的若干命令 \the\baselineskip}
 \begin{enumerate}
-    \item 若删去参考文献后的\verb|\thispagestyle{plain}|命令则会导致参考文献页显示页眉 \the\baselineskip
+    \item 文档中有很多 \verb|\the\baselineskip| 命令, 这是用来测试行距的, 正式写作中可以放心删除.
+    \item 不要删除 abstract 和 chapter1 开头的 \verb|\setlength{\baselineskip}{20pt}|. 因不知原因, 需要加入这个命令才有正确的行距.
+    \item 用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
 \end{enumerate}
