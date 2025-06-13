@@ -92,7 +92,7 @@ Use \texttt{align*} environment:
 
 测试 \cite{huangzh,anon-cn1,anon-cn2,anon-cn3,anon-cn4,anon-cn5}
 
-测试 \cite*{anon-en1,anon-en2,anon-en3,anon-en4,anon-en5}
+测试 \cite*{huangzh,anon-en1,anon-en2,anon-en3,anon-en4,anon-en5}
 
 注意手写参考文献和使用 bib 文件的样式有顶格不顶格的区别，由于没有详细要求，选一使用即可。
 
@@ -113,7 +113,7 @@ Use \texttt{align*} environment:
     \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
     \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
     \includegraphics[width=0.3\textwidth]{lake.jpeg}
-    \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985---2005）\the\baselineskip}
+    \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
     {\zihao{5} 资料来源：xxx\the\baselineskip}
     \label{fig:MultiPic1}
 \end{figure}
@@ -185,13 +185,13 @@ Use \texttt{align*} environment:
 
 \section{已定义好的一些数学定理环境}
 
-\begin{defi}[测度]
+\begin{definition}[测度]
     (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
-\end{defi}
+\end{definition}
 
-\begin{theo}
+\begin{theorem}
     这是一段文字 $E = m c^2$
-\end{theo}
+\end{theorem}
 
 \begin{proof}
     这是一段文字 $E = m c^2$
@@ -201,40 +201,44 @@ Use \texttt{align*} environment:
     这是一段文字 $E = m c^2$
 \end{proof}
 
-\begin{exam}
+\begin{example}
     这是一段文字 $E = m c^2$
-\end{exam}
+\end{example}
 
-\begin{prop}
+\begin{property}
     这是一段文字 $E = m c^2$
-\end{prop}
+\end{property}
 
-\begin{coro}
+\begin{corollary}
     这是一段文字 $E = m c^2$
-\end{coro}
+\end{corollary}
 
-\begin{lemm}
+\begin{lemma}
     这是一段文字 $E = m c^2$
-\end{lemm}
+\end{lemma}
 
-\begin{rema}
+\begin{remark}
     这是一段文字 $E = m c^2$
-\end{rema}
+\end{remark}
 
-\begin{theo}[Banach-Steinhaus]\label{thm:test}
+\begin{axiom}
+    这是一段文字 $E = m c^2$
+\end{axiom}
+
+\begin{theorem}[Banach-Steinhaus]\label{thm:test}
     设 $E$ 是 Banach 空间, $F$ 是赋范空间, $(u_i)_{i\in I}$ 是一族从 $E$ 到 $F$ 的有界线性算子,
     即 $(u_i)_{i\in I}\subset \mathcal{B}(E,F)$. 若对每一点 $x\in E$, 有
     $\sup_{i\in I} \|u_i(x)\|<\infty$, 则
     \begin{equation}\label{eq:test1}
         \sup_{i\in I} \|u_i\| < \infty.
     \end{equation}
-\end{theo}
+\end{theorem}
 
 我想引用定理~\ref{thm:test} 和公式~\ref{eq:test1}
 
 定理括号测试：
 
-\begin{theo}
+\begin{theorem}
     测试
     \begin{enumerate}
         \item 中文（括号）没输入空格的效果
@@ -242,7 +246,7 @@ Use \texttt{align*} environment:
         \item 西文(括号)没输入空格的效果
         \item 西文 (括号) 输入空格的效果
     \end{enumerate}
-\end{theo}
+\end{theorem}
 
 \begin{proof}
     test

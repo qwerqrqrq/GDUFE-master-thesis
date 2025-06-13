@@ -174,30 +174,30 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 \subsection{定理环境和公式的引用}
 
-本模板定义了7中新定理环境样式, 包括：定理（theorem）、定义（definition）、引理（lemma）、推论（corollary）、例（example）、注（remark）. 使用时用如下的格式：
+本模板定义了新定理环境样式, 包括：定理（theorem）、定义（definition）、引理（lemma）、推论（corollary）、性质（property）、公理（axiom）、例（example）、注（remark）。 使用时用如下的格式：
 \begin{lstlisting}
 \begin{<环境名>}
 
 \end{<环境名>}
 \end{lstlisting}
 
-上面的环境名一律是这些英文单词的前四个字母，参见下面的各例：
+上面的环境名一律是这些英文单词，参见下面的各例：
 
-\begin{theo}[谁发现的]\label{th-abcd}
+\begin{theorem}[谁发现的]\label{th-abcd}
     最大的正整数是~$1$.
-\end{theo}
+\end{theorem}
 
 其源文件如下：
 
 \begin{lstlisting}
- \begin{theo}[谁发现的]\label{th-abcd}
+ \begin{theorem}[谁发现的]\label{th-abcd}
 最大的正整数是~$1$.
-\end{theo}
+\end{theorem}
 \end{lstlisting}
 
 其它环境就不一一举例了。
 
-本模板还提供了证明和解的环境. 证明的环境名为：proof， 解的环境名为solu.
+本模板还提供了证明和解的环境. 证明的环境名为：proof, 解的环境名为 solution.
 
 \begin{proof}
     要找到这个最大的正整数, 我们设最大的正整数为~$x$, 则~$x \geqslant 1$, 两边同时乘以~$x$, 得到
@@ -217,25 +217,25 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 定理~\ref{th-abcd} 是一个重大的发现.
 
 %%%%----- 定义等环境的举例 --------
-\begin{defi}[整数]
+\begin{definition}[整数]
     正整数(例如 1, 2, 3)、负整数(例如 ${-1}$, $-2$, $-3$)与零(0)合起来统称为{\heiti 整数}.
-\end{defi}
+\end{definition}
 
-\begin{rema}
+\begin{remark}
     整数集合在数学上通常表示为 $\mathbf{Z}$ 或 $\mathbb{Z}$, 该记号源于德语单词 Zahlen(意为``数'')的首字母.
-\end{rema}
+\end{remark}
 
-\begin{prop}
+\begin{property}
     任意两个整数相加、相减、相乘的结果, 仍然是整数.
-\end{prop}
+\end{property}
 
-\begin{exam}
+\begin{example}
     $1+2=3$.
-\end{exam}
+\end{example}
 
-\begin{coro}
+\begin{corollary}
     在整数集合内, 相加、相减、相乘运算是封闭的.
-\end{coro}
+\end{corollary}
 
 \section{图形}
 

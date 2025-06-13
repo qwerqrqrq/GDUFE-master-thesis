@@ -246,13 +246,14 @@
 \theorempreskip{0pt}
 \theorempostskip{0pt}
 \theoremnumbering{arabic}
-\newtheorem{theo}{\hspace{2em}定理}[section]
-\newtheorem{defi}{\hspace{2em}定义}[section]
-\newtheorem{lemm}{\hspace{2em}引理}[section]
-\newtheorem{coro}{\hspace{2em}推论}[section]
-\newtheorem{prop}{\hspace{2em}性质}[section]
-\newtheorem{exam}{\hspace{2em}例}[section]
-\newtheorem{rema}{\hspace{2em}注}[section]
+\newtheorem{theorem}{\hspace{2em}定理}[section]
+\newtheorem{definition}{\hspace{2em}定义}[section]
+\newtheorem{lemma}{\hspace{2em}引理}[section]
+\newtheorem{corollary}{\hspace{2em}推论}[section]
+\newtheorem{property}{\hspace{2em}性质}[section]
+\newtheorem{axiom}{\hspace{2em}公理}[section]
+\newtheorem{example}{\hspace{2em}例}[section]
+\newtheorem{remark}{\hspace{2em}注}[section]
 
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\heiti}
@@ -260,7 +261,7 @@
 \theoremindent 0em \theoremseparator{\hspace{1em}}
 \theoremsymbol{$\square$}
 \newenvironment{proof}{{\heiti 证明：}}{\hfill $\square$\par}
-\newenvironment{solu}{{\heiti 解:}}{\hfill $\square$\par}
+\newenvironment{solution}{{\heiti 解:}}{\hfill $\square$\par}
 
 % \renewcommand{\proofname}{\indent\bfseries 证明}
 % \newenvironment{solution}{\begin{proof}[\indent\bf 解]}{\end{proof}}
