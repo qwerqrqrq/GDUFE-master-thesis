@@ -1,11 +1,10 @@
-
-
 \documentclass[class = professional, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
 % AutoFakeBold=3.17,AutoFakeSlant=0.2  设置字体伪粗体和伪斜体
+% twoside: 双面打印
 
-% \documentclass[forprint,class=academic]{gdufe_master_thesis}% 选项 forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
+% \documentclass[forprint,class = professional, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}% 选项 forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
 
 %% --------biblatex 与cite  bibliographystyle二选一-------------
 % 使用biblatex. 如果手写参考文献请注释下两行
@@ -23,14 +22,13 @@
 
 \begin{document}
 % 中文标题
-\title{广东财经大学学术硕士论文 \LaTeX{}模板}
-
+\title{广东财经大学硕士论文 \LaTeX{}模板}
 %-----------------------------------------------------------------------------
 \pagestyle{empty}
 \pdfbookmark[0]{封面}{title}         % 封面页加到 pdf 书签
 % 封面文件需要自己在doc文件修改后导出pdf文件，注意修改文件名。
 \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
-% \maketitle
+\maketitle
 \setlength{\baselineskip}{20pt} % 设置全局行距
 \frontmatter
 %-----------------------------------------------------------------------------

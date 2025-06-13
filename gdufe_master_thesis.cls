@@ -1,11 +1,11 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master_thesis}[2025/05/17 Master Thesis template for GDUFE v0.3.2]
+\ProvidesClass{gdufe_master_thesis}[2025/05/17 Master Thesis template for GDUFE v0.4.0]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术} % 默认值
-
+\newcommand{\Ctitle}{\@title} % 中文标题
 % ---------选项设置-------------
 \DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}}
 \DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}}
@@ -104,7 +104,7 @@
 
 
 % 重定义maketitle命令使得不会出现多余的空白页
-\def\maketitle{\null\leavevmode }
+\def\maketitle{\null\leavevmode}
 %%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
 % \def\maketitle{%
 % \thispagestyle{empty}%
@@ -362,7 +362,7 @@
 {
     \fancyhead{}                                    % clear all header fields
     \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
-    \fancyhead[R]{\zihao{5} \@title}
+    \fancyhead[R]{\zihao{5} \Ctitle}
     \renewcommand{\headrulewidth}{0.1pt}
     \fancyfoot{}                                    % clear all footer fields
     \fancyfoot[C]{\thepage}
