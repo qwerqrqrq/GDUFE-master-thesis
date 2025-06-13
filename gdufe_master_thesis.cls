@@ -24,19 +24,26 @@
 % 加载ctexbook类
 \LoadClass{ctexbook}
 
-%%------------------------常用宏包-----------------------------------
-\RequirePackage{amsmath,amssymb}
+%%------------------------调用宏包-----------------------------------
+\RequirePackage{amsmath,amssymb, mathrsfs}
 \RequirePackage{ntheorem}
 % \RequirePackage[amsmath,thmmarks]{ntheorem}% AMSLaTeX宏包.
 \RequirePackage{graphicx}                 % 图形
+\RequirePackage{float}
+\RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
+\RequirePackage{subcaption}
 \RequirePackage{color,xcolor}             %支持彩色
-\RequirePackage{mathrsfs}   % 不同于\mathcal or \mathfrak 之类的英文花体字体
 \RequirePackage{url}
 \RequirePackage{enumerate}
+\RequirePackage{etoolbox}
 \RequirePackage{pdfpages}
 \RequirePackage {fixdif}
 \RequirePackage{tikz}
-
+\RequirePackage{ulem}
+% \RequirePackage{siunitx}
+\RequirePackage{booktabs}
+\RequirePackage{listings}
+\RequirePackage[titles]{tocloft}
 
 %% ------------------------ 字体设置 -----------------------------------
 \defaultfontfeatures{Path = fonts/}
@@ -56,8 +63,8 @@
 
 
 % 设置行距
-% \RequirePackage{zhlineskip}
-\RequirePackage{etoolbox}
+\RequirePackage{zhlineskip}
+
 \apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\fangsong}{\setlength{\baselineskip}{20pt}}{}{}
@@ -82,7 +89,6 @@
                 footskip=0.79truecm,
                 headheight=16pt]{geometry}    % 页面设置%
 
-\RequirePackage{booktabs}
 \RequirePackage{fancyhdr}
 % \setlength{\headsep}{1.04truecm}
 % \setlength{\headheight}{16pt}
@@ -230,7 +236,9 @@
 \newcommand\enkeywords[1]{ {\noindent\bfseries\zihao{-4}\enkeywordsname: }\zihao{-4}#1}
 \newcommand\enkeywordsname{Key Words}
 
-%%----------------------- Theorems -----------------------------------
+%%-----------------------Equation & Theorems -----------------------------------
+\renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
+
 \theoremstyle{plain}
 \theoremheaderfont{\heiti}
 \theorembodyfont{\songti}
@@ -259,70 +267,69 @@
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
-% \makeatletter \setlength\partopsep{0pt}
-% \def\@listI{\leftmargin\leftmargini
-%     \parsep 0pt
-%     \topsep \parsep
-%     \itemsep \parsep}
-% \@listI
-% \def\@listii {\leftmargin\leftmarginii
-%     \labelwidth\leftmarginii
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listiii{\leftmargin\leftmarginiii
-%     \labelwidth\leftmarginiii
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listiv{\leftmargin\leftmarginiv
-%     \labelwidth\leftmarginiv
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listv{\leftmargin\leftmarginv
-%     \labelwidth\leftmarginv
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listvi{\leftmargin\leftmarginvi
-%     \labelwidth\leftmarginvi
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% %
-% % Change default margins for \list environments
-% \setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
-% {\leftmargini} \setlength\leftmarginiii {\leftmargini}
-% \setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
-% {\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
-% {\leftmargini} \setlength\labelsep      {.5\ccwd}
-% \setlength\labelwidth    {\leftmargini}
-% %
-% \setlength\listparindent{2\ccwd}
-% % Change \listparindent to 2\ccwd in \list
-% \def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
-%     \else \global\advance\@listdepth\@ne \fi
-%     \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
-%     \csname @list\romannumeral\the\@listdepth\endcsname
-%     \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
-%     \@trivlist
-%     \parskip\parsep \parindent\listparindent
-%     \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
-%     \advance\@totalleftmargin \leftmargin
-%     \parshape \@ne \@totalleftmargin \linewidth
-%     \ignorespaces}
+\makeatletter \setlength\partopsep{0pt}
+\def\@listI{\leftmargin\leftmargini
+    \parsep 0pt
+    \topsep \parsep
+    \itemsep \parsep}
+\@listI
+\def\@listii {\leftmargin\leftmarginii
+    \labelwidth\leftmarginii
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listiv{\leftmargin\leftmarginiv
+    \labelwidth\leftmarginiv
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listv{\leftmargin\leftmarginv
+    \labelwidth\leftmarginv
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listvi{\leftmargin\leftmarginvi
+    \labelwidth\leftmarginvi
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+%
+% Change default margins for \list environments
+\setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
+{\leftmargini} \setlength\leftmarginiii {\leftmargini}
+\setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
+{\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
+{\leftmargini} \setlength\labelsep      {.5\ccwd}
+\setlength\labelwidth    {\leftmargini}
+%
+\setlength\listparindent{2\ccwd}
+% Change \listparindent to 2\ccwd in \list
+\def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
+    \else \global\advance\@listdepth\@ne \fi
+    \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
+    \csname @list\romannumeral\the\@listdepth\endcsname
+    \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
+    \@trivlist
+    \parskip\parsep \parindent\listparindent
+    \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
+    \advance\@totalleftmargin \leftmargin
+    \parshape \@ne \@totalleftmargin \linewidth
+    \ignorespaces}
 
-% \makeatother
+\makeatother
 
 %%%%%%%%listings 设置%%%%%%%%%%%%
-\usepackage{listings}
-\usepackage{textcomp}
+% \usepackage{textcomp}
 \definecolor{listinggray}{gray}{0.9}
 \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
 \lstset{
@@ -394,7 +401,6 @@
 \setcounter{secnumdepth}{4}
 
 %%% ---- 图表标题设置 ----- %%%%
-\RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
 \captionsetup[figure]{font={bf,small}}  %
 \captionsetup[table]{font={bf,small}}  %
 \renewcommand{\figurename}{\bfseries \zihao{5} \songti 图}
@@ -404,8 +410,6 @@
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 
 %%% ------ 目录设置 ------- %%%%
-
-\RequirePackage[titles]{tocloft}
 % \setlength{\cftaftertoctitleskip}{40pt}
 
 \renewcommand{\cfttoctitlefont}{}
