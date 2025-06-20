@@ -5,7 +5,7 @@
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术} % 默认值
-\newcommand{\Ctitle}{\@title} % 中文标题
+
 % ---------选项设置-------------
 \DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}}
 \DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}}
@@ -17,12 +17,12 @@
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
-\PassOptionsToClass{zihao=-4, a4paper,openany}{ctexbook}
+
 % 消除 fix diff 需要的选项
 \PassOptionsToPackage{no-math}{fontspec}
 \ProcessOptions\relax
 % 加载ctexbook类
-\LoadClass{ctexbook}
+\LoadClass[zihao=-4, a4paper,openany]{ctexbook}
 
 %%------------------------调用宏包-----------------------------------
 \RequirePackage{amsmath,amssymb, mathrsfs}
@@ -43,7 +43,30 @@
 % \RequirePackage{siunitx}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
+\RequirePackage{setspace}
 \RequirePackage[titles]{tocloft}
+% \RequirePackage{zhlineskip}
+
+
+%------------------------ Page layout ----------------------------------
+\RequirePackage[top=2.54truecm,
+    bottom=2.54truecm,
+    left=3truecm,
+    right=2.2truecm,
+    paper=a4paper,
+    headsep=1.04truecm,
+    footskip=0.79truecm,
+    headheight=16pt]{geometry}    % 页面设置%
+
+\RequirePackage{fancyhdr}
+\RequirePackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,bookmarksnumbered=true]{hyperref}
+
+\hypersetup{pdfencoding=auto}  %%% 邓东升修改
+\ifprint
+    \hypersetup{hidelinks}
+\else
+    \hypersetup{citecolor=magenta,linkcolor=blue}
+\fi
 
 %% ------------------------ 字体设置 -----------------------------------
 \defaultfontfeatures{Path = fonts/}
@@ -61,10 +84,10 @@
 \setCJKfamilyfont{zhfs}{simfang.ttf}
 \setCJKfamilyfont{zhkai}{simkai.ttf}
 
-
+% \ctexset{
+%     font=\setlength{\baselineskip}{20pt}
+% }
 % 设置行距
-\RequirePackage{zhlineskip}
-
 \apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\fangsong}{\setlength{\baselineskip}{20pt}}{}{}
@@ -72,162 +95,13 @@
 \apptocmd{\bfseries}{\setlength{\baselineskip}{20pt}}{}{}
 
 \let\orig@zihao\zihao
-
-% 重新定义 \zihao 命令
+% 设置 \zihao 命令后面自动20pt行距
 \renewcommand{\zihao}[1]{%
-  \orig@zihao{#1}% 执行原始的字号设置
-  \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
+    \orig@zihao{#1}% 执行原始的字号设置
+    \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
 }
 
-%------------------------ Page layout ----------------------------------
-\RequirePackage[top=2.54truecm,
-                bottom=2.54truecm,
-                left=3truecm,
-                right=2.2truecm,
-                paper=a4paper,
-                headsep=1.04truecm,
-                footskip=0.79truecm,
-                headheight=16pt]{geometry}    % 页面设置%
 
-\RequirePackage{fancyhdr}
-% \setlength{\headsep}{1.04truecm}
-% \setlength{\headheight}{16pt}
-% \setlength{\footskip}{0.79truecm}
-\RequirePackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,bookmarksnumbered=true]{hyperref}
-
-\hypersetup{pdfencoding=auto}  %%% 邓东升修改
-\ifprint
-    \hypersetup{hidelinks}
-\else
-    \hypersetup{citecolor=magenta,linkcolor=blue}
-\fi
-
-
-% 重定义maketitle命令使得不会出现多余的空白页
-\def\maketitle{\null\leavevmode}
-%%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
-% \def\maketitle{%
-% \thispagestyle{empty}%
-% \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
-% {\noindent \fangsong \zihao{-4} \textbf{%
-% 分类号： UDC\\[0pt]
-% 密\quad 级：\\[0pt]
-% 编\quad 号：}
-% }
-
-%   \vspace*{0.3cm}
-%   \begin{center} \leavevmode
-%     {%
-% \begin{minipage}{0.71\textwidth}
-%   \centering
-% \includegraphics[width=\textwidth]{gdufelogo.jpg}
-% \end{minipage}
-% }
-
-%     % \par
-%     % \vspace*{1.1cm} %插入空白
-%     \rule{0.9\textwidth}{1pt}
-%     \vspace{12pt}
-%     % {\bfseries \zihao{1} \makebox[5cm][s]{学术学位硕士论文}}\\
-%     {\heiti \fontsize{48pt}{\baselinestretch} {学术学位硕士论文}}\\
-%     \vspace{60pt}
-%     {\heiti \zihao{-2} \@title}\\
-%     {\heiti \zihao{-2} \the\Engtitle \par}
-%    \vspace*{2em}
-%      \vfill\vfill\vfill
-
-
-%  {\fangsong\zihao{4}
-%  \renewcommand{\arraystretch}{1.5}
-%     \begin{tabular}{ll}
-%     %\hline
-%       \makebox[3.25cm][s]{专\hfill 业\hfill 名\hfill 称} & { {}\underline{\makebox[5.75cm][c]{\the\Cmajor}}}\hfill{}\\%\hline
-%       \makebox[3.25cm][s]{学\hfill 位\hfill 申\hfill 请\hfill 人} & { {}\underline{\makebox[5.75cm][c]{\@author}}}\hfill{} \\%\hline
-%       \makebox[3.25cm][s]{导\hfill 师\hfill 姓\hfill 名\hfill 及\hfill 职\hfill 称} & { {}\underline{\makebox[5.75cm][c]{\the\Csupervisor}}}\hfill{}  \\%\hline
-%       \makebox[3.25cm][s]{学\hfill 号} & { {}\underline{\makebox[5.75cm][c]{\the\StudentNumber}}}\hfill{}  \\%\hline
-%       \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间} & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{}  \\%\hline
-%      \end{tabular}
-%     }
-%   \vspace{1.5cm}
-% {
-%   \fangsong\zihao{3} \bfseries ~~~~~年~~~~~月~~~~~日
-% }
-%   \vspace{1em}
-% % \begin{tikzpicture}
-% %   \draw[draw=black!70,fill=black!70](0,0)rectangle node[below=1pt]{\zihao{-4}\textcolor[rgb]{0.3,0.3,0.3}{广东财经大学教务处 \ \ 制}}(\textwidth,4pt);
-% % \end{tikzpicture}
-% \end{center}
-
-% %%========扉页========================%%
-% \newpage
-% \thispagestyle{empty}
-% \vspace*{0.75cm}
-% \begin{center}
-%   {\songti \zihao{0} 学术学位硕士论文}
-% \vspace{2.5cm}
-% {\heiti \zihao{-2} \@title \par \the\Engtitle}
-% \vspace{2.1cm}
-% {\heiti\zihao{4}
-%  \renewcommand{\arraystretch}{1.5}
-%     \begin{tabular}{ll}
-%     %\hline
-%       \makebox[3.25cm][s]{专\hfill 业\hfill 名\hfill 称} & { {}\underline{\makebox[5.75cm][c]{\the\Cmajor}}}\hfill{}\\%\hline
-%       \makebox[3.25cm][s]{学\hfill 位\hfill 申\hfill 请\hfill 人} & { {}\underline{\makebox[5.75cm][c]{\@author}}}\hfill{} \\%\hline
-%       \makebox[3.25cm][s]{指导教师} & { {}\underline{\makebox[5.75cm][c]{\the\Csupervisor}}}\hfill{}  \\%\hline
-%       \makebox[3.25cm][s]{学\hfill 号} & { {}\underline{\makebox[5.75cm][c]{\the\StudentNumber}}}\hfill{}  \\%\hline
-%       \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间} & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{}  \\%\hline
-%      \end{tabular}
-%      \vspace{2em}
-%      \begin{tabular}{lr}
-%       %\hline
-%         \makebox[4.25cm][s]{论文提交时间}&{ {}\makebox[4.75cm][r]{\the\SubmitDate}}\hfill{}\\%\hline
-%         \makebox[4.25cm][s]{论文答辩时间}&{ {}\makebox[4.75cm][r]{\the\DefenseDate}}\hfill{} \\%\hline
-%       \end{tabular}
-%       \vspace{1em}
-%       \begin{tabular}{lr}
-%           \makebox[4.25cm][s]{答辩委员会主席}&{ {}\underline{\makebox[4.75cm][s]{}}}\hfill{}\\%\hline
-%           \makebox[4.25cm][s]{答辩委员会委员}&{ {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
-%           \makebox[4.25cm][s]{ }&{ {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
-%         \end{tabular}
-%     }
-% \end{center}
-
-% %%=====原创性声明========================%%
-% \newpage
-% \thispagestyle{empty}
-% \begin{center}
-%   \vspace*{0.8cm}
-%   {\heiti \zihao{3} \bfseries 广东财经大学学位论文原创性声明}
-% \end{center}
-% \vspace{0.72cm}
-
-% \begin{spacing}{2.0}
-% \fangsong \zihao{4}
-% 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。
-% \newline
-% \begin{tabular}{rr}
-%   \makebox[11cm][r]{学位论文作者签名:}&{ {}{\makebox[3.75cm][s]{ }}}\hfill{}\\%\hline
-%   \makebox[11cm][r]{签字日期:}&{ {}{\makebox[3.75cm][l]{\the\SignDate}}}\hfill{} \\%\hline
-% \end{tabular}
-% \end{spacing}
-% \vspace{1em}
-% \begin{spacing}{1.5}
-% \begin{center}
-%   {\heiti \bfseries \zihao{3} 广东财经大学学位论文版权使用授权书}
-% \end{center}
-
-% \fangsong \zihao{4}
-% 本学位论文作者完全了解广东财经大学有关保留、使用学位论文的规定，有权保留并向国家有关部门或机构送交论文的纸质版和电子版，允许论文被查阅和借阅。本人授权广东财经大学可以将学位论文的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存、汇编学位论文。
-
-% （保密的学位论文在解密后适用本授权书）
-% \end{spacing}
-% \vspace*{1em}
-% {\fangsong \zihao{4} \noindent
-% \makebox[9.5cm][l]{学位论文作者签名：} \makebox[5truecm][l]{导师签名：}\\
-% \makebox[9.5cm][l]{签字日期：\the\SignDate} \makebox[5truecm][l]{签字日期：\the\SignDate}
-% }
-% \restoregeometry
-% }
 
 %------------------------ Abstract & Keywords -------------------------
 % 格式在摘要页调整
@@ -361,42 +235,42 @@
 % 设置正文页眉页脚样式，其余样式用plain 或empty
 \fancypagestyle{master-mainmatter}
 {
-    \fancyhead{}                                    % clear all header fields
-    \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
-    \fancyhead[R]{\zihao{5} \Ctitle}
-    \renewcommand{\headrulewidth}{0.1pt}
-    \fancyfoot{}                                    % clear all footer fields
-    \fancyfoot[C]{\thepage}
+\fancyhead{}                                    % clear all header fields
+\fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
+\fancyhead[R]{\zihao{5} \ctitle}
+\renewcommand{\headrulewidth}{0.1pt}
+\fancyfoot{}                                    % clear all footer fields
+\fancyfoot[C]{\thepage}
 }
 
 
 %%% ----章节标题设置 ----- %%%%
 \ctexset{chapter={  format={\zihao{3}\heiti\raggedright},
-                    number={\arabic{chapter}},
-                    name={,},
-                    afterskip={1em},
-                    beforeskip={0pt},
-                    aftername={\quad}
-                    }
-                    }
+      number={\arabic{chapter}},
+      name={,},
+      afterskip={1em},
+      beforeskip={0pt},
+      aftername={\quad}
+     }
+}
 \ctexset{section={format={\zihao{-3}\heiti\raggedright},
-                          afterskip={6pt},
-                          beforeskip={6pt},
-                          aftername={\quad}
-                          }
-                          }
+      afterskip={6pt},
+      beforeskip={6pt},
+      aftername={\quad}
+     }
+}
 \ctexset{subsection={format={\zihao{4}\heiti\raggedright},
-                      afterskip={3pt},
-                      beforeskip={3pt},
-                      aftername={\quad}
-                      }
-                      }
+            afterskip={3pt},
+            beforeskip={3pt},
+            aftername={\quad}
+        }
+}
 \ctexset{subsubsection={format={\zihao{-4}\heiti\raggedright},
-                          afterskip={0pt},
-                          beforeskip={0pt},
-                          aftername={\quad}
-                          }
-                          }
+            afterskip={0pt},
+            beforeskip={0pt},
+            aftername={\quad}
+        }
+}
 
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
@@ -446,10 +320,10 @@ pagestyle={plain},
 afterskip={2\baselineskip}}}%
 }{}{}
 \apptocmd{\mainmatter}{\pagestyle{master-mainmatter}%
-\ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
-pagestyle={master-mainmatter},
-afterskip={1\baselineskip}}%
-}
+    \ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
+          pagestyle={master-mainmatter},
+          afterskip={1\baselineskip}}%
+    }
 }{}{}
 \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
 }{}{}
@@ -458,26 +332,171 @@ afterskip={1\baselineskip}}%
 %% 设置清除双面打印时的空白页
 \makeatletter
 \def\cleardoublepage{%
-  \clearpage
-  \if@twoside
-    \ifodd\c@page
-      % 当前是奇数页，不插空白页
-    \else
-      \hbox{}%
-      \thispagestyle{empty}%
-      \newpage
-      \if@twocolumn\hbox{}\newpage\fi
+    \clearpage
+    \if@twoside
+        \ifodd\c@page
+            % 当前是奇数页，不插空白页
+        \else
+            \hbox{}%
+            \thispagestyle{empty}%
+            \newpage
+            \if@twocolumn\hbox{}\newpage\fi
+        \fi
     \fi
-  \fi
+}
+\makeatother
+
+% 相关信息宏定义
+\newtoks{\etitle}
+\newtoks{\mentor}
+\newtoks{\major}
+\newtoks{\studentid}
+\newtoks{\EnterDate}
+\newtoks{\SubmitDate}
+\newtoks{\DefenseDate}
+\newtoks{\SignDate}
+\newtoks{\CoverPageDate}
+
+\makeatletter
+\newcommand{\cname}{\@author}
+\newcommand{\ctitle}{\@title}
+\makeatother
+
+
+%%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
+
+\newcommand{\makecover}{%
+    \begin{titlepage}
+        \thispagestyle{empty}%
+        \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
+        {\noindent\fangsong\zihao{-4}\textbf{分类号： UDC\\[0pt]
+                密\quad 级：\\[0pt]
+                编\quad 号：}
+        }
+
+        \vspace*{0.3cm}
+        \begin{center} \leavevmode
+            {%
+                \begin{minipage}{0.71\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{gdufelogo.jpg}
+                \end{minipage}
+            }
+
+            % \par
+            % \vspace*{1.1cm} %插入空白
+            \rule{0.9\textwidth}{1pt}
+            \vspace{12pt}
+            % {\bfseries \zihao{1} \makebox[5cm][s]{学术学位硕士论文}}\\
+            {\heiti \fontsize{48pt}{\baselinestretch} {学术学位硕士论文}}\\
+            \vspace{60pt}
+            {\heiti \zihao{-2} \ctitle}\\
+            {\heiti \zihao{-2} \the\etitle \par}
+            \vspace*{2em}
+            % \vfill\vfill\vfill
+
+
+            {\fangsong\zihao{4}
+                \renewcommand{\arraystretch}{1.5}
+                \begin{tabular}{ll}
+                    %\hline
+                    \makebox[3.25cm][s]{专\hfill 业\hfill 名\hfill 称}                         & { {}\underline{\makebox[5.75cm][c]{\the\major}}}\hfill{}     \\%\hline
+                    \makebox[3.25cm][s]{学\hfill 位\hfill 申\hfill 请\hfill 人}                 & { {}\underline{\makebox[5.75cm][c]{\cname}}}\hfill{}         \\%\hline
+                    \makebox[3.25cm][s]{导\hfill 师\hfill 姓\hfill 名\hfill 及\hfill 职\hfill 称} & { {}\underline{\makebox[5.75cm][c]{\the\mentor}}}\hfill{}    \\%\hline
+                    \makebox[3.25cm][s]{学\hfill 号}                                         & { {}\underline{\makebox[5.75cm][c]{\the\studentid}}}\hfill{} \\%\hline
+                    \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间}                         & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{} \\%\hline
+                \end{tabular}
+            }
+            \par\vspace{1.5cm}
+            {
+                \fangsong\zihao{3} \bfseries \the\DefenseDate
+            }
+            \vspace{1em}
+            % \begin{tikzpicture}
+            %   \draw[draw=black!70,fill=black!70](0,0)rectangle node[below=1pt]{\zihao{-4}\textcolor[rgb]{0.3,0.3,0.3}{广东财经大学教务处 \ \ 制}}(\textwidth,4pt);
+            % \end{tikzpicture}
+        \end{center}
+    \end{titlepage}
 }
 
-% \makeatother
+% %%========扉页========================%%
+\newcommand\maketitlepage{%
+    \newpage
+    \thispagestyle{empty}
+    \vspace*{0.75cm}
+    \begin{center}
+        {\songti \zihao{0} 学术学位硕士论文}
+        \par\vspace{2.5cm}
+        {\heiti \zihao{-2} \ctitle \par \the\etitle}
+        \par\vspace{2.1cm}
+        {\heiti\zihao{4}
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{ll}
+                %\hline
+                \makebox[3.25cm][s]{专\hfill 业\hfill 名\hfill 称}         & { {}\underline{\makebox[5.75cm][c]{\the\major}}}\hfill{}     \\%\hline
+                \makebox[3.25cm][s]{学\hfill 位\hfill 申\hfill 请\hfill 人} & { {}\underline{\makebox[5.75cm][c]{\cname}}}\hfill{}         \\%\hline
+                \makebox[3.25cm][s]{指导教师}                              & { {}\underline{\makebox[5.75cm][c]{\the\mentor}}}\hfill{}    \\%\hline
+                \makebox[3.25cm][s]{学\hfill 号}                         & { {}\underline{\makebox[5.75cm][c]{\the\studentid}}}\hfill{} \\%\hline
+                \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间}         & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{} \\%\hline
+            \end{tabular}
+            \par\vspace{2em}
+            \begin{tabular}{lr}
+                %\hline
+                \makebox[4.25cm][s]{论文提交时间} & { {}\makebox[4.75cm][r]{\the\SubmitDate}}\hfill{}  \\%\hline
+                \makebox[4.25cm][s]{论文答辩时间} & { {}\makebox[4.75cm][r]{\the\DefenseDate}}\hfill{} \\%\hline
+            \end{tabular}
+            \vspace{1em}
+            \begin{tabular}{lr}
+                \makebox[4.25cm][s]{答辩委员会主席} & { {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
+                \makebox[4.25cm][s]{答辩委员会委员} & { {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
+                \makebox[4.25cm][s]{ }       & { {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
+            \end{tabular}
+        }
+    \end{center}
+}
 
+% %%=====原创性声明========================%%
+\newcommand\makeclaim{
+    \newpage
+    \thispagestyle{empty}
+    \begin{center}
+        \vspace*{0.8cm}
+        {\heiti \zihao{3} \bfseries 广东财经大学学位论文原创性声明}
+    \end{center}
+    \vspace{0.72cm}
+
+    \begin{spacing}{2.0}
+        \fangsong \zihao{4}
+        本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。
+        \newline
+        \begin{tabular}{rr}
+            \makebox[11cm][r]{学位论文作者签名:} & { {}{\makebox[3.75cm][s]{ }}}\hfill{}             \\%\hline
+            \makebox[11cm][r]{签字日期:}     & { {}{\makebox[3.75cm][l]{\the\SignDate}}}\hfill{} \\%\hline
+        \end{tabular}
+    \end{spacing}
+    \vspace{1em}
+    \begin{spacing}{1.5}
+        \begin{center}
+            {\heiti \bfseries \zihao{3} 广东财经大学学位论文版权使用授权书}
+        \end{center}
+
+        \fangsong \zihao{4}
+        本学位论文作者完全了解广东财经大学有关保留、使用学位论文的规定，有权保留并向国家有关部门或机构送交论文的纸质版和电子版，允许论文被查阅和借阅。本人授权广东财经大学可以将学位论文的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存、汇编学位论文。
+
+        （保密的学位论文在解密后适用本授权书）
+    \end{spacing}
+    \vspace*{1em}
+    {\fangsong \zihao{4} \noindent
+        \makebox[9.5cm][l]{学位论文作者签名：} \makebox[5truecm][l]{导师签名：}\\
+        \makebox[9.5cm][l]{签字日期：\the\SignDate} \makebox[5truecm][l]{签字日期：\the\SignDate}
+    }
+    \restoregeometry
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{figures/}}        % 图片文件路径
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \allowdisplaybreaks
-
+% \setlength{\baselineskip}{20pt}\selectfont
 \endlinechar `\^^M
 \endinput
