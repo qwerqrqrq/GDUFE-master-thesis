@@ -6,10 +6,10 @@ name: LaTeX Compile
 
 on:
   push:
-    tags:
-      - 'v*'         # 仅在 master 分支下推送 v* tag 时触发
-    branches:
-      - master       # 仅在 master 分支下推送时触发
+    branches: [master]
+    tags: ["v*"]
+  pull_request:
+    branches: [master]
 jobs:
   compile_to_release:
     runs-on: ubuntu-latest
