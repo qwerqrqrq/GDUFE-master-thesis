@@ -29,7 +29,7 @@
 % 封面文件需要自己在doc文件修改后导出pdf文件，注意修改文件名。
 \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
 % \maketitle
-\setlength{\baselineskip}{20pt} % 设置全局行距
+\setlength{\baselineskip}{20pt} % 设置行距
 \frontmatter
 %-----------------------------------------------------------------------------
 \include{includefile/abstract.tex}    % 加入摘要.
@@ -76,7 +76,8 @@
 %% 使用bib 文件管理参考文献，不使用请删除
 \printbibliography[heading=bibintoc, title={参考文献--bib}]
 
+%% 附录
 \include{includefile/appendix.tex}
-
-\include{includefile/acknowledgment.tex} %%%致谢
+%% 致谢
+\include{includefile/acknowledgment.tex}
 \end{document}

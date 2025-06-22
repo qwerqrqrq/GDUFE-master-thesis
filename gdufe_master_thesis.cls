@@ -22,12 +22,15 @@
 \PassOptionsToPackage{no-math}{fontspec}
 \ProcessOptions\relax
 % 加载ctexbook类
-\LoadClass[zihao=-4, a4paper,openany]{ctexbook}
+\LoadClass[
+    zihao=-4,
+    a4paper,
+    openany]{ctexbook}
 
 %%------------------------调用宏包-----------------------------------
-\RequirePackage{amsmath,amssymb, mathrsfs}
-\RequirePackage{ntheorem}
-% \RequirePackage[amsmath,thmmarks]{ntheorem}% AMSLaTeX宏包.
+\RequirePackage{amsmath,amssymb,mathrsfs}
+% \RequirePackage{amsthm}
+\RequirePackage[amsmath,thmmarks]{ntheorem}
 \RequirePackage{graphicx}                 % 图形
 \RequirePackage{float}
 \RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
@@ -37,7 +40,7 @@
 \RequirePackage{enumerate}
 \RequirePackage{etoolbox}
 \RequirePackage{pdfpages}
-\RequirePackage {fixdif}
+\RequirePackage{fixdif}
 \RequirePackage{tikz}
 \RequirePackage{ulem}
 % \RequirePackage{siunitx}
@@ -84,9 +87,7 @@
 \setCJKfamilyfont{zhfs}{simfang.ttf}
 \setCJKfamilyfont{zhkai}{simkai.ttf}
 
-% \ctexset{
-%     font=\setlength{\baselineskip}{20pt}
-% }
+
 % 设置行距
 \apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
 \apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
@@ -101,14 +102,17 @@
     \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
 }
 
+% 设置正文页眉页脚样式，其余样式用plain 或empty
+\fancypagestyle{master-mainmatter}
+{
+\fancyhead{}                                    % clear all header fields
+\fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
+\fancyhead[R]{\zihao{5} \ctitle}
+\renewcommand{\headrulewidth}{0.1pt}
+\fancyfoot{}                                    % clear all footer fields
+\fancyfoot[C]{\thepage}
+}
 
-
-%------------------------ Abstract & Keywords -------------------------
-% 格式在摘要页调整
-\newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }\songti\zihao{-4}#1}
-\newcommand\cnkeywordsname{关键词}
-\newcommand\enkeywords[1]{ {\noindent\bfseries\zihao{-4}\enkeywordsname: }\zihao{-4}#1}
-\newcommand\enkeywordsname{Key Words}
 
 %%-----------------------Equation & Theorems -----------------------------------
 \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
@@ -129,16 +133,14 @@
 \newtheorem{example}{\hspace{2em}例}[section]
 \newtheorem{remark}{\hspace{2em}注}[section]
 
+
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\heiti}
 \theorembodyfont{\normalfont \rm \songti}
-\theoremindent 0em \theoremseparator{\hspace{1em}}
+\theoremindent 0em
+\theoremseparator{:\hspace{1em}}
 \theoremsymbol{$\square$}
-\newenvironment{proof}{{\heiti 证明：}}{\hfill $\square$\par}
-\newenvironment{solution}{{\heiti 解:}}{\hfill $\square$\par}
-
-% \renewcommand{\proofname}{\indent\bfseries 证明}
-% \newenvironment{solution}{\begin{proof}[\indent\bf 解]}{\end{proof}}
+\newtheorem{proof}{\hspace{2em}证明}[section]
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
@@ -231,60 +233,30 @@
 }
 %---------------------------------------------------
 
+%%% ---- 图表标题设置 ----- %%%%
+\captionsetup[figure]{%
+    format=plain,
+    font={bf,small},
+    textfont={bf},
+}  %
+\renewcommand{\figurename}{\bfseries \zihao{5} \songti 图}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 
-% 设置正文页眉页脚样式，其余样式用plain 或empty
-\fancypagestyle{master-mainmatter}
-{
-\fancyhead{}                                    % clear all header fields
-\fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
-\fancyhead[R]{\zihao{5} \ctitle}
-\renewcommand{\headrulewidth}{0.1pt}
-\fancyfoot{}                                    % clear all footer fields
-\fancyfoot[C]{\thepage}
-}
-
-
-%%% ----章节标题设置 ----- %%%%
-\ctexset{chapter={  format={\zihao{3}\heiti\raggedright},
-      number={\arabic{chapter}},
-      name={,},
-      afterskip={1em},
-      beforeskip={0pt},
-      aftername={\quad}
-     }
-}
-\ctexset{section={format={\zihao{-3}\heiti\raggedright},
-      afterskip={6pt},
-      beforeskip={6pt},
-      aftername={\quad}
-     }
-}
-\ctexset{subsection={format={\zihao{4}\heiti\raggedright},
-            afterskip={3pt},
-            beforeskip={3pt},
-            aftername={\quad}
-        }
-}
-\ctexset{subsubsection={format={\zihao{-4}\heiti\raggedright},
-            afterskip={0pt},
-            beforeskip={0pt},
-            aftername={\quad}
-        }
+\captionsetup[table]{%
+    format=plain,
+    font={bf,small},
+    skip=0pt}
+\renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\AtBeginEnvironment{tabular}{%
+    \zihao{5}
 }
 
+
+%%% ------ 目录设置 ------- %%%%
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 
-%%% ---- 图表标题设置 ----- %%%%
-\captionsetup[figure]{font={bf,small}}  %
-\captionsetup[table]{font={bf,small}}  %
-\renewcommand{\figurename}{\bfseries \zihao{5} \songti 图}
-\renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
-
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
-\renewcommand{\thetable}{\thechapter-\arabic{table}}
-
-%%% ------ 目录设置 ------- %%%%
 % \setlength{\cftaftertoctitleskip}{40pt}
 
 \renewcommand{\cfttoctitlefont}{}
@@ -311,22 +283,78 @@
 % 点线设置
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
-%% -----frontmatter mainmatter appendix 设置 使得自动调整章节格式-----
 
-\apptocmd{\frontmatter}{\pagenumbering{Roman}%
-\pagestyle{plain}%
-\ctexset{chapter={format+={\centering},%
-pagestyle={plain},
-afterskip={2\baselineskip}}}%
-}{}{}
-\apptocmd{\mainmatter}{\pagestyle{master-mainmatter}%
-    \ctexset{chapter={format={\zihao{3}\heiti\raggedright},%
-          pagestyle={master-mainmatter},
-          afterskip={1\baselineskip}}%
+%------------------------ Abstract & Keywords -------------------------
+\newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }\songti\zihao{-4}#1}
+\newcommand\cnkeywordsname{关键词}
+\newcommand\enkeywords[1]{{\noindent\bfseries\zihao{-4}\enkeywordsname: }\zihao{-4}#1}
+\newcommand\enkeywordsname{Key Words}
+
+% \heiti \ziju{1}
+\newenvironment{cnabstract}{%
+    \chapter[摘要]{\heiti\ziju{1}摘要\the\baselineskip}
+    \zihao{-4}
+    }
+    {\newline
+    \par}
+
+
+\newenvironment{enabstract}{%
+    \chapter[ABSTRACT]{\bfseries ABSTRACT\the\baselineskip}
+    \zihao{-4}
+    \noindent}
+    {\newline\par}
+
+%% -----frontmatter mainmatter appendix 设置 使得自动调整章节格式-----
+\apptocmd{\frontmatter}{
+    \pagenumbering{Roman}
+    \pagestyle{plain}
+    \ctexset{
+        chapter={
+          format={\centering\zihao{-2}},
+          pagestyle={plain},
+          afterskip={2\baselineskip},
+          beforeskip={0pt}
+         }
     }
 }{}{}
-\apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
+
+\apptocmd{\mainmatter}{
+    \pagestyle{master-mainmatter}
+    \ctexset{
+        chapter={
+          format={\zihao{3}\heiti\raggedright},
+          pagestyle={master-mainmatter},
+          afterskip={1\baselineskip},
+          beforeskip={0pt},
+          number={\arabic{chapter}},
+          name={,},
+          aftername={\quad}
+         },
+        section={
+          format={\zihao{-3}\heiti\raggedright},
+          afterskip={6pt},
+          beforeskip={6pt},
+          aftername={\quad}
+         },
+        subsection={
+                format={\zihao{4}\heiti\raggedright},
+                afterskip={3pt},
+                beforeskip={3pt},
+                aftername={\quad}
+            },
+        subsubsection={
+                format={\zihao{-4}\heiti\raggedright},
+                afterskip={0pt},
+                beforeskip={0pt},
+                aftername={\quad}
+            }
+    }
 }{}{}
+
+
+% \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
+% }{}{}
 
 
 %% 设置清除双面打印时的空白页

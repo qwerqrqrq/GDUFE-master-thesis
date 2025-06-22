@@ -15,7 +15,7 @@ English \textbf{English} \textit{English}\the\baselineskip
 
 \subsection{算符、希腊字母\the\baselineskip}
 \begin{gather*}
-    \frac{abc}{xyz} \frac{\d^n y}{\d x^n} \int_{a}^{b}  \,\d x \lim_{x \to \infty}  \sum_{n = 1}^{\infty}  \iint \oint \prod \coprod  \\
+    \frac{abc}{xyz} \frac{\d^n y}{\d x^n} \frac{\partial^n y}{\partial^n x} \int_{a}^{b} x \,\d x  \lim_{x \to \infty}  \sum_{n = 1}^{\infty}  \iint \oint \prod \coprod  \\
     \alpha\beta\gamma\delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \kappa \lambda \mu \nu \xi o \pi \varpi \rho \varrho \sigma \varsigma \tau \upsilon \phi \varphi \chi \psi \omega\\
     A B \Gamma \varGamma \Delta \varDelta E Z H \Theta \varTheta I K \Lambda \varLambda M N \Xi \varXi O \Pi \varPi P \Sigma \varSigma T \Upsilon \varUpsilon \Phi \varPhi X \Psi \varPsi \Omega \varOmega
 \end{gather*}
@@ -100,7 +100,7 @@ Use \texttt{align*} environment:
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width = 5cm]{gdufelogo.png}
+    \includegraphics[width = 5cm]{gdufelogo.jpg}
     \caption{广东财经大学校徽}
     \label{fig:广东财经大学校徽}
 \end{figure}
@@ -110,9 +110,9 @@ Use \texttt{align*} environment:
 多图测试1
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
-    \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
-    \includegraphics[width=0.3\textwidth]{lake.jpeg}
+    \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}\hfill
+    \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}\hfill
+    \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}
     \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
     {\zihao{5} 资料来源：xxx\the\baselineskip}
     \label{fig:MultiPic1}
@@ -121,9 +121,8 @@ Use \texttt{align*} environment:
 多图测试2
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{lake.jpeg}\\
-    \includegraphics[width=0.5\textwidth]{lake.jpeg}\\
-    \includegraphics[width=0.5\textwidth]{lake.jpeg}
+    \includegraphics[width=0.4\textwidth]{colorful.eps}\\
+    \includegraphics[width=0.4\textwidth]{colorful.eps}\\
     \caption{多图片2}
     \label{fig:MultiPic2}
 \end{figure}
@@ -133,11 +132,11 @@ Use \texttt{align*} environment:
     \centering
 
     \begin{subcaptionbox}{子图A标题\label{fig:subfig_a}\the\baselineskip}[0.45\textwidth]
-        {\includegraphics[width=\linewidth]{lake.jpeg}}
+        {\includegraphics[width=\linewidth]{gdufelogo.jpg}}
     \end{subcaptionbox}
     \hfill
     \begin{subcaptionbox}{子图B标题\label{fig:subfig_b}}[0.45\textwidth]
-        {\includegraphics[width=\linewidth]{lake.jpeg}}
+        {\includegraphics[width=\linewidth]{gdufelogo.jpg}}
     \end{subcaptionbox}
 
     \caption{整体图标题\the\baselineskip}
@@ -250,18 +249,30 @@ Use \texttt{align*} environment:
 
 \begin{proof}
     test
-    \[
-        \int_{0}^{1} x^2 \d x
-    \]
+    $\int_{0}^{1} x^2 \d x$
 \end{proof}
 
-% \begin{proof}
-%   test
-%   \[
-%     \int_{0}^{1} x^2 \d x \qedhere
-%   \]
-% \end{proof}
+\begin{proof}
+    test
+    \begin{equation*}
+        \int_{0}^{1} x^2 \d x
+    \end{equation*}
+\end{proof}
 
+\begin{proof}
+    test
+    \begin{equation}
+        \int_{0}^{1} x^2 \d x
+    \end{equation}
+\end{proof}
+
+\begin{proof}
+    test
+    \begin{equation*}
+        \int_{0}^{1} x^2 \d x
+    \end{equation*}
+    test
+\end{proof}
 \section{字体测试}
 字体测试：
 
@@ -300,7 +311,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \section{算法}
 
 \begin{algorithm}
-    \caption{An algorithm with caption}\label{alg:cap}
+    \caption{An algorithm with caption}
     \begin{algorithmic}
         \Require $n \geq 0$
         \Ensure $y = x^n$
@@ -317,6 +328,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         \EndIf
         \EndWhile
     \end{algorithmic}
+    \label{alg:cap}
 \end{algorithm}
 
 引用 \autoref{alg:cap}

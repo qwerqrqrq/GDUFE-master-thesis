@@ -3,7 +3,9 @@
 \section{模板文件结构及功能介绍 \the\baselineskip}
 
 模板文件的结构与功能, 如下表所示: \the\baselineskip
-\begin{table}[ht]\centering
+\begin{table}[ht]
+    \centering
+    \caption{模板文件结构及功能说明}
     \begin{tabular}{lll}
         \toprule
         文件夹/文件名                             & 类型     & 功能说明                                  \\
@@ -32,7 +34,6 @@
         \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
         \bottomrule
     \end{tabular}
-    \caption{模板文件结构及功能说明}
 \end{table}
 
 无需也不要改变、移动上述文档的位置. \the\baselineskip
@@ -197,7 +198,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 其它环境就不一一举例了。
 
-本模板还提供了证明和解的环境. 证明的环境名为：proof, 解的环境名为 solution.
+本模板还提供了证明环境, 环境名为：proof.
 
 \begin{proof}
     要找到这个最大的正整数, 我们设最大的正整数为~$x$, 则~$x \geqslant 1$, 两边同时乘以~$x$, 得到
@@ -243,14 +244,14 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 再次\colorbox{red!45}{澄清一个误会}: \LaTeX{} 支持的图形格式绝非 eps 这一种. 无需特意把图片转化为 eps.
 
-用形如~\verb|\includegraphics[width=12cm]{lake.jpeg}| 的命令可以纳入图片.
+用形如~\verb|\includegraphics[width=12cm]{figure.jpg}| 的命令可以纳入图片.
 
-如图~\ref{fig:2} 是一个纳入~jpeg 图片的例子.
+如图~\ref{fig:2} 是一个纳入~jpg 图片的例子.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{lake.jpeg}
-    \caption{一个彩色 jpeg 图片的例子}
+    \includegraphics[width=0.5\textwidth]{colorful.jpg}
+    \caption{一个彩色 jpg 图片的例子}
     \label{fig:2}
 \end{figure}
 
