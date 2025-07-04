@@ -404,23 +404,23 @@
     \ifx\masterClassValue\academic{
         \renewcommand{\arraystretch}{1.5}
         \begin{tabular}{ll}
-            \makebox[3.5cm][s]{\zihao{4}专业 名 称}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}     \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}学 位 申 请 人}                 & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}         \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}导 师 姓 名 及 职 称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}    \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}学 号}                                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}} \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}入 学 时 间}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}} \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}专业名称}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}     \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}学位申请人}                 & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}         \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}    \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}学号}                                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}} \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}入学时间}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}} \\%\hline
         \end{tabular}
     }\else
     {
         \renewcommand{\arraystretch}{1.5}
         \begin{tabular}{ll}
             %\hline
-            \makebox[3.5cm][s]{专 业 学 位 名 称}                         & \underline{\makebox[5.75cm][c]{\the\major}}     \\
-            \makebox[3.5cm][s]{学 位 申 请 人}                 & \underline{\makebox[5.75cm][c]{\cname}}         \\
+            \makebox[3.5cm][s]{专业学位名称}                         & \underline{\makebox[5.75cm][c]{\the\major}}     \\
+            \makebox[3.5cm][s]{学位申请人}                 & \underline{\makebox[5.75cm][c]{\cname}}         \\
             \makebox[3.5cm][s]{校内导师} & \underline{\makebox[5.75cm][c]{\the\supervisor}}    \\
             \makebox[3.5cm][s]{校外导师} & \underline{\makebox[5.75cm][c]{\the\supervisor}}    \\
-            \makebox[3.5cm][s]{学 号}                                         & \underline{\makebox[5.75cm][c]{\the\studentid}} \\
-            \makebox[3.5cm][s]{入 学 时 间}                         & \underline{\makebox[5.75cm][c]{\the\EnterDate}} \\
+            \makebox[3.5cm][s]{学号}                                         & \underline{\makebox[5.75cm][c]{\the\studentid}} \\
+            \makebox[3.5cm][s]{入学时间}                         & \underline{\makebox[5.75cm][c]{\the\EnterDate}} \\
         \end{tabular}
     }
     \fi}
