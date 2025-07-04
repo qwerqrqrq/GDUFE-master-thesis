@@ -5,14 +5,19 @@
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术} % 默认值
-
+\newcommand{\masterClassValue}{academic} % 默认值
+\newcommand{\academic}{academic} % 用于判断是否为学硕
 % ---------选项设置-------------
-\DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}}
-\DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}}
+\DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}\renewcommand{\masterClassValue}{academic}}
+\DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}\renewcommand{\masterClassValue}{professional}}
 \ExecuteOptions{class=academic} % 设置默认选项
 
-% 捕获未声明的选项并传递给 ctexbook
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+\newcommand{\type}{thesis}
+% 论文格式
+\DeclareOption{thesis}{{\renewcommand{\type}{thesis}}}
+% 开题报告格式
+\DeclareOption{proposal}{{\renewcommand{\type}{thesis}}}
+
 
 \newif\ifprint
 \printfalse
@@ -20,6 +25,10 @@
 
 % 消除 fix diff 需要的选项
 \PassOptionsToPackage{no-math}{fontspec}
+
+% 捕获未声明的选项并传递给 ctexbook
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+
 \ProcessOptions\relax
 % 加载ctexbook类
 \LoadClass[
@@ -49,7 +58,7 @@
 \RequirePackage{setspace}
 \RequirePackage[titles]{tocloft}
 % \RequirePackage{zhlineskip}
-
+\RequirePackage{changepage}
 
 %------------------------ Page layout ----------------------------------
 \RequirePackage[top=2.54truecm,
@@ -376,7 +385,7 @@
 
 % 相关信息宏定义
 \newtoks{\etitle}
-\newtoks{\mentor}
+\newtoks{\supervisor}
 \newtoks{\major}
 \newtoks{\studentid}
 \newtoks{\EnterDate}
@@ -391,18 +400,41 @@
 \makeatother
 
 
-%%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
+\newcommand{\infoTable}{
+    \ifx\masterClassValue\academic{
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{ll}
+            \makebox[3.5cm][s]{\zihao{4}专业 名 称}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}     \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}学 位 申 请 人}                 & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}         \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}导 师 姓 名 及 职 称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}    \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}学 号}                                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}} \\%\hline
+            \makebox[3.5cm][s]{\zihao{4}入 学 时 间}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}} \\%\hline
+        \end{tabular}
+    }\else
+    {
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{ll}
+            %\hline
+            \makebox[3.5cm][s]{专 业 学 位 名 称}                         & \underline{\makebox[5.75cm][c]{\the\major}}     \\
+            \makebox[3.5cm][s]{学 位 申 请 人}                 & \underline{\makebox[5.75cm][c]{\cname}}         \\
+            \makebox[3.5cm][s]{校内导师} & \underline{\makebox[5.75cm][c]{\the\supervisor}}    \\
+            \makebox[3.5cm][s]{校外导师} & \underline{\makebox[5.75cm][c]{\the\supervisor}}    \\
+            \makebox[3.5cm][s]{学 号}                                         & \underline{\makebox[5.75cm][c]{\the\studentid}} \\
+            \makebox[3.5cm][s]{入 学 时 间}                         & \underline{\makebox[5.75cm][c]{\the\EnterDate}} \\
+        \end{tabular}
+    }
+    \fi}
 
+%%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
 \newcommand{\makecover}{%
     \begin{titlepage}
         \thispagestyle{empty}%
         \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
-        {\noindent\fangsong\zihao{-4}\textbf{分类号： UDC\\[0pt]
-                密\quad 级：\\[0pt]
-                编\quad 号：}
+        {\noindent\fangsong\zihao{-4}\bfseries 分类号： UDC\\[-3pt]
+                密\quad 级：\\[-3pt]
+                编\quad 号：
         }
-
-        \vspace*{0.3cm}
+        \vspace*{0.4cm}
         \begin{center} \leavevmode
             {%
                 \begin{minipage}{0.71\textwidth}
@@ -410,83 +442,62 @@
                     \includegraphics[width=\textwidth]{gdufelogo.jpg}
                 \end{minipage}
             }
-
-            % \par
-            % \vspace*{1.1cm} %插入空白
-            \rule{0.9\textwidth}{1pt}
-            \vspace{12pt}
-            % {\bfseries \zihao{1} \makebox[5cm][s]{学术学位硕士论文}}\\
-            {\heiti \fontsize{48pt}{\baselinestretch} {学术学位硕士论文}}\\
+            \par\vspace*{2mm} %插入空白
+            \rule{0.9\textwidth}{0.5pt}
+            \par\vspace*{2mm}
+            {\heiti \fontsize{48pt}{\baselinestretch} {\masterClass 学位硕士论文}}\\
             \vspace{60pt}
             {\heiti \zihao{-2} \ctitle}\\
             {\heiti \zihao{-2} \the\etitle \par}
-            \vspace*{2em}
-            % \vfill\vfill\vfill
-
-
-            {\fangsong\zihao{4}
-                \renewcommand{\arraystretch}{1.5}
-                \begin{tabular}{ll}
-                    %\hline
-                    \makebox[3.25cm][s]{专\hfill 业\hfill 名\hfill 称}                         & { {}\underline{\makebox[5.75cm][c]{\the\major}}}\hfill{}     \\%\hline
-                    \makebox[3.25cm][s]{学\hfill 位\hfill 申\hfill 请\hfill 人}                 & { {}\underline{\makebox[5.75cm][c]{\cname}}}\hfill{}         \\%\hline
-                    \makebox[3.25cm][s]{导\hfill 师\hfill 姓\hfill 名\hfill 及\hfill 职\hfill 称} & { {}\underline{\makebox[5.75cm][c]{\the\mentor}}}\hfill{}    \\%\hline
-                    \makebox[3.25cm][s]{学\hfill 号}                                         & { {}\underline{\makebox[5.75cm][c]{\the\studentid}}}\hfill{} \\%\hline
-                    \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间}                         & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{} \\%\hline
-                \end{tabular}
-            }
-            \par\vspace{1.5cm}
-            {
-                \fangsong\zihao{3} \bfseries \the\DefenseDate
-            }
+            % \vspace*{2em}
+            \vfill\vfill\vfill
+            {\fangsong \infoTable}
+            \vfill
+            {\fangsong\zihao{3} \bfseries \the\DefenseDate}
             \vspace{1em}
-            % \begin{tikzpicture}
-            %   \draw[draw=black!70,fill=black!70](0,0)rectangle node[below=1pt]{\zihao{-4}\textcolor[rgb]{0.3,0.3,0.3}{广东财经大学教务处 \ \ 制}}(\textwidth,4pt);
-            % \end{tikzpicture}
         \end{center}
     \end{titlepage}
+    \restoregeometry
 }
 
 % %%========扉页========================%%
 \newcommand\maketitlepage{%
     \newpage
     \thispagestyle{empty}
-    \vspace*{0.75cm}
+    \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
+    % \vspace*{0.75cm}
     \begin{center}
-        {\songti \zihao{0} 学术学位硕士论文}
-        \par\vspace{2.5cm}
+        {\songti \zihao{0} \masterClass 学位硕士论文}
+        \par\vfill
         {\heiti \zihao{-2} \ctitle \par \the\etitle}
-        \par\vspace{2.1cm}
-        {\heiti\zihao{4}
-            \renewcommand{\arraystretch}{1.5}
-            \begin{tabular}{ll}
-                %\hline
-                \makebox[3.25cm][s]{专\hfill 业\hfill 名\hfill 称}         & { {}\underline{\makebox[5.75cm][c]{\the\major}}}\hfill{}     \\%\hline
-                \makebox[3.25cm][s]{学\hfill 位\hfill 申\hfill 请\hfill 人} & { {}\underline{\makebox[5.75cm][c]{\cname}}}\hfill{}         \\%\hline
-                \makebox[3.25cm][s]{指导教师}                              & { {}\underline{\makebox[5.75cm][c]{\the\mentor}}}\hfill{}    \\%\hline
-                \makebox[3.25cm][s]{学\hfill 号}                         & { {}\underline{\makebox[5.75cm][c]{\the\studentid}}}\hfill{} \\%\hline
-                \makebox[3.25cm][s]{入\hfill 学\hfill 时\hfill 间}         & { {}\underline{\makebox[5.75cm][c]{\the\EnterDate}}}\hfill{} \\%\hline
-            \end{tabular}
-            \par\vspace{2em}
+        \par\vfill
+        {
+        \heiti\zihao{4}\renewcommand{\arraystretch}{1.5}
+            \hspace*{2em}\infoTable
+            \par\vfill
+            \hspace*{2em}
             \begin{tabular}{lr}
-                %\hline
-                \makebox[4.25cm][s]{论文提交时间} & { {}\makebox[4.75cm][r]{\the\SubmitDate}}\hfill{}  \\%\hline
-                \makebox[4.25cm][s]{论文答辩时间} & { {}\makebox[4.75cm][r]{\the\DefenseDate}}\hfill{} \\%\hline
+                \makebox[4.25cm][s]{\zihao{4}论文提交时间} & \makebox[4.75cm][r]{\zihao{4}\the\SubmitDate}  \\
+                \makebox[4.25cm][s]{\zihao{4}论文答辩时间} & \makebox[4.75cm][r]{\zihao{4}\the\DefenseDate} \\
             \end{tabular}
-            \vspace{1em}
+            \par\vfill
+            \hspace*{2em}
             \begin{tabular}{lr}
-                \makebox[4.25cm][s]{答辩委员会主席} & { {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
-                \makebox[4.25cm][s]{答辩委员会委员} & { {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
-                \makebox[4.25cm][s]{ }       & { {}\underline{\makebox[4.75cm][s]{}}}\hfill{} \\%\hline
+                \makebox[4.25cm][s]{\zihao{4}答辩委员会主席} & \underline{\makebox[4.75cm][s]{}} \\
+                \makebox[4.25cm][s]{\zihao{4}答辩委员会委员} & \underline{\makebox[4.75cm][s]{}} \\
+                \makebox[4.25cm][s]{ }       & \underline{\makebox[4.75cm][s]{}} \\
             \end{tabular}
         }
+        \vfill
     \end{center}
+    \restoregeometry
 }
 
 % %%=====原创性声明========================%%
 \newcommand\makeclaim{
     \newpage
     \thispagestyle{empty}
+    \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
     \begin{center}
         \vspace*{0.8cm}
         {\heiti \zihao{3} \bfseries 广东财经大学学位论文原创性声明}
@@ -498,8 +509,10 @@
         本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。
         \newline
         \begin{tabular}{rr}
-            \makebox[11cm][r]{学位论文作者签名:} & { {}{\makebox[3.75cm][s]{ }}}\hfill{}             \\%\hline
-            \makebox[11cm][r]{签字日期:}     & { {}{\makebox[3.75cm][l]{\the\SignDate}}}\hfill{} \\%\hline
+            \zihao{4}
+            \makebox[11cm][r]{学位论文作者签名:} & \makebox[3.75cm][l]{ }             \\
+            \zihao{4}
+            \makebox[11cm][r]{签字日期:}     & \makebox[3.75cm][l]{\zihao{4} \the\SignDate} \\
         \end{tabular}
     \end{spacing}
     \vspace{1em}
@@ -520,6 +533,11 @@
     }
     \restoregeometry
 }
+
+
+%%%%%%% 开题报告内容 %%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{figures/}}        % 图片文件路径

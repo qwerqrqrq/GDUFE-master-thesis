@@ -1,4 +1,4 @@
-\documentclass[class = professional, twoside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
+\documentclass[class = academic, oneside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
 
@@ -11,13 +11,13 @@
 \usepackage{algpseudocode}
 
 % \setstretch{1}            % 防止 double spacing 影响
-% \setlength{\baselineskip}{28pt}
+% \setlength{\baselineskip}{20pt}
 
 \title{广东财经大学专业学位硕士论文论文题目}
 \etitle{GDUFE professional master thesis title}
 \author{张三}
 \major{数学}
-\mentor{李四 教授}
+\supervisor{李四\quad 教授}
 \EnterDate{2000年9月5日}
 \studentid{1234567890}
 \EnterDate{2025年9月1日}
@@ -27,15 +27,14 @@
 \CoverPageDate{2026年6月4日}
 
 \begin{document}
-% \makecover
-% \maketitlepage
-% \makeclaim
+\makecover
+\maketitlepage
+\makeclaim
 
 \setlength{\baselineskip}{20pt}\selectfont
 \frontmatter
 
-\chapter*{\ziju{1} 摘要\the\baselineskip}
-\addcontentsline{toc}{chapter}{摘要}
+\begin{cnabstract}
 \the\baselineskip
 行间距：固定值20磅。内容次序为“摘要”二字、摘要内容、关键词。\the\baselineskip
 
@@ -44,9 +43,10 @@
 （2）“摘要”二字下空两行，打印摘要内容（小四号宋体），每段开头按照“首行缩进”空两格，标点符号占一格。\the\baselineskip
 
 （3）摘要内容下空一行，开头空两格打印“关键词：”三个字（小四号黑体），其后为关键词内容（小四号宋体），关键词数量为3-8个，每一关键词之间用分号隔开，最后一个关键词后不打标点符号。\the\baselineskip
-
-\chapter*{\bfseries ABSTRACT\the\baselineskip}
-\addcontentsline{toc}{chapter}{ABSTRACT}
+\end{cnabstract}
+\begin{enabstract}
+% \chapter*{\bfseries ABSTRACT\the\baselineskip}
+% \addcontentsline{toc}{chapter}{ABSTRACT}
 Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
 
 Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
@@ -54,7 +54,7 @@ Time new roman Time new roman Time new roman Time new roman Time new roman Time 
 Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
 
 Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
-
+\end{enabstract}
 \tableofcontents
 
 \mainmatter
@@ -107,37 +107,37 @@ This article uses SimSun and Times New Roman fonts. Below is a comparison of the
     \end{center}
 \end{table}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
-    \includegraphics[width=0.3\textwidth]{lake.jpeg}\hfill
-    \includegraphics[width=0.3\textwidth]{lake.jpeg}
-    \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
-    {\zihao{5} 资料来源：xxx\the\baselineskip}
-    % \label{fig:MultiPic1}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{lake.jpeg}
-    \caption{\setlength{\baselineskip}{20pt}多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
-    \begin{flushleft}
-        资料来源：xxx\the\baselineskip
-    \end{flushleft}
-    % \label{fig:MultiPic1}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.3\textwidth]{colorful.eps}\hfill
+%     \includegraphics[width=0.3\textwidth]{colorful.eps}\hfill
+%     \includegraphics[width=0.3\textwidth]{colorful.eps}
+%     \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
+%     {\zihao{5} 资料来源：xxx\the\baselineskip}
+%     % \label{fig:MultiPic1}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{colorful.eps}
+%     \caption{\setlength{\baselineskip}{20pt}多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
+%     \begin{flushleft}
+%         资料来源：xxx\the\baselineskip
+%     \end{flushleft}
+%     % \label{fig:MultiPic1}
+% \end{figure}
 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
 \the\baselineskip
 
-% 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
-% \the\baselineskip
+本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
+\the\baselineskip
 
-% \zihao{-3} 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
-% \the\baselineskip
+\zihao{-3} 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
+\the\baselineskip
 
-% {\zihao{-5} 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
-%     \the\baselineskip}
+{\zihao{-5} 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
+    \the\baselineskip}
 
-% 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
-% \the\baselineskip
+本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
+\the\baselineskip
 
 \end{document}

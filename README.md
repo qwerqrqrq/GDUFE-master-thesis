@@ -1,7 +1,6 @@
-# 广东财经大学硕士论文latex 模板
+# 广东财经大学硕士论文 Latex 模板
 
 **该项目还在制作中**
-
 
 
 ## 重要提醒
@@ -11,7 +10,6 @@
 
 ## 已知问题：
 
-+ 页眉页脚页边距不对
 + 不支持书脊，需要到和打印店老板沟通
 
 ## 说明和使用方法：
@@ -28,6 +26,8 @@
 
 + [武汉大学论文模板](https://github.com/whutug/whu-thesis)
 
++ [中山大学论文模板](https://github.com/SYSU-SCC/sysu-thesis)
+
 + [谭学忠老师的模板](https://blog.csdn.net/weixin_39730587/article/details/113085891)  微信公众号： 大哉数学之为用
 
 + [黄正华老师的模板](http://aff.whu.edu.cn/huangzh/)
@@ -35,6 +35,6 @@
 
 ## 快速跳转
 
-[广财论文写作细则](https://yjsc.gdufe.edu.cn/2021/1010/c7793a140567/page.htm)
+[广东财经大学硕士学位论文写作规则](https://yjsc.gdufe.edu.cn/2021/1010/c7793a140567/page.htm)
 
-[广财学位论文相关工作的通知（相关表格下载在这里）](https://yjsc.gdufe.edu.cn/2025/0228/c3011a216295/page.htm)
+[关于做好2025年夏季毕业研究生硕士学位论文相关工作的通知(相关表格下载)](https://yjsc.gdufe.edu.cn/2025/0228/c3011a216295/page.htm)
