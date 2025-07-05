@@ -43,7 +43,7 @@ jobs:
       - name: Zip files
         if: ${{startsWith(github.ref, 'refs/tags/v')}}
         run: |
-          zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_thesis.cls reference.bib -x includefile/\*.aux
+          zip -r GDUFE-master-thsis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master.cls reference.bib -x includefile/\*.aux
 
       - name: show files
         run: |

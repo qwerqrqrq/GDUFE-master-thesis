@@ -1,11 +1,9 @@
-\documentclass[class = academic, oneside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
+\documentclass[class = academic,type=thesis,twoside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
+% \documentclass[class = academic,twoside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
 
 % \documentclass[forprint,class=academic]{gdufe_master_thesis}% 选项 forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
-
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
-\renewcommand{\thetable}{\thechapter-\arabic{table}}
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -18,6 +16,7 @@
 \author{张三}
 \major{数学}
 \supervisor{李四\quad 教授}
+\supervisorOuter{王五\quad 教授} % 校外导师，仅专硕需要填写
 \EnterDate{2000年9月5日}
 \studentid{1234567890}
 \EnterDate{2025年9月1日}

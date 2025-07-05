@@ -1,23 +1,21 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master_thesis}[2025/05/17 Master Thesis template for GDUFE v0.4.1]
+\ProvidesClass{gdufe_master}[2025/05/17 Master Thesis template for GDUFE v0.4.1]
 
 % ---------声明变量-------------
-\newcommand{\masterClass}{学术} % 默认值
-\newcommand{\masterClassValue}{academic} % 默认值
-\newcommand{\academic}{academic} % 用于判断是否为学硕
+\newcommand{\masterClass}{学术}
 % ---------选项设置-------------
-\DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}\renewcommand{\masterClassValue}{academic}}
-\DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}\renewcommand{\masterClassValue}{professional}}
+\DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}}
+\DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}}
 \ExecuteOptions{class=academic} % 设置默认选项
 
 \newcommand{\type}{thesis}
-% 论文格式
-\DeclareOption{thesis}{{\renewcommand{\type}{thesis}}}
-% 开题报告格式
-\DeclareOption{proposal}{{\renewcommand{\type}{thesis}}}
-
+% % 论文格式
+\DeclareOption{type=thesis}{\renewcommand{\type}{thesis}}
+% % 开题报告格式
+\DeclareOption{type=proposal}{\renewcommand{\type}{proposal}}
+\ExecuteOptions{type=thesis}
 
 \newif\ifprint
 \printfalse
@@ -30,12 +28,15 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 
 \ProcessOptions\relax
-% 加载ctexbook类
-\LoadClass[
-    zihao=-4,
-    a4paper,
-    openany]{ctexbook}
-
+% 根据类型加载ctexbook类不同的基础字号
+\ExplSyntaxOn
+\str_case:Nn \type {
+{thesis}{\PassOptionsToClass{zihao=-4}{ctexbook}}
+{proposal}{\PassOptionsToClass{zihao=5}{ctexbook}}
+}
+\ExplSyntaxOff
+\PassOptionsToClass{a4paper,openany}{ctexbook}
+\LoadClass{ctexbook}
 %%------------------------调用宏包-----------------------------------
 \RequirePackage{amsmath,amssymb,mathrsfs}
 % \RequirePackage{amsthm}
@@ -59,17 +60,29 @@
 \RequirePackage[titles]{tocloft}
 % \RequirePackage{zhlineskip}
 \RequirePackage{changepage}
-
+\RequirePackage{expl3}
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
 %------------------------ Page layout ----------------------------------
-\RequirePackage[top=2.54truecm,
+\ExplSyntaxOn
+\str_case:Nn \type {
+{thesis}{\RequirePackage[top=2.54truecm,
     bottom=2.54truecm,
     left=3truecm,
     right=2.2truecm,
     paper=a4paper,
     headsep=1.04truecm,
     footskip=0.79truecm,
-    headheight=16pt]{geometry}    % 页面设置%
-
+    headheight=16pt]{geometry}}
+{proposal}{\RequirePackage[top=2.54truecm,
+    bottom=2.54truecm,
+    left=2.6truecm,
+    right=2.6truecm,
+    headsep=1.04truecm,
+    footskip=0.79truecm,
+    headheight=16pt]{geometry}}
+}
+\ExplSyntaxOff
 \RequirePackage{fancyhdr}
 \RequirePackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,bookmarksnumbered=true]{hyperref}
 
@@ -111,8 +124,8 @@
     \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
 }
 
-% 设置正文页眉页脚样式，其余样式用plain 或empty
-\fancypagestyle{master-mainmatter}
+% 设置页眉页脚样式，其余样式用plain 或empty
+\fancypagestyle{master-thesis-mainmatter}
 {
 \fancyhead{}                                    % clear all header fields
 \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
@@ -120,6 +133,14 @@
 \renewcommand{\headrulewidth}{0.1pt}
 \fancyfoot{}                                    % clear all footer fields
 \fancyfoot[C]{\thepage}
+}
+
+\fancypagestyle{master-proposal-style}
+{
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\thepage}
 }
 
 
@@ -303,8 +324,8 @@
 \newenvironment{cnabstract}{%
     \chapter[摘要]{\heiti\ziju{1}摘要\the\baselineskip}
     \zihao{-4}
-    }
-    {\newline
+}
+{\newline
     \par}
 
 
@@ -312,7 +333,7 @@
     \chapter[ABSTRACT]{\bfseries ABSTRACT\the\baselineskip}
     \zihao{-4}
     \noindent}
-    {\newline\par}
+{\newline\par}
 
 %% -----frontmatter mainmatter appendix 设置 使得自动调整章节格式-----
 \apptocmd{\frontmatter}{
@@ -329,11 +350,11 @@
 }{}{}
 
 \apptocmd{\mainmatter}{
-    \pagestyle{master-mainmatter}
+    \pagestyle{master-thesis-mainmatter}
     \ctexset{
         chapter={
           format={\zihao{3}\heiti\raggedright},
-          pagestyle={master-mainmatter},
+          pagestyle={master-thesis-mainmatter},
           afterskip={1\baselineskip},
           beforeskip={0pt},
           number={\arabic{chapter}},
@@ -386,6 +407,7 @@
 % 相关信息宏定义
 \newtoks{\etitle}
 \newtoks{\supervisor}
+\newtoks{\supervisorOuter}
 \newtoks{\major}
 \newtoks{\studentid}
 \newtoks{\EnterDate}
@@ -399,31 +421,29 @@
 \newcommand{\ctitle}{\@title}
 \makeatother
 
-
-\newcommand{\infoTable}{
-    \ifx\masterClassValue\academic{
-        \renewcommand{\arraystretch}{1.5}
-        \begin{tabular}{ll}
-            \makebox[3.5cm][s]{\zihao{4}专业名称}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}     \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}学位申请人}                 & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}         \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}    \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}学号}                                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}} \\%\hline
-            \makebox[3.5cm][s]{\zihao{4}入学时间}                         & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}} \\%\hline
-        \end{tabular}
-    }\else
-    {
-        \renewcommand{\arraystretch}{1.5}
-        \begin{tabular}{ll}
-            %\hline
-            \makebox[3.5cm][s]{专业学位名称}                         & \underline{\makebox[5.75cm][c]{\the\major}}     \\
-            \makebox[3.5cm][s]{学位申请人}                 & \underline{\makebox[5.75cm][c]{\cname}}         \\
-            \makebox[3.5cm][s]{校内导师} & \underline{\makebox[5.75cm][c]{\the\supervisor}}    \\
-            \makebox[3.5cm][s]{校外导师} & \underline{\makebox[5.75cm][c]{\the\supervisor}}    \\
-            \makebox[3.5cm][s]{学号}                                         & \underline{\makebox[5.75cm][c]{\the\studentid}} \\
-            \makebox[3.5cm][s]{入学时间}                         & \underline{\makebox[5.75cm][c]{\the\EnterDate}} \\
-        \end{tabular}
+\ExplSyntaxOn
+% \newcommand{\infoTable}{
+\cs_new:Npn \__thesis_infoTable: {
+    \str_case:Nn \masterClass {
+        {学术}{\renewcommand{\arraystretch}{1.5}
+                \begin{tabular}{ll}
+                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\%\hline
+                \end{tabular}}
+            {专业}{\renewcommand{\arraystretch}{1.5}
+                \begin{tabular}{ll}
+                    \makebox[3.5cm][s]{\zihao{4}专业学位名称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}  & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\
+                    \makebox[3.5cm][s]{\zihao{4}校内导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\
+                    \makebox[3.5cm][s]{\zihao{4}校外导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisorOuter}} \\
+                    \makebox[3.5cm][s]{\zihao{4}学号}     & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\
+                \end{tabular}}
     }
-    \fi}
+}
 
 %%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
 \newcommand{\makecover}{%
@@ -431,8 +451,8 @@
         \thispagestyle{empty}%
         \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
         {\noindent\fangsong\zihao{-4}\bfseries 分类号： UDC\\[-3pt]
-                密\quad 级：\\[-3pt]
-                编\quad 号：
+            密\quad 级：\\[-3pt]
+            编\quad 号：
         }
         \vspace*{0.4cm}
         \begin{center} \leavevmode
@@ -451,7 +471,8 @@
             {\heiti \zihao{-2} \the\etitle \par}
             % \vspace*{2em}
             \vfill\vfill\vfill
-            {\fangsong \infoTable}
+            % {\fangsong \infoTable}
+            {\fangsong \__thesis_infoTable:}
             \vfill
             {\fangsong\zihao{3} \bfseries \the\DefenseDate}
             \vspace{1em}
@@ -461,7 +482,7 @@
 }
 
 % %%========扉页========================%%
-\newcommand\maketitlepage{%
+\newcommand{\maketitlepage}{%
     \newpage
     \thispagestyle{empty}
     \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
@@ -472,8 +493,9 @@
         {\heiti \zihao{-2} \ctitle \par \the\etitle}
         \par\vfill
         {
-        \heiti\zihao{4}\renewcommand{\arraystretch}{1.5}
-            \hspace*{2em}\infoTable
+            \heiti\zihao{4}\renewcommand{\arraystretch}{1.5}
+            % \hspace*{2em}\infoTable
+            \hspace*{2em}\__thesis_infoTable:
             \par\vfill
             \hspace*{2em}
             \begin{tabular}{lr}
@@ -485,16 +507,17 @@
             \begin{tabular}{lr}
                 \makebox[4.25cm][s]{\zihao{4}答辩委员会主席} & \underline{\makebox[4.75cm][s]{}} \\
                 \makebox[4.25cm][s]{\zihao{4}答辩委员会委员} & \underline{\makebox[4.75cm][s]{}} \\
-                \makebox[4.25cm][s]{ }       & \underline{\makebox[4.75cm][s]{}} \\
+                \makebox[4.25cm][s]{ }                & \underline{\makebox[4.75cm][s]{}} \\
             \end{tabular}
         }
         \vfill
     \end{center}
     \restoregeometry
 }
+\ExplSyntaxOff
 
 % %%=====原创性声明========================%%
-\newcommand\makeclaim{
+\newcommand{\makeclaim}{
     \newpage
     \thispagestyle{empty}
     \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
@@ -510,7 +533,7 @@
         \newline
         \begin{tabular}{rr}
             \zihao{4}
-            \makebox[11cm][r]{学位论文作者签名:} & \makebox[3.75cm][l]{ }             \\
+            \makebox[11cm][r]{学位论文作者签名:} & \makebox[3.75cm][l]{ }                       \\
             \zihao{4}
             \makebox[11cm][r]{签字日期:}     & \makebox[3.75cm][l]{\zihao{4} \the\SignDate} \\
         \end{tabular}
@@ -536,6 +559,110 @@
 
 
 %%%%%%% 开题报告内容 %%%%%%%%%%%%
+\newcommand{\makeProposal}{%
+% 封面页
+    \begin{titlepage}
+        \thispagestyle{empty}%
+        \begin{center} \leavevmode
+            {%
+                \begin{minipage}{0.71\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{gdufelogo.jpg}
+                \end{minipage}
+            }
+            \par\vspace*{2mm} %插入空白
+            \rule{0.9\textwidth}{0.5pt}
+            \par\vspace*{2mm}
+            \begin{spacing}{1.5}
+            \bfseries \fangsong \zihao{-1} 硕士研究生学位论文开题报告
+            \end{spacing}
+            \vspace{60pt}
+            {\heiti \zihao{-2} \ctitle}\\
+            % \vspace*{2em}
+            \vfill
+            {\heiti\setlength\baselineskip{35pt}
+                \makebox[2cm][s]{\zihao{4}姓名}:           \underline{\makebox[3.75cm][c]{\zihao{4}\cname}}          \\
+                \makebox[2cm][s]{\zihao{4}学号}:           \underline{\makebox[3.75cm][c]{\zihao{4}\the\studentid}}  \\
+                \makebox[2cm][s]{\zihao{4}专业}:           \underline{\makebox[3.75cm][c]{\zihao{4}\the\major}}      \\
+                \makebox[2cm][s]{\zihao{4}入学时间}:        \underline{\makebox[3.75cm][c]{\zihao{4}\the\EnterDate}}  \\
+                \makebox[2cm][s]{\zihao{4}指导教师}:        \underline{\makebox[3.75cm][c]{\zihao{4}\the\supervisor}} \\
+                \makebox[2cm][s]{\zihao{4}开题时间}:        \underline{\makebox[3.75cm][c]{\zihao{4}\the\EnterDate}}  \\
+            }
+            \vfill
+                \zihao{-4}
+                广东财经大学研究生处制\\[8pt]
+                \the\DefenseDate
+            \vspace{5mm}
+        \end{center}
+    \end{titlepage}
+% 须知页
+\clearpage
+\vspace*{0.5cm}
+\pagestyle{master-proposal-style}
+\par
+
+\begin{spacing}{2}
+\begin{center}
+    {\zihao{3} \bfseries \setlength{\baselineskip}{30pt} \selectfont 填表须知}
+\end{center}
+{
+\zihao{4} \setlength{\baselineskip}{30pt}\selectfont
+\noindent 一、本表统一使用A4纸{\heiti \bfseries 双面}打印。所需填写内容超出页面限制，可扩充表格；
+
+\noindent 二、表格中需签名部分须用黑色的签字笔或钢笔填写；
+
+\noindent 三、一表一式两份，可复印。原件交研究生处存档，复印件由培养单位留存。
+}
+\end{spacing}
+% 格式设置
+\clearpage
+\zihao{5} \setlength{\baselineskip}{20pt}\selectfont
+\pagestyle{master-proposal-style}
+\ctexset{
+    chapter={
+        format={\zihao{5}\bfseries\raggedright},
+        pagestyle={master-proposal-style},
+        afterskip={0pt},
+        beforeskip={0pt},
+        number={\arabic{chapter}},
+        name={,},
+        aftername={\quad}
+        },
+    section={
+        format={\zihao{5}\bfseries\raggedright},
+        afterskip={0pt},
+        beforeskip={0pt},
+        aftername={\quad}
+        },
+    subsection={
+        format={\zihao{5}\bfseries\raggedright},
+        afterskip={0pt},
+        beforeskip={0pt},
+        aftername={\quad}
+        },
+    subsubsection={
+        format={\zihao{5}\bfseries\raggedright},
+        afterskip={0pt},
+        beforeskip={0pt},
+        aftername={\quad}
+        }
+    }
+}
+% 信息部分
+\newtoks{\gender}
+\newtoks{\researchDirection}
+% \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
+% \hline
+% 姓名： &\cname & 性别：&\the\gender & 入学时间： & \the\EnterDate\\
+% \hline
+% % 学科： & \multicolumn{3}{X|}{\the\major}&研究方向：& \the\researchDirection\\
+% % \hline
+% % 论文题目 & 中文：\rule{10cm}{0pt} & & \\
+% % \hline
+% % 题目 & 英文：\rule{10cm}{0pt} & & \\
+% % \hline
+% \end{tabularx}
+
 
 
 
@@ -543,6 +670,6 @@
 \graphicspath{{figures/}}        % 图片文件路径
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \allowdisplaybreaks
-% \setlength{\baselineskip}{20pt}\selectfont
+\setlength{\baselineskip}{20pt}\selectfont
 \endlinechar `\^^M
 \endinput
