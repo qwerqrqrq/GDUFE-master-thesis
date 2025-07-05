@@ -48,7 +48,8 @@
 \RequirePackage{subcaption}
 \RequirePackage{color,xcolor}             %支持彩色
 \RequirePackage{url}
-\RequirePackage{enumerate}
+% \RequirePackage{enumerate}
+\RequirePackage{enumitem}
 \RequirePackage{etoolbox}
 \RequirePackage{pdfpages}
 \RequirePackage{fixdif}
@@ -260,6 +261,8 @@
 %     commentstyle=\color[rgb]{0.133,0.545,0.133},
 %     stringstyle=\color[rgb]{0.627,0.126,0.941},
 % }
+% lstlisting 设置
+\ifprint
 \lstset{
     aboveskip=20pt,
     basicstyle=\ttfamily\small,
@@ -271,7 +274,21 @@
     commentstyle=\color{black},
     stringstyle=\color{black},
 }
-
+\else
+\lstset{
+    aboveskip=20pt,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{orange},
+}
+\fi
+% enumerate 设置
+\setlist[enumerate]{itemsep=0pt, topsep=0pt, parsep=0pt}
 
 %---------------------------------------------------
 
