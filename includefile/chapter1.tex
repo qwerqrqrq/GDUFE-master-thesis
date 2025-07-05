@@ -60,6 +60,7 @@ XeLaTeX => Biber => XeLaTeX => XeLaTeX 四次编译.
 \section{文档中的若干命令 \the\baselineskip}
 \begin{enumerate}
     \item 文档中有很多 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除.
-    \item 如果发现行距有问题, 在有问题的段落开头使用\verb|\setlength{\baselineskip}{20pt}\selectfont| 修正.
+    \item 如果发现行距有问题, 在有问题的段落开头使用\\
+    \verb|\setlength{\baselineskip}{20pt}\selectfont| 修正.
     \item 用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
 \end{enumerate}
