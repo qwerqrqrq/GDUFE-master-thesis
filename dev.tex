@@ -1,4 +1,4 @@
-\documentclass[class = academic,type=thesis,twoside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
+\documentclass[class = academic,forprint,type=thesis,twoside]{gdufe_master}
 % \documentclass[class = academic,twoside,AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
@@ -138,5 +138,77 @@ This article uses SimSun and Times New Roman fonts. Below is a comparison of the
 
 本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
 \the\baselineskip
+
+\clearpage
+
+\begin{verbatim}
+\begin{tikzpicture}[xshift=0.5cm]
+    \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
+    \draw[help lines, step=0.5cm](-1.48,-1.48)grid(1.48,1.48);
+    \draw[->,thick] (-1.5,0)--(1.5,0)node[right=1pt]{$x$};
+    \draw[->,thick](0,-1.5)--(0,1.5)node[right=1pt]{$y$};
+    \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{lstlisting}[language=TeX, caption={TikZ 绘图示例}, label={lst:tikz_example}]
+\begin{tikzpicture}[xshift=0.5cm]
+    \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
+    \draw[help lines, step=0.5cm](-1.48,-1.48)grid(1.48,1.48);
+    \draw[->,thick] (-1.5,0)--(1.5,0)node[right=1pt]{$x$};
+    \draw[->,thick](0,-1.5)--(0,1.5)node[right=1pt]{$y$};
+    \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
+\end{tikzpicture}
+\end{lstlisting}
+
+\begin{verbatim}
+% 参数
+L = 1;            % 摆长
+g = 9.81;         % 重力加速度
+theta0 = pi/4;    % 初始角度
+
+% 时间
+t = linspace(0, 10, 500);
+omega = sqrt(g / L);
+theta = theta0 * cos(omega * t);  % 简化为简谐运动
+
+% 动画
+figure;
+for k = 1:length(t)
+    x = L * sin(theta(k));
+    y = -L * cos(theta(k));
+    clf;
+    plot([0, x], [0, y], 'k-', 'LineWidth', 2); hold on;
+    plot(x, y, 'ro', 'MarkerSize', 12, 'MarkerFaceColor', 'r');
+    axis equal; axis([-1.2 1.2 -1.2 0.2]);
+    title(sprintf('Time = %.2f s', t(k)));
+    drawnow;
+end
+\end{verbatim}
+
+\begin{lstlisting}[language=Matlab, label={lst:matlab_pendulum}]
+% 参数
+L = 1;            % 摆长
+g = 9.81;         % 重力加速度
+theta0 = pi/4;    % 初始角度
+
+% 时间
+t = linspace(0, 10, 500);
+omega = sqrt(g / L);
+theta = theta0 * cos(omega * t);  % 简化为简谐运动
+
+% 动画
+figure;
+for k = 1:length(t)
+    x = L * sin(theta(k));
+    y = -L * cos(theta(k));
+    clf;
+    plot([0, x], [0, y], 'k-', 'LineWidth', 2); hold on;
+    plot(x, y, 'ro', 'MarkerSize', 12, 'MarkerFaceColor', 'r');
+    axis equal; axis([-1.2 1.2 -1.2 0.2]);
+    title(sprintf('Time = %.2f s', t(k)));
+    drawnow;
+end
+\end{lstlisting}
 
 \end{document}

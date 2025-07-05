@@ -99,7 +99,7 @@
 
           \verb|\begin{enumerate}[i)]| 得到形如 i), ii), iii) 的编号.
     \item[etoolbox]  提供一些工具函数用来修改命令.
-            \item[fancyhdr]  提供页眉页脚的自定义支持, 允许设置不同章节的页眉页脚样式.
+    \item[fancyhdr]  提供页眉页脚的自定义支持, 允许设置不同章节的页眉页脚样式.
     \item[fixdif] 提供\verb|\d| 命令, 方便书写正体的微分符号, 如 $\d x$.
     \item[float] 支持对图形、表格等浮动体的控制, 使用 \verb|\begin{figure}[H]| 可以强制图形在当前位置显示.
     \item[hyperref]  支持超链接, 包括目录、交叉引用等. 允许设置链接颜色和样式.
@@ -107,7 +107,7 @@
     \item[graphicx]  提供图形插入支持, 允许使用 \verb|\includegraphics| 命令插入图片.
     \item[listings] 方便在文档中插入各种程序代码。
     \item[pdfpage] 支持在文档中插入 PDF 页面, 如封面、扉页等.
-    % \item[siunitx] 提供单位转换和格式化支持, 允许使用 \verb|\SI{量值}{单位}| 命令书写物理量.
+          % \item[siunitx] 提供单位转换和格式化支持, 允许使用 \verb|\SI{量值}{单位}| 命令书写物理量.
     \item[tikz] 方便使用tikz作图功能.
     \item[tocloft] 允许自定义目录、图表目录的格式和样式.
     \item[ulem] 提供下划线、删除线等文本修饰功能, 允许使用 \verb|\sout{文本}| 命令添加删除线.
@@ -275,19 +275,27 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 \section{程序代码}
 
-用lstlisting环境可以在文中插入一段代码: \par
-\verb|\begin{lstlisting} 代码内容 \end{lstlisting}|. 例如：
-
+用lstlisting环境或者verbatim可以在文中插入一段代码. \\
+\verb|\begin{lstlisting} 代码内容 \end{lstlisting}| 样式示例：
 \begin{lstlisting}
 \begin{tikzpicture}[xshift=0.5cm]
-   \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
-   \draw[help lines, step=0.5cm](-1.48,-1.48)grid(1.48,1.48);
-   \draw[->,thick] (-1.5,0)--(1.5,0)node[right=1pt]{$x$};
-   \draw[->,thick](0,-1.5)--(0,1.5)node[right=1pt]{$y$};
-   \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
- \end{tikzpicture}
- \end{lstlisting}
-
+    \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
+    \draw[help lines, step=0.5cm](-1.48,-1.48)grid(1.48,1.48);
+    \draw[->,thick] (-1.5,0)--(1.5,0)node[right=1pt]{$x$};
+    \draw[->,thick](0,-1.5)--(0,1.5)node[right=1pt]{$y$};
+    \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
+\end{tikzpicture}
+\end{lstlisting}
+\verb|\begin{verbatim} 代码内容 \end{verbatim}| 样式示例：
+\begin{verbatim}
+\begin{tikzpicture}[xshift=0.5cm]
+    \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
+    \draw[help lines, step=0.5cm](-1.48,-1.48)grid(1.48,1.48);
+    \draw[->,thick] (-1.5,0)--(1.5,0)node[right=1pt]{$x$};
+    \draw[->,thick](0,-1.5)--(0,1.5)node[right=1pt]{$y$};
+    \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
+\end{tikzpicture}
+\end{verbatim}
 输出为：\quad
 \begin{tikzpicture}[xshift=0.5cm]
     \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);

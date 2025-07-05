@@ -17,6 +17,7 @@
 \DeclareOption{type=proposal}{\renewcommand{\type}{proposal}}
 \ExecuteOptions{type=thesis}
 
+
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
@@ -56,6 +57,7 @@
 % \RequirePackage{siunitx}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
+\RequirePackage{verbatim}
 \RequirePackage{setspace}
 \RequirePackage[titles]{tocloft}
 % \RequirePackage{zhlineskip}
@@ -84,13 +86,10 @@
 }
 \ExplSyntaxOff
 \RequirePackage{fancyhdr}
-\RequirePackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,bookmarksnumbered=true]{hyperref}
-
+\RequirePackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,bookmarksnumbered=true]{hyperref}
 \hypersetup{pdfencoding=auto}  %%% 邓东升修改
 \ifprint
     \hypersetup{hidelinks}
-\else
-    \hypersetup{citecolor=magenta,linkcolor=blue}
 \fi
 
 %% ------------------------ 字体设置 -----------------------------------
@@ -174,93 +173,106 @@
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
-\makeatletter \setlength\partopsep{0pt}
-\def\@listI{\leftmargin\leftmargini
-    \parsep 0pt
-    \topsep \parsep
-    \itemsep \parsep}
-\@listI
-\def\@listii {\leftmargin\leftmarginii
-    \labelwidth\leftmarginii
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listiii{\leftmargin\leftmarginiii
-    \labelwidth\leftmarginiii
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listiv{\leftmargin\leftmarginiv
-    \labelwidth\leftmarginiv
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listv{\leftmargin\leftmarginv
-    \labelwidth\leftmarginv
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-\def\@listvi{\leftmargin\leftmarginvi
-    \labelwidth\leftmarginvi
-    \advance\labelwidth-\labelsep
-    \parsep    \z@ \@plus\z@  \@minus\z@
-    \topsep    \parsep
-    \itemsep   \parsep}
-%
-% Change default margins for \list environments
-\setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
-{\leftmargini} \setlength\leftmarginiii {\leftmargini}
-\setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
-{\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
-{\leftmargini} \setlength\labelsep      {.5\ccwd}
-\setlength\labelwidth    {\leftmargini}
-%
-\setlength\listparindent{2\ccwd}
-% Change \listparindent to 2\ccwd in \list
-\def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
-    \else \global\advance\@listdepth\@ne \fi
-    \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
-    \csname @list\romannumeral\the\@listdepth\endcsname
-    \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
-    \@trivlist
-    \parskip\parsep \parindent\listparindent
-    \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
-    \advance\@totalleftmargin \leftmargin
-    \parshape \@ne \@totalleftmargin \linewidth
-    \ignorespaces}
+% \makeatletter \setlength\partopsep{0pt}
+% \def\@listI{\leftmargin\leftmargini
+%     \parsep 0pt
+%     \topsep \parsep
+%     \itemsep \parsep}
+% \@listI
+% \def\@listii {\leftmargin\leftmarginii
+%     \labelwidth\leftmarginii
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listiii{\leftmargin\leftmarginiii
+%     \labelwidth\leftmarginiii
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listiv{\leftmargin\leftmarginiv
+%     \labelwidth\leftmarginiv
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listv{\leftmargin\leftmarginv
+%     \labelwidth\leftmarginv
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% \def\@listvi{\leftmargin\leftmarginvi
+%     \labelwidth\leftmarginvi
+%     \advance\labelwidth-\labelsep
+%     \parsep    \z@ \@plus\z@  \@minus\z@
+%     \topsep    \parsep
+%     \itemsep   \parsep}
+% %
+% % Change default margins for \list environments
+% \setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
+% {\leftmargini} \setlength\leftmarginiii {\leftmargini}
+% \setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
+% {\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
+% {\leftmargini} \setlength\labelsep      {.5\ccwd}
+% \setlength\labelwidth    {\leftmargini}
+% %
+% \setlength\listparindent{2\ccwd}
+% % Change \listparindent to 2\ccwd in \list
+% \def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
+%     \else \global\advance\@listdepth\@ne \fi
+%     \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
+%     \csname @list\romannumeral\the\@listdepth\endcsname
+%     \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
+%     \@trivlist
+%     \parskip\parsep \parindent\listparindent
+%     \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
+%     \advance\@totalleftmargin \leftmargin
+%     \parshape \@ne \@totalleftmargin \linewidth
+%     \ignorespaces}
 
-\makeatother
+% \makeatother
 
-%%%%%%%%listings 设置%%%%%%%%%%%%
-% \usepackage{textcomp}
-\definecolor{listinggray}{gray}{0.9}
-\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+% %%%%%%%%listings 设置%%%%%%%%%%%%
+% % \usepackage{textcomp}
+% \definecolor{listinggray}{gray}{0.9}
+% \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+% \lstset{
+%     backgroundcolor=\color{white},
+%     tabsize=4,
+%     rulecolor=,
+%     language=TeX,
+%     basicstyle=\scriptsize,
+%     upquote=true,
+%     aboveskip={\baselineskip},
+%     columns=fixed,
+%     showstringspaces=false,
+%     extendedchars=true,
+%     breaklines=true,
+%     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+%     frame=single,
+%     showtabs=false,
+%     showspaces=false,
+%     showstringspaces=false,
+%     identifierstyle=\ttfamily,
+%     keywordstyle=\color[rgb]{0,0,1},
+%     commentstyle=\color[rgb]{0.133,0.545,0.133},
+%     stringstyle=\color[rgb]{0.627,0.126,0.941},
+% }
 \lstset{
-    backgroundcolor=\color{white},
-    tabsize=4,
-    rulecolor=,
-    language=TeX,
-    basicstyle=\scriptsize,
-    upquote=true,
-    aboveskip={\baselineskip},
-    columns=fixed,
-    showstringspaces=false,
-    extendedchars=true,
+    aboveskip=20pt,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
     breaklines=true,
-    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
     frame=single,
-    showtabs=false,
-    showspaces=false,
-    showstringspaces=false,
-    identifierstyle=\ttfamily,
-    keywordstyle=\color[rgb]{0,0,1},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
 }
+
+
 %---------------------------------------------------
 
 %%% ---- 图表标题设置 ----- %%%%
