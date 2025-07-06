@@ -98,7 +98,7 @@ Use \texttt{align*} environment:
 
 \section{图表测试}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width = 5cm]{gdufelogo.jpg}
     \caption{广东财经大学校徽}
@@ -107,18 +107,23 @@ Use \texttt{align*} environment:
 
 引用图~\ref{fig:广东财经大学校徽}
 
-多图测试1
+多图测试\ref{fig:MultiPic1}
 \begin{figure}[H]
+
     \centering
-    \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}\hfill
-    \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}\hfill
-    \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}
-    \caption{多图片1：珠江三角洲投资管理体制市场化改革（1985--2005）\the\baselineskip}
-    {\zihao{5} 资料来源：xxx\the\baselineskip}
-    \label{fig:MultiPic1}
+    \begin{minipage}{\textwidth}
+        {
+        \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}\hfill
+        \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}\hfill
+        \includegraphics[width=0.3\textwidth]{gdufelogo.jpg}
+        \caption{多图片测试1}
+        \label{fig:MultiPic1}
+        }
+        {\zihao{5} 资料来源：xxx\the\baselineskip}
+    \end{minipage}
 \end{figure}
 
-多图测试2
+多图测试\ref{fig:MultiPic2}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{colorful.eps}\\
@@ -127,8 +132,8 @@ Use \texttt{align*} environment:
     \label{fig:MultiPic2}
 \end{figure}
 
-子图测试
-\begin{figure}[htbp]
+子图测试\ref{fig:subfigtest}
+\begin{figure}[!htbp]
     \centering
 
     \begin{subcaptionbox}{子图A标题\label{fig:subfig_a}\the\baselineskip}[0.45\textwidth]

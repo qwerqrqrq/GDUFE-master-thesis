@@ -35,6 +35,10 @@
 
 ## 快速跳转
 
+[关于组织硕士研究生学位论文开题的通知](https://yjsc.gdufe.edu.cn/2025/0606/c3011a222006/page.htm)
+
 [广东财经大学硕士学位论文写作规则](https://yjsc.gdufe.edu.cn/2021/1010/c7793a140567/page.htm)
 
 [关于做好2025年夏季毕业研究生硕士学位论文相关工作的通知(相关表格下载)](https://yjsc.gdufe.edu.cn/2025/0228/c3011a216295/page.htm)
+
+[关于做好2025年夏季学位论文后续工作的通知](https://yjsc.gdufe.edu.cn/2025/0528/c3011a220834/page.htm)

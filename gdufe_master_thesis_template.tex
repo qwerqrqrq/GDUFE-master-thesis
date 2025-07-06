@@ -27,10 +27,28 @@
 \title{广东财经大学硕士论文 \LaTeX{}模板}
 %-----------------------------------------------------------------------------
 \pagestyle{empty}
+
+%% 导入封面、扉页、声明格式用pdf导入或者使用latex生成的页面
 \pdfbookmark[0]{封面}{title}         % 封面页加到 pdf 书签
-% 封面文件需要自己在doc文件修改后导出pdf文件，注意修改文件名。
+% 封面文件需要自己在doc文件修改后导出pdf文件，注意文件名.
 \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
-% \maketitle
+% \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(专业学位).pdf}
+
+%% latex 生成的页面, 还不完善, 目前不建议使用
+% 使用代码生成封面
+% \makecover
+% 使用代码生成扉页
+% \maketitlepage
+% 使用代码生成声明
+% \makeclaim
+
+%% 答辩后获得有专家签名的扉页，需要自己扫描获得pdf文件后插入，注意放置在封面和声明页之间
+% \includepdf[pages=1]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
+% \includepdf[page=1]{includefile/扉页扫描件.pdf}
+% \includepdf[pages=3]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
+
+
+%%% 不要删除设置行距代码 %%%%
 \setlength{\baselineskip}{20pt} % 设置行距
 \frontmatter
 %-----------------------------------------------------------------------------

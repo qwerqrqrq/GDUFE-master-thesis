@@ -1,65 +1,73 @@
-\chapter{撰写、编译、打印\the\baselineskip}
-\section{具体使用步骤\the\baselineskip}
-\the\baselineskip
+\chapter{使用、编译、打印}
+\section{学位论文具体使用步骤}
+
+要获得完整的毕业论文, 要经过以下步骤操作
 \begin{description}
+    \item[封面、扉页、声明]   两种方式二选一：
+            \begin{description}
+                \item [pdf插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
+                \item [\LaTeX{}生成] 使用 \verb|\makecover \maketitlepage \makeclaim| 生成, 目前还不完善, 不建议使用.
+            \end{description}
 
-    \item[Step 1]  进入 includefile 文件夹,  打开 abstract.tex, acknowledgment.tex 这两个文档, 分别填写 (1) 中文摘要、英文摘要, (2) 致谢.\the\baselineskip
+    \item[撰写]
+    \begin{enumerate}
+        \item  打开主文档 gdufe\_master\_thesis\_template.tex, 填写题目、作者等等信息, 在documentclass中选择参数, 具体见表\ref{table:documentclassparameters}.
+        \item 在主文档下撰写正文或者在 includefile/ chapter*.tex分章节撰写. 主文档的文件名可以修改, 但最好用英文名. 如果不习惯用~\verb|\include{ }|~的方式加入``子文档'', 当然可以把它们合并在主文档, 成为一个文档. ({\kaishu 但是这样并不会给我们带来方便.})
+        \item 进入 includefile 文件夹,  打开 abstract.tex, acknowledgment.tex, appendix.tex, 分别填写 (1) 中文摘要、英文摘要, (2) 致谢, (3) 附录.
+    \end{enumerate}
 
-    \item[Step 2]  打开主文档 gdufe\_master\_thesis\_template.tex, 填写题目、作者等等信息, 撰写正文. 主文档的文件名可以修改，但要求用英文名.
 
-    \item[Step 3]  编译. 具体见 \ref{sec-compile} 节.
-
+    \item[编译] 编译主文档. 具体见 \ref{sec-compile} 节.
+    \item[再次编译] 答辩，获得有专家签名的扉页，扫描后替换原本的扉页，重新编译.
 \end{description}
 
 \section{编译的方法}\label{sec-compile}
 若另存为新文档, 请确保文档保存类型为 \verb|:UTF-8|. 当然目前很多编辑器默认文字编码为 UTF-8.
-WinEdt 9.0 之后的版本都是默认保存为 UTF-8 的. \the\baselineskip
 
 使用~XeLaTeX 编译, 直接生成~pdf 文件.
 pdf 文件也可以反向搜索! 双击~pdf 中要修改的文字, 将直接跳转到源文件中相应位置.
 
+\subsection{使用 overleaf}
+将文件上传到 Overleaf 后, 在左上角菜单将编译方式设置成 Xelatex, Tex Live 版本为2024, 主文档选择对应文件. 然后就可以在右边编译了. 示例见图\ref{fig:overleafupload}, \ref{fig:overleafsettings}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{overleaf upload.png}
+    \caption{Overleaf 上传示意图}
+    \label{fig:overleafupload}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{overleaf settings.png}
+    \caption{Overleaf 设置示意图}
+    \label{fig:overleafsettings}
+\end{figure}
+\begin{remark}
+    由于学位论文一般比较大, 可能会出现超时现象，建议换成本地编译.
+\end{remark}
+
+\subsection{使用 TexLive }
+目前在本地好像不能使用，应该是版本问题，后续修改
+
+\subsection{其他需要配置的方式}
+
 如果不使用bib文件管理参考文献, 需要用 Xelatex 编译两次.
 如果使用 bib 文件管理参考文献，需要经过
 XeLaTeX => Biber => XeLaTeX => XeLaTeX 四次编译.
-或者用latexmk --xelatex 编译.
-
-% \section{文档类型选择}
-% 文档类型有 2 种情形:
-
-% \begin{table}[ht]\centering
-%     \begin{tabular}{ll}
-%         \hline
-%         \verb|\documentclass{gdufe\_term\_thesis}|           & 学年论文电子版 \\
-%         \verb|\documentclass[forprint]{gdufe\_term\_thesis}| & 毕业论文打印版 \\
-%         \hline
-%     \end{tabular}
-% \end{table}
-% 相关解释见下节.
-
-% 2025.5.15更新：只有一个类型 gdufe\_master\_thesis.
+或者用 latexmk --xelatex 编译.
 
 \section{打印的问题}
-\begin{enumerate}[i)]
-    %  \item  论文要求\colorbox{yellow}{单面打印}.
+\begin{enumerate}[label=\roman*)]
     \item  关于文档选项 forprint: 交付打印时, 建议加上选项 forprint, 以消除链接文字之彩色, 避免打印字迹偏淡.
     \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无''(Adobe Reader XI 是选择``实际大小'').
           有可能页面放缩方式默认为``适合可打印区域'', 会导致打印为原页面大小的 $97\%$.
-          文字不要居中打印, 是因为考虑到装订, 左侧的空白留得稍多一点(模板已作预留). \the\baselineskip
-    \item  \sout{遗留问题: 封面需要打印部重新制作.  校内打印部通常有现成的模板.
+          文字不要居中打印, 是因为考虑到装订, 左侧的空白留得稍多一点(模板已作预留).
+    \item  \sout{遗留问题: 封面需要打印部重新制作. 校内打印部通常有现成的模板.
               我们自己做的封面, 打印部不一定好用.} 使用了 doc 文件导出的 pdf 文件, 直接打印即可.
     \item  还不支持书脊, 需要和打印店老板沟通.
 \end{enumerate}
 
-\textbf{问}: {\kaishu 生成 PDF 文件时，不能去掉目录和文章的引用彩色方框，请问怎么解决？\the\baselineskip} \the\baselineskip
+\textbf{问}: {\kaishu 生成 PDF 文件时，不能去掉目录和文章的引用彩色方框，请问怎么解决？}
 
 \textbf{答}: {\kaishu 方框表示超级链接, 只在电脑上看得见. 实际打印时, 是没有的. 另外, 文档类型加选项 forprint 之后, 这些框框会隐掉的. }
 
 \textbf{注}: {\kaishu 不知道删了什么, 没有框框出现.}
-
-\section{文档中的若干命令 \the\baselineskip}
-\begin{enumerate}
-    \item 文档中有很多 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除.
-    \item 如果发现行距有问题, 在有问题的段落开头使用\\
-    \verb|\setlength{\baselineskip}{20pt}\selectfont| 修正.
-    \item 用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
-\end{enumerate}

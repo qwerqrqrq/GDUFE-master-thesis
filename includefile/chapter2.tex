@@ -1,59 +1,5 @@
-\chapter{一些细节的问题 \the\baselineskip}
-\the\baselineskip
-\section{模板文件结构及功能介绍 \the\baselineskip}
+\chapter{使用说明 \the\baselineskip}
 
-模板文件的结构与功能, 如下表所示: \the\baselineskip
-\begin{table}[ht]
-    \centering
-    \caption{模板文件结构及功能说明}
-    \begin{tabular}{lll}
-        \toprule
-        文件夹/文件名                             & 类型     & 功能说明                                  \\
-        \midrule
-        gdufe\_master\_thesis\_template.tex & 主文档    & 撰写正文、组织结构                             \\
-        gdufe\_master\_thesis.cls           & 类文件    & 定义排版格式和命令                             \\
-        reference.bib                       & bib文件  & 参考文献数据库                               \\
-        README.md                           & 文本     & 项目说明与使用方法                             \\
-        includefile/                        & 文件夹    & 存放各章节、摘要、致谢等                          \\
-        \quad abstract.tex                  & tex文件  & 中英文摘要                                 \\
-        \quad acknowledgment.tex            & tex文件  & 致谢                                    \\
-        \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件                      \\
-        \quad chapter*.tex                  & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
-        \quad 论文封面、扉页及声明格式.doc              & Word文档 & 编写封面、扉页及声明页                           \\
-        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
-        figures/                            & 文件夹    & 存放图片文件                                \\
-        \quad gdufelogo.jpg                 & 图片     & 校徽图片                                  \\
-        fonts/                              & 文件夹    & 存放字体文件                                \\
-        \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体                                  \\
-        \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
-        \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
-        \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
-        \quad simfang.ttf                   & 字体     & 思源仿宋字体                                \\
-        \quad times.ttf                     & 字体     & Times New Roman 罗马正体                  \\
-        \quad timesbd.ttf                   & 字体     & Times New Roman 粗体                    \\
-        \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-无需也不要改变、移动上述文档的位置. \the\baselineskip
-
-如果不习惯用~\verb|\include{ }|~的方式加入``子文档'', 当然可以把它们合并在主文档, 成为一个文档.
-({\kaishu 但是这样并不会给我们带来方便.}) \the\baselineskip
-
-% 利用~WinEdt~的~Project tree（如图~\ref{fig:1} ）, 可以方便地管理这些文件.
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[width=\textwidth]{winedt_file_tree.png}
-%   \caption{方便在文档内定位的大纲树图}
-%   \label{fig:1}
-% \end{figure}
-
-% \begin{itemize}
-%   \item 点击~WinEdt~窗口的~Project Tree~按键;
-%   \item 再点击~WinEdt~窗口的~Set Main File~按键;
-% \end{itemize}
-% 接下来的管理, 已经清楚地展示在跳出的窗口中了. 再去处理其他的文件时, 还要点击~WinEdt~窗口的~Remove Main File~按键.
 
 \section{字体调节}
 
@@ -85,27 +31,104 @@
     \verb|\zihao{7} | & \zihao{7}  七号字 English \\
     \verb|\zihao{8} | & \zihao{8}  八号字 English \\
 \end{tabular}
+\section{文档命令的若干说明\the\baselineskip}
+
+文档中有很多 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除.\the\baselineskip
+
+如果发现行距有问题, 在有问题的段落开头使用\\
+\verb|\setlength{\baselineskip}{20pt}\selectfont| 修正行间距为20磅.
+
+用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
+
+\begin{table}[!ht]
+    \centering
+    \caption{documentclass 中的参数作用及说明}
+    \begin{tabular}{lll}
+        \toprule
+        参数                         & 作用      & 说明                               \\
+        \midrule
+        type = thesis              & 学位论文格式  & 设置成学位论文格式（默认）                    \\
+        type = proposal            & 开题报告格式  & 设置成开题报告格式                        \\
+        class=academic             & 学术学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
+        calss=professional         & 专业学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
+        forprint                   & 打印模式    & 将彩色的超链接和 lstlisting 代码换成黑色       \\
+        AutoFakeBold,AutoFakeSlant & 假粗体和假斜体 & 配置成 word 的假粗体和假斜体, 无必要不修改        \\
+        \bottomrule
+    \end{tabular}
+    \label{table:documentclassparameters}
+\end{table}
+
+\section{模板文件结构及功能介绍 \the\baselineskip}
+
+模板目录文件的结构与功能, 如表\ref{table:filestructure} 所示: \the\baselineskip
+\begin{table}[ht]
+    \centering
+    \caption{模板文件结构及功能说明}
+    \begin{tabular}{lll}
+        \toprule
+        文件夹/文件名                             & 类型     & 功能说明                                  \\
+        \midrule
+        gdufe\_master\_thesis\_template.tex & 主文档    & 撰写正文、组织结构                             \\
+        gdufe\_master\_thesis.cls           & 类文件    & 定义排版格式和命令                             \\
+        reference.bib                       & bib文件  & 参考文献数据库                               \\
+        README.md                           & 文本     & 项目说明与使用方法                             \\
+        includefile/                        & 文件夹    & 存放各章节、摘要、致谢等                          \\
+        \quad abstract.tex                  & tex文件  & 中英文摘要                                 \\
+        \quad acknowledgment.tex            & tex文件  & 致谢                                    \\
+        \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件                      \\
+        \quad chapter*.tex                  & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
+        \quad 论文封面、扉页及声明格式.doc              & Word文档 & 学校的封面、扉页及声明页文件                        \\
+        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
+        figures/                            & 文件夹    & 存放图片文件                                \\
+        \quad gdufelogo.jpg                 & 图片     & 校徽图片                                  \\
+        fonts/                              & 文件夹    & 存放字体文件                                \\
+        \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体                                  \\
+        \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
+        \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
+        \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
+        \quad simfang.ttf                   & 字体     & 思源仿宋字体                                \\
+        \quad times.ttf                     & 字体     & Times New Roman 罗马正体                  \\
+        \quad timesbd.ttf                   & 字体     & Times New Roman 粗体                    \\
+        \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
+        \bottomrule
+    \end{tabular}
+    \label{table:filestructure}
+\end{table}
+
+无需也不要改变、移动上述文档的位置. \the\baselineskip
+
+% 利用~WinEdt~的~Project tree（如图~\ref{fig:1} ）, 可以方便地管理这些文件.
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=\textwidth]{winedt_file_tree.png}
+%   \caption{方便在文档内定位的大纲树图}
+%   \label{fig:1}
+% \end{figure}
+
+% \begin{itemize}
+%   \item 点击~WinEdt~窗口的~Project Tree~按键;
+%   \item 再点击~WinEdt~窗口的~Set Main File~按键;
+% \end{itemize}
+% 接下来的管理, 已经清楚地展示在跳出的窗口中了. 再去处理其他的文件时, 还要点击~WinEdt~窗口的~Remove Main File~按键.
 
 \section{已加载的宏包}
-了解类文件cls中已经加载的宏包, 在主文档中无须重复加载。
+类文件cls中已经加载的主要宏包如下, 在主文档中无须重复加载。
 \begin{description}
     \item[amsmath,amssymb,mathrsfs]  提供数学公式的支持, 包括各种数学符号, 公式环境和花体字母的支持.
-    \item[booktabs]  提供三线表的支持, 允许使用 \verb|\toprule|, \verb|\midrule|, \verb|\bottomrule| 等命令来创建三线表的三条线.
+    \item[array,booktabs,multirow,tabularx]  提供更丰富的表格功能、三线表的支持. 允许使用 \verb|\toprule|, \verb|\midrule|, \verb|\bottomrule| 等命令来创建三线表的三条线.
     \item[caption, subcaption] 提供图形、表格的标题和子标题支持, 允许自定义标题格式.
           % \item[cite, biblatex]  和参考文献引用, 得到形如 [3-7] 合并引用文献的样式.
     \item[color,xcolor]  支持彩色.
-    \item[enumerate]  方便自由选择 enumerate 环境的编号方式. 比如\\
-          \verb|\begin{enumerate}[(a)]| 得到形如 (a), (b), (c) 的编号.
-
-          \verb|\begin{enumerate}[i)]| 得到形如 i), ii), iii) 的编号.
-    \item[etoolbox]  提供一些工具函数用来修改命令.
+    \item[enumerate] (已改为enumitem) \sout{方便自由选择 enumerate 环境的编号方式. 比如}\\
+    \item[enumitem] 提供修改enumerate, description, itemize 环境的格式. 设置 enumerate 格式需用计数器输出格式+``*'': \verb|\begin{enumerate}[label=\roman*)]|
+          % \item[etoolbox]  提供一些工具函数用来修改命令.
     \item[fancyhdr]  提供页眉页脚的自定义支持, 允许设置不同章节的页眉页脚样式.
     \item[fixdif] 提供\verb|\d| 命令, 方便书写正体的微分符号, 如 $\d x$.
     \item[float] 支持对图形、表格等浮动体的控制, 使用 \verb|\begin{figure}[H]| 可以强制图形在当前位置显示.
     \item[hyperref]  支持超链接, 包括目录、交叉引用等. 允许设置链接颜色和样式.
     \item[geometry] 设置页眉页脚页边距等页面布局参数.
     \item[graphicx]  提供图形插入支持, 允许使用 \verb|\includegraphics| 命令插入图片.
-    \item[listings] 方便在文档中插入各种程序代码。
+    \item[listings, verbatim] 方便在文档中插入各种程序代码。
     \item[pdfpage] 支持在文档中插入 PDF 页面, 如封面、扉页等.
           % \item[siunitx] 提供单位转换和格式化支持, 允许使用 \verb|\SI{量值}{单位}| 命令书写物理量.
     \item[tikz] 方便使用tikz作图功能.
@@ -114,8 +137,7 @@
 
 \end{description}
 
-另外要说明的是,  itemize, enumerate, description 这三种 list 环境, 已经调节了其间距和缩进,
-以符合中文书写的习惯.
+另外要说明的是, itemize, enumerate, description 这三种 list 环境, 已经调节了其间距为20pt.
 
 \section{标点符号的问题}
 
@@ -149,7 +171,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 详见文献\cite{r1}\parencite{r2}
 另见文献\cite[49]{r3}\parencite[106]{r4}
 \end{lstlisting}
-
+显示如下
 详见文献\cite{r1}\parencite{r2}
 另见文献\cite[49]{r3}\parencite[106]{r4}
 
@@ -246,18 +268,71 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 用形如~\verb|\includegraphics[width=12cm]{figure.jpg}| 的命令可以纳入图片.
 
-如图~\ref{fig:2} 是一个纳入~jpg 图片的例子.
+论文图片要求如下:
+\begin{enumerate}[label=(\arabic*)]
+    \item 图应用图题，并置于图的编号之后，图的编号和图题应置于图下方居中位置。图题字体采用五号宋体、加粗，若采用中英文对照时，其英文字体为五号Times New Roman，加粗；
 
-\begin{figure}[ht]
+    \item 图按章顺序编号，如图2-3为第二章第三图；
+
+    \item 引用图应在图题右上角标出文献来源。自制图应在图题下标出资料来源（用5号宋体，置图左下方）；
+
+    \item 图与上下正文之间各空一行。
+
+\end{enumerate}
+如图~\ref{fig:colorfulpic} 是一个纳入~jpg 图片的例子.
+\begin{lstlisting}
+    \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{gdufelogo-Colorful.jpg}
     \caption{一个彩色图片的例子}
-    \label{fig:2}
+    \label{fig:colorfulpic}
+\end{lstlisting}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{gdufelogo-Colorful.jpg}
+    \caption{一个彩色图片的例子}
+    \label{fig:colorfulpic}
+\end{figure}
+如果需要标注资料来源,可以这样使用, 如图\ref{fig:resourcefig}
+\begin{lstlisting}
+    \begin{figure}[!ht]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        {
+            \includegraphics[width=\textwidth]{gdufelogo-Colorful.jpg}
+            \caption{一个彩色图片的例子\cite{anon-cn1}}
+            \label{fig:resourcefig}
+        }
+        {\zihao{5} 资料来源： 广东财经大学学校官网}
+    \end{minipage}
+\end{figure}
+\end{lstlisting}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        {
+            \includegraphics[width=\textwidth]{gdufelogo-Colorful.jpg}
+            \caption{一个彩色图片的例子\cite{anon-cn1}}
+            \label{fig:resourcefig}
+        }
+        {\zihao{5} 资料来源： 广东财经大学学校官网}
+    \end{minipage}
 \end{figure}
 
-\section{表格}
-表格问题, 建议使用``三线表'', 如表 \ref{tab:1}.
 
+\section{表格}
+表格问题, 建议使用``三线表''. 如表 \ref{tab:1}.
+论文要求的表格格式如下：
+\begin{enumerate}
+\item 表应用表名，并置于表的编号之后，表的编号和表名应置于表上方居中位置。表名字体采用五号宋体、加粗，若采用中英文对照时，其英文字体为五号Times New Roman，加粗；
+\item 表格按章顺序编号，如表5-4为第五章第四表；
+\item 表内必须按规定的符号标注单位，全表如用同一单位，将单位符号移至表头右上角。
+\item 表的编排建议采用国际通行的三线表。三线表即顶线、底线和栏目线，其中顶线和底线为粗线，栏目线为细线。三线表通常只有3条线，必要时可加辅助线。
+\item 表格中要注明“项目”（例如：数据的名称、时间）并加粗，表格内容、数据用五号宋体，居中。
+\item 如某个表需要转页接排，在随后的各页上应重复表的编号，编号后跟表题（可省略）和“（续）”，置于表上方。
+\item 表格左下方列出资料来源。
+\item 表与上下正文之间各空一行。
+\end{enumerate}
 \begin{table}[ht]
     \centering
     \caption{一般三线表}

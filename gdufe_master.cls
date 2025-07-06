@@ -8,7 +8,6 @@
 % ---------选项设置-------------
 \DeclareOption{class=academic}{\renewcommand{\masterClass}{学术}}
 \DeclareOption{class=professional}{\renewcommand{\masterClass}{专业}}
-\ExecuteOptions{class=academic} % 设置默认选项
 
 \newcommand{\type}{thesis}
 % % 论文格式
@@ -47,7 +46,6 @@
 \RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
 \RequirePackage{subcaption}
 \RequirePackage{color,xcolor}             %支持彩色
-\RequirePackage{url}
 % \RequirePackage{enumerate}
 \RequirePackage{enumitem}
 \RequirePackage{etoolbox}
@@ -56,7 +54,6 @@
 \RequirePackage{tikz}
 \RequirePackage{ulem}
 % \RequirePackage{siunitx}
-\RequirePackage{booktabs}
 \RequirePackage{listings}
 \RequirePackage{verbatim}
 \RequirePackage{setspace}
@@ -64,8 +61,11 @@
 % \RequirePackage{zhlineskip}
 \RequirePackage{changepage}
 \RequirePackage{expl3}
+\RequirePackage{array}
+\RequirePackage{booktabs}
 \RequirePackage{tabularx}
 \RequirePackage{multirow}
+\RequirePackage{url}
 %------------------------ Page layout ----------------------------------
 \ExplSyntaxOn
 \str_case:Nn \type {
@@ -168,7 +168,7 @@
 \theoremheaderfont{\heiti}
 \theorembodyfont{\normalfont \rm \songti}
 \theoremindent 0em
-\theoremseparator{:\hspace{1em}}
+\theoremseparator{:}
 \theoremsymbol{$\square$}
 \newtheorem{proof}{\hspace{2em}证明}[section]
 
@@ -289,9 +289,13 @@
 \fi
 % enumerate 设置
 \setlist[enumerate]{itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[description]{itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[itemize]{itemsep=0pt, topsep=0pt, parsep=0pt}
 
 %---------------------------------------------------
 
+%%% 设置图表与上下文之间的距离
+\setlength{\textfloatsep}{2\baselineskip}
 %%% ---- 图表标题设置 ----- %%%%
 \captionsetup[figure]{%
     format=plain,
