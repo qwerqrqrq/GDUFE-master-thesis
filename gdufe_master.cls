@@ -65,7 +65,9 @@
 \RequirePackage{booktabs}
 \RequirePackage{tabularx}
 \RequirePackage{multirow}
+\RequirePackage{longtable}
 \RequirePackage{url}
+
 %------------------------ Page layout ----------------------------------
 \ExplSyntaxOn
 \str_case:Nn \type {
@@ -299,23 +301,39 @@
 %%% ---- 图表标题设置 ----- %%%%
 \captionsetup[figure]{%
     format=plain,
-    font={bf,small},
+    font={small},
+    labelfont = {bf},
     textfont={bf},
+    skip = 0pt
 }  %
 \renewcommand{\figurename}{\bfseries \zihao{5} \songti 图}
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 
 \captionsetup[table]{%
     format=plain,
-    font={bf,small},
-    skip=0pt}
+    font={small},
+    labelfont = {bf},
+    textfont = {bf},
+    skip=0pt
+}
+\captionsetup[longtable]{%
+%   font={small},              % 字体大小
+  labelfont={bf},            % 标签“表 x.x”加粗
+  textfont={bf},             % 标题内容斜体
+  justification=centering, % 居中对齐
+  skip = 0pt
+}
 \renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
-\AtBeginEnvironment{tabular}{%
-    \zihao{5}
-}
 
+%% 提供图表加粗整行支持 代码来源 https://tex.stackexchange.com/questions/309833/format-whole-row-of-table-as-bold
+\newcommand{\setrow}[1]{\gdef\rowmac{#1}#1\ignorespaces}
+\newcommand{\clearrow}{\global\let\rowmac\relax}
+\clearrow
 
+% 调整为5号字
+% \AtBeginEnvironment{table}{\zihao{5}}
+\AtBeginEnvironment{tabularx}{\zihao{5}}
 %%% ------ 目录设置 ------- %%%%
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}

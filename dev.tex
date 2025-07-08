@@ -7,7 +7,7 @@
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-
+\usepackage{makecell}
 % \setstretch{1}            % 防止 double spacing 影响
 % \setlength{\baselineskip}{20pt}
 
@@ -34,25 +34,25 @@
 \frontmatter
 
 \begin{cnabstract}
-\the\baselineskip
-行间距：固定值20磅。内容次序为“摘要”二字、摘要内容、关键词。\the\baselineskip
+    \the\baselineskip
+    行间距：固定值20磅。内容次序为“摘要”二字、摘要内容、关键词。\the\baselineskip
 
-（1）“摘要”二字居中（小二号黑体），两字间空一格（注：“一格”的标准为一个汉字，以下同）。\the\baselineskip
+    （1）“摘要”二字居中（小二号黑体），两字间空一格（注：“一格”的标准为一个汉字，以下同）。\the\baselineskip
 
-（2）“摘要”二字下空两行，打印摘要内容（小四号宋体），每段开头按照“首行缩进”空两格，标点符号占一格。\the\baselineskip
+    （2）“摘要”二字下空两行，打印摘要内容（小四号宋体），每段开头按照“首行缩进”空两格，标点符号占一格。\the\baselineskip
 
-（3）摘要内容下空一行，开头空两格打印“关键词：”三个字（小四号黑体），其后为关键词内容（小四号宋体），关键词数量为3-8个，每一关键词之间用分号隔开，最后一个关键词后不打标点符号。\the\baselineskip
+    （3）摘要内容下空一行，开头空两格打印“关键词：”三个字（小四号黑体），其后为关键词内容（小四号宋体），关键词数量为3-8个，每一关键词之间用分号隔开，最后一个关键词后不打标点符号。\the\baselineskip
 \end{cnabstract}
 \begin{enabstract}
-% \chapter*{\bfseries ABSTRACT\the\baselineskip}
-% \addcontentsline{toc}{chapter}{ABSTRACT}
-Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
+    % \chapter*{\bfseries ABSTRACT\the\baselineskip}
+    % \addcontentsline{toc}{chapter}{ABSTRACT}
+    Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
 
-Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
+    Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
 
-Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
+    Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
 
-Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
+    Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman Time new roman\the\baselineskip
 \end{enabstract}
 \tableofcontents
 
@@ -90,21 +90,121 @@ Time new roman Time new roman Time new roman Time new roman Time new roman Time 
 
 
 \begin{table}[ht]
-    \begin{center}
-    \caption{1995-2005 年珠三角、东西两翼和山区邮电业务总量比较}
-    \begin{tabular}{ccccc}
-        \multicolumn{5}{r}{单位： 万元}\\
+    \centering
+    \zihao{5}
+    \caption{一般三线表}
+    \label{tab:1}
+    \begin{tabular}{c c c c c c c c c c c}
         \toprule
-        \bfseries  年份 & 珠 三 角  & 东翼    & 西翼    & 山区\\
+        \bfseries 123 & 4   & 5  & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
         \midrule
-        1995 & 153.83 & 26.26 & 13.00 & 11.61 \\
-        1996 & 197.89 & 34.03 & 17.59 & 15.98 \\
-        1997 & 244.88 & 39.61 & 21.20 & 20.26 \\
+        67            & 890 & 13 & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
+        67            & 890 & 13 & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
+        67            & 890 & 13 & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
         \bottomrule
-        \multicolumn{5}{l}{资料来源：国家统计局}
     \end{tabular}
-    \end{center}
 \end{table}
+
+\begin{table}[!h]
+    \centering
+    \zihao{5}
+    \begin{tabular}{*{5}{>{\rowmac}c}<{\clearrow}}
+        \setrow{\bfseries} 1 & 2 & 3 & 4 & 5  \\
+        6                    & 7 & 8 & 9 & 10 \\
+        \setrow{\bfseries} 1 & 2 & 3 & 4 & 5
+    \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \zihao{5}
+    \caption{ 1995-2005 年珠三角、东西两翼和山区邮电业务总量比较 \textnormal{单位： 万元}}
+    \begin{minipage}{0.8\textwidth}
+        % \zihao{5}
+        \begin{tabularx}{\textwidth}{*{5}{>{\centering\arraybackslash}X}}
+            \toprule
+            \bfseries 年份 & \bfseries 珠 三 角 & \bfseries 东翼 & \bfseries 西翼 & \bfseries 山区 \\
+            \midrule
+            1995         & 153.83          & 26.26        & 13.00        & 11.61        \\
+            1996         & 197.89          & 34.03        & 17.59        & 15.98        \\
+            1997         & 244.88          & 39.61        & 21.20        & 20.26        \\
+            \bottomrule
+        \end{tabularx}
+        \par
+        资料来源：国家统计局
+    \end{minipage}
+\end{table}
+\begin{table}[!h]
+    \centering
+    \caption{ 1995-2005 年珠三角、东西两翼和山区邮电业务总量比较 \textnormal{单位: 万元}}
+    \begin{minipage}{0.8\textwidth}
+        \begin{tabularx}{\textwidth}{*{5}{>{\rowmac\centering\arraybackslash}X}<{\clearrow}}
+            \toprule
+            年份   & 珠三角    & 东翼    & 西翼    & 山区    \\
+            \midrule
+            1995 & 153.83 & 26.26 & 13.00 & 11.61 \\
+            1996 & 197.89 & 34.03 & 17.59 & 15.98 \\
+            1997 & 244.88 & 39.61 & 21.20 & 20.26 \\
+            \bottomrule
+        \end{tabularx}
+        \par
+        资料来源: xxx
+    \end{minipage}
+\end{table}
+\cref{longtable}
+\begin{longtable}[!h]{*{2}{>{\rowmac\zihao{5}}c}<{\clearrow}}
+    \caption{1995-2005 年珠三角、东西两翼和山区邮电业务总量比较} \label{longtable} \\
+    \toprule
+    \setrow{\bfseries } 序号           & 内容                     \\
+    \midrule
+    \endfirsthead
+
+    \caption{续}                                               \\
+    \toprule
+    \setrow{\bfseries \zihao{5} } 序号 & 内容                     \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \multicolumn{2}{r}{表格续下页}                                 \\
+    \endfoot
+
+    \bottomrule
+    \multicolumn{2}{l}{资料来源： xxx}
+    \endlastfoot
+    % 表格数据（示例多行）
+    1                                & 内容1                    \\
+    2                                & 内容2                    \\
+    3                                & 内容3                    \\
+    4                                & 内容4                    \\
+    5                                & 内容5                    \\
+    6                                & 内容6                    \\
+    7                                & 内容7                    \\
+    8                                & 内容8                    \\
+    9                                & 内容9                    \\
+    10                               & 内容10                   \\
+    1                                & 内容1                    \\
+    2                                & 内容2                    \\
+    3                                & 内容3                    \\
+    4                                & 内容4                    \\
+    5                                & 内容5                    \\
+    6                                & 内容6                    \\
+    7                                & 内容7                    \\
+    8                                & 内容8                    \\
+    9                                & 内容9                    \\
+    10                               & 内容10                   \\
+    1                                & 内容1                    \\
+    2                                & 内容2                    \\
+    3                                & 内容3                    \\
+    4                                & 内容4                    \\
+    5                                & 内容5                    \\
+    6                                & 内容6                    \\
+    7                                & 内容7                    \\
+    8                                & 内容8                    \\
+    9                                & 内容9                    \\
+    10                               & 内容10                   \\
+    % 继续添加直到分页
+\end{longtable}
 
 % \begin{figure}[H]
 %     \centering

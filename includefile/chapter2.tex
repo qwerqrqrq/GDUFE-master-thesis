@@ -112,7 +112,7 @@
 % 接下来的管理, 已经清楚地展示在跳出的窗口中了. 再去处理其他的文件时, 还要点击~WinEdt~窗口的~Remove Main File~按键.
 
 \section{已加载的宏包}
-类文件cls中已经加载的主要宏包如下, 在主文档中无须重复加载。
+类文件cls中已经加载的主要宏包如下, 在主文档中无须重复加载.
 \begin{description}
     \item[amsmath,amssymb,mathrsfs]  提供数学公式的支持, 包括各种数学符号, 公式环境和花体字母的支持.
     \item[array,booktabs,multirow,tabularx]  提供更丰富的表格功能、三线表的支持. 允许使用 \verb|\toprule|, \verb|\midrule|, \verb|\bottomrule| 等命令来创建三线表的三条线.
@@ -126,9 +126,10 @@
     \item[fixdif] 提供\verb|\d| 命令, 方便书写正体的微分符号, 如 $\d x$.
     \item[float] 支持对图形、表格等浮动体的控制, 使用 \verb|\begin{figure}[H]| 可以强制图形在当前位置显示.
     \item[hyperref]  支持超链接, 包括目录、交叉引用等. 允许设置链接颜色和样式.
+    % \item[cleveref]  提供\verb|\cref, \Cref|, 进行合并引用、自动添加``表'' ``图'' 文字说明.
     \item[geometry] 设置页眉页脚页边距等页面布局参数.
     \item[graphicx]  提供图形插入支持, 允许使用 \verb|\includegraphics| 命令插入图片.
-    \item[listings, verbatim] 方便在文档中插入各种程序代码。
+    \item[listings, verbatim] 方便在文档中插入各种程序代码.
     \item[pdfpage] 支持在文档中插入 PDF 页面, 如封面、扉页等.
           % \item[siunitx] 提供单位转换和格式化支持, 允许使用 \verb|\SI{量值}{单位}| 命令书写物理量.
     \item[tikz] 方便使用tikz作图功能.
@@ -146,15 +147,15 @@
 双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边.
 
 但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
-原因可能是因为, 比如使用全角句号的句子结尾处的``$x$。''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
+原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
 
 \section{交叉引用的问题}
 
-首先要说明的是，为了得到正确的引用结果，要将tex主文档编译多次。交叉引用是\LaTeX 的强项，它的原理是为被引用对象（图、表、公式、定理等）设置一个标签，例如：~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
+首先要说明的是, 为了得到正确的引用结果, 要将tex主文档编译多次. 交叉引用是\LaTeX 的强项, 它的原理是为被引用对象（图、表、公式、定理等）设置一个标签, 例如: ~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
 \subsection{参考文献的引用}
 Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex 和 bib 文件管理参考文献更加方便. 其一可以自动将参考文献表格式按gb7714-2015标准排版. 其二不需要考虑增删移动参考文献位置后重新调整参考文献表. 对此方案不熟悉可以调整回用 {thebibliography} 环境或者自己喜欢的方案.
 
-{\bfseries 注意：} biblatex 和 cite 包不能同时使用以下两个方案只能选择一个.
+{\bfseries 注意: } biblatex 和 cite 包不能同时使用以下两个方案只能选择一个.
 
 \subsubsection{使用 biblatex 管理参考文献}
 使用此方案务必取消注释文件开头的\\
@@ -171,14 +172,13 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 详见文献\cite{r1}\parencite{r2}
 另见文献\cite[49]{r3}\parencite[106]{r4}
 \end{lstlisting}
-显示如下
+效果如:
 详见文献\cite{r1}\parencite{r2}
 另见文献\cite[49]{r3}\parencite[106]{r4}
 
-使用 \verb|\cite \parencite| 的参考文献是顺序编码制, 其余的引用方式请参考 biblatex, biblatex-gb7714-2015 的文档.\the\baselineskip
+使用 \verb|\cite \parencite| 的参考文献是顺序编码制, 其余的引用方式请参考 biblatex, biblatex-gb7714-2015 的文档.
 
-\subsubsection{手写 thebibliography 参考文献\the\baselineskip}
-\the\baselineskip
+\subsubsection{手写 thebibliography 参考文献}
 不想使用 biblatex 管理参考文献, 要得到形如~{\cite{r1,r3,r4,r5}} 的参考文献连续引用, 需要用到 cite 宏包. 但cite宏包和biblatex宏包有冲突, 因此使用此方案务必注释文件开头的\\
 \verb|\usepackage[style=gb7714-2015, backend=biber]{biblatex}|\\
 \verb|\addbibresource{reference.bib}|\\
@@ -189,7 +189,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 \verb|\newcommand{\upcite}|\\
 取消注释.
 
-此时的~\verb|\cite{r1,r3,r4,r5}|不是上标引用, 而是正文引用. 想要上标引用可以使用新定义的upcite命令, 如下:
+此时的~\verb|\cite{r1,r3,r4,r5}|不是上标引用, 而是正文引用. 想要上标引用可以使用新定义的upcite命令:
 \begin{lstlisting}
     \upcite{r1,r3,r4,r5}
 \end{lstlisting}
@@ -197,20 +197,20 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 \subsection{定理环境和公式的引用}
 
-本模板定义了新定理环境样式, 包括：定理（theorem）、定义（definition）、引理（lemma）、推论（corollary）、性质（property）、公理（axiom）、例（example）、注（remark）。 使用时用如下的格式：
+本模板定义了新定理环境样式, 包括: 定理（theorem）、定义（definition）、引理（lemma）、推论（corollary）、性质（property）、公理（axiom）、例（example）、注（remark）. 使用时用如下的格式:
 \begin{lstlisting}
 \begin{<环境名>}
 
 \end{<环境名>}
 \end{lstlisting}
 
-上面的环境名一律是这些英文单词，参见下面的各例：
+上面的环境名一律是这些英文单词, 参见下面的各例:
 
 \begin{theorem}[谁发现的]\label{th-abcd}
     最大的正整数是~$1$.
 \end{theorem}
 
-其源文件如下：
+其源文件如下:
 
 \begin{lstlisting}
  \begin{theorem}[谁发现的]\label{th-abcd}
@@ -218,9 +218,9 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 \end{theorem}
 \end{lstlisting}
 
-其它环境就不一一举例了。
+其它环境就不一一举例了.
 
-本模板还提供了证明环境, 环境名为：proof.
+本模板还提供了证明环境, 环境名为: proof.
 
 \begin{proof}
     要找到这个最大的正整数, 我们设最大的正整数为~$x$, 则~$x \geqslant 1$, 两边同时乘以~$x$, 得到
@@ -270,18 +270,18 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 论文图片要求如下:
 \begin{enumerate}[label=(\arabic*)]
-    \item 图应用图题，并置于图的编号之后，图的编号和图题应置于图下方居中位置。图题字体采用五号宋体、加粗，若采用中英文对照时，其英文字体为五号Times New Roman，加粗；
+    \item 图应用图题, 并置于图的编号之后, 图的编号和图题应置于图下方居中位置. 图题字体采用五号宋体、加粗, 若采用中英文对照时, 其英文字体为五号Times New Roman, 加粗;
 
-    \item 图按章顺序编号，如图2-3为第二章第三图；
+    \item 图按章顺序编号, 如图2-3为第二章第三图;
 
-    \item 引用图应在图题右上角标出文献来源。自制图应在图题下标出资料来源（用5号宋体，置图左下方）；
+    \item 引用图应在图题右上角标出文献来源. 自制图应在图题下标出资料来源（用5号宋体, 置图左下方）;
 
-    \item 图与上下正文之间各空一行。
+    \item 图与上下正文之间各空一行.
 
 \end{enumerate}
 如图~\ref{fig:colorfulpic} 是一个纳入~jpg 图片的例子.
 \begin{lstlisting}
-    \begin{figure}[!ht]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{gdufelogo-Colorful.jpg}
     \caption{一个彩色图片的例子}
@@ -295,7 +295,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 \end{figure}
 如果需要标注资料来源,可以这样使用, 如图\ref{fig:resourcefig}
 \begin{lstlisting}
-    \begin{figure}[!ht]
+\begin{figure}[!ht]
     \centering
     \begin{minipage}{0.5\textwidth}
         {
@@ -303,7 +303,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
             \caption{一个彩色图片的例子\cite{anon-cn1}}
             \label{fig:resourcefig}
         }
-        {\zihao{5} 资料来源： 广东财经大学学校官网}
+        {\zihao{5} 资料来源: 广东财经大学学校官网}
     \end{minipage}
 \end{figure}
 \end{lstlisting}
@@ -315,43 +315,210 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
             \caption{一个彩色图片的例子\cite{anon-cn1}}
             \label{fig:resourcefig}
         }
-        {\zihao{5} 资料来源： 广东财经大学学校官网}
+        {\zihao{5} 资料来源: 广东财经大学学校官网}
     \end{minipage}
 \end{figure}
 
 
 \section{表格}
-表格问题, 建议使用``三线表''. 如表 \ref{tab:1}.
-论文要求的表格格式如下：
+
+论文要求的表格格式如下:
 \begin{enumerate}
-\item 表应用表名，并置于表的编号之后，表的编号和表名应置于表上方居中位置。表名字体采用五号宋体、加粗，若采用中英文对照时，其英文字体为五号Times New Roman，加粗；
-\item 表格按章顺序编号，如表5-4为第五章第四表；
-\item 表内必须按规定的符号标注单位，全表如用同一单位，将单位符号移至表头右上角。
-\item 表的编排建议采用国际通行的三线表。三线表即顶线、底线和栏目线，其中顶线和底线为粗线，栏目线为细线。三线表通常只有3条线，必要时可加辅助线。
-\item 表格中要注明“项目”（例如：数据的名称、时间）并加粗，表格内容、数据用五号宋体，居中。
-\item 如某个表需要转页接排，在随后的各页上应重复表的编号，编号后跟表题（可省略）和“（续）”，置于表上方。
-\item 表格左下方列出资料来源。
-\item 表与上下正文之间各空一行。
+    \item 表应用表名, 并置于表的编号之后, 表的编号和表名应置于表上方居中位置. 表名字体采用五号宋体、加粗, 若采用中英文对照时, 其英文字体为五号Times New Roman, 加粗;
+    \item 表格按章顺序编号, 如表5-4为第五章第四表;
+    \item 表内必须按规定的符号标注单位, 全表如用同一单位, 将单位符号移至表头右上角.
+    \item 表的编排建议采用国际通行的三线表. 三线表即顶线、底线和栏目线, 其中顶线和底线为粗线, 栏目线为细线. 三线表通常只有3条线, 必要时可加辅助线.
+    \item 表格中要注明``项目''（例如: 数据的名称、时间）并加粗, 表格内容、数据用五号宋体, 居中.
+    \item 如某个表需要转页接排, 在随后的各页上应重复表的编号, 编号后跟表题（可省略）和``（续）'', 置于表上方.
+    \item 表格左下方列出资料来源.
+    \item 表与上下正文之间各空一行.
 \end{enumerate}
-\begin{table}[ht]
+
+如果不用满足第3、7条, 可以这样使用表格, 需要手动设置\verb|\zihao{5}|:
+\begin{lstlisting}
+\begin{table}
+    \zihao{5}
     \centering
     \caption{一般三线表}
     \label{tab:1}
-    \begin{tabular}{c c c c c c c c c c c}
+    \begin{tabular}{c c c}
         \toprule
-        123 & 4   & 5  & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
+        . & .& .& \\
         \midrule
-        67  & 890 & 13 & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
-        67  & 890 & 13 & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
-        67  & 890 & 13 & 123 & 4 & 5123 & 4 & 5 & 123 & 4 & 5 \\
+        . & .& .& \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{lstlisting}
+注意第5条, 需要手动加粗列名. 当列较少时,可以在每一列前面加上 \verb|\bfseries|, 如表\ref{table:simplebolditem}
+\begin{lstlisting}[language=TeX]
+\begin{tabular}{c c c c}
+    \toprule
+    \bfseries 123 & \bfseries 4   & \bfseries 5  & \bfseries 123 \\
+    \midrule
+\end{lstlisting}
+\begin{table}[!h]
+    \zihao{5}
+    \caption{加粗列名示例}
+    \label{table:simplebolditem}
+    \centering
+    \begin{tabular}{c c c c}
+        \toprule
+        \bfseries 123 & \bfseries 4 & \bfseries 5 & \bfseries 123 \\
+        \midrule
+    \end{tabular}
+\end{table}
+当列较多时, 可以配合自定义的\verb|\rowmac| \verb|\setrow| \verb|\clearrow| 设置, 并且\verb|\setrow|可以作用于想加粗的任意一行, 见表\ref{table:multiboldrow}:
+\begin{lstlisting}
+\begin{tabular}{*{5}{>{\rowmac}c}<{\clearrow}}
+    \setrow{\bfseries} 1 &2 & 3 & 4 &5\\
+    6& 7& 8& 9 & 10\\
+    \setrow{\bfseries} 1 & 2 &3 &4 &5
+\end{lstlisting}
+\begin{table}[!h]
+    \zihao{5}
+    \centering
+    \caption{多行加粗示例}
+    \label{table:multiboldrow}
+    \begin{tabular}{*{5}{>{\rowmac}c}<{\clearrow}}
+        \toprule
+        \setrow{\bfseries} 1 & 2 & 3 & 4 & 5  \\
+        \midrule
+        6                    & 7 & 8 & 9 & 10 \\
+        \setrow{\bfseries} 1 & 2 & 3 & 4 & 5  \\
         \bottomrule
     \end{tabular}
 \end{table}
 
+如果需要满足第3、7条, 则用\verb|\begin{tabularx}|生成表格, \verb|\textnormal{text}|命令生成普通格式的单位, 并且像图片一样搭配 minipage 环境. 具体见表\ref{table:source}:
+\begin{lstlisting}
+\begin{table}[ht]
+    \zihao{5}
+    \centering
+    \label{table:source}
+    \caption{ 1995-2005 年珠三角、东西两翼和山区邮电业务总量比较 \textnormal{单位: 万元}}
+    \begin{minipage}{0.8\textwidth}
+        \begin{tabularx}{\textwidth}{*{5}{>{\rowmac\centering\arraybackslash}X}<{\clearrow}}
+            \toprule
+            \setrow{\bfseries} 年份 & 珠三角 & 东翼 & 西翼 & 山区\\
+            \midrule
+            1995 & 153.83 & 26.26 & 13.00 & 11.61 \\
+            1996 & 197.89 & 34.03 & 17.59 & 15.98 \\
+            1997 & 244.88 & 39.61 & 21.20 & 20.26 \\
+            \bottomrule
+        \end{tabularx}
+        \par
+        资料来源: 国家统计局
+    \end{minipage}
+\end{table}
+\end{lstlisting}
+\begin{table}[!h]
+    \centering
+    \zihao{5}
+    \caption{ 1995-2005 年珠三角、东西两翼和山区邮电业务总量比较 \textnormal{单位: 万元}}
+    \label{table:source}
+    \begin{minipage}{0.8\textwidth}
+        \begin{tabularx}{\textwidth}{*{5}{>{\rowmac\centering\arraybackslash}X}<{\clearrow}}
+            \toprule
+            \setrow{\bfseries} 年份 & 珠三角    & 东翼    & 西翼    & 山区    \\
+            \midrule
+            1995                  & 153.83 & 26.26 & 13.00 & 11.61 \\
+            1996                  & 197.89 & 34.03 & 17.59 & 15.98 \\
+            1997                  & 244.88 & 39.61 & 21.20 & 20.26 \\
+            \bottomrule
+        \end{tabularx}
+        \par
+        \zihao{5} 资料来源: 国家统计局
+    \end{minipage}
+\end{table}
+
+跨页表格需要用 longtable 环境, 不要改变 \verb|\caption, \label |的位置, 且最后的换行不能去掉. 长表格\ref{table:longtable}如下
+\begin{lstlisting}
+    \begin{longtable}[!h]{*{2}{>{\rowmac\zihao{5}}c}<{\clearrow}}
+    \caption{1995-2005 年珠三角、东西两翼和山区邮电业务总量比较}\label{longtable} \\
+    \toprule
+    \setrow{\bfseries } 序号           & 内容                     \\
+    \midrule
+    \endfirsthead
+
+    \caption{续}                                               \\
+    \toprule
+    \setrow{\bfseries } 序号 & 内容                     \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \multicolumn{2}{r}{\zihao{5} 表格续下页}                                 \\
+    \endfoot
+
+    \bottomrule
+    \multicolumn{2}{l}{\zihao{5} 资料来源： xxx}
+    \endlastfoot
+    % 表格数据（示例多行）
+    1 & 内容1\\
+    2 & 内容2 \\
+    3 & 内容3 \\
+    % 继续添加直到分页
+\end{longtable}
+\end{lstlisting}
+\begin{longtable}[!h]{*{2}{>{\rowmac\zihao{5}}c}<{\clearrow}}
+    \caption{1995-2005 年珠三角、东西两翼和山区邮电业务总量比较}\label{table:longtable} \\
+    \toprule
+    \setrow{\bfseries } 序号           & 内容                     \\
+    \midrule
+    \endfirsthead
+
+    \caption{续}                                               \\
+    \toprule
+    \setrow{\bfseries } 序号 & 内容                     \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \multicolumn{2}{r}{\zihao{5} 表格续下页}                                 \\
+    \endfoot
+
+    \bottomrule
+    \multicolumn{2}{l}{\zihao{5} 资料来源: x}
+    \endlastfoot
+    % 表格数据（示例多行）
+    1                                & 内容1                    \\
+    2                                & 内容2                    \\
+    3                                & 内容3                    \\
+    4                                & 内容4                    \\
+    5                                & 内容5                    \\
+    6                                & 内容6                    \\
+    7                                & 内容7                    \\
+    8                                & 内容8                    \\
+    9                                & 内容9                    \\
+    10                               & 内容10                   \\
+    1                                & 内容1                    \\
+    2                                & 内容2                    \\
+    3                                & 内容3                    \\
+    4                                & 内容4                    \\
+    5                                & 内容5                    \\
+    6                                & 内容6                    \\
+    7                                & 内容7                    \\
+    8                                & 内容8                    \\
+    9                                & 内容9                    \\
+    10                               & 内容10                   \\
+    1                                & 内容1                    \\
+    2                                & 内容2                    \\
+    3                                & 内容3                    \\
+    4                                & 内容4                    \\
+    5                                & 内容5                    \\
+    6                                & 内容6                    \\
+    7                                & 内容7                    \\
+    8                                & 内容8                    \\
+    9                                & 内容9                    \\
+    10                               & 内容10                   \\
+    % 继续添加直到分页
+\end{longtable}
+
 \section{程序代码}
 
 用lstlisting环境或者verbatim可以在文中插入一段代码. \\
-\verb|\begin{lstlisting} 代码内容 \end{lstlisting}| 样式示例：
+\verb|\begin{lstlisting} 代码内容 \end{lstlisting}| 样式示例:
 \begin{lstlisting}
 \begin{tikzpicture}[xshift=0.5cm]
     \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
@@ -361,7 +528,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
 \end{tikzpicture}
 \end{lstlisting}
-\verb|\begin{verbatim} 代码内容 \end{verbatim}| 样式示例：
+\verb|\begin{verbatim} 代码内容 \end{verbatim}| 样式示例:
 \begin{verbatim}
 \begin{tikzpicture}[xshift=0.5cm]
     \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
@@ -371,7 +538,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
 \end{tikzpicture}
 \end{verbatim}
-输出为：\quad
+输出为: \quad
 \begin{tikzpicture}[xshift=0.5cm]
     \draw[draw=yellow!15,fill=yellow!15](-1.8,-1.8)rectangle(2,1.8);
     \draw[help lines, step=0.5cm](-1.48,-1.48)grid(1.48,1.48);
