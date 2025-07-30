@@ -31,13 +31,13 @@
 % 根据类型加载ctexbook类不同的基础字号
 \ExplSyntaxOn
 \str_case:Nn \type {
-{thesis}{\PassOptionsToClass{zihao=-4}{ctexbook}}
-{proposal}{\PassOptionsToClass{zihao=5}{ctexbook}}
+    {thesis}{\PassOptionsToClass{zihao=-4}{ctexbook}}
+        {proposal}{\PassOptionsToClass{zihao=5}{ctexbook}}
 }
 \ExplSyntaxOff
 \PassOptionsToClass{a4paper,openany}{ctexbook}
 \LoadClass{ctexbook}
-%%------------------------调用宏包-----------------------------------
+%% tag: 宏包
 \RequirePackage{amsmath,amssymb,mathrsfs}
 % \RequirePackage{amsthm}
 \RequirePackage[amsmath,thmmarks]{ntheorem}
@@ -67,26 +67,30 @@
 \RequirePackage{multirow}
 \RequirePackage{longtable}
 \RequirePackage{url}
+% \RequirePackage{titlesec}
+\RequirePackage{pifont}   % 提供 \ding 命令
+% \RequirePackage{perpage}  % 让脚注编号每页重新开始（可选）
+\RequirePackage[perpage,symbol*]{footmisc}
 
-%------------------------ Page layout ----------------------------------
+%% tag: 页面布局: 页边距、页眉页脚高度
 \ExplSyntaxOn
 \str_case:Nn \type {
-{thesis}{\RequirePackage[top=2.54truecm,
-    bottom=2.54truecm,
-    left=3truecm,
-    right=2.2truecm,
-    paper=a4paper,
-    headsep=1.04truecm,
-    footskip=0.79truecm,
-    headheight=16pt]{geometry}}
-{proposal}{\RequirePackage[top=2.54truecm,
-    bottom=2.54truecm,
-    left=2.6truecm,
-    right=2.6truecm,
-    headsep=1.04truecm,
-    footskip=0.79truecm,
-    headheight=16pt]{geometry}}
-}
+    {thesis}{\RequirePackage[top=2.54truecm,
+                bottom=2.54truecm,
+                left=3truecm,
+                right=2.2truecm,
+                paper=a4paper,
+                headsep=1.04truecm,
+                footskip=0.79truecm,
+                headheight=16pt]{geometry}}
+        {proposal}{\RequirePackage[top=2.54truecm,
+                bottom=2.54truecm,
+                left=2.6truecm,
+                right=2.6truecm,
+                headsep=1.04truecm,
+                footskip=0.79truecm,
+                headheight=16pt]{geometry}}
+}{}{}
 \ExplSyntaxOff
 \RequirePackage{fancyhdr}
 \RequirePackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,bookmarksnumbered=true]{hyperref}
@@ -95,7 +99,13 @@
     \hypersetup{hidelinks}
 \fi
 
-%% ------------------------ 字体设置 -----------------------------------
+
+\AtBeginDocument{%
+    \setlength{\baselineskip}{20pt} \selectfont
+    \raggedbottom
+}
+
+%% tag: 字体
 \defaultfontfeatures{Path = fonts/}
 % 设置英文字体
 \setmainfont[BoldFont = timesbd.ttf,
@@ -112,21 +122,22 @@
 \setCJKfamilyfont{zhkai}{simkai.ttf}
 
 
-% 设置行距
-\apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
-\apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
-\apptocmd{\fangsong}{\setlength{\baselineskip}{20pt}}{}{}
-\apptocmd{\kaishu}{\setlength{\baselineskip}{20pt}}{}{}
-\apptocmd{\bfseries}{\setlength{\baselineskip}{20pt}}{}{}
+%% tag: 行距
+% \apptocmd{\heiti}{\setlength{\baselineskip}{20pt}}{}{}
+% \apptocmd{\songti}{\setlength{\baselineskip}{20pt}}{}{}
+% \apptocmd{\fangsong}{\setlength{\baselineskip}{20pt}}{}{}
+% \apptocmd{\kaishu}{\setlength{\baselineskip}{20pt}}{}{}
+% \apptocmd{\bfseries}{\setlength{\baselineskip}{20pt}}{}{}
 
-\let\orig@zihao\zihao
+%% tag: 字号
 % 设置 \zihao 命令后面自动20pt行距
+\let\orig@zihao\zihao
 \renewcommand{\zihao}[1]{%
     \orig@zihao{#1}% 执行原始的字号设置
     \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
 }
 
-% 设置页眉页脚样式，其余样式用plain 或empty
+%% tag: 页眉页脚样式
 \fancypagestyle{master-thesis-mainmatter}
 {
 \fancyhead{}                                    % clear all header fields
@@ -139,14 +150,14 @@
 
 \fancypagestyle{master-proposal-style}
 {
-\fancyhead{}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[R]{\thepage}
+    \fancyhead{}
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyfoot[R]{\thepage}
 }
 
 
-%%-----------------------Equation & Theorems -----------------------------------
+%% tag: 公式定理
 \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
 
 \theoremstyle{plain}
@@ -176,66 +187,66 @@
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
-% \makeatletter \setlength\partopsep{0pt}
-% \def\@listI{\leftmargin\leftmargini
-%     \parsep 0pt
-%     \topsep \parsep
-%     \itemsep \parsep}
-% \@listI
-% \def\@listii {\leftmargin\leftmarginii
-%     \labelwidth\leftmarginii
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listiii{\leftmargin\leftmarginiii
-%     \labelwidth\leftmarginiii
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listiv{\leftmargin\leftmarginiv
-%     \labelwidth\leftmarginiv
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listv{\leftmargin\leftmarginv
-%     \labelwidth\leftmarginv
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listvi{\leftmargin\leftmarginvi
-%     \labelwidth\leftmarginvi
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% %
-% % Change default margins for \list environments
-% \setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
-% {\leftmargini} \setlength\leftmarginiii {\leftmargini}
-% \setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
-% {\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
-% {\leftmargini} \setlength\labelsep      {.5\ccwd}
-% \setlength\labelwidth    {\leftmargini}
-% %
-% \setlength\listparindent{2\ccwd}
-% % Change \listparindent to 2\ccwd in \list
-% \def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
-%     \else \global\advance\@listdepth\@ne \fi
-%     \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
-%     \csname @list\romannumeral\the\@listdepth\endcsname
-%     \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
-%     \@trivlist
-%     \parskip\parsep \parindent\listparindent
-%     \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
-%     \advance\@totalleftmargin \leftmargin
-%     \parshape \@ne \@totalleftmargin \linewidth
-%     \ignorespaces}
+\makeatletter \setlength\partopsep{0pt}
+\def\@listI{\leftmargin\leftmargini
+    \parsep 0pt
+    \topsep \parsep
+    \itemsep \parsep}
+\@listI
+\def\@listii {\leftmargin\leftmarginii
+    \labelwidth\leftmarginii
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listiv{\leftmargin\leftmarginiv
+    \labelwidth\leftmarginiv
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listv{\leftmargin\leftmarginv
+    \labelwidth\leftmarginv
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listvi{\leftmargin\leftmarginvi
+    \labelwidth\leftmarginvi
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
 
-% \makeatother
+% %
+% % % Change default margins for \list environments
+\setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
+{\leftmargini} \setlength\leftmarginiii {\leftmargini}
+\setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
+{\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
+{\leftmargini} \setlength\labelsep      {.5\ccwd}
+\setlength\labelwidth    {\leftmargini}
+%
+\setlength\listparindent{2\ccwd}
+% Change \listparindent to 2\ccwd in \list
+\def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
+    \else \global\advance\@listdepth\@ne \fi
+    \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
+    \csname @list\romannumeral\the\@listdepth\endcsname
+    \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
+    \@trivlist
+    \parskip\parsep \parindent\listparindent
+    \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
+    \advance\@totalleftmargin \leftmargin
+    \parshape \@ne \@totalleftmargin \linewidth
+    \ignorespaces}
+\makeatother
 
 % %%%%%%%%listings 设置%%%%%%%%%%%%
 % % \usepackage{textcomp}
@@ -263,41 +274,44 @@
 %     commentstyle=\color[rgb]{0.133,0.545,0.133},
 %     stringstyle=\color[rgb]{0.627,0.126,0.941},
 % }
-% lstlisting 设置
+%% tag: lstlisting 设置
 \ifprint
-\lstset{
-    aboveskip=20pt,
-    basicstyle=\ttfamily\small,
-    numbers=left,
-    numberstyle=\tiny,
-    breaklines=true,
-    frame=single,
-    keywordstyle=\color{black},
-    commentstyle=\color{black},
-    stringstyle=\color{black},
-}
+    \lstset{
+        aboveskip=20pt,
+        basicstyle=\ttfamily\small,
+        numbers=left,
+        numberstyle=\tiny,
+        breaklines=true,
+        frame=single,
+        keywordstyle=\color{black},
+        commentstyle=\color{black},
+        stringstyle=\color{black},
+    }
 \else
-\lstset{
-    aboveskip=20pt,
-    basicstyle=\ttfamily\small,
-    numbers=left,
-    numberstyle=\tiny,
-    breaklines=true,
-    frame=single,
-    keywordstyle=\color{blue},
-    commentstyle=\color{gray},
-    stringstyle=\color{orange},
-}
+    \lstset{
+        aboveskip=20pt,
+        basicstyle=\ttfamily\small,
+        numbers=left,
+        numberstyle=\tiny,
+        breaklines=true,
+        frame=single,
+        keywordstyle=\color{blue},
+        commentstyle=\color{gray},
+        stringstyle=\color{orange},
+    }
 \fi
-% enumerate 设置
+
+
+%% tag: enumerate 设置
 \setlist[enumerate]{itemsep=0pt, topsep=0pt, parsep=0pt}
 \setlist[description]{itemsep=0pt, topsep=0pt, parsep=0pt}
 \setlist[itemize]{itemsep=0pt, topsep=0pt, parsep=0pt}
 
 %---------------------------------------------------
-
+%% tag: 图片、表格
 %%% 设置图表与上下文之间的距离
-\setlength{\textfloatsep}{2\baselineskip}
+\setlength{\textfloatsep}{40pt}
+% \setlength{\intextsep}{2\baselineskip}
 %%% ---- 图表标题设置 ----- %%%%
 \captionsetup[figure]{%
     format=plain,
@@ -306,7 +320,7 @@
     textfont={bf},
     skip = 0pt
 }  %
-\renewcommand{\figurename}{\bfseries \zihao{5} \songti 图}
+\renewcommand{\figurename}{\bfseries \zihao{5} \songti \setlength{\baselineskip}{20pt} \selectfont 图}
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 
 \captionsetup[table]{%
@@ -317,11 +331,11 @@
     skip=0pt
 }
 \captionsetup[longtable]{%
-%   font={small},              % 字体大小
-  labelfont={bf},            % 标签“表 x.x”加粗
-  textfont={bf},             % 标题内容斜体
-  justification=centering, % 居中对齐
-  skip = 0pt
+    %   font={small},              % 字体大小
+    labelfont={bf},            % 标签“表 x.x”加粗
+    textfont={bf},             % 标题内容斜体
+    justification=centering, % 居中对齐
+    skip = 0pt
 }
 \renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
@@ -331,10 +345,11 @@
 \newcommand{\clearrow}{\global\let\rowmac\relax}
 \clearrow
 
-% 调整为5号字
-% \AtBeginEnvironment{table}{\zihao{5}}
+% 调整为5号字 这部分好像不起作用
+\AtBeginEnvironment{table}{\zihao{5}}
 \AtBeginEnvironment{tabularx}{\zihao{5}}
-%%% ------ 目录设置 ------- %%%%
+
+%% tag: 目录
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 
@@ -365,7 +380,7 @@
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
 
-%------------------------ Abstract & Keywords -------------------------
+%% tag: 摘要、关键词
 \newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }\songti\zihao{-4}#1}
 \newcommand\cnkeywordsname{关键词}
 \newcommand\enkeywords[1]{{\noindent\bfseries\zihao{-4}\enkeywordsname: }\zihao{-4}#1}
@@ -386,7 +401,10 @@
     \noindent}
 {\newline\par}
 
+%% tag: 章节格式调整
 %% -----frontmatter mainmatter appendix 设置 使得自动调整章节格式-----
+% \titlespacing*{\chapter}{80pt}{0pt}{0pt}  % 修改为 0pt 贴紧顶部
+
 \apptocmd{\frontmatter}{
     \pagenumbering{Roman}
     \pagestyle{plain}
@@ -395,7 +413,7 @@
           format={\centering\zihao{-2}},
           pagestyle={plain},
           afterskip={2\baselineskip},
-          beforeskip={0pt}
+          beforeskip={-20pt}
          }
     }
 }{}{}
@@ -404,41 +422,138 @@
     \pagestyle{master-thesis-mainmatter}
     \ctexset{
         chapter={
-          format={\zihao{3}\heiti\raggedright},
-          pagestyle={master-thesis-mainmatter},
-          afterskip={1\baselineskip},
-          beforeskip={0pt},
-          number={\arabic{chapter}},
-          name={,},
-          aftername={\quad}
+            format = {\zihao{3}\heiti\raggedright},
+            % titleformat={\zihao{3}\heiti\raggedright},
+            % nameformat={\zihao{3}\heiti\raggedright},
+            pagestyle={master-thesis-mainmatter},
+            fixskip = true,
+            afterskip={20pt},
+            beforeskip={0pt},
+            number={\arabic{chapter}},
+            name={,},
+            % aftername={\quad},
+            aftername={}
          },
         section={
-          format={\zihao{-3}\heiti\raggedright},
-          afterskip={6pt},
-          beforeskip={6pt},
-          aftername={\quad}
+            format={\zihao{-3}\heiti\raggedright},
+            % nameformat={\zihao{-3}\heiti\raggedright},
+            % titleformat={\zihao{-3}\heiti\raggedright},
+            afterskip={6pt},
+            beforeskip={6pt},
+            % aftername={\quad},
+            aftername={},
+            name={,},
+            % fixskip = true,
          },
         subsection={
-                format={\zihao{4}\heiti\raggedright},
-                afterskip={3pt},
-                beforeskip={3pt},
-                aftername={\quad}
+            format={\zihao{4}\heiti\raggedright},
+            % nameformat={\zihao{4}\heiti\raggedright},
+            % titleformat={\zihao{4}\heiti\raggedright},
+            afterskip={3pt},
+            beforeskip={3pt},
+            % aftername={\quad},
+            aftername={},
+            name={,},
+            % fixskip = true,
             },
         subsubsection={
-                format={\zihao{-4}\heiti\raggedright},
-                afterskip={0pt},
-                beforeskip={0pt},
-                aftername={\quad}
+            format={\zihao{-4}\heiti\raggedright},
+            % titleformat={\zihao{-4}\heiti\raggedright},
+            % nameformat={\zihao{-4}\heiti\raggedright},
+            afterskip={0pt},
+            beforeskip={0pt},
+            % aftername={\quad},
+            aftername={},
+            name={,},
+            % fixskip = true,
             }
     }
+    \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
 }{}{}
+
+
+% \renewcommand{\frontmatter}{
+%     \@mainmatterfalse
+%     \pagenumbering{Roman}
+%     \pagestyle{plain}
+%     \ctexset{
+%         chapter={
+%           format={\centering\zihao{-2}},
+%           pagestyle={plain},
+%           afterskip={2\baselineskip},
+%           beforeskip={0pt},
+%          }
+%     }
+% }
+
+% \renewcommand{\mainmatter}{
+%     \@mainmattertrue
+%     \pagenumbering{arabic}
+%     \pagestyle{master-thesis-mainmatter}
+%     \ctexset{
+%         chapter={
+%             format = {\zihao{3}\heiti\raggedright},
+%             % titleformat={\zihao{3}\heiti\raggedright},
+%             % nameformat={\zihao{3}\heiti\raggedright},
+%             pagestyle={master-thesis-mainmatter},
+%             fixskip = true,
+%             afterskip={20pt},
+%             beforeskip={0pt},
+%             number={\arabic{chapter}},
+%             name={,},
+%             % aftername={\quad},
+%             aftername={}
+%          },
+%         section={
+%             format={\zihao{-3}\heiti\raggedright},
+%             % nameformat={\zihao{-3}\heiti\raggedright},
+%             % titleformat={\zihao{-3}\heiti\raggedright},
+%             afterskip={6pt},
+%             beforeskip={6pt},
+%             % aftername={\quad},
+%             aftername={},
+%             name={,},
+%             % fixskip = true,
+%          },
+%         subsection={
+%             format={\zihao{4}\heiti\raggedright},
+%             % nameformat={\zihao{4}\heiti\raggedright},
+%             % titleformat={\zihao{4}\heiti\raggedright},
+%             afterskip={3pt},
+%             beforeskip={3pt},
+%             % aftername={\quad},
+%             aftername={},
+%             name={,},
+%             % fixskip = true,
+%             },
+%         subsubsection={
+%             format={\zihao{-4}\heiti\raggedright},
+%             % titleformat={\zihao{-4}\heiti\raggedright},
+%             % nameformat={\zihao{-4}\heiti\raggedright},
+%             afterskip={0pt},
+%             beforeskip={0pt},
+%             % aftername={\quad},
+%             aftername={},
+%             name={,},
+%             % fixskip = true,
+%             }
+%     }
+%     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
+% }
 
 
 % \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
 % }{}{}
 
 
-%% 设置清除双面打印时的空白页
+%% tag: 脚注 设置为带编号数字
+% \MakePerPage{footnote}
+
+\DefineFNsymbols{circled}{{\ding{192}}{\ding{193}}{\ding{194}}
+        {\ding{195}}{\ding{196}}{\ding{197}}{\ding{198}}{\ding{199}}{\ding{200}}{\ding{201}}}
+\setfnsymbol{circled}
+
+%% tag: cleardoublepage 设置清除双面打印时的空白页
 \makeatletter
 \def\cleardoublepage{%
     \clearpage
@@ -455,7 +570,7 @@
 }
 \makeatother
 
-% 相关信息宏定义
+%% tag: 信息宏定义
 \newtoks{\etitle}
 \newtoks{\supervisor}
 \newtoks{\supervisorOuter}
@@ -473,7 +588,6 @@
 \makeatother
 
 \ExplSyntaxOn
-% \newcommand{\infoTable}{
 \cs_new:Npn \__thesis_infoTable: {
     \str_case:Nn \masterClass {
         {学术}{\renewcommand{\arraystretch}{1.5}
@@ -486,17 +600,17 @@
                 \end{tabular}}
             {专业}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
-                    \makebox[3.5cm][s]{\zihao{4}专业学位名称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\
-                    \makebox[3.5cm][s]{\zihao{4}学位申请人}  & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\
-                    \makebox[3.5cm][s]{\zihao{4}校内导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\
+                    \makebox[3.5cm][s]{\zihao{4}专业学位名称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}           \\
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}  & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}               \\
+                    \makebox[3.5cm][s]{\zihao{4}校内导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}      \\
                     \makebox[3.5cm][s]{\zihao{4}校外导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisorOuter}} \\
-                    \makebox[3.5cm][s]{\zihao{4}学号}     & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\
-                    \makebox[3.5cm][s]{\zihao{4}入学时间}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\
+                    \makebox[3.5cm][s]{\zihao{4}学号}     & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}       \\
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}       \\
                 \end{tabular}}
     }
 }
 
-%%=====latex 编写的封面。由于要插入的签名过多，没想好解决办法，现处于放弃状态，改为word生成pdf后插入===
+%% tag: 封面
 \newcommand{\makecover}{%
     \begin{titlepage}
         \thispagestyle{empty}%
@@ -532,7 +646,7 @@
     \restoregeometry
 }
 
-% %%========扉页========================%%
+%% tag:扉页
 \newcommand{\maketitlepage}{%
     \newpage
     \thispagestyle{empty}
@@ -567,7 +681,7 @@
 }
 \ExplSyntaxOff
 
-% %%=====原创性声明========================%%
+%% tag:原创性声明
 \newcommand{\makeclaim}{
     \newpage
     \thispagestyle{empty}
@@ -609,9 +723,9 @@
 }
 
 
-%%%%%%% 开题报告内容 %%%%%%%%%%%%
+%% tag: 开题报告
 \newcommand{\makeProposal}{%
-% 封面页
+    % 封面页
     \begin{titlepage}
         \thispagestyle{empty}%
         \begin{center} \leavevmode
@@ -625,7 +739,7 @@
             \rule{0.9\textwidth}{0.5pt}
             \par\vspace*{2mm}
             \begin{spacing}{1.5}
-            \bfseries \fangsong \zihao{-1} 硕士研究生学位论文开题报告
+                \bfseries \fangsong \zihao{-1} 硕士研究生学位论文开题报告
             \end{spacing}
             \vspace{60pt}
             {\heiti \zihao{-2} \ctitle}\\
@@ -640,63 +754,63 @@
                 \makebox[2cm][s]{\zihao{4}开题时间}:        \underline{\makebox[3.75cm][c]{\zihao{4}\the\EnterDate}}  \\
             }
             \vfill
-                \zihao{-4}
-                广东财经大学研究生处制\\[8pt]
-                \the\DefenseDate
+            \zihao{-4}
+            广东财经大学研究生处制\\[8pt]
+            \the\DefenseDate
             \vspace{5mm}
         \end{center}
     \end{titlepage}
-% 须知页
-\clearpage
-\vspace*{0.5cm}
-\pagestyle{master-proposal-style}
-\par
+    % 须知页
+    \clearpage
+    \vspace*{0.5cm}
+    \pagestyle{master-proposal-style}
+    \par
 
-\begin{spacing}{2}
-\begin{center}
-    {\zihao{3} \bfseries \setlength{\baselineskip}{30pt} \selectfont 填表须知}
-\end{center}
-{
-\zihao{4} \setlength{\baselineskip}{30pt}\selectfont
-\noindent 一、本表统一使用A4纸{\heiti \bfseries 双面}打印。所需填写内容超出页面限制，可扩充表格；
+    \begin{spacing}{2}
+        \begin{center}
+            {\zihao{3} \bfseries \setlength{\baselineskip}{30pt} \selectfont 填表须知}
+        \end{center}
+        {
+        \zihao{4} \setlength{\baselineskip}{30pt}\selectfont
+        \noindent 一、本表统一使用A4纸{\heiti \bfseries 双面}打印。所需填写内容超出页面限制，可扩充表格；
 
-\noindent 二、表格中需签名部分须用黑色的签字笔或钢笔填写；
+        \noindent 二、表格中需签名部分须用黑色的签字笔或钢笔填写；
 
-\noindent 三、一表一式两份，可复印。原件交研究生处存档，复印件由培养单位留存。
-}
-\end{spacing}
-% 格式设置
-\clearpage
-\zihao{5} \setlength{\baselineskip}{20pt}\selectfont
-\pagestyle{master-proposal-style}
-\ctexset{
-    chapter={
-        format={\zihao{5}\bfseries\raggedright},
-        pagestyle={master-proposal-style},
-        afterskip={0pt},
-        beforeskip={0pt},
-        number={\arabic{chapter}},
-        name={,},
-        aftername={\quad}
-        },
-    section={
-        format={\zihao{5}\bfseries\raggedright},
-        afterskip={0pt},
-        beforeskip={0pt},
-        aftername={\quad}
-        },
-    subsection={
-        format={\zihao{5}\bfseries\raggedright},
-        afterskip={0pt},
-        beforeskip={0pt},
-        aftername={\quad}
-        },
-    subsubsection={
-        format={\zihao{5}\bfseries\raggedright},
-        afterskip={0pt},
-        beforeskip={0pt},
-        aftername={\quad}
+        \noindent 三、一表一式两份，可复印。原件交研究生处存档，复印件由培养单位留存。
         }
+    \end{spacing}
+    % 格式设置
+    \clearpage
+    \zihao{5} \setlength{\baselineskip}{20pt}\selectfont
+    \pagestyle{master-proposal-style}
+    \ctexset{
+        chapter={
+          format={\zihao{5}\bfseries\raggedright},
+          pagestyle={master-proposal-style},
+          afterskip={0pt},
+          beforeskip={0pt},
+          number={\arabic{chapter}},
+          name={,},
+          aftername={\quad}
+         },
+        section={
+          format={\zihao{5}\bfseries\raggedright},
+          afterskip={0pt},
+          beforeskip={0pt},
+          aftername={\quad}
+         },
+        subsection={
+                format={\zihao{5}\bfseries\raggedright},
+                afterskip={0pt},
+                beforeskip={0pt},
+                aftername={\quad}
+            },
+        subsubsection={
+                format={\zihao{5}\bfseries\raggedright},
+                afterskip={0pt},
+                beforeskip={0pt},
+                aftername={\quad}
+            }
     }
 }
 % 信息部分
@@ -715,12 +829,12 @@
 % \end{tabularx}
 
 
-
+%% tag: thebibliography 格式
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{figures/}}        % 图片文件路径
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \allowdisplaybreaks
-\setlength{\baselineskip}{20pt}\selectfont
+
 \endlinechar `\^^M
 \endinput

@@ -1,67 +1,9 @@
 \chapter{使用说明 \the\baselineskip}
 
-
-\section{字体调节}
-
-\begin{tabular}{ll}
-    \verb|\songti|   & {\songti 宋体}   \\
-    \verb|\heiti|    & {\heiti 黑体}    \\
-    \verb|\fangsong| & {\fangsong 仿宋} \\
-    \verb|\kaishu|   & {\kaishu 楷书}
-\end{tabular}
-
-\section{字号调节}
-字号命令: \verb|\zihao| \index{zihao}
-
-\begin{tabular}{ll}
-    \verb|\zihao{0}|  & \zihao{0}  初号字 English \\
-    \verb|\zihao{-0}| & \zihao{-0} 小初号 English \\
-    \verb|\zihao{1} | & \zihao{1}  一号字 English \\
-    \verb|\zihao{-1}| & \zihao{-1} 小一号 English \\
-    \verb|\zihao{2} | & \zihao{2}  二号字 English \\
-    \verb|\zihao{-2}| & \zihao{-2} 小二号 English \\
-    \verb|\zihao{3} | & \zihao{3}  三号字 English \\
-    \verb|\zihao{-3}| & \zihao{-3} 小三号 English \\
-    \verb|\zihao{4} | & \zihao{4}  四号字 English \\
-    \verb|\zihao{-4}| & \zihao{-4} 小四号 English \\
-    \verb|\zihao{5} | & \zihao{5}  五号字 English \\
-    \verb|\zihao{-5}| & \zihao{-5} 小五号 English \\
-    \verb|\zihao{6} | & \zihao{6}  六号字 English \\
-    \verb|\zihao{-6}| & \zihao{-6} 小六号 English \\
-    \verb|\zihao{7} | & \zihao{7}  七号字 English \\
-    \verb|\zihao{8} | & \zihao{8}  八号字 English \\
-\end{tabular}
-\section{文档命令的若干说明\the\baselineskip}
-
-文档中有很多 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除.\the\baselineskip
-
-如果发现行距有问题, 在有问题的段落开头使用\\
-\verb|\setlength{\baselineskip}{20pt}\selectfont| 修正行间距为20磅.
-
-用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
-
-\begin{table}[!ht]
-    \centering
-    \caption{documentclass 中的参数作用及说明}
-    \begin{tabular}{lll}
-        \toprule
-        参数                         & 作用      & 说明                               \\
-        \midrule
-        type = thesis              & 学位论文格式  & 设置成学位论文格式（默认）                    \\
-        type = proposal            & 开题报告格式  & 设置成开题报告格式                        \\
-        class=academic             & 学术学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
-        calss=professional         & 专业学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
-        forprint                   & 打印模式    & 将彩色的超链接和 lstlisting 代码换成黑色       \\
-        AutoFakeBold,AutoFakeSlant & 假粗体和假斜体 & 配置成 word 的假粗体和假斜体, 无必要不修改        \\
-        \bottomrule
-    \end{tabular}
-    \label{table:documentclassparameters}
-\end{table}
-
 \section{模板文件结构及功能介绍 \the\baselineskip}
 
 模板目录文件的结构与功能, 如表\ref{table:filestructure} 所示: \the\baselineskip
-\begin{table}[ht]
+\begin{table}[!htbp]
     \centering
     \caption{模板文件结构及功能说明}
     \begin{tabular}{lll}
@@ -111,15 +53,17 @@
 % \end{itemize}
 % 接下来的管理, 已经清楚地展示在跳出的窗口中了. 再去处理其他的文件时, 还要点击~WinEdt~窗口的~Remove Main File~按键.
 
+
 \section{已加载的宏包}
-类文件cls中已经加载的主要宏包如下, 在主文档中无须重复加载.
+类文件 cls 中已经加载的主要宏包如下, 在主文档中无须重复加载.
+
 \begin{description}
     \item[amsmath,amssymb,mathrsfs]  提供数学公式的支持, 包括各种数学符号, 公式环境和花体字母的支持.
     \item[array,booktabs,multirow,tabularx]  提供更丰富的表格功能、三线表的支持. 允许使用 \verb|\toprule|, \verb|\midrule|, \verb|\bottomrule| 等命令来创建三线表的三条线.
     \item[caption, subcaption] 提供图形、表格的标题和子标题支持, 允许自定义标题格式.
           % \item[cite, biblatex]  和参考文献引用, 得到形如 [3-7] 合并引用文献的样式.
     \item[color,xcolor]  支持彩色.
-    \item[enumerate] (已改为enumitem) \sout{方便自由选择 enumerate 环境的编号方式. 比如}\\
+    \item[enumerate] (已改为enumitem) \sout{方便自由选择 enumerate 环境的编号方式. 比如}
     \item[enumitem] 提供修改enumerate, description, itemize 环境的格式. 设置 enumerate 格式需用计数器输出格式+``*'': \verb|\begin{enumerate}[label=\roman*)]|
           % \item[etoolbox]  提供一些工具函数用来修改命令.
     \item[fancyhdr]  提供页眉页脚的自定义支持, 允许设置不同章节的页眉页脚样式.
@@ -139,18 +83,85 @@
 \end{description}
 
 另外要说明的是, itemize, enumerate, description 这三种 list 环境, 已经调节了其间距为20pt.
+\section{文档命令的若干说明\the\baselineskip}
+
+文档中有很多 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除.\the\baselineskip
+
+如果发现行距有问题, 在有问题的段落开头使用\\
+\verb|\setlength{\baselineskip}{20pt}\selectfont| 修正行间距为20磅.
+
+用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
+
+如果发现部分页面因为浮动体(图片、表格等)过多, 导致文字段落间距不统一, 可以在页面最后的位置加上 \verb|\raggedbottom|将文字挤上去.
+
+\begin{table}[!ht]
+    \centering
+    \caption{documentclass 中的参数作用及说明}
+    \begin{tabularx}{\textwidth}{*{3}{>{\zihao{5}\setlength{\baselineskip}{10pt}\selectfont}X}}
+        \toprule
+        参数                         & 作用      & 说明                               \\
+        \midrule
+        type = thesis              & 学位论文格式  & 设置成学位论文格式（默认）                    \\
+        type = proposal            & 开题报告格式  & 设置成开题报告格式                        \\
+        class=academic             & 学术学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
+        calss=professional         & 专业学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
+        forprint                   & 打印模式    & 将彩色的超链接和 lstlisting 代码换成黑色       \\
+        AutoFakeBold,AutoFakeSlant & 假粗体和假斜体 & 配置成 word 的假粗体和假斜体, 无必要不修改        \\
+        \bottomrule
+    \end{tabularx}
+    \label{table:documentclassparameters}
+\end{table}
+\raggedbottom
+\section{字体调节}
+
+\begin{tabular}{ll}
+    \verb|\songti|   & {\songti 宋体}   \\
+    \verb|\heiti|    & {\heiti 黑体}    \\
+    \verb|\fangsong| & {\fangsong 仿宋} \\
+    \verb|\kaishu|   & {\kaishu 楷书}
+\end{tabular}
+
+\section{字号调节}
+字号命令: \verb|\zihao| \index{zihao}
+
+\begin{tabular}{ll}
+    \verb|\zihao{0}|  & \zihao{0}  初号字 English \\
+    \verb|\zihao{-0}| & \zihao{-0} 小初号 English \\
+    \verb|\zihao{1} | & \zihao{1}  一号字 English \\
+    \verb|\zihao{-1}| & \zihao{-1} 小一号 English \\
+    \verb|\zihao{2} | & \zihao{2}  二号字 English \\
+    \verb|\zihao{-2}| & \zihao{-2} 小二号 English \\
+    \verb|\zihao{3} | & \zihao{3}  三号字 English \\
+    \verb|\zihao{-3}| & \zihao{-3} 小三号 English \\
+    \verb|\zihao{4} | & \zihao{4}  四号字 English \\
+    \verb|\zihao{-4}| & \zihao{-4} 小四号 English \\
+    \verb|\zihao{5} | & \zihao{5}  五号字 English \\
+    \verb|\zihao{-5}| & \zihao{-5} 小五号 English \\
+    \verb|\zihao{6} | & \zihao{6}  六号字 English \\
+    \verb|\zihao{-6}| & \zihao{-6} 小六号 English \\
+    \verb|\zihao{7} | & \zihao{7}  七号字 English \\
+    \verb|\zihao{8} | & \zihao{8}  八号字 English \\
+\end{tabular}
+
+由于论文要求行间距固定20磅, 但是切换字号命令会修改行间距, 已经将每个字号命令后续自动运行 \verb|\setlength{\baselineskip}{20pt}\selectfont|. 具体实现方式:
+\begin{lstlisting}
+% 设置 \zihao 命令后面自动20pt行距
+\let\orig@zihao\zihao
+\renewcommand{\zihao}[1]{%
+    \orig@zihao{#1}% 执行原始的字号设置
+    \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
+}
+\end{lstlisting}
 
 \section{标点符号的问题}
 
 建议使用半角的标点符号, 后边再键入一个空格. 特别是在英文书写中要注意此问题!
 
-双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边.
+双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边. \the\baselineskip
 
 但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
 原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
-
 \section{交叉引用的问题}
-
 首先要说明的是, 为了得到正确的引用结果, 要将tex主文档编译多次. 交叉引用是\LaTeX 的强项, 它的原理是为被引用对象（图、表、公式、定理等）设置一个标签, 例如: ~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
 \subsection{参考文献的引用}
 Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex 和 bib 文件管理参考文献更加方便. 其一可以自动将参考文献表格式按gb7714-2015标准排版. 其二不需要考虑增删移动参考文献位置后重新调整参考文献表. 对此方案不熟悉可以调整回用 {thebibliography} 环境或者自己喜欢的方案.
@@ -262,11 +273,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 \section{图形}
 
-支持对~eps, pdf, jpg 等等常见图形格式.
-
-再次\colorbox{red!45}{澄清一个误会}: \LaTeX{} 支持的图形格式绝非 eps 这一种. 无需特意把图片转化为 eps.
-
-用形如~\verb|\includegraphics[width=12cm]{figure.jpg}| 的命令可以纳入图片.
+支持对~eps, pdf, jpg 等等常见图形格式. \LaTeX{} 支持的图形格式绝非 eps 这一种. 无需特意把图片转化为 eps. 用形如~\verb|\includegraphics[width=12cm]{figure.jpg}| 的命令可以纳入图片.
 
 论文图片要求如下:
 \begin{enumerate}[label=(\arabic*)]
@@ -286,6 +293,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \includegraphics[width=0.5\textwidth]{gdufelogo-Colorful.jpg}
     \caption{一个彩色图片的例子}
     \label{fig:colorfulpic}
+\end{figure}
 \end{lstlisting}
 \begin{figure}[!ht]
     \centering
@@ -293,29 +301,29 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \caption{一个彩色图片的例子}
     \label{fig:colorfulpic}
 \end{figure}
-如果需要标注资料来源,可以这样使用, 如图\ref{fig:resourcefig}
+如果需要标注资料来源, 可以搭配 minipage 环境使用, minipage 后面的第一个花括号\{ \}指定宽度, \verb|\includegraphics| 的 \verb|width=\textwidth| 是 minipage 里面的宽度, 即实际图片宽度为 \verb|0.5 * 1 \textwidth| , 如图\ref{fig:resourcefig}
 \begin{lstlisting}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}{0.5\textwidth}
-        {
+    \zihao{5}
+    \begin{minipage}{0.5\textwidth}{
             \includegraphics[width=\textwidth]{gdufelogo-Colorful.jpg}
-            \caption{一个彩色图片的例子\cite{anon-cn1}}
+            \caption{图片标注资料来源\cite{anon-cn1}}
             \label{fig:resourcefig}
-        }
-        {\zihao{5} 资料来源: 广东财经大学学校官网}
+            }
+        资料来源: 广东财经大学学校官网
     \end{minipage}
 \end{figure}
 \end{lstlisting}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}{0.5\textwidth}
-        {
+    \zihao{5}
+    \begin{minipage}{0.5\textwidth}{
             \includegraphics[width=\textwidth]{gdufelogo-Colorful.jpg}
-            \caption{一个彩色图片的例子\cite{anon-cn1}}
+            \caption{图片标注资料来源\cite{anon-cn1}}
             \label{fig:resourcefig}
         }
-        {\zihao{5} 资料来源: 广东财经大学学校官网}
+        资料来源: 广东财经大学学校官网
     \end{minipage}
 \end{figure}
 
@@ -432,23 +440,23 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \end{minipage}
 \end{table}
 
-跨页表格需要用 longtable 环境, 不要改变 \verb|\caption, \label |的位置, 且最后的换行不能去掉. 长表格\ref{table:longtable}如下
+跨页表格需要用 longtable 环境, 不要改变 \verb|\caption, \label |的位置, 需要用\verb|\zihao{5}|修饰列格式, 注意\verb|\multicolumn{*}| 中的数字, 需要和列数对应, 且最后的换行不能去掉. 长表格示例\ref{table:longtable}如下
 \begin{lstlisting}
     \begin{longtable}[!h]{*{2}{>{\rowmac\zihao{5}}c}<{\clearrow}}
     \caption{1995-2005 年珠三角、东西两翼和山区邮电业务总量比较}\label{longtable} \\
     \toprule
-    \setrow{\bfseries } 序号           & 内容                     \\
+    \setrow{\bfseries } 序号 & 内容 \\
     \midrule
     \endfirsthead
 
-    \caption{续}                                               \\
+    \caption{续} \\
     \toprule
-    \setrow{\bfseries } 序号 & 内容                     \\
+    \setrow{\bfseries } 序号 & 内容 \\
     \midrule
     \endhead
 
     \bottomrule
-    \multicolumn{2}{r}{\zihao{5} 表格续下页}                                 \\
+    \multicolumn{2}{r}{\zihao{5} 表格续下页} \\
     \endfoot
 
     \bottomrule

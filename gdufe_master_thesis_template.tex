@@ -22,9 +22,26 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
+% 显示范围框架, 调试时使用
+% \usepackage{showframe}
+
+
+\title{广东财经大学硕士论文 \LaTeX{}模板} %中文标题
+\etitle{Guangdong University of Financial and Economics Master Thesis \LaTeX{} Template}    %英文标题
+\author{王五} %作者
+\supervisor{张三 教授} %导师
+\supervisorOuter{李四 教授} %校外导师 专硕使用
+\major{数学} %专业
+\studentid{12345678901} %学号
+\EnterDate{2023年9月} %入学日期
+\SubmitDate{2025年6月1日} %提交日期
+\SignDate{2025年6月3日} %签名日期
+\DefenseDate{2025年6月5日} %答辩日期
+\CoverPageDate{2025年6月7日} %封面页底部日期
+
 \begin{document}
+\flushbottom
 % 中文标题
-\title{广东财经大学硕士论文 \LaTeX{}模板}
 %-----------------------------------------------------------------------------
 \pagestyle{empty}
 
@@ -49,7 +66,7 @@
 
 
 %%% 不要删除设置行距代码 %%%%
-\setlength{\baselineskip}{20pt} % 设置行距
+% \setlength{\baselineskip}{20pt} % 设置行距
 \frontmatter
 %-----------------------------------------------------------------------------
 \include{includefile/abstract.tex}    % 加入摘要.
@@ -58,6 +75,7 @@
 \tableofcontents
 
 \mainmatter
+\raggedbottom
 %%%%%%%%%%%%%%%%%%%%%%%%%%--------main matter-------%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \include{includefile/chapter1.tex}
