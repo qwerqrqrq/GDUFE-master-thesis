@@ -97,15 +97,15 @@ Use \texttt{align*} environment:
 注意手写参考文献和使用 bib 文件的样式有顶格不顶格的区别，由于没有详细要求，选一使用即可。
 
 \section{图表测试}
-
+引用图~\ref{fig:广东财经大学校徽}
 \begin{figure}[H]
     \centering
     \includegraphics[width = 5cm]{gdufelogo.jpg}
-    \caption{广东财经大学校徽}
+    \caption{广东财经大学校徽\the\baselineskip}
     \label{fig:广东财经大学校徽}
 \end{figure}
 
-引用图~\ref{fig:广东财经大学校徽}
+
 
 多图测试\ref{fig:MultiPic1}
 \begin{figure}[H]
@@ -136,24 +136,29 @@ Use \texttt{align*} environment:
 \begin{figure}[!htbp]
     \centering
 
-    \begin{subcaptionbox}{子图A标题\label{fig:subfig_a}\the\baselineskip}[0.45\textwidth]
-        {\includegraphics[width=\linewidth]{gdufelogo.jpg}}
-    \end{subcaptionbox}
-    \hfill
-    \begin{subcaptionbox}{子图B标题\label{fig:subfig_b}}[0.45\textwidth]
-        {\includegraphics[width=\linewidth]{gdufelogo.jpg}}
-    \end{subcaptionbox}
+    \begin{subcaptionblock}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{gdufelogo.jpg}
+        \caption{子图A标题}
+        \label{fig:subfig_a}
+    \end{subcaptionblock}
+    % \hfill
+    \begin{subcaptionblock}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{gdufelogo.jpg}
+        \caption{子图B标题}
+        \label{fig:subfig_b}
+    \end{subcaptionblock}
 
     \caption{整体图标题\the\baselineskip}
     \label{fig:subfigtest}
 \end{figure}
 
-如图~\ref{fig:subfigtest} 所示，其中~\subref{fig:subfig_a} 是子图A, \subref{fig:subfig_b} 是子图B.
+
+如图~\ref{fig:subfigtest} 所示，其中\subref{fig:subfig_a} 是子图A, \subref{fig:subfig_b} 是子图B.
 注意使用 \verb|\ref{}| \ref{fig:subfig_a} 和 \verb|\subref{}| \subref{fig:subfig_a}命令来引用子图的区别.
 
 
 表格测试
-\begin{table}[ht]
+\begin{table}[!h]
     \centering
     \caption{%
         简单的表格和引用 abc 123 %\cite{whu-bachelor:1}
@@ -167,7 +172,7 @@ Use \texttt{align*} environment:
     \end{tabular}
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[!h]
     \centering
     \caption{%
         三线表格和引用 abc 123 %\cite{whu-bachelor:1}

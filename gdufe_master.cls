@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.2]
+\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.3]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
@@ -431,8 +431,9 @@
             beforeskip={0pt},
             number={\arabic{chapter}},
             name={,},
-            % aftername={\quad},
-            aftername={}
+            aftername={\quad},
+            % aftername={},
+            % indent = 2\ccwd,
          },
         section={
             format={\zihao{-3}\heiti\raggedright},
@@ -440,10 +441,11 @@
             % titleformat={\zihao{-3}\heiti\raggedright},
             afterskip={6pt},
             beforeskip={6pt},
-            % aftername={\quad},
-            aftername={},
+            aftername={\quad},
+            % aftername={},
             name={,},
             % fixskip = true,
+            % indent = 2\ccwd,
          },
         subsection={
             format={\zihao{4}\heiti\raggedright},
@@ -451,10 +453,11 @@
             % titleformat={\zihao{4}\heiti\raggedright},
             afterskip={3pt},
             beforeskip={3pt},
-            % aftername={\quad},
-            aftername={},
+            aftername={\quad},
+            % aftername={},
             name={,},
             % fixskip = true,
+            % indent = 2\ccwd,
             },
         subsubsection={
             format={\zihao{-4}\heiti\raggedright},
@@ -462,10 +465,11 @@
             % nameformat={\zihao{-4}\heiti\raggedright},
             afterskip={0pt},
             beforeskip={0pt},
-            % aftername={\quad},
-            aftername={},
+            aftername={\quad},
+            % aftername={},
             name={,},
             % fixskip = true,
+            % indent = 2\ccwd,
             }
     }
     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
