@@ -388,7 +388,7 @@
 
 % \heiti \ziju{1}
 \newenvironment{cnabstract}{%
-    \chapter[摘要]{\heiti\ziju{1}摘要\the\baselineskip}
+    \chapter[摘要]{\heiti\ziju{1}摘要}
     \zihao{-4}
 }
 {\newline
@@ -396,7 +396,7 @@
 
 
 \newenvironment{enabstract}{%
-    \chapter[ABSTRACT]{\bfseries ABSTRACT\the\baselineskip}
+    \chapter[ABSTRACT]{\bfseries ABSTRACT}
     \zihao{-4}
     \noindent}
 {\newline\par}
