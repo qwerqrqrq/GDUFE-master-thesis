@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.3]
+\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.4]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
@@ -318,7 +318,7 @@
     font={small},
     labelfont = {bf},
     textfont={bf},
-    skip = 0pt
+    skip = 5pt
 }  %
 \renewcommand{\figurename}{\bfseries \zihao{5} \songti \setlength{\baselineskip}{20pt} \selectfont 图}
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
@@ -328,14 +328,14 @@
     font={small},
     labelfont = {bf},
     textfont = {bf},
-    skip=0pt
+    skip=5pt
 }
 \captionsetup[longtable]{%
     %   font={small},              % 字体大小
     labelfont={bf},            % 标签“表 x.x”加粗
     textfont={bf},             % 标题内容斜体
     justification=centering, % 居中对齐
-    skip = 0pt
+    skip = 5pt
 }
 \renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
@@ -388,7 +388,7 @@
 
 % \heiti \ziju{1}
 \newenvironment{cnabstract}{%
-    \chapter[摘要]{\heiti\ziju{1}摘要\the\baselineskip}
+    \chapter[摘要]{\heiti\ziju{1}摘要}
     \zihao{-4}
 }
 {\newline
@@ -396,7 +396,7 @@
 
 
 \newenvironment{enabstract}{%
-    \chapter[ABSTRACT]{\bfseries ABSTRACT\the\baselineskip}
+    \chapter[ABSTRACT]{\bfseries ABSTRACT}
     \zihao{-4}
     \noindent}
 {\newline\par}

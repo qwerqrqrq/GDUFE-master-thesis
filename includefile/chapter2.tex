@@ -105,8 +105,10 @@
         type = proposal            & 开题报告格式  & 设置成开题报告格式                        \\
         class=academic             & 学术学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
         calss=professional         & 专业学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
-        forprint                   & 打印模式    & 将彩色的超链接和 lstlisting 代码换成黑色       \\
         AutoFakeBold,AutoFakeSlant & 假粗体和假斜体 & 配置成 word 的假粗体和假斜体, 无必要不修改        \\
+        draft                     & 草稿模式    & 仅显示图片大小框架, 不显示图片内容, 能有效减少编译时间 \\
+        forprint                   & 打印模式    & 将彩色的超链接和 lstlisting 代码换成黑色       \\
+
         \bottomrule
     \end{tabularx}
     \label{table:documentclassparameters}
@@ -166,7 +168,7 @@
 \subsection{参考文献的引用}
 Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex 和 bib 文件管理参考文献更加方便. 其一可以自动将参考文献表格式按gb7714-2015标准排版. 其二不需要考虑增删移动参考文献位置后重新调整参考文献表. 对此方案不熟悉可以调整回用 {thebibliography} 环境或者自己喜欢的方案.
 
-{\bfseries 注意: } biblatex 和 cite 包不能同时使用以下两个方案只能选择一个.
+{\bfseries 注意: } biblatex 和 cite 包不能同时使用, 以下两个方案只能选择一个.
 
 \subsubsection{使用 biblatex 管理参考文献}
 使用此方案务必取消注释文件开头的\\
@@ -315,7 +317,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \end{minipage}
 \end{figure}
 \end{lstlisting}
-\begin{figure}[!ht]
+\begin{figure}[!h]
     \centering
     \zihao{5}
     \begin{minipage}{0.5\textwidth}{

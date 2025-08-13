@@ -23,6 +23,8 @@
 
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
+gdufe_master_thesis_template.pdf
+gdufe_master_proposal_template.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

@@ -5,8 +5,8 @@
 % AutoFakeBold=3.17,AutoFakeSlant=0.2  设置字体伪粗体和伪斜体
 % twoside: 双面打印
 % forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
-
-% \documentclass[forprint,class = professional, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master_thesis}
+% draft: 草稿模式, 图片仅显示大小框架, 能有效减少编译时间.
+% \documentclass[forprint,class = professional, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
 
 %%%% --------biblatex 与cite  bibliographystyle二选一-------------
 %% 使用biblatex. 如果手写参考文献请注释下两行
@@ -25,7 +25,7 @@
 % 显示范围框架, 调试时使用
 % \usepackage{showframe}
 
-
+% 使用word 导出的封面、扉页、声明格式的pdf文件只填写 \title 即可, 其他信息不需要填写.
 \title{广东财经大学硕士论文 \LaTeX{}模板} %中文标题
 \etitle{Guangdong University of Financial and Economics Master Thesis \LaTeX{} Template}    %英文标题
 \author{王五} %作者
