@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.3]
+\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.4]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
