@@ -1,14 +1,10 @@
 # 更新日志
 
-本文档格式遵守[如何维护更新记录](https://keepachangelog.com/zh-CN/1.0.0/)。
-
-## Unreleased
-
 ## v0.4.4
 
 ## 修改了
 
-* 修改了图标标题的间距 0pt -> 5pt
+* 修改了图标标题的间距 0pt $\rightarrow$ 5pt
 
 * 修改了一些使用说明
 
