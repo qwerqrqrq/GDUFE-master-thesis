@@ -41,6 +41,8 @@
 \RequirePackage{amsmath,amssymb,mathrsfs}
 % \RequirePackage{amsthm}
 \RequirePackage[amsmath,thmmarks]{ntheorem}
+\RequirePackage{lmodern}
+\RequirePackage{fix-cm}
 \RequirePackage{graphicx}                 % 图形
 \RequirePackage{float}
 \RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
@@ -71,6 +73,8 @@
 \RequirePackage{pifont}   % 提供 \ding 命令
 % \RequirePackage{perpage}  % 让脚注编号每页重新开始（可选）
 \RequirePackage[perpage,symbol*]{footmisc}
+
+
 
 %% tag: 页面布局: 页边距、页眉页脚高度
 \ExplSyntaxOn
@@ -131,9 +135,9 @@
 
 %% tag: 字号
 % 设置 \zihao 命令后面自动20pt行距
-\let\orig@zihao\zihao
+\let\origzihao=\zihao
 \renewcommand{\zihao}[1]{%
-    \orig@zihao{#1}% 执行原始的字号设置
+    \origzihao{#1}% 执行原始的字号设置
     \setlength{\baselineskip}{20pt}\selectfont % 设置行间距
 }
 
@@ -592,7 +596,7 @@
 \makeatother
 
 \ExplSyntaxOn
-\cs_new:Npn \__thesis_infoTable: {
+\cs_new:Npn \__thesis_infoTableOne: {
     \str_case:Nn \masterClass {
         {学术}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
@@ -613,7 +617,27 @@
                 \end{tabular}}
     }
 }
-
+\cs_new:Npn \__thesis_infoTableTwo: {
+    \str_case:Nn \masterClass {
+        {学术}{\renewcommand{\arraystretch}{1.5}
+                \begin{tabular}{ll}
+                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}指导教师} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\%\hline
+                \end{tabular}}
+            {专业}{\renewcommand{\arraystretch}{1.5}
+                \begin{tabular}{ll}
+                    \makebox[3.5cm][s]{\zihao{4}专业学位名称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}           \\
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}  & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}               \\
+                    \makebox[3.5cm][s]{\zihao{4}校内导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}      \\
+                    \makebox[3.5cm][s]{\zihao{4}校外导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisorOuter}} \\
+                    \makebox[3.5cm][s]{\zihao{4}学号}     & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}       \\
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}       \\
+                \end{tabular}}
+    }
+}
 %% tag: 封面
 \newcommand{\makecover}{%
     \begin{titlepage}
@@ -641,7 +665,7 @@
             % \vspace*{2em}
             \vfill\vfill\vfill
             % {\fangsong \infoTable}
-            {\fangsong \__thesis_infoTable:}
+            {\fangsong \__thesis_infoTableOne:}
             \vfill
             {\fangsong\zihao{3} \bfseries \the\DefenseDate}
             \vspace{1em}
@@ -664,7 +688,7 @@
         {
             \heiti\zihao{4}\renewcommand{\arraystretch}{1.5}
             % \hspace*{2em}\infoTable
-            \hspace*{2em}\__thesis_infoTable:
+            \hspace*{2em}\__thesis_infoTableTwo:
             \par\vfill
             \hspace*{2em}
             \begin{tabular}{lr}
@@ -690,40 +714,37 @@
     \newpage
     \thispagestyle{empty}
     \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
+    \begin{spacing}{2}
     \begin{center}
-        \vspace*{0.8cm}
-        {\heiti \zihao{3} \bfseries 广东财经大学学位论文原创性声明}
+        {\heiti \origzihao{3} \bfseries 广东财经大学学位论文原创性声明}
     \end{center}
-    \vspace{0.72cm}
+    % \vspace{0.72cm}
 
-    \begin{spacing}{2.0}
-        \fangsong \zihao{4}
+        \fangsong \origzihao{4}
         本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。
         \newline
-        \begin{tabular}{rr}
-            \zihao{4}
-            \makebox[11cm][r]{学位论文作者签名:} & \makebox[3.75cm][l]{ }                       \\
-            \zihao{4}
-            \makebox[11cm][r]{签字日期:}     & \makebox[3.75cm][l]{\zihao{4} \the\SignDate} \\
-        \end{tabular}
+        \makebox[11cm][r]{学位论文作者签名：} \makebox[3.75cm][l]{\includegraphics[width=3.5cm]{author-sign}}\\
+        \makebox[11cm][r]{签字日期：} \makebox[3.75cm][l]{\the\SignDate}
+
     \end{spacing}
-    \vspace{1em}
-    \begin{spacing}{1.5}
+    \begin{spacing}{1.8}
         \begin{center}
-            {\heiti \bfseries \zihao{3} 广东财经大学学位论文版权使用授权书}
+            \heiti \bfseries \origzihao{3} 广东财经大学学位论文版权使用授权书
         \end{center}
 
-        \fangsong \zihao{4}
+        \fangsong \origzihao{4}
         本学位论文作者完全了解广东财经大学有关保留、使用学位论文的规定，有权保留并向国家有关部门或机构送交论文的纸质版和电子版，允许论文被查阅和借阅。本人授权广东财经大学可以将学位论文的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存、汇编学位论文。
 
         （保密的学位论文在解密后适用本授权书）
-    \end{spacing}
-    \vspace*{1em}
-    {\fangsong \zihao{4} \noindent
-        \makebox[9.5cm][l]{学位论文作者签名：} \makebox[5truecm][l]{导师签名：}\\
+
+        \vspace*{0.75cm}
+        \noindent
+        \makebox[9.5cm][l]{学位论文作者签名：\includegraphics[width=3.5cm]{author-sign}} \makebox[5truecm][l]{导师签名：\includegraphics[width=3.5cm]{supersivor-sign}}\\
         \makebox[9.5cm][l]{签字日期：\the\SignDate} \makebox[5truecm][l]{签字日期：\the\SignDate}
-    }
+    \end{spacing}
+    \songti
     \restoregeometry
+    % \makeatother
 }
 
 
