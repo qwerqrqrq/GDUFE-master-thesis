@@ -1,7 +1,4 @@
-# [广东财经大学硕士论文 $\LaTeX$  模板](https://github.com/qwerqrqrq/GDUFE-master-thesis)
-
-**该项目还在制作中**
-
+# 广东财经大学硕士论文 $\LaTeX$  模板
 
 ## 重要提醒
 
@@ -18,9 +15,11 @@
 
 2. 安装 *fonts* 文件夹中包含的 ***仿宋_gb2312.ttf*** 文件. 这是由于学校提供的 *封面、扉页及声明格式.doc* 文件中使用的字体是***仿宋_gb2312***，而不是***仿宋***，计算机会使用 ***微软雅黑*** 字体替代.
 
-3. 编辑 *doc* 文件, 导出 *pdf*格式文件.
+3. 编辑 *doc* 文件, 导出 *pdf*格式文件. (愿意的话也可以使用 $\LaTeX$ 生成的页面, 但没有经过比对, )
 
-4. 阅读 *gdufe_master_thesis_template.pdf* 文件, 查看编辑 *gdufe_master_thesis_template.tex* 文件的注意事项.
+4. 阅读 *gdufe_master_thesis(proposal)_template.pdf* 文件, 查看编辑 *gdufe_master_thesis(proposal)_template.tex* 文件的注意事项.
+
+5. 有问题在[github](https://github.com/qwerqrqrq/GDUFE-master-thesis)上发issue
 
 ## 致谢：
 
