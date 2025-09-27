@@ -6,7 +6,7 @@ name: LaTeX Compile
 
 on:
   push:
-    branches: [master]
+    branches: [dev, master]
     tags: ["v*"]
   pull_request:
     branches: [master]
