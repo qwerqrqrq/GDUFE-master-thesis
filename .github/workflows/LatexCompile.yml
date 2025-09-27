@@ -29,7 +29,7 @@ jobs:
             ./fonts/*.ttf
             ./fonts/*.ttc
           # extra_system_packages: "fontconfig"
-          pre_compile: "fc-cache -f"
+          # pre_compile: "fc-cache -f"
           post_compile: "latexmk -c"
 
       - name: Compile gdufe_master_proposal_template
@@ -43,11 +43,11 @@ jobs:
             ./fonts/*.ttf
             ./fonts/*.ttc
           # extra_system_packages: "fontconfig"
-          pre_compile: "fc-cache -f"
+          # pre_compile: "fc-cache -f"
           post_compile: "latexmk -c"
 
       # Upload compiled pdf to artifacts if compiled successfully
-      - name: Upload pdf
+      - name: Upload pdfs
         uses: actions/upload-artifact@v4
         if: success()
         with:
