@@ -25,18 +25,28 @@
 \PassOptionsToPackage{no-math}{fontspec}
 
 % 捕获未声明的选项并传递给 ctexbook
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
-
-\ProcessOptions\relax
 % 根据类型加载ctexbook类不同的基础字号
 \ExplSyntaxOn
 \str_case:Nn \type {
-    {thesis}{\PassOptionsToClass{zihao=-4}{ctexbook}}
-        {proposal}{\PassOptionsToClass{zihao=5}{ctexbook}}
+    {thesis}{
+        \PassOptionsToClass{zihao=-4,a4paper,openany}{ctexbook}
+        \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+    }
+        {proposal}{
+            \PassOptionsToClass{zihao=5,a4paper,openany}{ctexart}
+            \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
+        }
+}
+\ProcessOptions\relax
+\str_case:Nn \type {
+    {thesis}{
+        \LoadClass{ctexbook}
+    }
+        {proposal}{
+            \LoadClass{ctexart}
+        }
 }
 \ExplSyntaxOff
-\PassOptionsToClass{a4paper,openany}{ctexbook}
-\LoadClass{ctexbook}
 
 %% tag: 宏包
 \RequirePackage{amsmath,amssymb,mathrsfs}
@@ -169,7 +179,13 @@
 
 
 %% tag: 公式定理
-\renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
+\ExplSyntaxOn
+\str_case:Nn \type {
+    {thesis}{
+        \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
+    }
+}
+\ExplSyntaxOff
 
 \theoremstyle{plain}
 \theoremheaderfont{\heiti}
@@ -331,8 +347,15 @@
     textfont={bf},
     skip = 5pt
 }  %
+\ExplSyntaxOn
+\str_case:Nn \type {
+    {thesis}{
+        \renewcommand{\thefigure}{\thechapter-\arabic{figure}} % 图编号格式
+    }
+}
+\ExplSyntaxOff
 \renewcommand{\figurename}{\bfseries \zihao{5} \songti \setlength{\baselineskip}{20pt} \selectfont 图}
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+
 
 \captionsetup[table]{%
     format=plain,
@@ -348,8 +371,15 @@
     justification=centering, % 居中对齐
     skip = 5pt
 }
+\ExplSyntaxOn
+\str_case:Nn \type {
+    {thesis}{
+        \renewcommand{\thetable}{\thechapter-\arabic{table}} % 表编号格式
+    }
+}
+\ExplSyntaxOff
 \renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
-\renewcommand{\thetable}{\thechapter-\arabic{table}}
+
 
 %% 提供图表加粗整行支持 代码来源 https://tex.stackexchange.com/questions/309833/format-whole-row-of-table-as-bold
 \newcommand{\setrow}[1]{\gdef\rowmac{#1}#1\ignorespaces}
@@ -370,25 +400,32 @@
 % \renewcommand{\cftaftertoctitle}{\hfill}
 \ctexset{contentsname={\heiti\ziju{2} 目录}}
 
-\renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
+% 毕业论文book类 设置
+\ExplSyntaxOn
+\str_case:Nn \type {
+    {thesis}{
+        \renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
+        \renewcommand{\cftchappagefont}{\songti\zihao{-4}}    % 章页码
+        \setlength{\cftchapindent}{0pt} % chapter 不缩进
+        \setlength{\cftbeforechapskip}{0pt}
+        % 点线设置
+        \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+    }
+}
+\ExplSyntaxOff
+
 \renewcommand{\cftsecfont}{\songti\zihao{-4}}        % 节标题
-\renewcommand{\cftsubsecfont}{\songti\zihao{-4}}     % 条标题
-\renewcommand{\cftchappagefont}{\songti\zihao{-4}}    % 章页码
 \renewcommand{\cftsecpagefont}{\songti\zihao{-4}}    % 节页码
+\setlength{\cftbeforesecskip}{0pt}                   % 不额外空行
+\setlength{\cftsecindent}{0pt}                       % section 不缩进
+
+\renewcommand{\cftsubsecfont}{\songti\zihao{-4}}     % 条标题
 \renewcommand{\cftsubsecpagefont}{\songti\zihao{-4}} % 条页码
+\setlength{\cftbeforesubsecskip}{0pt}                % 不额外空行
+\setlength{\cftsubsecindent}{0pt}                    % subsection 不缩进
 
-% 不额外空行
-\setlength{\cftbeforechapskip}{0pt}
-\setlength{\cftbeforesecskip}{0pt}
-\setlength{\cftbeforesubsecskip}{0pt}
 
-% 设置缩进
-\setlength{\cftchapindent}{0pt} % chapter 不缩进
-\setlength{\cftsecindent}{0pt} % section 不缩进
-\setlength{\cftsubsecindent}{0pt} % subsection 不缩进
 
-% 点线设置
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
 
 %% tag: 摘要、关键词
@@ -746,7 +783,7 @@
 
         \vspace*{0.75cm}
         \noindent
-        \makebox[9.5cm][l]{学位论文作者签名：\includegraphics[width=3.5cm]{author-sign}} \makebox[5truecm][l]{导师签名：\includegraphics[width=3.5cm]{supersivor-sign}}\\
+        \makebox[9.5cm][l]{学位论文作者签名：\includegraphics[width=3.5cm]{author-sign}} \makebox[5truecm][l]{导师签名：\includegraphics[width=3.5cm]{supervisor-sign}}\\
         \makebox[9.5cm][l]{签字日期：\the\SignDate} \makebox[5truecm][l]{签字日期：\the\SignDate}
     \end{spacing}
     \songti
@@ -756,8 +793,11 @@
 
 
 %% tag: 开题报告
-\newcommand{\makeProposal}{%
-    % 封面页
+% 信息部分
+\newtoks{\gender}
+\newtoks{\researchDirection}
+% 封面页
+\newcommand{\makeProposalCover}{
     \begin{titlepage}
         \thispagestyle{empty}%
         \begin{center} \leavevmode
@@ -774,7 +814,7 @@
                 \bfseries \fangsong \zihao{-1} 硕士研究生学位论文开题报告
             \end{spacing}
             \vspace{60pt}
-            {\heiti \zihao{-2} \ctitle}\\
+            {\heiti \zihao{-2} \ctitle\\\the\etitle}\\
             % \vspace*{2em}
             \vfill
             {\heiti\setlength\baselineskip{35pt}
@@ -792,8 +832,10 @@
             \vspace{5mm}
         \end{center}
     \end{titlepage}
-    % 须知页
-    \clearpage
+}
+
+% 须知页
+\newcommand{\makeProposalNote}{\clearpage
     \vspace*{0.5cm}
     \pagestyle{master-proposal-style}
     \par
@@ -811,20 +853,13 @@
         \noindent 三、一表一式两份，可复印。原件交研究生处存档，复印件由培养单位留存。
         }
     \end{spacing}
-    % 格式设置
+    }
+
+\newcommand{\ProposalMatter}{% 格式设置
     \clearpage
     \zihao{5} \setlength{\baselineskip}{20pt}\selectfont
     \pagestyle{master-proposal-style}
     \ctexset{
-        % chapter={
-        %   format={\zihao{5}\bfseries\raggedright},
-        %   pagestyle={master-proposal-style},
-        %   afterskip={0pt},
-        %   beforeskip={-10pt},
-        %   number={\arabic{chapter}},
-        %   name={,},
-        %   aftername={. }
-        %  },
         section={
           format={\zihao{5}\bfseries\raggedright},
           afterskip={0pt},
@@ -845,11 +880,25 @@
             }
     }
 }
-% 信息部分
-\newtoks{\gender}
-\newtoks{\researchDirection}
+\newcommand{\makeProposalInfoTable}{%
+    \renewcommand{\arraystretch}{1.4}
+    \noindent
+    \begin{tabular*}{\linewidth}%
+        {@{\extracolsep{\fill}}|>{\arraybackslash}m{0.1\linewidth}|l|l|l|p{2em}|l|l|@{}}
+        \hline
+        姓名 & \multicolumn{2}{>{\arraybackslash}p{0.15\linewidth}|}{\cname} & 性别& \the\gender    & 入学时间 & \the\EnterDate\\
+        \hline
+        学科 & \multicolumn{4}{>{\arraybackslash}p{0.25\linewidth}|}{\the\major} & 研究方向 & \the\researchDirection\\
+        \hline
+        论文 & 中文 & \multicolumn{5}{>{\arraybackslash}p{0.76\linewidth}|}{\ctitle}\\
+        \cline{2-7}
+        题目 & 英文 & \multicolumn{5}{>{\arraybackslash}p{0.76\linewidth}|}{\the\etitle}\\
+        \hline
+    \end{tabular*}
+    \renewcommand{\arraystretch}{1}
+}
 
-%% tag: thebibliography 格式
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{figures/}}        % 图片文件路径

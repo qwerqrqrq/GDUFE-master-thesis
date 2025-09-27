@@ -1,13 +1,12 @@
 \documentclass[type=proposal, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2,a4paper,openany]{gdufe_master}
 
 \title{广东财经大学硕士论文题目}
-\etitle{GDUFE professional master thesis title}
+\etitle{Guangdong University of Financial and Economics Master Thesis Title}
 \author{张三}
 \major{数学}
 \researchDirection{应用数学}
 \supervisor{李四\quad 教授}
 \supervisorOuter{王五\quad 教授} % 校外导师，仅专硕需要填写
-\EnterDate{2000年9月5日}
 \studentid{1234567890}
 \EnterDate{2025年9月1日}
 \SubmitDate{2026年6月1日}
@@ -16,10 +15,18 @@
 \CoverPageDate{2026年6月4日}
 \gender{男}
 
+
+%%%% --------biblatex 与cite  bibliographystyle二选一-------------
+%% 使用biblatex. 如果手写参考文献请注释下两行
+\usepackage[style=gb7714-2015, backend=biber]{biblatex}
+\addbibresource{reference.bib}
+
+% % 不使用biblatex.
+% \usepackage{cite} % 使用cite宏包, 以便合并引用文献, 例如 [1-3] 的形式.
+% \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}  %自定义新命令\upcite, 使参考文献引用以上标出现
+
+
 \begin{document}
-
-\makeProposal
-
 \tcbset{proposalBoxStyle/.style={colback=white,
             colframe=black,
             sharp corners=all,
@@ -33,68 +40,146 @@
             leftrule=0.5pt,
             rightrule=0.5pt,
             segmentation style={solid}
-        }}
-{
-\renewcommand{\arraystretch}{1.4}
-\noindent
-\begin{tabular*}{\linewidth}%
-    {@{\extracolsep{\fill}}|>{\arraybackslash}m{0.1\linewidth}|l|l|l|p{2em}|l|l|@{}}
-        \hline
-        姓名 & \multicolumn{2}{>{\arraybackslash}p{0.15\linewidth}|}{\cname} & 性别& \the\gender    & 入学时间 & \the\EnterDate\\
-        \hline
-        学科 & \multicolumn{4}{>{\arraybackslash}p{0.25\linewidth}|}{\the\major} & 研究方向 & \the\researchDirection\\
-        \hline
-        论文 & 中文 & \multicolumn{5}{>{\arraybackslash}p{0.76\linewidth}|}{\ctitle}\\
-        \cline{2-7}
-        题目 & 英文 & \multicolumn{5}{>{\arraybackslash}p{0.76\linewidth}|}{\the\etitle}\\
-        \hline
-\end{tabular*}
+        }
 }
+% 使用word导出的封面和须知页
+% \includepdf[-]{filename}
+\makeProposalCover
+\makeProposalNote
+\ProposalMatter
+\makeProposalInfoTable
 \vspace*{-7.7pt}
 \begin{tcolorbox}[proposalBoxStyle]
-\section{选题背景、国内外研究现状及述评}
-\rule{0pt}{3cm}
-选题背景选题背景选题背景选题背景选题背景选题背景
-选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景
-\tcbline
-\section{选题的理论意义、实践价值}
-\rule{0pt}{3cm}
-选题的理论意义、实践价值
+    \section{选题背景、国内外研究现状及述评}
+    \indent\setlength{\parindent}{2em}
+    选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景.\cite{anon-cn1,anon-cn2,anon-cn3,anon-cn4,anon-cn5,anon-en1,anon-en2,anon-en3,anon-en4,anon-en5}
 
-\tcbline
-\section{选题研究的基本内容、结构框架、创新之处}
-\rule{0pt}{3cm}
-选题研究的基本内容、结构框架、创新之处
+    方框额外的高度根据需要调整 \verb|\vspace*{}|的数值.
+    % \vspace*{3cm}
+    \tcbline
+    \section{选题的理论意义、实践价值}
+    选题的理论意义、实践价值.
+    \vspace*{4cm}
+    \tcbline
+    \section{选题研究的基本内容、结构框架、创新之处}
+    选题研究的基本内容、结构框架、创新之处.
+
+    公式引用\ref{eq}.
+    \begin{equation}
+        E=mc^2.
+    \end{equation}
+    \begin{equation*}
+        E=mc^2.\label{eq}
+    \end{equation*}
+    \begin{gather}
+        E=mc^2,\\
+        E=mc^2.
+    \end{gather}
+    \begin{gather*}
+        E=mc^2,\\
+        E=mc^2.
+    \end{gather*}
+    \begin{align}
+        E   & =mc^2,    \\
+        a^2 & =b^2+c^2.
+    \end{align}
+
+    \begin{equation}
+        \begin{aligned}
+            E   & =mc^2,    \\
+            a^2 & =b^2+c^2.
+        \end{aligned}
+    \end{equation}
+
+    用\verb|\tcbline| 在想要的地方绘制横线.
+
+    图表的使用有些不同. 表引用\ref{tab:demo1}\ref{tab:demo2}, 图引用\ref{fig:demo1}\ref{fig:demo2}.
+    \begin{center}
+        \captionof{table}{这是一个在 tcolorbox 中的表格标题}\phantomsection\label{tab:demo1}
+        \begin{tabular}{ccc}
+            \toprule
+            序号 & 项目  & 备注  \\
+            \midrule
+            1  & 内容1 & 备注1 \\
+
+            2  & 内容2 & 备注2 \\
+
+            3  & 内容3 & 备注3 \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+
+    \begin{center}
+        \captionof{table}{这是一个在 tcolorbox 中的表格标题}\phantomsection\label{tab:demo2}
+        \begin{tabular}{ccc}
+            \toprule
+            序号 & 项目  & 备注  \\
+            \midrule
+            1  & 内容1 & 备注1 \\
+
+            2  & 内容2 & 备注2 \\
+
+            3  & 内容3 & 备注3 \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{gdufelogo-Colorful.jpg}
+        \captionof{figure}{这是一个在 tcolorbox 中的图片标题}\phantomsection\label{fig:demo1}
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{colorful.eps}
+        \captionof{figure}{这是一个在 tcolorbox 中的图片标题}\phantomsection\label{fig:demo2}
+    \end{center}
+
+    % \tcbline
+    \section{选题研究可行性分析（包括进度计划、预期成果）}
+    选题研究可行性分析（包括进度计划、预期成果）.
+
+    \vspace*{5cm}
+    \tcbline
+    \section{选题拟采用的研究方法、手段}
+    选题拟采用的研究方法、手段.
+
+    \vspace*{5cm}
+    \tcbline
+    \section{选题研究的重点、难点}
+    选题研究的重点、难点.
+
+    \vspace*{5cm}
+    \tcbline
+    \renewcommand{\refname}{7.主要参考文献(thebibliography)}
+    \begin{thebibliography}{99}
+        \bibitem {huangzh}黄正华. \url{http://aff.whu.edu.cn/huangzh/}.\the\baselineskip
+        \bibitem{r1} 作者. 文章题目 [J].  期刊名, 出版年份，卷号(期数): 起止页码.\the\baselineskip
+        \bibitem{r2} 作者. 书名 [M]. 版次. 出版地：出版单位，出版年份：起止页码.
+        \bibitem{r3} 邓建松等, 《\LaTeXe~科技排版指南》, 科学出版社.
+        \bibitem{r4} 吴凌云, 《CTeX~FAQ (常见问题集)》, \textit{Version~0.4}, June 21, 2004.
+        \bibitem{r5} Herbert Vo\ss, Mathmode, \url{http://www.tex.ac.uk/ctan/info/math/voss/mathmode/Mathmode.pdf}.
+        \bibitem{anon-cn1} 匿名. 关于人工智能发展的若干思考[J]. 计算机科学, 2022, 49(6): 1-10.
+        \bibitem{anon-cn2} 匿名. 区块链技术及其应用前景分析[J]. 信息技术, 2023, 47(2): 45-47.
+        \bibitem{anon-cn3} 匿名. 现代城市交通管理系统研究[M]. 北京: 科学出版社, 2021.
+        \bibitem{anon-cn4} 匿名. 论大数据时代的隐私保护问题[C]// 全国网络安全学术会议论文集. 2020: 123-134.
+        \bibitem{anon-cn5} 匿名. 机器学习在医学影像分析中的应用综述[J]. 医学信息, 2024, 37(5): 88-92.
+        \bibitem{anon-en1} Anonymous. A brief review of deep learning techniques[J]. Journal of Artificial Intelligence, 2023, 15(4): 201-210.
+        \bibitem{anon-en2} Anonymous. Blockchain: Opportunities and Challenges[C]// Proceedings of the International Conference on Computer Science. 2022: 55-60.
+        \bibitem{anon-en3} Anonymous. Smart City: Concepts and Realizations[M]. New York: Tech Press, 2020.
+        \bibitem{anon-en4} Anonymous. Privacy Issues in the Age of Big Data[J]. Information Security, 2021, 12(3): 77-80.
+        \bibitem{anon-en5} Anonymous. Machine Learning Applications in Medical Imaging: A Survey[J]. Medical Informatics, 2024, 18(2): 99-105.
+    \end{thebibliography}
+
+    \printbibliography[heading=bibintoc, title={7.主要参考文献(bib)}]
 
 
-\tcbline
-\section{选题研究可行性分析（包括进度计划、预期成果）}
-\rule{0pt}{3cm}
-选题研究可行性分析（包括进度计划、预期成果）
+    \tcbline
+    \noindent
+    \section*{指导教师意见：}
+    \vspace*{3cm}
 
-\tcbline
-\section{选题拟采用的研究方法、手段}
-\rule{0pt}{3cm}
-选题拟采用的研究方法、手段
-
-\tcbline
-\section{选题研究的重点、难点}
-\rule{0pt}{3cm}
-选题研究的重点、难点
-
-\tcbline
-\section{主要参考文献}
-
-参考文献
-
-\tcbline
-\noindent
-指导教师意见：
-
-\rule{0pt}{3cm}
-% \hspace*{0.6\linewidth}{指导教师签名：}\includegraphics[width=2.7cm]{supervisor_sign.png}\\
-\hspace*{0.75\linewidth}{年  月  日}
+    \hfill{指导教师签名：}\includegraphics[width=2.7cm]{supervisor-sign.png}
+    \hspace*{0.75\linewidth}{2025年9月1日}
 
 \end{tcolorbox}
-
 \end{document}
