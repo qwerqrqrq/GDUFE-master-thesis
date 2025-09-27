@@ -1,0 +1,100 @@
+\documentclass[type=proposal, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2,a4paper,openany]{gdufe_master}
+
+\title{广东财经大学硕士论文题目}
+\etitle{GDUFE professional master thesis title}
+\author{张三}
+\major{数学}
+\researchDirection{应用数学}
+\supervisor{李四\quad 教授}
+\supervisorOuter{王五\quad 教授} % 校外导师，仅专硕需要填写
+\EnterDate{2000年9月5日}
+\studentid{1234567890}
+\EnterDate{2025年9月1日}
+\SubmitDate{2026年6月1日}
+\SignDate{2026年6月2日}
+\DefenseDate{2026年6月3日}
+\CoverPageDate{2026年6月4日}
+\gender{男}
+
+\begin{document}
+
+\makeProposal
+
+\tcbset{proposalBoxStyle/.style={colback=white,
+            colframe=black,
+            sharp corners=all,
+            height=8cm,
+            % boxrule=0.5pt,
+            breakable,
+            before skip balanced=0pt,
+            after skip balanced=0pt,
+            toprule=0.5pt,
+            bottomrule=0.5pt,
+            leftrule=0.5pt,
+            rightrule=0.5pt,
+            segmentation style={solid}
+        }}
+{
+\renewcommand{\arraystretch}{1.4}
+\noindent
+\begin{tabular*}{\linewidth}%
+    {@{\extracolsep{\fill}}|>{\arraybackslash}m{0.1\linewidth}|l|l|l|p{2em}|l|l|@{}}
+        \hline
+        姓名 & \multicolumn{2}{>{\arraybackslash}p{0.15\linewidth}|}{\cname} & 性别& \the\gender    & 入学时间 & \the\EnterDate\\
+        \hline
+        学科 & \multicolumn{4}{>{\arraybackslash}p{0.25\linewidth}|}{\the\major} & 研究方向 & \the\researchDirection\\
+        \hline
+        论文 & 中文 & \multicolumn{5}{>{\arraybackslash}p{0.76\linewidth}|}{\ctitle}\\
+        \cline{2-7}
+        题目 & 英文 & \multicolumn{5}{>{\arraybackslash}p{0.76\linewidth}|}{\the\etitle}\\
+        \hline
+\end{tabular*}
+}
+\vspace*{-7.7pt}
+\begin{tcolorbox}[proposalBoxStyle]
+\section{选题背景、国内外研究现状及述评}
+\rule{0pt}{3cm}
+选题背景选题背景选题背景选题背景选题背景选题背景
+选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景选题背景
+\tcbline
+\section{选题的理论意义、实践价值}
+\rule{0pt}{3cm}
+选题的理论意义、实践价值
+
+\tcbline
+\section{选题研究的基本内容、结构框架、创新之处}
+\rule{0pt}{3cm}
+选题研究的基本内容、结构框架、创新之处
+
+
+\tcbline
+\section{选题研究可行性分析（包括进度计划、预期成果）}
+\rule{0pt}{3cm}
+选题研究可行性分析（包括进度计划、预期成果）
+
+\tcbline
+\section{选题拟采用的研究方法、手段}
+\rule{0pt}{3cm}
+选题拟采用的研究方法、手段
+
+\tcbline
+\section{选题研究的重点、难点}
+\rule{0pt}{3cm}
+选题研究的重点、难点
+
+\tcbline
+\section{主要参考文献}
+
+参考文献
+
+\tcbline
+\noindent
+指导教师意见：
+
+\rule{0pt}{3cm}
+% \hspace*{0.6\linewidth}{指导教师签名：}\includegraphics[width=2.7cm]{supervisor_sign.png}\\
+\hspace*{0.75\linewidth}{年  月  日}
+
+\end{tcolorbox}
+
+\end{document}

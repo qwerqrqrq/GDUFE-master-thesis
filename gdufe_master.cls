@@ -37,10 +37,12 @@
 \ExplSyntaxOff
 \PassOptionsToClass{a4paper,openany}{ctexbook}
 \LoadClass{ctexbook}
+
 %% tag: 宏包
 \RequirePackage{amsmath,amssymb,mathrsfs}
 % \RequirePackage{amsthm}
 \RequirePackage[amsmath,thmmarks]{ntheorem}
+% \RequirePackage{ctex}
 \RequirePackage{lmodern}
 \RequirePackage{fix-cm}
 \RequirePackage{graphicx}                 % 图形
@@ -74,6 +76,11 @@
 % \RequirePackage{perpage}  % 让脚注编号每页重新开始（可选）
 \RequirePackage[perpage,symbol*]{footmisc}
 
+
+% 开题报告使用
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{lipsum}
+\RequirePackage{makecell}
 
 
 %% tag: 页面布局: 页边距、页眉页脚高度
@@ -809,50 +816,38 @@
     \zihao{5} \setlength{\baselineskip}{20pt}\selectfont
     \pagestyle{master-proposal-style}
     \ctexset{
-        chapter={
-          format={\zihao{5}\bfseries\raggedright},
-          pagestyle={master-proposal-style},
-          afterskip={0pt},
-          beforeskip={0pt},
-          number={\arabic{chapter}},
-          name={,},
-          aftername={\quad}
-         },
+        % chapter={
+        %   format={\zihao{5}\bfseries\raggedright},
+        %   pagestyle={master-proposal-style},
+        %   afterskip={0pt},
+        %   beforeskip={-10pt},
+        %   number={\arabic{chapter}},
+        %   name={,},
+        %   aftername={. }
+        %  },
         section={
           format={\zihao{5}\bfseries\raggedright},
           afterskip={0pt},
           beforeskip={0pt},
-          aftername={\quad}
+          aftername={. }
          },
         subsection={
                 format={\zihao{5}\bfseries\raggedright},
                 afterskip={0pt},
                 beforeskip={0pt},
-                aftername={\quad}
+                aftername={. }
             },
         subsubsection={
                 format={\zihao{5}\bfseries\raggedright},
                 afterskip={0pt},
                 beforeskip={0pt},
-                aftername={\quad}
+                aftername={. }
             }
     }
 }
 % 信息部分
 \newtoks{\gender}
 \newtoks{\researchDirection}
-% \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
-% \hline
-% 姓名： &\cname & 性别：&\the\gender & 入学时间： & \the\EnterDate\\
-% \hline
-% % 学科： & \multicolumn{3}{X|}{\the\major}&研究方向：& \the\researchDirection\\
-% % \hline
-% % 论文题目 & 中文：\rule{10cm}{0pt} & & \\
-% % \hline
-% % 题目 & 英文：\rule{10cm}{0pt} & & \\
-% % \hline
-% \end{tabularx}
-
 
 %% tag: thebibliography 格式
 
