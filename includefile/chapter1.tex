@@ -1,12 +1,12 @@
 \chapter{使用、编译、打印}
-\section{学位论文具体使用步骤}
+\section{使用步骤}
 
 要获得完整的毕业论文, 要经过以下步骤操作
 \begin{description}
     \item[封面、扉页、声明]   两种方式二选一：
             \begin{description}
                 \item [pdf插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
-                \item [\LaTeX{}生成] 使用 \verb|\makecover \maketitlepage \makeclaim| 生成, 目前还不完善, 不建议使用.
+                \item [\LaTeX{}生成] 使用 \verb|\makecover \maketitlepage \makeclaim| 生成, 有些不同于 doc 生成的地方, 谨慎使用.
             \end{description}
 
     \item[撰写]
@@ -22,39 +22,48 @@
 \end{description}
 
 \section{编译的方法}\label{sec-compile}
-若另存为新文档, 请确保文档保存类型为 \verb|:UTF-8|. 当然目前很多编辑器默认文字编码为 UTF-8.
+若另存为新文档, 请确保文档保存类型为 \verb|UTF-8|. 当然目前很多编辑器默认文字编码为 UTF-8.
 
-使用 XeLaTeX 编译, 直接生成~pdf 文件.
-pdf 文件也可以反向搜索! 双击~pdf 中要修改的文字, 将直接跳转到源文件中相应位置.
+如果不使用 bib 文件管理参考文献, 需要用 Xelatex 编译两次.
+如果使用 bib 文件管理参考文献，需要经过
+XeLaTeX $\to$ Biber $\to$ XeLaTeX $\to$ XeLaTeX 四次编译,
+或者用 latexmk -xelatex 编译. 这里介绍两种使用比较多的方式, 使用其他编辑器可以参考设置.
 
-\subsection{Texlive}
-\subsubsection{使用 overleaf}
-将文件上传到 Overleaf 后, 在左上角菜单将编译方式设置成 Xelatex, Tex Live 版本为至少为2022, 主文档选择对应文件. 然后就可以在右边编译了. 示例见图\ref{fig:overleafupload}, \ref{fig:overleafsettings}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{overleaf upload.png}
-    \caption{Overleaf 上传示意图}
-    \label{fig:overleafupload}
-\end{figure}
+
+
+\subsection{Overleaf}
+将文件上传到 Overleaf 后, 在左上角菜单将编译方式设置成 Xelatex, Tex Live 版本为至少为2022, 主文档选择对应文件. 然后就可以在右边编译了. 示例见图 \ref{fig:overleafsettings}.
+
 \begin{figure}[!ht]
     \centering
+    \includegraphics[width=0.6\textwidth]{overleaf upload.png}
     \includegraphics[width=0.6\textwidth]{overleaf settings.png}
-    \caption{Overleaf 设置示意图}
+    \caption{Overleaf 上传设置示意图}
     \label{fig:overleafsettings}
 \end{figure}
 \begin{remark}
     由于学位论文一般比较大, 可能会出现超时现象，建议换成本地编译, 或者使用草稿模式.
 \end{remark}
 
-\subsubsection{TexStudio}
-Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地应该也可以编译, 但还没测试.
+\subsection{TexStudio}
+Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地应该也可以编译. 此处使用的 TexStudio 版本为 4.9.0. 在 TexStudio 点击 选项 $\to$ 设置 TexStudio 打开配置菜单. 选择以下二方式之一即可, 方式一较为简便, 但后续要编译英文论文时, 期刊可能要求要pdfLaTeX 编译, 注意修改; 方式二更加灵活, 不会改变原有设置, 但需要手动设置编译命令.
 
-\subsection{Miktex}
+{\bfseries 方式一:}修改默认编译方式
+在构建中修改默认编译器, 默认文献管理工具根据是否使用 bib 文件管理文献选择 biber 或者 bibTex. 编译时在工具栏选择 ``编译'' 即可.
 
-如果不使用bib文件管理参考文献, 需要用 Xelatex 编译两次.
-如果使用 bib 文件管理参考文献，需要经过
-XeLaTeX => Biber => XeLaTeX => XeLaTeX 四次编译.
-或者用 latexmk --xelatex 编译.
+{\bfseries 方式二:}使用自定义编译命令
+在构建中添加自定义编译命令, 点击齿轮按钮添加 XeLaTeX + Biber + XeLaTeX + XeLaTeX 四步编译.  或者使用 latexmk , 注意需要手动设置 latexmk 的路径, 并添加执行参数:
+\begin{lstlisting}
+    -synctex=1 -interaction=nonstopmode -file-line-error -xelatex %
+\end{lstlisting}
+选择工具$\to$用户$\to$相应的命令即可编译.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{TexStudio setting1.png}\\
+    \includegraphics[width=0.8\textwidth]{TexStudio setting2.png}\\
+    \includegraphics[width=0.8\textwidth]{TexStudio setting3.png}\\
+    \caption{TexStudio 设置示意图}
+\end{figure}
 
 \section{打印的问题}
 \begin{enumerate}[label=\roman*)]
@@ -62,8 +71,7 @@ XeLaTeX => Biber => XeLaTeX => XeLaTeX 四次编译.
     \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无''(Adobe Reader XI 是选择``实际大小'').
           有可能页面放缩方式默认为``适合可打印区域'', 会导致打印为原页面大小的 $97\%$.
           文字不要居中打印, 是因为考虑到装订, 左侧的空白留得稍多一点(模板已作预留).
-    \item  \sout{遗留问题: 封面需要打印部重新制作. 校内打印部通常有现成的模板.
-              我们自己做的封面, 打印部不一定好用.} 使用了 doc 文件导出的 pdf 文件, 直接打印即可.
+    \item  使用 latex 命令生成的封面、扉页、声明不一定好用, 可以使用了 doc 文件导出的 pdf 文件, 直接打印即可.
     \item  还不支持书脊, 需要和打印店老板沟通.
 \end{enumerate}
 
