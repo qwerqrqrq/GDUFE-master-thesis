@@ -1,5 +1,15 @@
 # 更新日志
 
+## v0.5.2
+
+### 修复了
+
+* 修复了 LaTeX Font: Font shape `U/rsfs/m/n' in size <10.53937> not available (Font)size <10.95> substituted. 警告
+
+### 修改了
+
+* 修改了宏包说明
+
 ## v0.5.1
 
 ### 添加了
