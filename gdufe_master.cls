@@ -49,49 +49,49 @@
 \ExplSyntaxOff
 
 %% tag: 宏包
-\RequirePackage{amsmath,amssymb,mathrsfs}
-% \RequirePackage{amsthm}
-\RequirePackage[amsmath,thmmarks]{ntheorem}
-% \RequirePackage{ctex}
+%% 排版与页面控制
 \RequirePackage{lmodern}
-\RequirePackage{fix-cm}
-\RequirePackage{graphicx}                 % 图形
-\RequirePackage{float}
-\RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
-\RequirePackage{subcaption}
-\RequirePackage{color,xcolor}             %支持彩色
-% \RequirePackage{enumerate}
-\RequirePackage{enumitem}
-\RequirePackage{etoolbox}
-\RequirePackage{pdfpages}
-\RequirePackage{fixdif}
-\RequirePackage{tikz}
-\RequirePackage{ulem}
-% \RequirePackage{siunitx}
-\RequirePackage{listings}
-\RequirePackage{verbatim}
-\RequirePackage{setspace}
 \RequirePackage[titles]{tocloft}
-% \RequirePackage{zhlineskip}
 \RequirePackage{changepage}
+\RequirePackage{setspace}
+\RequirePackage{pifont}   % 提供 \ding 命令
+\RequirePackage[perpage,symbol*]{footmisc}
+% \RequirePackage{fix-cm}
+%% 编程
+\RequirePackage{etoolbox}
 \RequirePackage{expl3}
+%% 数学相关
+\RequirePackage{amsmath,amssymb}
+% \RequirePackage{amsmath,amssymb,mathscr}
+\RequirePackage[scr=rsfs]{mathalpha}
+\RequirePackage[amsmath,thmmarks]{ntheorem}
+\RequirePackage{fixdif}
+%% 图表
 \RequirePackage{array}
 \RequirePackage{booktabs}
-\RequirePackage{tabularx}
-\RequirePackage{multirow}
 \RequirePackage{longtable}
-\RequirePackage{url}
-% \RequirePackage{titlesec}
-\RequirePackage{pifont}   % 提供 \ding 命令
-% \RequirePackage{perpage}  % 让脚注编号每页重新开始（可选）
-\RequirePackage[perpage,symbol*]{footmisc}
-
-
-% 开题报告使用
-\RequirePackage[most]{tcolorbox}
-\RequirePackage{lipsum}
+\RequirePackage{multirow}
 \RequirePackage{makecell}
-
+\RequirePackage{tabularx}
+\RequirePackage{graphicx} % 图形
+\RequirePackage[labelsep=quad]{caption} %% 序号之后空一格写标题
+\RequirePackage{subcaption}
+\RequirePackage{float}
+%% 列表
+% \RequirePackage{enumerate}
+\RequirePackage{enumitem}
+%% 彩色
+\RequirePackage{color,xcolor} %支持彩色
+%% pdf插入
+\RequirePackage{pdfpages}
+%% 绘图
+\RequirePackage{tikz}
+\RequirePackage[most]{tcolorbox}
+%% 代码
+\RequirePackage{listings}
+\RequirePackage{verbatim}
+%% 其他
+\RequirePackage{lipsum}
 
 %% tag: 页面布局: 页边距、页眉页脚高度
 \ExplSyntaxOn
@@ -115,11 +115,12 @@
 \ExplSyntaxOff
 \RequirePackage{fancyhdr}
 \RequirePackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,bookmarksnumbered=true]{hyperref}
-\hypersetup{pdfencoding=auto}  %%% 邓东升修改
+\hypersetup{pdfencoding=auto}
 \ifprint
     \hypersetup{hidelinks}
 \fi
-
+%% 智能引用要修改的东西有点多，咕咕了
+% \RequirePackage{cleveref}
 
 \AtBeginDocument{%
     \setlength{\baselineskip}{20pt} \selectfont
@@ -136,7 +137,6 @@
 \setCJKmainfont{simsun.ttc}
 \setCJKsansfont{simhei.ttf}
 \setCJKmonofont{simfang.ttf}
-
 \setCJKfamilyfont{zhsong}{simsun.ttc}
 \setCJKfamilyfont{zhhei}{simhei.ttf}
 \setCJKfamilyfont{zhfs}{simfang.ttf}
@@ -692,13 +692,8 @@
             编\quad 号：
         }
         \vspace*{0.4cm}
-        \begin{center} \leavevmode
-            {%
-                \begin{minipage}{0.71\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{gdufelogo.jpg}
-                \end{minipage}
-            }
+        \begin{center}%
+            \includegraphics[width=0.71\textwidth]{gdufelogo.jpg}
             \par\vspace*{2mm} %插入空白
             \rule{0.9\textwidth}{0.5pt}
             \par\vspace*{2mm}
@@ -802,10 +797,8 @@
         \thispagestyle{empty}%
         \begin{center} \leavevmode
             {%
-                \begin{minipage}{0.71\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{gdufelogo.jpg}
-                \end{minipage}
+                \centering
+                \includegraphics[width=0.71\textwidth]{gdufelogo.jpg}
             }
             \par\vspace*{2mm} %插入空白
             \rule{0.9\textwidth}{0.5pt}
@@ -904,6 +897,8 @@
 \graphicspath{{figures/}}        % 图片文件路径
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \allowdisplaybreaks
+
+\raggedbottom
 
 \endlinechar `\^^M
 \endinput
