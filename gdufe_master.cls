@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master}[2025/07/06 Master Thesis template for GDUFE v0.4.4]
+\ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.3]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
@@ -336,15 +336,16 @@
 
 %---------------------------------------------------
 %% tag: 图片、表格
+\DeclareCaptionFont{xbf}{\small\bfseries\boldmath}
 %%% 设置图表与上下文之间的距离
 \setlength{\textfloatsep}{40pt}
 % \setlength{\intextsep}{2\baselineskip}
 %%% ---- 图表标题设置 ----- %%%%
 \captionsetup[figure]{%
     format=plain,
-    font={small},
-    labelfont = {bf},
-    textfont={bf},
+    font=xbf,
+    % labelfont = {\bfseries},
+    % textfont={bf},
     skip = 5pt
 }  %
 \ExplSyntaxOn
@@ -359,15 +360,15 @@
 
 \captionsetup[table]{%
     format=plain,
-    font={small},
-    labelfont = {bf},
-    textfont = {bf},
+    font={xbf},
+    % labelfont = {bf},
+    % textfont = {bf},
     skip=5pt
 }
 \captionsetup[longtable]{%
-    %   font={small},              % 字体大小
-    labelfont={bf},            % 标签“表 x.x”加粗
-    textfont={bf},             % 标题内容斜体
+      font=xbf,              % 字体大小
+    % labelfont={bf},            % 标签“表 x.x”加粗
+    % textfont={bf},             % 标题内容斜体
     justification=centering, % 居中对齐
     skip = 5pt
 }
