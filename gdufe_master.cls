@@ -336,7 +336,7 @@
 
 %---------------------------------------------------
 %% tag: 图片、表格
-\DeclareCaptionFont{xbf}{\small\bfseries\boldmath}
+\DeclareCaptionFont{xbf}{\zihao{5}\bfseries\boldmath}
 %%% 设置图表与上下文之间的距离
 \setlength{\textfloatsep}{40pt}
 % \setlength{\intextsep}{2\baselineskip}
@@ -355,12 +355,12 @@
     }
 }
 \ExplSyntaxOff
-\renewcommand{\figurename}{\bfseries \zihao{5} \songti \setlength{\baselineskip}{20pt} \selectfont 图}
+\renewcommand{\figurename}{图}
 
 
 \captionsetup[table]{%
     format=plain,
-    font={xbf},
+    font=xbf,
     % labelfont = {bf},
     % textfont = {bf},
     skip=5pt
@@ -379,7 +379,7 @@
     }
 }
 \ExplSyntaxOff
-\renewcommand{\tablename}{\bfseries \zihao{5} \songti 表}
+\renewcommand{\tablename}{表}
 
 
 %% 提供图表加粗整行支持 代码来源 https://tex.stackexchange.com/questions/309833/format-whole-row-of-table-as-bold
