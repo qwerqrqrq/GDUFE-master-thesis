@@ -8,30 +8,33 @@
     \caption{模板文件结构及功能说明}
     \begin{tabular}{lll}
         \toprule
-        文件夹/文件名                             & 类型     & 功能说明                                  \\
+        文件夹/文件名                               & 类型     & 功能说明                                  \\
         \midrule
-        gdufe\_master\_thesis\_template.tex & 主文档    & 撰写正文、组织结构                             \\
-        gdufe\_master\_thesis.cls           & 类文件    & 定义排版格式和命令                             \\
-        reference.bib                       & bib文件  & 参考文献数据库                               \\
-        README.md                           & 文本     & 项目说明与使用方法                             \\
-        includefile/                        & 文件夹    & 存放各章节、摘要、致谢等                          \\
-        \quad abstract.tex                  & tex文件  & 中英文摘要                                 \\
-        \quad acknowledgment.tex            & tex文件  & 致谢                                    \\
-        \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件                      \\
-        \quad chapter*.tex                  & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
-        \quad 论文封面、扉页及声明格式.doc              & Word文档 & 学校的封面、扉页及声明页文件                        \\
-        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
-        figures/                            & 文件夹    & 存放图片文件                                \\
-        \quad gdufelogo.jpg                 & 图片     & 校徽图片                                  \\
-        fonts/                              & 文件夹    & 存放字体文件                                \\
-        \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体                                  \\
-        \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
-        \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
-        \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
-        \quad simfang.ttf                   & 字体     & 思源仿宋字体                                \\
-        \quad times.ttf                     & 字体     & Times New Roman 罗马正体                  \\
-        \quad timesbd.ttf                   & 字体     & Times New Roman 粗体                    \\
-        \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
+        gdufe\_master\_thesis\_template().tex & 主文档    & 撰写正文、组织结构                             \\
+        gdufe\_master\_thesis.cls             & 类文件    & 定义排版格式和命令                             \\
+        reference.bib                         & bib文件  & 参考文献数据库                               \\
+        README.md                             & 文本     & 项目说明与使用方法                             \\
+        includefile/                          & 文件夹    & 存放各章节、摘要、致谢等                          \\
+        \quad abstract.tex                    & tex文件  & 中英文摘要                                 \\
+        \quad acknowledgment.tex              & tex文件  & 致谢                                    \\
+        \quad appendix.tex                    & tex文件  & 附录内容, 如有附录则包含此文件                      \\
+        \quad chapter*.tex                    & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
+        \quad 论文封面、扉页及声明格式.doc                & Word文档 & 学校的封面、扉页及声明页文件                        \\
+        \quad 论文封面、扉页及声明格式.pdf                & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
+        figures/                              & 文件夹    & 存放图片文件                                \\
+        \quad author-sign.jpg                 & 图片     & 作者签名                                  \\
+        \quad supervisor-sign.jpg             & 图片     & 导师签名                                  \\
+        \quad gdufelogo.jpg                   & 图片     & 校徽图片                                  \\
+        \quad 其余图片                            &        & 示例或说明用图片                              \\
+        fonts/                                & 文件夹    & 存放字体文件                                \\
+        \quad 仿宋\_gb2312.ttf                  & 字体     & 仿宋字体                                  \\
+        \quad simsun.ttc                      & 字体     & 思源宋体字体                                \\
+        \quad simhei.ttf                      & 字体     & 思源黑体字体                                \\
+        \quad simkai.ttf                      & 字体     & 思源楷体字体                                \\
+        \quad simfang.ttf                     & 字体     & 思源仿宋字体                                \\
+        \quad times.ttf                       & 字体     & Times New Roman 罗马正体                  \\
+        \quad timesbd.ttf                     & 字体     & Times New Roman 粗体                    \\
+        \quad timesi.ttf                      & 字体     & Times New Roman 斜体                    \\
         \bottomrule
     \end{tabular}
     \label{table:filestructure}
@@ -84,66 +87,66 @@
 \begin{description}
     %=============================
     \item[排版与页面控制]
-    \begin{description}
-        \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
-        \item[tocloft] 控制目录、图表目录的缩进与间距。
-        \item[changepage] 用于局部调整页面边距。
-        \item[setspace] 设置行距 (如 1.5 倍行距) 。
-        \item[pifont] 提供脚注修改支持。
-        \item[footmisc] 脚注修改。
-        \item[geometry] 根据文档类型 (学位论文/开题报告) 自动设定页边距。
-        \item[fancyhdr] 控制页眉页脚格式、页码位置等。
-    \end{description}
-    %=============================
+          \begin{description}
+              \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
+              \item[tocloft] 控制目录、图表目录的缩进与间距。
+              \item[changepage] 用于局部调整页面边距。
+              \item[setspace] 设置行距 (如 1.5 倍行距) 。
+              \item[pifont] 提供脚注修改支持。
+              \item[footmisc] 脚注修改。
+              \item[geometry] 根据文档类型 (学位论文/开题报告) 自动设定页边距。
+              \item[fancyhdr] 控制页眉页脚格式、页码位置等。
+          \end{description}
+          %=============================
     \item[数学]
-    \begin{description}
-        \item[amsmath, amssymb] AMS 数学公式与符号支持。
-        \item[mathalpha] 提供更好的数学花体字母 (选项 \texttt{scr=rsfs}) 。
-        % \item[ntheorem] 控制定理环境格式与结束符号。
-        \item[amsthm, thmtools] 控制定理环境格式与结束符号。
-        \item[fixdif] 改善微分符号的排版。
-    \end{description}
-    %=============================
+          \begin{description}
+              \item[amsmath, amssymb] AMS 数学公式与符号支持。
+              \item[mathalpha] 提供更好的数学花体字母 (选项 \texttt{scr=rsfs}) 。
+                    % \item[ntheorem] 控制定理环境格式与结束符号。
+              \item[amsthm, thmtools] 控制定理环境格式与结束符号。
+              \item[fixdif] 改善微分符号的排版。
+          \end{description}
+          %=============================
     \item[图表与浮动体]
-    \begin{description}
-        \item[array] 扩展表格列格式与对齐。
-        \item[booktabs] 提供 \verb|\toprule|、\verb|\midrule| 等三线表命令。
-        \item[longtable] 支持跨页长表格。
-        \item[multirow] 实现单元格跨多行。
-        \item[makecell] 单元格内换行与格式控制。
-        \item[tabularx] 自动宽度表格 (X 列类型) 。
-        \item[graphicx] 插入和缩放图片。
-        \item[caption] 控制标题格式；本模板使用 \texttt{labelsep=quad}。
-        \item[subcaption] 子图环境，与 caption 兼容。
-        \item[float] 提供强制浮动体定位参数 H。
-    \end{description}
-    %=============================
+          \begin{description}
+              \item[array] 扩展表格列格式与对齐。
+              \item[booktabs] 提供 \verb|\toprule|、\verb|\midrule| 等三线表命令。
+              \item[longtable] 支持跨页长表格。
+              \item[multirow] 实现单元格跨多行。
+              \item[makecell] 单元格内换行与格式控制。
+              \item[tabularx] 自动宽度表格 (X 列类型) 。
+              \item[graphicx] 插入和缩放图片。
+              \item[caption] 控制标题格式；本模板使用 \texttt{labelsep=quad}。
+              \item[subcaption] 子图环境，与 caption 兼容。
+              \item[float] 提供强制浮动体定位参数 H。
+          \end{description}
+          %=============================
     \item[列表环境]
-    \begin{description}
-        \item[enumitem] 允许自定义 itemize、enumerate、description 的缩进、标签等格式。
-    \end{description}
-    %=============================
+          \begin{description}
+              \item[enumitem] 允许自定义 itemize、enumerate、description 的缩进、标签等格式。
+          \end{description}
+          %=============================
     \item[代码相关]
-    \begin{description}
-        \item[listings] 插入源代码，提供基本语法高亮。
-        \item[verbatim] 原样显示文本或代码。
-    \end{description}
-    %=============================
+          \begin{description}
+              \item[listings] 插入源代码，提供基本语法高亮。
+              \item[verbatim] 原样显示文本或代码。
+          \end{description}
+          %=============================
     \item[绘图]
-    \begin{description}
-        \item[tikz] 强大的矢量绘图工具。
-        \item[tcolorbox] 彩色盒子环境，用于开题报告。
-    \end{description}
-    %=============================
+          \begin{description}
+              \item[tikz] 强大的矢量绘图工具。
+              \item[tcolorbox] 彩色盒子环境，用于开题报告。
+          \end{description}
+          %=============================
     \item[其他]
-    \begin{description}
-        \item[color, xcolor] 实现彩色功能。
-        \item[pdfpages] 插入外部 PDF 页面 (封面、附录等) 。
-        \item[lipsum] 生成排版测试用的占位文本。
-        \item[etoolbox] 追加补丁、条件语句等增强型编程工具。
-        \item[expl3] LaTeX3 内核语法，用于模板内部逻辑控制。
-        \item[hyperref] 支持目录链接、引用链接、URL 链接与 PDF 信息设置。
-    \end{description}
+          \begin{description}
+              \item[color, xcolor] 实现彩色功能。
+              \item[pdfpages] 插入外部 PDF 页面 (封面、附录等) 。
+              \item[lipsum] 生成排版测试用的占位文本。
+              \item[etoolbox] 追加补丁、条件语句等增强型编程工具。
+              \item[expl3] LaTeX3 内核语法，用于模板内部逻辑控制。
+              \item[hyperref] 支持目录链接、引用链接、URL 链接与 PDF 信息设置。
+          \end{description}
 \end{description}
 另外要说明的是, itemize, enumerate, description 这三种 list 环境, 已经调节了其间距为20pt.
 
@@ -164,7 +167,7 @@
         \toprule
         参数                         & 作用      & 说明                               \\
         \midrule
-        type = thesis              & 学位论文格式  & 设置成学位论文格式 (默认)                     \\
+        type = thesis              & 学位论文格式  & 设置成学位论文格式 (默认)                   \\
         type = proposal            & 开题报告格式  & 设置成开题报告格式                        \\
         class=academic             & 学术学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
         calss=professional         & 专业学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
