@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.3]
+\ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.4]
 
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
@@ -16,7 +16,6 @@
 \DeclareOption{type=proposal}{\renewcommand{\type}{proposal}}
 \ExecuteOptions{type=thesis}
 
-
 \newif\ifprint
 \printfalse
 \DeclareOption{forprint}{\printtrue}
@@ -29,9 +28,9 @@
 \ExplSyntaxOn
 \str_case:Nn \type {
     {thesis}{
-        \PassOptionsToClass{zihao=-4,a4paper,openany}{ctexbook}
-        \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
-    }
+            \PassOptionsToClass{zihao=-4,a4paper,openany}{ctexbook}
+            \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+        }
         {proposal}{
             \PassOptionsToClass{zihao=5,a4paper,openany}{ctexart}
             \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
@@ -40,8 +39,8 @@
 \ProcessOptions\relax
 \str_case:Nn \type {
     {thesis}{
-        \LoadClass{ctexbook}
-    }
+            \LoadClass{ctexbook}
+        }
         {proposal}{
             \LoadClass{ctexart}
         }
@@ -64,6 +63,8 @@
 \RequirePackage{amsmath,amssymb}
 % \RequirePackage{amsmath,amssymb,mathscr}
 \RequirePackage[scr=rsfs]{mathalpha}
+% \RequirePackage{amsthm}
+% \RequirePackage[thmtools-compat]{keytheorems}
 \RequirePackage[amsmath,thmmarks]{ntheorem}
 \RequirePackage{fixdif}
 %% 图表
@@ -182,26 +183,174 @@
 \ExplSyntaxOn
 \str_case:Nn \type {
     {thesis}{
-        \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
-    }
+            \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
+        }
 }
+
+
+%------------------------------------------------
+% 1. 用户变量
+%------------------------------------------------
+\tl_new:N \g_thm_counter_layer_tl
+\tl_new:N \g_thm_counter_mode_tl
+
+% 默认值
+\tl_gset:Nn \g_thm_counter_layer_tl { article }
+\tl_gset:Nn \g_thm_counter_mode_tl  { shared }
+
+%------------------------------------------------
+% 2. l3keys 接口
+%------------------------------------------------
+\keys_define:nn { theorem }
+  {
+    counter-layer .choice:,
+    counter-layer / article        .code:n =
+      { \tl_gset:Nn \g_thm_counter_layer_tl { article } },
+    counter-layer / chapter     .code:n =
+      { \tl_gset:Nn \g_thm_counter_layer_tl { chapter } },
+    counter-layer / section     .code:n =
+      { \tl_gset:Nn \g_thm_counter_layer_tl { section } },
+    counter-layer / subsection  .code:n =
+      { \tl_gset:Nn \g_thm_counter_layer_tl { subsection } },
+
+    counter-mode .choice:,
+    counter-mode / shared     .code:n =
+      { \tl_gset:Nn \g_thm_counter_mode_tl { shared } },
+    counter-mode / separated  .code:n =
+      { \tl_gset:Nn \g_thm_counter_mode_tl { separated } },
+  }
+
+% 用户命令
+\NewDocumentCommand \SetupTheorem { m }
+  {
+    \keys_set:nn { theorem } { #1 }
+  }
+%------------------------------------------------
+% 3. 标题文本统一管理
+%------------------------------------------------
+\cs_new:Npn \thm_title:n #1
+  {
+    \str_case:nn { #1 }
+      {
+        { theorem }   { \hspace{2em}定理 }
+        { definition }{ \hspace{2em}定义 }
+        { lemma }     { \hspace{2em}引理 }
+        { corollary } { \hspace{2em}推论 }
+        { property }  { \hspace{2em}性质 }
+        { axiom }     { \hspace{2em}公理 }
+        { example }   { \hspace{2em}例 }
+        { remark }    { \hspace{2em}注 }
+      }
+  }
+
+%------------------------------------------------
+% 4. 生成 newtheorem 的工具函数
+%------------------------------------------------
+% #1 = env name
+% #2 = shared-counter (为空表示独立)
+\cs_new_protected:Npn \thm_new:nn #1 #2
+  {
+    % #2 为空 → 独立计数器
+    \tl_if_blank:nTF { #2 }
+      {
+        % 是否挂层级
+        \tl_if_eq:NnTF \g_thm_counter_layer_tl { article }
+          {
+            \newtheorem{#1}{\thm_title:n{#1}}
+          }
+          {
+            \newtheorem{#1}{\thm_title:n{#1}}[\g_thm_counter_layer_tl]
+          }
+      }
+      {
+        % 共享计数器：绝不能再指定层级
+        \newtheorem{#1}[#2]{\thm_title:n{#1}}
+      }
+  }
+
+%------------------------------------------------
+% 5. 主入口：一次性生成所有环境
+%------------------------------------------------
+\cs_new_protected:Npn \GenerateTheoremEnvs
+  {
+    \theoremstyle{plain}
+    \theoremheaderfont{\heiti}
+    \theorembodyfont{\songti}
+    \theoremindent 0em
+    \theorempreskip{0pt}
+    \theorempostskip{0pt}
+    \theoremnumbering{arabic}
+    \tl_if_eq:NnTF \g_thm_counter_mode_tl { shared }
+      {
+        % 共享计数器
+        \thm_new:nn { theorem } { }
+        \thm_new:nn { definition } { theorem }
+        \thm_new:nn { lemma } { theorem }
+        \thm_new:nn { corollary } { theorem }
+        \thm_new:nn { property } { theorem }
+        \thm_new:nn { axiom } { theorem }
+        \thm_new:nn { example } { theorem }
+        \thm_new:nn { remark } { theorem }
+      }
+      {
+        % 独立计数器
+        \thm_new:nn { theorem } { }
+        \thm_new:nn { definition } { }
+        \thm_new:nn { lemma } { }
+        \thm_new:nn { corollary } { }
+        \thm_new:nn { property } { }
+        \thm_new:nn { axiom } { }
+        \thm_new:nn { example } { }
+        \thm_new:nn { remark } { }
+      }
+  }
 \ExplSyntaxOff
 
-\theoremstyle{plain}
-\theoremheaderfont{\heiti}
-\theorembodyfont{\songti}
-\theoremindent 0em
-\theorempreskip{0pt}
-\theorempostskip{0pt}
-\theoremnumbering{arabic}
-\newtheorem{theorem}{\hspace{2em}定理}[section]
-\newtheorem{definition}{\hspace{2em}定义}[section]
-\newtheorem{lemma}{\hspace{2em}引理}[section]
-\newtheorem{corollary}{\hspace{2em}推论}[section]
-\newtheorem{property}{\hspace{2em}性质}[section]
-\newtheorem{axiom}{\hspace{2em}公理}[section]
-\newtheorem{example}{\hspace{2em}例}[section]
-\newtheorem{remark}{\hspace{2em}注}[section]
+% \theoremstyle{plain}
+% \theoremheaderfont{\heiti}
+% \theorembodyfont{\songti}
+% \theoremindent 0em
+% \theorempreskip{0pt}
+% \theorempostskip{0pt}
+% \theoremnumbering{arabic}
+
+% \newtheorem{theorem}{\hspace{2em}定理}
+% \newtheorem{definition}{\hspace{2em}定义}
+% \newtheorem{lemma}{\hspace{2em}引理}
+% \newtheorem{corollary}{\hspace{2em}推论}
+% \newtheorem{property}{\hspace{2em}性质}
+% \newtheorem{axiom}{\hspace{2em}公理}
+% \newtheorem{example}{\hspace{2em}例}
+% \newtheorem{remark}{\hspace{2em}注}
+
+% \newtheorem{theorem}{\hspace{2em}定理}[chapter]
+% \newtheorem{definition}{\hspace{2em}定义}[chapter]
+% \newtheorem{lemma}{\hspace{2em}引理}[chapter]
+% \newtheorem{corollary}{\hspace{2em}推论}[chapter]
+% \newtheorem{property}{\hspace{2em}性质}[chapter]
+% \newtheorem{axiom}{\hspace{2em}公理}[chapter]
+% \newtheorem{example}{\hspace{2em}例}[chapter]
+% \newtheorem{remark}{\hspace{2em}注}[chapter]
+
+% \newtheorem{theorem}{\hspace{2em}定理}
+% \newtheorem{definition}[theorem]{\hspace{2em}定义}
+% \newtheorem{lemma}[theorem]{\hspace{2em}引理}
+% \newtheorem{corollary}[theorem]{\hspace{2em}推论}
+% \newtheorem{property}[theorem]{\hspace{2em}性质}
+% \newtheorem{axiom}[theorem]{\hspace{2em}公理}
+% \newtheorem{example}[theorem]{\hspace{2em}例}
+% \newtheorem{remark}[theorem]{\hspace{2em}注}
+
+% \newtheorem{theorem}{\hspace{2em}定理}[chapter]
+% \newtheorem{definition}[theorem]{\hspace{2em}定义}
+% \newtheorem{lemma}[theorem]{\hspace{2em}引理}
+% \newtheorem{corollary}[theorem]{\hspace{2em}推论}
+% \newtheorem{property}[theorem]{\hspace{2em}性质}
+% \newtheorem{axiom}[theorem]{\hspace{2em}公理}
+% \newtheorem{example}[theorem]{\hspace{2em}例}
+% \newtheorem{remark}[theorem]{\hspace{2em}注}
+
+
 
 
 \theoremstyle{nonumberplain}
@@ -210,7 +359,7 @@
 \theoremindent 0em
 \theoremseparator{:}
 \theoremsymbol{$\square$}
-\newtheorem{proof}{\hspace{2em}证明}[section]
+\newtheorem{proof}{\hspace{2em}证明}
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments
@@ -351,8 +500,8 @@
 \ExplSyntaxOn
 \str_case:Nn \type {
     {thesis}{
-        \renewcommand{\thefigure}{\thechapter-\arabic{figure}} % 图编号格式
-    }
+            \renewcommand{\thefigure}{\thechapter-\arabic{figure}} % 图编号格式
+        }
 }
 \ExplSyntaxOff
 \renewcommand{\figurename}{图}
@@ -366,7 +515,7 @@
     skip=5pt
 }
 \captionsetup[longtable]{%
-      font=xbf,              % 字体大小
+    font=xbf,              % 字体大小
     % labelfont={bf},            % 标签“表 x.x”加粗
     % textfont={bf},             % 标题内容斜体
     justification=centering, % 居中对齐
@@ -375,8 +524,8 @@
 \ExplSyntaxOn
 \str_case:Nn \type {
     {thesis}{
-        \renewcommand{\thetable}{\thechapter-\arabic{table}} % 表编号格式
-    }
+            \renewcommand{\thetable}{\thechapter-\arabic{table}} % 表编号格式
+        }
 }
 \ExplSyntaxOff
 \renewcommand{\tablename}{表}
@@ -405,13 +554,13 @@
 \ExplSyntaxOn
 \str_case:Nn \type {
     {thesis}{
-        \renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
-        \renewcommand{\cftchappagefont}{\songti\zihao{-4}}    % 章页码
-        \setlength{\cftchapindent}{0pt} % chapter 不缩进
-        \setlength{\cftbeforechapskip}{0pt}
-        % 点线设置
-        \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-    }
+            \renewcommand{\cftchapfont}{\songti\zihao{-4}}       % 章标题
+            \renewcommand{\cftchappagefont}{\songti\zihao{-4}}    % 章页码
+            \setlength{\cftchapindent}{0pt} % chapter 不缩进
+            \setlength{\cftbeforechapskip}{0pt}
+            % 点线设置
+            \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+        }
 }
 \ExplSyntaxOff
 
@@ -471,54 +620,54 @@
     \pagestyle{master-thesis-mainmatter}
     \ctexset{
         chapter={
-            format = {\zihao{3}\heiti\raggedright},
-            % titleformat={\zihao{3}\heiti\raggedright},
-            % nameformat={\zihao{3}\heiti\raggedright},
-            pagestyle={master-thesis-mainmatter},
-            fixskip = true,
-            afterskip={20pt},
-            beforeskip={0pt},
-            number={\arabic{chapter}},
-            name={,},
-            aftername={\quad},
-            % aftername={},
-            % indent = 2\ccwd,
+          format = {\zihao{3}\heiti\raggedright},
+          % titleformat={\zihao{3}\heiti\raggedright},
+          % nameformat={\zihao{3}\heiti\raggedright},
+          pagestyle={master-thesis-mainmatter},
+          fixskip = true,
+          afterskip={20pt},
+          beforeskip={0pt},
+          number={\arabic{chapter}},
+          name={,},
+          aftername={\quad},
+          % aftername={},
+          % indent = 2\ccwd,
          },
         section={
-            format={\zihao{-3}\heiti\raggedright},
-            % nameformat={\zihao{-3}\heiti\raggedright},
-            % titleformat={\zihao{-3}\heiti\raggedright},
-            afterskip={6pt},
-            beforeskip={6pt},
-            aftername={\quad},
-            % aftername={},
-            name={,},
-            % fixskip = true,
-            % indent = 2\ccwd,
+          format={\zihao{-3}\heiti\raggedright},
+          % nameformat={\zihao{-3}\heiti\raggedright},
+          % titleformat={\zihao{-3}\heiti\raggedright},
+          afterskip={6pt},
+          beforeskip={6pt},
+          aftername={\quad},
+          % aftername={},
+          name={,},
+          % fixskip = true,
+          % indent = 2\ccwd,
          },
         subsection={
-            format={\zihao{4}\heiti\raggedright},
-            % nameformat={\zihao{4}\heiti\raggedright},
-            % titleformat={\zihao{4}\heiti\raggedright},
-            afterskip={3pt},
-            beforeskip={3pt},
-            aftername={\quad},
-            % aftername={},
-            name={,},
-            % fixskip = true,
-            % indent = 2\ccwd,
+                format={\zihao{4}\heiti\raggedright},
+                % nameformat={\zihao{4}\heiti\raggedright},
+                % titleformat={\zihao{4}\heiti\raggedright},
+                afterskip={3pt},
+                beforeskip={3pt},
+                aftername={\quad},
+                % aftername={},
+                name={,},
+                % fixskip = true,
+                % indent = 2\ccwd,
             },
         subsubsection={
-            format={\zihao{-4}\heiti\raggedright},
-            % titleformat={\zihao{-4}\heiti\raggedright},
-            % nameformat={\zihao{-4}\heiti\raggedright},
-            afterskip={0pt},
-            beforeskip={0pt},
-            aftername={\quad},
-            % aftername={},
-            name={,},
-            % fixskip = true,
-            % indent = 2\ccwd,
+                format={\zihao{-4}\heiti\raggedright},
+                % titleformat={\zihao{-4}\heiti\raggedright},
+                % nameformat={\zihao{-4}\heiti\raggedright},
+                afterskip={0pt},
+                beforeskip={0pt},
+                aftername={\quad},
+                % aftername={},
+                name={,},
+                % fixskip = true,
+                % indent = 2\ccwd,
             }
     }
     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
@@ -666,11 +815,11 @@
     \str_case:Nn \masterClass {
         {学术}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
-                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}指导教师} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}专业名称}  & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人} & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}指导教师}  & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学号}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}  & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\%\hline
                 \end{tabular}}
             {专业}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
@@ -755,10 +904,10 @@
     \thispagestyle{empty}
     \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
     \begin{spacing}{2}
-    \begin{center}
-        {\heiti \origzihao{3} \bfseries 广东财经大学学位论文原创性声明}
-    \end{center}
-    % \vspace{0.72cm}
+        \begin{center}
+            {\heiti \origzihao{3} \bfseries 广东财经大学学位论文原创性声明}
+        \end{center}
+        % \vspace{0.72cm}
 
         \fangsong \origzihao{4}
         本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。
@@ -847,7 +996,7 @@
         \noindent 三、一表一式两份，可复印。原件交研究生处存档，复印件由培养单位留存。
         }
     \end{spacing}
-    }
+}
 
 \newcommand{\ProposalMatter}{% 格式设置
     \clearpage

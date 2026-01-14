@@ -1,4 +1,4 @@
-\documentclass[class = professional,type=proposal,oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2,12pt]{gdufe_master}
+\documentclass[class = academic, type=thesis, oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2,12pt]{gdufe_master}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
 
@@ -9,6 +9,15 @@
 \usepackage{makecell}
 % \setstretch{1}            % 防止 double spacing 影响
 % \setlength{\baselineskip}{20pt}
+
+\SetupTheorem{
+  counter-layer = chapter,
+  counter-mode  = shared
+}
+\GenerateTheoremEnvs
+
+\newtheorem{test}[theorem]{\hspace{2em}测试}
+
 
 \title{广东财经大学专业学位硕士论文论文题目}
 \etitle{GDUFE professional master thesis title}
@@ -34,19 +43,59 @@
 % \maketitlepage
 % \makeclaim
 
-\url{http://aff.whu.edu.cn/huangzh/}
-\begin{equation}
-    a =1
-    \label{eq1}
-\end{equation}
-\begin{equation}
-    a =2
-    \label{eq2}
-\end{equation}
-\begin{equation}
-    a =2
-    \label{eq3}
-\end{equation}
+\mainmatter
+\chapter{chapter 1}
+
+\begin{test}
+asdfasdf
+\end{test}
+\begin{definition}[测度]
+    (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
+    asdfs
+\end{definition}
+\begin{theorem}
+    asdf
+\end{theorem}
+\chapter{chapter 2}
+\begin{definition}[测度]
+    (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
+\end{definition}
+\begin{theorem}
+    asdf
+\end{theorem}
+
+\begin{theorem}
+    asdf
+\end{theorem}
+\begin{proof}
+    这是一段文字 $E = m c^2$
+\end{proof}
+\chapter{chapter 3}
+\begin{theorem}
+    asdf
+\end{theorem}
+\begin{proof}
+    这是一段文字 $E = m c^2$
+\end{proof}
+\begin{proof}
+    这是一段文字 $E = m c^2$
+\end{proof}
+\begin{proof}
+    这是一段文字 $E = m c^2$
+\end{proof}
+% \url{http://aff.whu.edu.cn/huangzh/}
+% \begin{equation}
+%     a =1
+%     \label{eq1}
+% \end{equation}
+% \begin{equation}
+%     a =2
+%     \label{eq2}
+% \end{equation}
+% \begin{equation}
+%     a =2
+%     \label{eq3}
+% \end{equation}
 % \cref{eq1,eq2,eq3}
 % \setlength{\baselineskip}{20pt}\selectfont
 % \frontmatter

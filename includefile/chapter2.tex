@@ -39,7 +39,7 @@
 
 无需也不要改变、移动上述文档的位置.
 
-% 利用~WinEdt~的~Project tree（如图~\ref{fig:1} ）, 可以方便地管理这些文件.
+% 利用~WinEdt~的~Project tree (如图~\ref{fig:1} ) , 可以方便地管理这些文件.
 % \begin{figure}[h]
 %   \centering
 %   \includegraphics[width=\textwidth]{winedt_file_tree.png}
@@ -88,17 +88,17 @@
         \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
         \item[tocloft] 控制目录、图表目录的缩进与间距。
         \item[changepage] 用于局部调整页面边距。
-        \item[setspace] 设置行距（如 1.5 倍行距）。
+        \item[setspace] 设置行距 (如 1.5 倍行距) 。
         \item[pifont] 提供脚注修改支持。
         \item[footmisc] 脚注修改。
-        \item[geometry] 根据文档类型（学位论文/开题报告）自动设定页边距。
+        \item[geometry] 根据文档类型 (学位论文/开题报告) 自动设定页边距。
         \item[fancyhdr] 控制页眉页脚格式、页码位置等。
     \end{description}
     %=============================
     \item[数学]
     \begin{description}
         \item[amsmath, amssymb] AMS 数学公式与符号支持。
-        \item[mathalpha] 提供更好的数学花体字母（选项 \texttt{scr=rsfs}）。
+        \item[mathalpha] 提供更好的数学花体字母 (选项 \texttt{scr=rsfs}) 。
         \item[ntheorem] 控制定理环境格式与结束符号。
         \item[fixdif] 改善微分符号的排版。
     \end{description}
@@ -110,7 +110,7 @@
         \item[longtable] 支持跨页长表格。
         \item[multirow] 实现单元格跨多行。
         \item[makecell] 单元格内换行与格式控制。
-        \item[tabularx] 自动宽度表格（X 列类型）。
+        \item[tabularx] 自动宽度表格 (X 列类型) 。
         \item[graphicx] 插入和缩放图片。
         \item[caption] 控制标题格式；本模板使用 \texttt{labelsep=quad}。
         \item[subcaption] 子图环境，与 caption 兼容。
@@ -137,7 +137,7 @@
     \item[其他]
     \begin{description}
         \item[color, xcolor] 实现彩色功能。
-        \item[pdfpages] 插入外部 PDF 页面（封面、附录等）。
+        \item[pdfpages] 插入外部 PDF 页面 (封面、附录等) 。
         \item[lipsum] 生成排版测试用的占位文本。
         \item[etoolbox] 追加补丁、条件语句等增强型编程工具。
         \item[expl3] LaTeX3 内核语法，用于模板内部逻辑控制。
@@ -163,7 +163,7 @@
         \toprule
         参数                         & 作用      & 说明                               \\
         \midrule
-        type = thesis              & 学位论文格式  & 设置成学位论文格式（默认）                    \\
+        type = thesis              & 学位论文格式  & 设置成学位论文格式 (默认)                     \\
         type = proposal            & 开题报告格式  & 设置成开题报告格式                        \\
         class=academic             & 学术学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
         calss=professional         & 专业学位    & 仅在 type = thesis 并且用命令生成封面、扉页时有效 \\
@@ -226,7 +226,7 @@
 但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
 原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
 \section{交叉引用的问题}
-首先要说明的是, 为了得到正确的引用结果, 要将tex主文档编译多次. 交叉引用是\LaTeX 的强项, 它的原理是为被引用对象（图、表、公式、定理等）设置一个标签, 例如: ~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
+首先要说明的是, 为了得到正确的引用结果, 要将tex主文档编译多次. 交叉引用是\LaTeX 的强项, 它的原理是为被引用对象 (图、表、公式、定理等) 设置一个标签, 例如: ~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
 \subsection{参考文献的引用}
 Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex 和 bib 文件管理参考文献更加方便. 其一可以自动将参考文献表格式按gb7714-2015标准排版. 其二不需要考虑增删移动参考文献位置后重新调整参考文献表. 对此方案不熟悉可以调整回用 {thebibliography} 环境或者自己喜欢的方案.
 
@@ -270,9 +270,26 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 \end{lstlisting}
 由于冲突的问题, 请自行查看.
 
-\subsection{定理环境和公式的引用}
+\subsection{定理环境设置引用}
 
-本模板定义了新定理环境样式, 包括: 定理（theorem）、定义（definition）、引理（lemma）、推论（corollary）、性质（property）、公理（axiom）、例（example）、注（remark）. 使用时用如下的格式:
+本模板定义了新定理环境样式, 包括: 定理 (theorem) 、定义 (definition) 、引理 (lemma) 、推论 (corollary) 、性质 (property) 、公理 (axiom) 、例 (example) 、注 (remark) .
+
+在 tex 文件能设置定理编号格式
+\begin{lstlisting}
+%% 定理格式相关设置
+\SetupTheorem{
+  counter-layer = chapter,
+  counter-mode  = shared
+}
+\GenerateTheoremEnvs
+\end{lstlisting}
+counter-layer 可设置为 article/chapter/section/subsection. 设置为 article 格式为定理1, 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
+公式定理不多用 article/chapter 就可以了, 另有要求按需修改.
+
+counter-mode 可设置为 shared/seperated. shared 定理定义等共用编号, seperated 分开编号.
+
+
+使用时用如下的格式:
 \begin{lstlisting}
 \begin{<环境名>}
 
@@ -345,7 +362,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
     \item 图按章顺序编号, 如图2-3为第二章第三图;
 
-    \item 引用图应在图题右上角标出文献来源. 自制图应在图题下标出资料来源（用5号宋体, 置图左下方）;
+    \item 引用图应在图题右上角标出文献来源. 自制图应在图题下标出资料来源 (用5号宋体, 置图左下方) ;
 
     \item 图与上下正文之间各空一行.
 
@@ -400,8 +417,8 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \item 表格按章顺序编号, 如表5-4为第五章第四表;
     \item 表内必须按规定的符号标注单位, 全表如用同一单位, 将单位符号移至表头右上角.
     \item 表的编排建议采用国际通行的三线表. 三线表即顶线、底线和栏目线, 其中顶线和底线为粗线, 栏目线为细线. 三线表通常只有3条线, 必要时可加辅助线.
-    \item 表格中要注明``项目''（例如: 数据的名称、时间）并加粗, 表格内容、数据用五号宋体, 居中.
-    \item 如某个表需要转页接排, 在随后的各页上应重复表的编号, 编号后跟表题（可省略）和``（续）'', 置于表上方.
+    \item 表格中要注明``项目'' (例如: 数据的名称、时间) 并加粗, 表格内容、数据用五号宋体, 居中.
+    \item 如某个表需要转页接排, 在随后的各页上应重复表的编号, 编号后跟表题 (可省略) 和`` (续) '', 置于表上方.
     \item 表格左下方列出资料来源.
     \item 表与上下正文之间各空一行.
 \end{enumerate}
@@ -526,7 +543,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \bottomrule
     \multicolumn{2}{l}{\zihao{5} 资料来源： xxx}
     \endlastfoot
-    % 表格数据（示例多行）
+    % 表格数据 (示例多行)
     1 & 内容1\\
     2 & 内容2 \\
     3 & 内容3 \\
@@ -553,7 +570,27 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
     \bottomrule
     \multicolumn{2}{l}{\zihao{5} 资料来源: x}
     \endlastfoot
-    % 表格数据（示例多行）
+    % 表格数据 (示例多行)
+    1                      & 内容1                                    \\
+    2                      & 内容2                                    \\
+    3                      & 内容3                                    \\
+    4                      & 内容4                                    \\
+    5                      & 内容5                                    \\
+    6                      & 内容6                                    \\
+    7                      & 内容7                                    \\
+    8                      & 内容8                                    \\
+    9                      & 内容9                                    \\
+    10                     & 内容10                                   \\
+    1                      & 内容1                                    \\
+    2                      & 内容2                                    \\
+    3                      & 内容3                                    \\
+    4                      & 内容4                                    \\
+    5                      & 内容5                                    \\
+    6                      & 内容6                                    \\
+    7                      & 内容7                                    \\
+    8                      & 内容8                                    \\
+    9                      & 内容9                                    \\
+    10                     & 内容10                                   \\
     1                      & 内容1                                    \\
     2                      & 内容2                                    \\
     3                      & 内容3                                    \\

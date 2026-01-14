@@ -39,6 +39,16 @@
 \DefenseDate{2025年6月5日} %答辩日期
 \CoverPageDate{2025年6月7日} %封面页底部日期
 
+%% 定理格式相关设置
+% counter-layer 设置为 article 格式为定理1 , 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
+% counter-mode 可设置为shared/seperated. shared 定理定义等共用编号, seperated 分开编号.
+\SetupTheorem{
+  counter-layer = article,
+  counter-mode  = shared
+}
+\GenerateTheoremEnvs
+
+
 \begin{document}
 \flushbottom
 % 中文标题
