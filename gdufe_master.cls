@@ -216,7 +216,7 @@
     counter-mode .choice:,
     counter-mode / shared     .code:n =
       { \tl_gset:Nn \g_thm_counter_mode_tl { shared } },
-    counter-mode / separated  .code:n =
+    counter-mode / seperated  .code:n =
       { \tl_gset:Nn \g_thm_counter_mode_tl { separated } },
   }
 
