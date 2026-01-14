@@ -63,9 +63,9 @@
 \RequirePackage{amsmath,amssymb}
 % \RequirePackage{amsmath,amssymb,mathscr}
 \RequirePackage[scr=rsfs]{mathalpha}
-% \RequirePackage{amsthm}
+\RequirePackage{amsthm,thmtools}
 % \RequirePackage[thmtools-compat]{keytheorems}
-\RequirePackage[amsmath,thmmarks]{ntheorem}
+% \RequirePackage[amsmath,thmmarks]{ntheorem}
 \RequirePackage{fixdif}
 %% 图表
 \RequirePackage{array}
@@ -181,31 +181,31 @@
 
 %% tag: 公式定理
 \ExplSyntaxOn
+
+%----------------------公式------------------------
 \str_case:Nn \type {
     {thesis}{
-            \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
-        }
+        \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
+    }
 }
 
-
-%------------------------------------------------
-% 1. 用户变量
+%------------------------定理----------------------
+% 1. 全局配置变量
 %------------------------------------------------
 \tl_new:N \g_thm_counter_layer_tl
 \tl_new:N \g_thm_counter_mode_tl
 
-% 默认值
-\tl_gset:Nn \g_thm_counter_layer_tl { article }
+\tl_gset:Nn \g_thm_counter_layer_tl { none }
 \tl_gset:Nn \g_thm_counter_mode_tl  { shared }
 
 %------------------------------------------------
-% 2. l3keys 接口
+% 2. l3keys 用户接口
 %------------------------------------------------
 \keys_define:nn { theorem }
   {
     counter-layer .choice:,
-    counter-layer / article        .code:n =
-      { \tl_gset:Nn \g_thm_counter_layer_tl { article } },
+    counter-layer / none        .code:n =
+      { \tl_gset:Nn \g_thm_counter_layer_tl { none } },
     counter-layer / chapter     .code:n =
       { \tl_gset:Nn \g_thm_counter_layer_tl { chapter } },
     counter-layer / section     .code:n =
@@ -220,91 +220,125 @@
       { \tl_gset:Nn \g_thm_counter_mode_tl { separated } },
   }
 
-% 用户命令
 \NewDocumentCommand \SetupTheorem { m }
   {
     \keys_set:nn { theorem } { #1 }
   }
+
 %------------------------------------------------
-% 3. 标题文本统一管理
+% 3. 定理样式（替代 ntheorem）
 %------------------------------------------------
-\cs_new:Npn \thm_title:n #1
+\declaretheoremstyle[
+  headfont=\bfseries \zihao{-4},
+  bodyfont=\zihao{-4},
+  spaceabove=0pt,
+  spacebelow=0pt,
+  headpunct= ,
+  headindent = 2\ccwd,
+  postheadspace = 1\ccwd,
+  notefont = \bfseries,
+  qed = ,
+]{thmstyle-plain}
+
+%------------------------------------------------
+% 4. 名称映射
+%------------------------------------------------
+\cs_new:Npn \thm_name:n #1
   {
     \str_case:nn { #1 }
       {
-        { theorem }   { \hspace{2em}定理 }
-        { definition }{ \hspace{2em}定义 }
-        { lemma }     { \hspace{2em}引理 }
-        { corollary } { \hspace{2em}推论 }
-        { property }  { \hspace{2em}性质 }
-        { axiom }     { \hspace{2em}公理 }
-        { example }   { \hspace{2em}例 }
-        { remark }    { \hspace{2em}注 }
+        { theorem }    { 定理 }
+        { definition } { 定义 }
+        { lemma }      { 引理 }
+        { corollary }  { 推论 }
+        { property }   { 性质 }
+        { axiom }      { 公理 }
+        { example }    { 例 }
+        { remark }     { 注 }
       }
   }
 
 %------------------------------------------------
-% 4. 生成 newtheorem 的工具函数
+% 5. 声明定理环境的工具函数
 %------------------------------------------------
 % #1 = env name
-% #2 = shared-counter (为空表示独立)
-\cs_new_protected:Npn \thm_new:nn #1 #2
+% #2 = sibling (为空表示主计数器)
+% #3 = style
+\cs_new_protected:Npn \thm_declare:nnn #1 #2 #3
   {
-    % #2 为空 → 独立计数器
     \tl_if_blank:nTF { #2 }
       {
-        % 是否挂层级
-        \tl_if_eq:NnTF \g_thm_counter_layer_tl { article }
+        % 主计数器
+        \tl_if_eq:NnTF \g_thm_counter_layer_tl { none }
           {
-            \newtheorem{#1}{\thm_title:n{#1}}
+            \declaretheorem[
+              style = #3,
+              name  = \thm_name:n{#1},
+            ]{#1}
           }
           {
-            \newtheorem{#1}{\thm_title:n{#1}}[\g_thm_counter_layer_tl]
+            \declaretheorem[
+              style = #3,
+              name  = \thm_name:n{#1},
+              numberwithin = \g_thm_counter_layer_tl,
+            ]{#1}
           }
       }
       {
-        % 共享计数器：绝不能再指定层级
-        \newtheorem{#1}[#2]{\thm_title:n{#1}}
+        % 共享计数器
+        \declaretheorem[
+          style   = #3,
+          name    = \thm_name:n{#1},
+          sibling = #2,
+        ]{#1}
       }
   }
 
 %------------------------------------------------
-% 5. 主入口：一次性生成所有环境
+% 6. 主入口：生成所有定理环境
 %------------------------------------------------
 \cs_new_protected:Npn \GenerateTheoremEnvs
   {
-    \theoremstyle{plain}
-    \theoremheaderfont{\heiti}
-    \theorembodyfont{\songti}
-    \theoremindent 0em
-    \theorempreskip{0pt}
-    \theorempostskip{0pt}
-    \theoremnumbering{arabic}
     \tl_if_eq:NnTF \g_thm_counter_mode_tl { shared }
       {
-        % 共享计数器
-        \thm_new:nn { theorem } { }
-        \thm_new:nn { definition } { theorem }
-        \thm_new:nn { lemma } { theorem }
-        \thm_new:nn { corollary } { theorem }
-        \thm_new:nn { property } { theorem }
-        \thm_new:nn { axiom } { theorem }
-        \thm_new:nn { example } { theorem }
-        \thm_new:nn { remark } { theorem }
+        % plain 风格（共享 theorem）
+        \thm_declare:nnn { theorem }    { }       { thmstyle-plain }
+        \thm_declare:nnn { definition } { theorem }{ thmstyle-plain }
+        \thm_declare:nnn { lemma }      { theorem }{ thmstyle-plain }
+        \thm_declare:nnn { corollary }  { theorem }{ thmstyle-plain }
+        \thm_declare:nnn { property }   { theorem }{ thmstyle-plain }
+        \thm_declare:nnn { axiom }      { theorem }{ thmstyle-plain }
+        \thm_declare:nnn { example }    { theorem }{ thmstyle-plain }
+        \thm_declare:nnn { remark }     { theorem }{ thmstyle-plain }
       }
       {
-        % 独立计数器
-        \thm_new:nn { theorem } { }
-        \thm_new:nn { definition } { }
-        \thm_new:nn { lemma } { }
-        \thm_new:nn { corollary } { }
-        \thm_new:nn { property } { }
-        \thm_new:nn { axiom } { }
-        \thm_new:nn { example } { }
-        \thm_new:nn { remark } { }
+        % 独立编号
+        \thm_declare:nnn { theorem }    { } { thmstyle-plain }
+        \thm_declare:nnn { definition } { } { thmstyle-plain }
+        \thm_declare:nnn { lemma }      { } { thmstyle-plain }
+        \thm_declare:nnn { corollary }  { } { thmstyle-plain }
+        \thm_declare:nnn { property }   { } { thmstyle-plain }
+        \thm_declare:nnn { axiom }      { } { thmstyle-plain }
+        \thm_declare:nnn { example }    { } { thmstyle-plain }
+        \thm_declare:nnn { remark }     { } { thmstyle-plain }
       }
   }
+
 \ExplSyntaxOff
+
+% 证明不斜体, 空两格
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{%
+  \par\pushQED{\qed}%
+  \normalfont
+  \trivlist
+  \item[\hskip\labelsep\hspace{2\ccwd}\bfseries #1:]%
+  \ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
 
 % \theoremstyle{plain}
 % \theoremheaderfont{\heiti}
@@ -353,13 +387,13 @@
 
 
 
-\theoremstyle{nonumberplain}
-\theoremheaderfont{\heiti}
-\theorembodyfont{\normalfont \rm \songti}
-\theoremindent 0em
-\theoremseparator{:}
-\theoremsymbol{$\square$}
-\newtheorem{proof}{\hspace{2em}证明}
+% \theoremstyle{nonumberplain}
+% \theoremheaderfont{\heiti}
+% \theorembodyfont{\normalfont \rm \songti}
+% \theoremindent 0em
+% \theoremseparator{:}
+% \theoremsymbol{$\square$}
+% \newtheorem{proof}{\hspace{2em}证明}
 
 %%%%%%%-------------------------------------------------
 %%%===  suppress extra inter-line spacing in \list environments

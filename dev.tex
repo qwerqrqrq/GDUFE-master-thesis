@@ -11,12 +11,12 @@
 % \setlength{\baselineskip}{20pt}
 
 \SetupTheorem{
-  counter-layer = chapter,
+  counter-layer = none,
   counter-mode  = shared
 }
 \GenerateTheoremEnvs
 
-\newtheorem{test}[theorem]{\hspace{2em}测试}
+% \newtheorem{test}[theorem]{\hspace{2em}测试}
 
 
 \title{广东财经大学专业学位硕士论文论文题目}
@@ -45,17 +45,21 @@
 
 \mainmatter
 \chapter{chapter 1}
-
-\begin{test}
-asdfasdf
-\end{test}
+asdfasdfasdfasdf
+% \begin{test}
+% asdfasdf
+% \end{test}
 \begin{definition}[测度]
     (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
     asdfs
 \end{definition}
+
+asdfasdfasdfas
 \begin{theorem}
     asdf
 \end{theorem}
+
+asdfasdfsadfsad
 \chapter{chapter 2}
 \begin{definition}[测度]
     (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
@@ -67,14 +71,14 @@ asdfasdf
 \begin{theorem}
     asdf
 \end{theorem}
-\begin{proof}
-    这是一段文字 $E = m c^2$
-\end{proof}
+% \begin{proof}
+%     这是一段文字 $E = m c^2$
+% \end{proof}
 \chapter{chapter 3}
 \begin{theorem}
     asdf
 \end{theorem}
-\begin{proof}
+\begin{proof}[定理3的证明]
     这是一段文字 $E = m c^2$
 \end{proof}
 \begin{proof}
@@ -83,6 +87,9 @@ asdfasdf
 \begin{proof}
     这是一段文字 $E = m c^2$
 \end{proof}
+
+
+
 % \url{http://aff.whu.edu.cn/huangzh/}
 % \begin{equation}
 %     a =1
