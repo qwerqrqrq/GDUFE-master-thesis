@@ -21,7 +21,7 @@
 \DeclareOption{forprint}{\printtrue}
 
 % 消除 fix diff 需要的选项
-\PassOptionsToPackage{no-math}{fontspec}
+% \PassOptionsToPackage{no-math}{fontspec}
 
 % 捕获未声明的选项并传递给 ctexbook
 % 根据类型加载ctexbook类不同的基础字号
