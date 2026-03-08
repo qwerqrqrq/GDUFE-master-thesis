@@ -9,13 +9,15 @@
 
 + 不支持书脊，需要到和打印店老板沟通
 
++ 使用 longtable 时可能会出现 "ignored: Infinite glue shrinkage found in box being split" 错误, 但是不影响使用, 能正常编译.
+
 ## 说明和使用方法：
 
 1. 在 release 中下载 gdufe_masther_thesis.zip 解压
 
 2. 安装 *fonts* 文件夹中包含的 ***仿宋_gb2312.ttf*** 文件. 这是由于学校提供的 *封面、扉页及声明格式.doc* 文件中使用的字体是***仿宋_gb2312***，而不是***仿宋***，计算机会使用 ***微软雅黑*** 字体替代.
 
-3. 编辑 *doc* 文件, 导出 *pdf*格式文件. (愿意的话也可以使用 $\LaTeX$ 生成的页面, 但没有经过比对, )
+3. 编辑 *doc* 文件, 导出 *pdf*格式文件. (愿意的话也可以使用 $\LaTeX$ 生成的页面, 会有细微差别)
 
 4. 阅读 *gdufe_master_thesis(proposal)_template.pdf* 文件, 查看编辑 *gdufe_master_thesis(proposal)_template.tex* 文件的注意事项.
 
