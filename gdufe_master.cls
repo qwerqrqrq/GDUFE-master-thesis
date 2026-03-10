@@ -946,7 +946,7 @@
         \fangsong \origzihao{4}
         本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。因本学位论文引起的法律后果完全由本人承担。
         \newline
-        \makebox[11cm][r]{学位论文作者签名：} \makebox[3.75cm][l]{\includegraphics[width=3.5cm]{author-sign}}\\
+        \makebox[11cm][r]{学位论文作者签名：} \makebox[3.75cm][l]{\includegraphics[width=3.5cm]{sign-author}}\\
         \makebox[11cm][r]{签字日期：} \makebox[3.75cm][l]{\the\SignDate}
 
     \end{spacing}
@@ -962,7 +962,7 @@
 
         \vspace*{0.75cm}
         \noindent
-        \makebox[9.5cm][l]{学位论文作者签名：\includegraphics[width=3.5cm]{author-sign}} \makebox[5truecm][l]{导师签名：\includegraphics[width=3.5cm]{supervisor-sign}}\\
+        \makebox[9.5cm][l]{学位论文作者签名：\includegraphics[width=3.5cm]{sign-author}} \makebox[5truecm][l]{导师签名：\includegraphics[width=3.5cm]{sign-supervisor}}\\
         \makebox[9.5cm][l]{签字日期：\the\SignDate} \makebox[5truecm][l]{签字日期：\the\SignDate}
     \end{spacing}
     \songti
