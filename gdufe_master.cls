@@ -521,7 +521,7 @@
 %% tag: 图片、表格
 \DeclareCaptionFont{xbf}{\zihao{5}\bfseries\boldmath}
 %%% 设置图表与上下文之间的距离
-\setlength{\textfloatsep}{40pt}
+\setlength{\textfloatsep}{20pt}
 % \setlength{\intextsep}{2\baselineskip}
 %%% ---- 图表标题设置 ----- %%%%
 \captionsetup[figure]{%
