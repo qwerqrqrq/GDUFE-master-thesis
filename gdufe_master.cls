@@ -50,6 +50,7 @@
 %% tag: 宏包
 %% 排版与页面控制
 \RequirePackage{lmodern}
+\RequirePackage{fontspec}
 \RequirePackage[titles]{tocloft}
 \RequirePackage{changepage}
 \RequirePackage{setspace}
