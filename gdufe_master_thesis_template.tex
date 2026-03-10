@@ -8,24 +8,23 @@
 % draft: 草稿模式, 图片仅显示大小框架, 能有效减少编译时间.
 % \documentclass[forprint,class = professional, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
 
-%%%% --------biblatex 与cite  bibliographystyle二选一-------------
+%%%% --------biblatex 与cite  bibliographystyle二选一 ----%%%%
 %% 使用biblatex. 如果手写参考文献请注释下三行
 \usepackage[style=gb7714-2015, backend=biber, url=false, doi=false]{biblatex}
 \addbibresource{reference.bib}
 \AtBeginBibliography{\zihao{5}}
-% % 不使用biblatex.
+%% 不使用biblatex.
 % \usepackage{cite} % 使用cite宏包, 以便合并引用文献, 例如 [1-3] 的形式.
 % \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}  %自定义新命令\upcite, 使参考文献引用以上标出现
 
-%% ----------
-% 这两个包是对算法的支持。没写过算法，可以按需修改。
+%% 这两个包是对算法的支持。没写过算法，可以按需修改。
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
-% 显示范围框架, 调试时使用
+%% 显示范围框架, 调试时使用
 % \usepackage{showframe}
 
-% 使用word 导出的封面、扉页、声明格式的pdf文件只填写 \title 即可, 其他信息不需要填写.
+%% 使用word 导出的封面、扉页、声明格式的pdf文件只填写 \title 即可, 其他信息不需要填写.
 \title{广东财经大学硕士论文 \LaTeX{}模板} %中文标题
 \etitle{Guangdong University of Financial and Economics Master Thesis \LaTeX{} Template}    %英文标题
 \author{王五} %作者
@@ -34,10 +33,20 @@
 \major{数学} %专业
 \studentid{12345678901} %学号
 \EnterDate{2023年9月} %入学日期
+\CoverPageDate{2025年6月7日} %封面页底部日期
 \SubmitDate{2025年6月1日} %提交日期
 \SignDate{2025年6月3日} %签名日期
 \DefenseDate{2025年6月5日} %答辩日期
-\CoverPageDate{2025年6月7日} %封面页底部日期
+%% 盲审使用, 去除代码生成封面、扉页、声明的信息
+% \author{} %作者
+% \supervisor{} %导师
+% \supervisorOuter{} %校外导师 专硕使用
+% \major{数学} %专业
+% \studentid{} %学号
+% \EnterDate{} %入学日期
+% \CoverPageDate{ 年 \qquad 月 \qquad 日} %封面页底部日期
+% \SubmitDate{ 年 \qquad 月 \qquad 日} %提交日期
+% \DefenseDate{ 年 \qquad 月 \qquad 日} %答辩日期
 
 %% 定理格式相关设置
 % counter-layer 设置为 none 格式为定理1 , 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
@@ -75,21 +84,21 @@
 % \includepdf[pages=3]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
 
 
-%%% 觉得行距有问题添加下行代码 %%%%
+%% 觉得行距有问题添加下行代码 %%%%
 % \setlength{\baselineskip}{20pt} % 设置行距
 \frontmatter
 %-----------------------------------------------------------------------------
 \include{includefile/abstract.tex}    % 加入摘要.
-%==========================把目录加入到书签==============================%%%%%%
+%%%%---- 把目录加入到书签 ----%%%%
 \addcontentsline{toc}{chapter}{目录}  % 目录加入到目录
 \tableofcontents
 
 \mainmatter
-%%  有问题尝试删除
+%% 有问题尝试删除
 \raggedbottom
 %% 允许公式跨页展示
 \allowdisplaybreaks
-%%%%%%%%%%%%%%%%%%%%%%%%%%--------main matter-------%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%---- main matter ----%%%%
 \cleardoublepage
 \include{includefile/chapter1.tex}
 \cleardoublepage
@@ -97,7 +106,7 @@
 \cleardoublepage
 \include{includefile/chapter3.tex}
 
-%%%============正文之后的页眉页脚格式========%%%
+%%%%----正文之后的页眉页脚格式----%%%
 \cleardoublepage
 \phantomsection
 \appendix
