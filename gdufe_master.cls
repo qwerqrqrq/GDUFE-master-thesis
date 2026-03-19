@@ -884,8 +884,8 @@
             \par\vspace*{2mm}
             {\heiti \fontsize{48pt}{\baselinestretch} {\masterClass 学位硕士论文}}\\
             \vspace{60pt}
-            {\heiti \zihao{-2} \ctitle}\\
-            {\heiti \zihao{-2} \the\etitle \par}
+            {\heiti \zihao{-2} \bfseries \ctitle}\\
+            {\heiti \zihao{-2} \bfseries \the\etitle \par}
             % \vspace*{2em}
             \vfill\vfill\vfill
             % {\fangsong \infoTable}
