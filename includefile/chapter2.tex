@@ -8,33 +8,34 @@
     \caption{模板文件结构及功能说明}
     \begin{tabular}{lll}
         \toprule
-        文件夹/文件名                               & 类型     & 功能说明                                  \\
+        文件夹/文件名                             & 类型     & 功能说明                                  \\
         \midrule
-        gdufe\_master\_thesis\_template().tex & 主文档    & 撰写正文、组织结构                             \\
-        gdufe\_master\_thesis.cls             & 类文件    & 定义排版格式和命令                             \\
-        reference.bib                         & bib文件  & 参考文献数据库                               \\
-        README.md                             & 文本     & 项目说明与使用方法                             \\
-        includefile/                          & 文件夹    & 存放各章节、摘要、致谢等                          \\
-        \quad abstract.tex                    & tex文件  & 中英文摘要                                 \\
-        \quad acknowledgment.tex              & tex文件  & 致谢                                    \\
-        \quad appendix.tex                    & tex文件  & 附录内容, 如有附录则包含此文件                      \\
-        \quad chapter*.tex                    & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
-        \quad 论文封面、扉页及声明格式.doc                & Word文档 & 学校的封面、扉页及声明页文件                        \\
-        \quad 论文封面、扉页及声明格式.pdf                & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
-        figures/                              & 文件夹    & 存放图片文件                                \\
-        \quad author-sign.jpg                 & 图片     & 作者签名                                  \\
-        \quad supervisor-sign.jpg             & 图片     & 导师签名                                  \\
-        \quad gdufelogo.jpg                   & 图片     & 校徽图片                                  \\
-        \quad 其余图片                            &        & 示例或说明用图片                              \\
-        fonts/                                & 文件夹    & 存放字体文件                                \\
-        \quad 仿宋\_gb2312.ttf                  & 字体     & 仿宋字体                                  \\
-        \quad simsun.ttc                      & 字体     & 思源宋体字体                                \\
-        \quad simhei.ttf                      & 字体     & 思源黑体字体                                \\
-        \quad simkai.ttf                      & 字体     & 思源楷体字体                                \\
-        \quad simfang.ttf                     & 字体     & 思源仿宋字体                                \\
-        \quad times.ttf                       & 字体     & Times New Roman 罗马正体                  \\
-        \quad timesbd.ttf                     & 字体     & Times New Roman 粗体                    \\
-        \quad timesi.ttf                      & 字体     & Times New Roman 斜体                    \\
+        gdufe\_master\_thesis\_template.tex & 主文档    & 撰写正文、组织结构                             \\
+        gdufe\_master\_thesis.cls           & 类文件    & 定义排版格式和命令                             \\
+        reference.bib                       & bib文件  & 参考文献数据库                               \\
+        README.md                           & 文本     & 项目说明与使用方法                             \\
+        includefile/                        & 文件夹    & 存放各章节、摘要、致谢等                          \\
+        \quad abstract.tex                  & tex文件  & 中英文摘要                                 \\
+        \quad acknowledgment.tex            & tex文件  & 致谢                                    \\
+        \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件                      \\
+        \quad chapter*.tex                  & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
+        \quad 论文封面、扉页及声明格式.doc              & Word文档 & 学校的封面、扉页及声明页文件                        \\
+        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
+        figures/                            & 文件夹    & 存放图片文件                                \\
+        \quad sign-author.jpg               & 图片     & 作者签名                                  \\
+        \quad sign-supervisor.jpg           & 图片     & 导师签名                                  \\
+        \quad sign-none.jpg                 & 图片     & 空白图片, 用于盲审/检测时替换                      \\
+        \quad gdufelogo.jpg                 & 图片     & 校徽图片                                  \\
+        \quad 其余图片                          &        & 示例或说明用图片                              \\
+        fonts/                              & 文件夹    & 存放字体文件                                \\
+        \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体                                  \\
+        \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
+        \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
+        \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
+        \quad simfang.ttf                   & 字体     & 思源仿宋字体                                \\
+        \quad times.ttf                     & 字体     & Times New Roman 罗马正体                  \\
+        \quad timesbd.ttf                   & 字体     & Times New Roman 粗体                    \\
+        \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
         \bottomrule
     \end{tabular}
     \label{table:filestructure}
@@ -659,6 +660,61 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     \draw[->,thick](0,-1.5)--(0,1.5)node[right=1pt]{$y$};
     \draw[color=red,thick](0,0)ellipse[x radius=1.2cm,y radius=0.7cm];
 \end{tikzpicture}
+
+\section{列表}
+列表环境 (enumerate, describe, itemrize) 需要在参数添加 left = * 修改左侧空白大小, 其余参数按需调整.
+
+\begin{lstlisting}
+\begin{enumerate}[left = 0pt, label=(\alph*), ref=(\alph*)]
+    \item item
+    \item item
+    \item item
+\end{enumerate}
+\end{lstlisting}
+
+\begin{enumerate}[left = 0pt, label=(\alph*), ref=(\alph*)]
+    \item item
+    \item item
+    \item item
+\end{enumerate}
+
+\begin{lstlisting}
+\begin{enumerate}[left = 2\ccwd, label=(\arabic*), ref=(\arabic*)]
+    \item item
+    \item item
+    \item item
+\end{enumerate}
+\end{lstlisting}
+\begin{enumerate}[left = 2\ccwd, label=(\arabic*), ref=(\arabic*)]
+    \item item
+    \item item
+    \item item
+\end{enumerate}
+
+\section{定理编号}
+定理编号格式在主文档的以下代码设置:
+\begin{lstlisting}
+\SetupTheorem{
+  counter-layer = none/chapter/section/subsection,
+  counter-mode  = shared/separated
+}
+\GenerateTheoremEnvs
+\end{lstlisting}
+counter-layer 设置为 none 不带章节编号, 样式为定理1 , 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
+counter-mode 设置为 shared 定理定义等共用编号, separated 分开编号.
+
+例如, 设置为
+\begin{lstlisting}
+    counter-layer = none,
+    counter-mode  = shared
+\end{lstlisting}
+则定理样式为: 定理1、定理2、定义3、定义4、性质5.
+设置为
+\begin{lstlisting}
+    counter-layer = section,
+    counter-mode  = separated
+\end{lstlisting}
+则定理样式为: 定理1.1.1、定理1.1.2、定义1.1.1、定义1.1.2、性质1.1.1
 
 \section{其他}
 figures 文件夹内提供了一张 1x1 纯白图片用于替换签名图片 none.jpg , 重命名为签名图片可将代码生成的封面、扉页、声明去除手写签名.

@@ -1,4 +1,29 @@
+%% 较少附录可以使用以下三行代码生成附录, 此种样式为"攻读硕士学位期间取得的研究成果"、"附录"
+\chapter*{攻读硕士学位期间取得的研究成果}
+\addcontentsline{toc}{chapter}{攻读硕士学位期间取得的研究成果}
+\phantomsection
+\begin{list}{[\arabic{enumi}]}{\usecounter{enumi}}
+    \item Author3. Title3[J]. Journal3, Year3, Volume3(Issue3): Page3.
+    \item Author4. Title4[J]. Journal4, Year4, Volume4(Issue4): Page4.
+    % 其他成果条目
+\end{list}
+
+\chapter*{附录}
+\addcontentsline{toc}{chapter}{附录}
+\phantomsection
+无罗马字母附录, 此时用 \verb|\section, \subsection| 等小节命令会缺少章序号, 需使用 \verb|\section*| 等手动更改.
+并且, 公式编号也会出问题.
+\section*{测试2.2}
+\addcontentsline{toc}{section}{测试2.1}
+\phantomsection
+测试
+\begin{gather}
+E = mc^2\\
+E = mc^2
+\end{gather}
+
 \chapter{攻读硕士学位期间取得的研究成果}
+有罗马数字附录
 \begin{list}{[\arabic{enumi}]}{\usecounter{enumi}}
     \item Author3. Title3[J]. Journal3, Year3, Volume3(Issue3): Page3.
     \item Author4. Title4[J]. Journal4, Year4, Volume4(Issue4): Page4.
