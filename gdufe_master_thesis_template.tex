@@ -1,12 +1,13 @@
 \documentclass[class = professional, type=thesis,twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
+% \documentclass[forprint,draft, class = professional, oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
 % type=thesis: 论文类型
 % AutoFakeBold=3.17,AutoFakeSlant=0.2  设置字体伪粗体和伪斜体
-% twoside: 双面打印
-% forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
-% draft: 草稿模式, 图片仅显示大小框架, 能有效减少编译时间.
-% \documentclass[forprint,class = professional, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
+% oneside: 单面打印. 这会将正文的空白页删去, 同时页码连续显示
+% twoside: 双面打印. 这会保证正文新章从右手页开始
+% forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡
+% draft: 草稿模式. 图片仅显示大小框架, 能有效减少编译时间
 
 %%%% --------biblatex 与cite  bibliographystyle二选一 ----%%%%
 %% 使用biblatex. 如果手写参考文献请注释下三行
@@ -59,8 +60,8 @@
 
 
 \begin{document}
+% 页面底部强制对齐
 \flushbottom
-% 中文标题
 %-----------------------------------------------------------------------------
 \pagestyle{empty}
 
@@ -94,7 +95,7 @@
 \tableofcontents
 
 \mainmatter
-%% 有问题尝试删除
+%% 允许页面底部不对齐，让内容自然结束. 有问题尝试删除
 \raggedbottom
 %% 允许公式跨页展示
 \allowdisplaybreaks
