@@ -186,8 +186,8 @@
 %----------------------公式------------------------
 \str_case:Nn \type {
     {thesis}{
-        \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
-    }
+            \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
+        }
 }
 
 %------------------------定理----------------------
@@ -203,61 +203,61 @@
 % 2. l3keys 用户接口
 %------------------------------------------------
 \keys_define:nn { theorem }
-  {
+{
     counter-layer .choice:,
     counter-layer / none        .code:n =
-      { \tl_gset:Nn \g_thm_counter_layer_tl { none } },
+        { \tl_gset:Nn \g_thm_counter_layer_tl { none } },
     counter-layer / chapter     .code:n =
-      { \tl_gset:Nn \g_thm_counter_layer_tl { chapter } },
+        { \tl_gset:Nn \g_thm_counter_layer_tl { chapter } },
     counter-layer / section     .code:n =
-      { \tl_gset:Nn \g_thm_counter_layer_tl { section } },
+        { \tl_gset:Nn \g_thm_counter_layer_tl { section } },
     counter-layer / subsection  .code:n =
-      { \tl_gset:Nn \g_thm_counter_layer_tl { subsection } },
+        { \tl_gset:Nn \g_thm_counter_layer_tl { subsection } },
 
     counter-mode .choice:,
     counter-mode / shared     .code:n =
-      { \tl_gset:Nn \g_thm_counter_mode_tl { shared } },
+        { \tl_gset:Nn \g_thm_counter_mode_tl { shared } },
     counter-mode / separated  .code:n =
-      { \tl_gset:Nn \g_thm_counter_mode_tl { separated } },
-  }
+        { \tl_gset:Nn \g_thm_counter_mode_tl { separated } },
+}
 
 \NewDocumentCommand \SetupTheorem { m }
-  {
+{
     \keys_set:nn { theorem } { #1 }
-  }
+}
 
 %------------------------------------------------
 % 3. 定理样式（替代 ntheorem）
 %------------------------------------------------
 \declaretheoremstyle[
-  headfont=\bfseries \zihao{-4},
-  bodyfont=\zihao{-4},
-  spaceabove=0pt,
-  spacebelow=0pt,
-  headpunct= ,
-  headindent = 2\ccwd,
-  postheadspace = 1\ccwd,
-  notefont = \bfseries,
-  qed = ,
+    headfont=\bfseries \zihao{-4},
+    bodyfont=\zihao{-4},
+    spaceabove=0pt,
+    spacebelow=0pt,
+    headpunct= ,
+    headindent = 2\ccwd,
+    postheadspace = 1\ccwd,
+    notefont = \bfseries,
+    qed = ,
 ]{thmstyle-plain}
 
 %------------------------------------------------
 % 4. 名称映射
 %------------------------------------------------
 \cs_new:Npn \thm_name:n #1
-  {
+{
     \str_case:nn { #1 }
-      {
+    {
         { theorem }    { 定理 }
-        { definition } { 定义 }
-        { lemma }      { 引理 }
-        { corollary }  { 推论 }
-        { property }   { 性质 }
-        { axiom }      { 公理 }
-        { example }    { 例 }
-        { remark }     { 注 }
-      }
-  }
+            { definition } { 定义 }
+            { lemma }      { 引理 }
+            { corollary }  { 推论 }
+            { property }   { 性质 }
+            { axiom }      { 公理 }
+            { example }    { 例 }
+            { remark }     { 注 }
+    }
+}
 
 %------------------------------------------------
 % 5. 声明定理环境的工具函数
@@ -266,42 +266,42 @@
 % #2 = sibling (为空表示主计数器)
 % #3 = style
 \cs_new_protected:Npn \thm_declare:nnn #1 #2 #3
-  {
+{
     \tl_if_blank:nTF { #2 }
-      {
+    {
         % 主计数器
         \tl_if_eq:NnTF \g_thm_counter_layer_tl { none }
-          {
+        {
             \declaretheorem[
-              style = #3,
-              name  = \thm_name:n{#1},
+                style = #3,
+                name  = \thm_name:n{#1},
             ]{#1}
-          }
-          {
+        }
+        {
             \declaretheorem[
-              style = #3,
-              name  = \thm_name:n{#1},
-              numberwithin = \g_thm_counter_layer_tl,
+                style = #3,
+                name  = \thm_name:n{#1},
+                numberwithin = \g_thm_counter_layer_tl,
             ]{#1}
-          }
-      }
-      {
+        }
+    }
+    {
         % 共享计数器
         \declaretheorem[
-          style   = #3,
-          name    = \thm_name:n{#1},
-          sibling = #2,
+            style   = #3,
+            name    = \thm_name:n{#1},
+            sibling = #2,
         ]{#1}
-      }
-  }
+    }
+}
 
 %------------------------------------------------
 % 6. 主入口：生成所有定理环境
 %------------------------------------------------
 \cs_new_protected:Npn \GenerateTheoremEnvs
-  {
+{
     \tl_if_eq:NnTF \g_thm_counter_mode_tl { shared }
-      {
+    {
         % plain 风格（共享 theorem）
         \thm_declare:nnn { theorem }    { }       { thmstyle-plain }
         \thm_declare:nnn { definition } { theorem }{ thmstyle-plain }
@@ -311,8 +311,8 @@
         \thm_declare:nnn { axiom }      { theorem }{ thmstyle-plain }
         \thm_declare:nnn { example }    { theorem }{ thmstyle-plain }
         \thm_declare:nnn { remark }     { theorem }{ thmstyle-plain }
-      }
-      {
+    }
+    {
         % 独立编号
         \thm_declare:nnn { theorem }    { } { thmstyle-plain }
         \thm_declare:nnn { definition } { } { thmstyle-plain }
@@ -322,21 +322,21 @@
         \thm_declare:nnn { axiom }      { } { thmstyle-plain }
         \thm_declare:nnn { example }    { } { thmstyle-plain }
         \thm_declare:nnn { remark }     { } { thmstyle-plain }
-      }
-  }
+    }
+}
 
 \ExplSyntaxOff
 
 % 证明不斜体, 空两格
 \makeatletter
 \renewenvironment{proof}[1][\proofname]{%
-  \par\pushQED{\qed}%
-  \normalfont
-  \trivlist
-  \item[\hskip\labelsep\hspace{2\ccwd}\bfseries #1:]%
-  \ignorespaces
+    \par\pushQED{\qed}%
+    \normalfont
+    \trivlist
+    \item[\hskip\labelsep\hspace{2\ccwd}\bfseries #1:]%
+    \ignorespaces
 }{%
-  \popQED\endtrivlist\@endpefalse
+    \popQED\endtrivlist\@endpefalse
 }
 \makeatother
 
@@ -829,20 +829,20 @@
     \str_case:Nn \masterClass {
         {学术}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
-                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}      \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}          \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}} \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}  \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\major}}      \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\cname}}          \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\supervisor}} \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\studentid}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\EnterDate}}  \\%\hline
                 \end{tabular}}
             {专业}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
-                    \makebox[3.5cm][s]{\zihao{4}专业学位名称} & \underline{\makebox[5.75cm][c]{\zihao{4}\the\major}}           \\
-                    \makebox[3.5cm][s]{\zihao{4}学位申请人}  & \underline{\makebox[5.75cm][c]{\zihao{4}\cname}}               \\
-                    \makebox[3.5cm][s]{\zihao{4}校内导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisor}}      \\
-                    \makebox[3.5cm][s]{\zihao{4}校外导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\supervisorOuter}} \\
-                    \makebox[3.5cm][s]{\zihao{4}学号}     & \underline{\makebox[5.75cm][c]{\zihao{4}\the\studentid}}       \\
-                    \makebox[3.5cm][s]{\zihao{4}入学时间}   & \underline{\makebox[5.75cm][c]{\zihao{4}\the\EnterDate}}       \\
+                    \makebox[3.5cm][s]{\zihao{4}专业学位名称} & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\major}}           \\
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}  & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\cname}}               \\
+                    \makebox[3.5cm][s]{\zihao{4}校内导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\supervisor}}      \\
+                    \makebox[3.5cm][s]{\zihao{4}校外导师}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\supervisorOuter}} \\
+                    \makebox[3.5cm][s]{\zihao{4}学号}     & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\studentid}}       \\
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\EnterDate}}       \\
                 \end{tabular}}
     }
 }
