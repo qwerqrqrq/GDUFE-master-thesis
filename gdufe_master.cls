@@ -895,7 +895,7 @@
             % {\fangsong \infoTable}
             {\fangsong \__thesis_infoTableOne:}
             \vfill
-            {\fangsong\zihao{3} \bfseries \the\DefenseDate}
+            {\fangsong\zihao{3} \bfseries \the\CoverPageDate}
             \vspace{1em}
         \end{center}
     \end{titlepage}
