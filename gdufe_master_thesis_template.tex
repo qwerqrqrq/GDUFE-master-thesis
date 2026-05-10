@@ -58,6 +58,15 @@
 }
 \GenerateTheoremEnvs
 
+%% 子图设置分支1: 这部分设置\ref{}引用子图编号显示为 图1.2(a)的样式, 对子图编号有修改的按需修改
+\makeatletter
+\renewcommand\p@subfigure{\thefigure}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\makeatother
+
+%% 子图设置分支2: 设置子图引用格式, 与分支1可能有冲突, 需要按需修改
+% \captionsetup{subrefformat=parens}
+
 
 \begin{document}
 % 页面底部强制对齐
