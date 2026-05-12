@@ -635,7 +635,8 @@
 \newenvironment{enabstract}{%
     \chapter[ABSTRACT]{\bfseries ABSTRACT}
     \zihao{-4}
-    \noindent}
+    }
+    % \noindent}
 {\newline\par}
 
 %% tag: 章节格式调整
