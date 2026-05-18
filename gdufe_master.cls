@@ -815,6 +815,7 @@
 %% tag: 信息宏定义
 \newtoks{\etitle}
 \newtoks{\supervisor}
+\newtoks{\supervisorAndTitle}
 \newtoks{\supervisorOuter}
 \newtoks{\major}
 \newtoks{\studentid}
@@ -836,7 +837,7 @@
                 \begin{tabular}{ll}
                     \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\major}}      \\%\hline
                     \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\cname}}          \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\supervisor}} \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\supervisorAndTitle}} \\%\hline
                     \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\studentid}}  \\%\hline
                     \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\EnterDate}}  \\%\hline
                 \end{tabular}}
