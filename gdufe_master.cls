@@ -21,7 +21,7 @@
 \DeclareOption{forprint}{\printtrue}
 
 % 消除 fix diff 需要的选项
-\PassOptionsToPackage{no-math}{fontspec}
+% \PassOptionsToPackage{no-math}{fontspec}
 
 % 捕获未声明的选项并传递给 ctexbook
 % 根据类型加载ctexbook类不同的基础字号
@@ -49,7 +49,7 @@
 
 %% tag: 宏包
 %% 排版与页面控制
-\RequirePackage{lmodern}
+% \RequirePackage{lmodern}
 \RequirePackage{fontspec}
 \RequirePackage[titles]{tocloft}
 \RequirePackage{changepage}
@@ -62,6 +62,7 @@
 \RequirePackage{expl3}
 %% 数学相关
 \RequirePackage{amsmath,amssymb}
+\RequirePackage{unicode-math} % 设置数学公式字体
 % \RequirePackage{amsmath,amssymb,mathscr}
 \RequirePackage[scr=rsfs]{mathalpha}
 \RequirePackage{amsthm,thmtools}
@@ -130,19 +131,20 @@
 }
 
 %% tag: 字体
-\defaultfontfeatures{Path = fonts/}
+% \defaultfontfeatures{Path = fonts/} %适配 TeX Gyre Termes Math 取消
 % 设置英文字体
-\setmainfont[BoldFont = timesbd.ttf,
+\setmainfont[Path=fonts/,
+    BoldFont = timesbd.ttf,
     ItalicFont = timesi.ttf,
     BoldItalicFont = timesbi.ttf]{times.ttf}
 % 设置中文字体
-\setCJKmainfont{simsun.ttc}
-\setCJKsansfont{simhei.ttf}
-\setCJKmonofont{simfang.ttf}
-\setCJKfamilyfont{zhsong}{simsun.ttc}
-\setCJKfamilyfont{zhhei}{simhei.ttf}
-\setCJKfamilyfont{zhfs}{simfang.ttf}
-\setCJKfamilyfont{zhkai}{simkai.ttf}
+\setCJKmainfont[Path = "fonts/"]{simsun.ttc}
+\setCJKsansfont[Path = "fonts/"]{simhei.ttf}
+\setCJKmonofont[Path = "fonts/"]{simfang.ttf}
+\setCJKfamilyfont{zhsong}[Path = "fonts/"]{simsun.ttc}
+\setCJKfamilyfont{zhhei}[Path = "fonts/"]{simhei.ttf}
+\setCJKfamilyfont{zhfs}[Path = "fonts/"]{simfang.ttf}
+\setCJKfamilyfont{zhkai}[Path = "fonts/"]{simkai.ttf}
 
 
 %% tag: 行距
@@ -890,8 +892,8 @@
             \par\vspace*{2mm}
             {\heiti \fontsize{48pt}{\baselinestretch} {\masterClass 学位硕士论文}}\\
             \vspace{60pt}
-            {\heiti \zihao{-2} \bfseries \ctitle}\\
-            {\heiti \zihao{-2} \bfseries \the\etitle \par}
+            {\songti \zihao{2} \bfseries \ctitle}\\
+            {\zihao{-2} \bfseries \the\etitle \par}
             % \vspace*{2em}
             \vfill\vfill\vfill
             % {\fangsong \infoTable}

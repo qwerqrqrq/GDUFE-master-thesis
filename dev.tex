@@ -41,11 +41,16 @@
 \usepackage[style=gb7714-2015, backend=biber]{biblatex}
 \addbibresource{reference.bib}
 
-% \captionsetup{subrefformat=parens}
-\makeatletter
-\renewcommand\p@subfigure{\thefigure}
-\renewcommand\thesubfigure{(\alph{subfigure})}
-\makeatother
+\captionsetup{subrefformat=parens}
+% \makeatletter
+% \renewcommand\p@subfigure{\thefigure}
+% \renewcommand\thesubfigure{(\alph{subfigure})}
+% \makeatother
+
+% \usepackage{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+% \setmathfont{latinmodern-math.otf}
+% \setmathfont[Path = "fonts/"]{CambriaMath}
 
 \begin{document}
 
@@ -57,74 +62,12 @@
 \mainmatter
 \chapter{chapter 1}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/colorful.jpg}
-        \caption{First}
-        \label{fig:a}
-    \end{subfigure}
+asdfasdf12341234
 
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/colorful.jpg}
-        \caption{Second}
-        \label{fig:b}
-    \end{subfigure}
+{\itshape asdfasdf12341234}
 
-    \caption{Main figure}
-    \label{fig:main}
-\end{figure}
+$asdfasdf12341234$
 
-\ref{fig:main}      % 主图编号
-
-\subref{fig:a}      % 子图编号
-
-\ref{fig:b}
-
-
-\begin{figure}[!ht]
-    \centering
-    \begin{subcaptionblock}{0.9\textwidth}{
-            \includegraphics[width=\textwidth]{figures/colorful.jpg}
-            \caption{$\beta=0.9$}
-            \label{fig2-a}
-        }\end{subcaptionblock}\\
-    \begin{subcaptionblock}{0.9\textwidth}{
-            \includegraphics[width=\textwidth]{figures/colorful.jpg}
-            \caption{$\beta=0.5$}
-            \label{fig2-b}
-        }\end{subcaptionblock}\\
-    \begin{subcaptionblock}{0.9\textwidth}{
-            \includegraphics[width=\textwidth]{figures/colorful.jpg}
-            \caption{$\beta=0.3$}
-            \label{fig2-c}
-        }\end{subcaptionblock}
-    \caption{当 $c=1, k_1=-2, k_2 = -1, \lambda=3, \mu=2, \delta=0, \sigma_1 = 1, \sigma_2 = 1$时, $|u_{1,1}|$ 的波形图}
-    \label{fig:2}
-\end{figure}
-
-\ref{fig:2}
-
-\ref{fig2-a}
-
-\ref{fig2-b}
-
-\subref{fig2-a}
-
-
-\[ H = \frac{\alpha_2}{2} v^2 + \frac{\alpha_3}{4} v^4 - \frac{1}{2} w^2 \]
-
-times new roman : 1234567890
-
-$times new roman : 1234567890 \d$
-
-$u = \frac{c k \,r^{2}+a r-s}{2 b r}+\frac{c r \,k {\mathrm e}^{k z} A_{1}}{b \left({\mathrm e}^{k z} A_{1}+l\right)}$
-
-% \begin{test}
-% asdfasdf
-% \end{test}
 \begin{definition}[测度]
     (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
     asdfs
