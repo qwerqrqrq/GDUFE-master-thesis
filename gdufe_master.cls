@@ -104,7 +104,7 @@
                 left=3truecm,
                 right=2.2truecm,
                 paper=a4paper,
-                headsep=1.04truecm,
+                headsep=0.54truecm,
                 footskip=0.79truecm,
                 headheight=16pt]{geometry}}
         {proposal}{\RequirePackage[top=2.54truecm,
@@ -168,7 +168,7 @@
 \fancyhead{}                                    % clear all header fields
 \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
 \fancyhead[R]{\zihao{5} \ctitle}
-\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\headrulewidth}{0.5pt}
 \fancyfoot{}                                    % clear all footer fields
 \fancyfoot[C]{\thepage}
 }
