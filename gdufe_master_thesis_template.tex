@@ -1,4 +1,4 @@
-\documentclass[class = academic, type=thesis, twoside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
+\documentclass[class = academic, type=thesis, twoside, AutoFakeBold=3.17, AutoFakeSlant=0.2]{gdufe_master}
 % \documentclass[forprint,draft, class = professional, oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
@@ -59,13 +59,7 @@
 }
 \GenerateTheoremEnvs
 
-%% 子图设置分支1: 这部分设置\ref{}引用子图编号显示为 图1.2(a)的样式, 对子图编号有修改的按需修改
-% \makeatletter
-% \renewcommand\p@subfigure{\thefigure}
-% \renewcommand\thesubfigure{(\alph{subfigure})}
-% \makeatother
-
-%% 子图设置分支2: 设置子图引用格式, 与分支1可能有冲突, 需要按需修改
+%% 使用 \subref 引用子图 自带 ()
 \captionsetup{subrefformat=parens}
 
 % 数学字体设置

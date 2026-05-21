@@ -127,7 +127,7 @@
 
 \AtBeginDocument{%
     \setlength{\baselineskip}{20pt} \selectfont
-    \raggedbottom
+    % \raggedbottom
 }
 
 %% tag: 字体
