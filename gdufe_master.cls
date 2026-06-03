@@ -449,7 +449,7 @@
     \topsep    \parsep
     \itemsep   \parsep}
 
-% %
+%
 % \setlength\listparindent{2\ccwd}
 % % Change \listparindent to 2\ccwd in \list
 % \def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
@@ -463,7 +463,7 @@
 %     \advance\@totalleftmargin \leftmargin
 %     \parshape \@ne \@totalleftmargin \linewidth
 %     \ignorespaces}
-% \makeatother
+\makeatother
 
 % %%%%%%%%listings 设置%%%%%%%%%%%%
 % % \usepackage{textcomp}
