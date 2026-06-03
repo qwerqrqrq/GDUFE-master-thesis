@@ -9,7 +9,7 @@
 
 + 图片不会与上文空一行
 
-+ 不支持书脊，需要到和打印店老板沟通
++ 封面页与书脊在实际中通过打印店老板实现
 
 + 使用 longtable 时可能会出现 "ignored: Infinite glue shrinkage found in box being split" 错误, 但是不影响使用, 能正常编译.
 
