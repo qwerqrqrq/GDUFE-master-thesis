@@ -450,28 +450,20 @@
     \itemsep   \parsep}
 
 % %
-% % % Change default margins for \list environments
-\setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
-{\leftmargini} \setlength\leftmarginiii {\leftmargini}
-\setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
-{\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
-{\leftmargini} \setlength\labelsep      {.5\ccwd}
-\setlength\labelwidth    {\leftmargini}
-%
-\setlength\listparindent{2\ccwd}
-% Change \listparindent to 2\ccwd in \list
-\def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
-    \else \global\advance\@listdepth\@ne \fi
-    \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
-    \csname @list\romannumeral\the\@listdepth\endcsname
-    \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
-    \@trivlist
-    \parskip\parsep \parindent\listparindent
-    \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
-    \advance\@totalleftmargin \leftmargin
-    \parshape \@ne \@totalleftmargin \linewidth
-    \ignorespaces}
-\makeatother
+% \setlength\listparindent{2\ccwd}
+% % Change \listparindent to 2\ccwd in \list
+% \def\list#1#2{\ifnum \@listdepth >5\relax \@toodeep
+%     \else \global\advance\@listdepth\@ne \fi
+%     \rightmargin \z@ \listparindent2\ccwd \itemindent \z@
+%     \csname @list\romannumeral\the\@listdepth\endcsname
+%     \def\@itemlabel{#1}\let\makelabel\@mklab \@nmbrlistfalse #2\relax
+%     \@trivlist
+%     \parskip\parsep \parindent\listparindent
+%     \advance\linewidth -\rightmargin \advance\linewidth -\leftmargin
+%     \advance\@totalleftmargin \leftmargin
+%     \parshape \@ne \@totalleftmargin \linewidth
+%     \ignorespaces}
+% \makeatother
 
 % %%%%%%%%listings 设置%%%%%%%%%%%%
 % % \usepackage{textcomp}
@@ -592,6 +584,10 @@
 % 调整为5号字 这部分好像不起作用
 \AtBeginEnvironment{table}{\zihao{5}}
 \AtBeginEnvironment{tabularx}{\zihao{5}}
+
+%% tag: 列表
+\setlist{nosep}
+
 
 %% tag: 目录
 \setcounter{tocdepth}{2}
