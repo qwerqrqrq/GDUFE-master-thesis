@@ -3,6 +3,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.6]
 
+% 添加空白页设置, 来源 sysu-thesis.cls
+\newcommand{\newclearpage}{\clearpage} % 设置文章为电子版格式（不添加多余空白页）
+\DeclareOption{print-both-sides}{ % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+    \renewcommand{\newclearpage}{
+        \clearpage{
+            \pagestyle{empty}
+            \cleardoublepage
+        }
+    }
+}
+
+
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
 % ---------选项设置-------------
@@ -798,21 +810,21 @@
 \setfnsymbol{circled}
 
 %% tag: cleardoublepage 设置清除双面打印时的空白页
-\makeatletter
-\def\cleardoublepage{%
-    \clearpage
-    \if@twoside
-        \ifodd\c@page
-            % 当前是奇数页，不插空白页
-        \else
-            \hbox{}%
-            \thispagestyle{empty}%
-            \newpage
-            \if@twocolumn\hbox{}\newpage\fi
-        \fi
-    \fi
-}
-\makeatother
+% \makeatletter
+% \def\cleardoublepage{%
+%     \clearpage
+%     \if@twoside
+%         \ifodd\c@page
+%             % 当前是奇数页，不插空白页
+%         \else
+%             \hbox{}%
+%             \thispagestyle{empty}%
+%             \newpage
+%             \if@twocolumn\hbox{}\newpage\fi
+%         \fi
+%     \fi
+% }
+% \makeatother
 
 %% tag: 信息宏定义
 \newtoks{\etitle}

@@ -1,19 +1,4 @@
-\documentclass[class = academic, type=thesis, oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2,12pt]{gdufe_master}
-% class=academic: 学术学位论文
-% class=professional: 专业学位论文
-
-% \documentclass[forprint,class=academic]{gdufe_master_thesis}% 选项 forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡.
-
-
-% \setmathfont{Times New Roman}
-% \usepackage{txfonts}
-% \usepackage{mathptmx}
-
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{makecell}
-% \setstretch{1}            % 防止 double spacing 影响
-% \setlength{\baselineskip}{20pt}
+\documentclass[class = academic, type=thesis, AutoFakeBold=3.17,AutoFakeSlant=0.2,12pt]{gdufe_master}
 
 \SetupTheorem{
   counter-layer = none,
@@ -21,14 +6,14 @@
 }
 \GenerateTheoremEnvs
 
-% \newtheorem{test}[theorem]{\hspace{2em}测试}
 
 
 \title{广东财经大学专业学位硕士论文论文题目}
 \etitle{GDUFE professional master thesis title}
 \author{张三}
 \major{数学}
-\supervisor{李四\quad 教授}
+\supervisorAndTitle{李四\quad 教授}
+\supervisor{李四}
 \supervisorOuter{王五\quad 教授} % 校外导师，仅专硕需要填写
 \EnterDate{2000年9月5日}
 \studentid{1234567890}
@@ -49,6 +34,8 @@
 % \setmathfont[Path = "fonts/"]{CambriaMath}
 
 % \usepackage{showframe}
+
+\usepackage{emptypage}
 \begin{document}
 
 % \makeProposal
@@ -57,27 +44,17 @@
 % \makeclaim
 
 \mainmatter
-\chapter{}
-\ref{fig:subfig_a} \ref{fig:subfig_b} \ref{fig:subfigtest}
 
-\subref{fig:subfig_a} \subref{fig:subfig_b}
-\begin{figure}[!htbp]
-    \centering
-    \begin{subcaptionblock}{0.45\textwidth}
-        \includegraphics[width=\linewidth]{gdufelogo.jpg}
-        \caption{子图A标题}
-        \label{fig:subfig_a}
-    \end{subcaptionblock}
-    % \hfill
-    \begin{subcaptionblock}{0.45\textwidth}
-        \includegraphics[width=\linewidth]{gdufelogo.jpg}
-        \caption{子图B标题}
-        \label{fig:subfig_b}
-    \end{subcaptionblock}
-
-    \caption{整体图标题\the\baselineskip}
-    \label{fig:subfigtest}
-\end{figure}
-
-
+\chapter{A}
+\begin{align*}
+    & b_1  = 2p,                                                 & r^2 =\frac{3 c_{4} \left(-\rho^{2}+4 \sigma \right) p^{4}-p s c_{1}-q^{2} c_{5}-q s c_{2}-c_{3} s^{2}}{c_{6}}, \\
+    & b_0  = \left(\rho  \pm \sqrt{-\rho^{2}+4 \sigma}\right) p, & \delta= -6 \left(-\frac{\rho^{2}}{4}+\sigma \right)^{2} p^{5} c_{4}.
+\end{align*}
+\cleardoublepage
+\chapter{B}
+aaa
+\clearpage
+bbb
+\cleardoublepage
+\chapter{C}
 \end{document}

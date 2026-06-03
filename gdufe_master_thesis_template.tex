@@ -1,11 +1,10 @@
 \documentclass[class = academic, type=thesis, AutoFakeBold=3.17, AutoFakeSlant=0.2]{gdufe_master}
-% \documentclass[forprint,draft, class = professional, oneside, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
+% \documentclass[forprint,draft, class = professional, print-both-sides, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
 % type=thesis: 论文类型
 % AutoFakeBold=3.17,AutoFakeSlant=0.2  设置字体伪粗体和伪斜体
-% oneside: 单面打印. 这会将正文的空白页删去, 同时页码连续显示
-% twoside: 双面打印. 这会保证正文新章从右手页开始
+% print-both-sides: 使用双面打印版（填充额外空白页以保证每一章开头都在奇数页），否则每页
 % forprint: 交付打印时添加, 避免彩色链接字迹打印偏淡
 % draft: 草稿模式. 图片仅显示大小框架, 能有效减少编译时间
 
@@ -65,7 +64,7 @@
 \captionsetup{subrefformat=parens}
 
 % 数学字体设置
-\setmathfont{latinmodern-math.otf}  % LaTex 原生风格数学字体
+% 不启用下两行则使用 LaTex 原生风格数学字体
 % \setmathfont{TeX Gyre Termes Math}  % Times New Roman 风格数学字体
 % \setmathfont[Path = "fonts/"]{CambriaMath}  % Word 风格字体
 
@@ -110,15 +109,15 @@
 %% 允许公式跨页展示
 \allowdisplaybreaks
 %%%%---- main matter ----%%%%
-\cleardoublepage
+\newclearpage
 \include{includefile/chapter1.tex}
-\cleardoublepage
+\newclearpage
 \include{includefile/chapter2.tex}
-\cleardoublepage
+\newclearpage
 \include{includefile/chapter3.tex}
 
 %%%%----正文之后的页眉页脚格式----%%%
-\cleardoublepage
+\newclearpage
 \phantomsection
 \appendix
 %%%=== 参考文献 ========%%%
