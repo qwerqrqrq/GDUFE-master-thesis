@@ -18,17 +18,18 @@
         \quad abstract.tex                  & tex文件  & 中英文摘要                                 \\
         \quad acknowledgment.tex            & tex文件  & 致谢                                    \\
         \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件                      \\
-        \quad chapter*.tex                  & tex文件  & 各章节内容, 如 chapter1.tex, chapter2.tex 等 \\
+        \quad chapter*.tex                  & tex文件  & 各章节内容\\
         \quad 论文封面、扉页及声明格式.doc              & Word文档 & 学校的封面、扉页及声明页文件                        \\
-        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于编译Tex文件的封面、扉页及声明页                   \\
+        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于插入的封面、扉页及声明页                   \\
         figures/                            & 文件夹    & 存放图片文件                                \\
         \quad sign-author.jpg               & 图片     & 作者签名                                  \\
         \quad sign-supervisor.jpg           & 图片     & 导师签名                                  \\
         \quad sign-none.jpg                 & 图片     & 空白图片, 用于盲审/检测时替换                      \\
         \quad gdufelogo.jpg                 & 图片     & 校徽图片                                  \\
-        \quad 其余图片                          &        & 示例或说明用图片                              \\
+        \quad 其余图片                          & 图片   & 示例或说明用图片                              \\
         fonts/                              & 文件夹    & 存放字体文件                                \\
         \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体                                  \\
+        \quad CambriaMath                   & 字体     & Word 数学公式字体         \\
         \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
         \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
         \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
@@ -103,6 +104,7 @@
           \begin{description}
               \item[amsmath, amssymb] AMS 数学公式与符号支持。
               \item[mathalpha] 提供更好的数学花体字母 (选项 \texttt{scr=rsfs}) 。
+              \item[unicode-math] 提供修改数学公式字体支持。
                     % \item[ntheorem] 控制定理环境格式与结束符号。
               \item[amsthm, thmtools] 控制定理环境格式与结束符号。
               \item[fixdif] 改善微分符号的排版。
@@ -238,10 +240,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 {\bfseries 注意: } biblatex 和 cite 包不能同时使用, 以下两个方案只能选择一个.
 
 \subsubsection{使用 biblatex 管理参考文献}
-使用此方案务必取消注释文件开头的\\
-\verb|\usepackage[style=gb7714-2015, backend=biber]{biblatex}|\\
-\verb|\addbibresource{reference.bib}|\\
-末尾的\\
+使用此方案务必取消注释文件开头有关 biblatex 的几行代码、末尾的\\
 \verb|\printbibliography|\\
 以及将文件开头的\\
 \verb|\usepackage{cite}|\\
@@ -259,10 +258,7 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 使用 \verb|\cite \parencite| 的参考文献是顺序编码制, 其余的引用方式请参考 biblatex, biblatex-gb7714-2015 的文档.
 
 \subsubsection{手写 thebibliography 参考文献}
-不想使用 biblatex 管理参考文献, 要得到形如~{\cite{r1,r3,r4,r5}} 的参考文献连续引用, 需要用到 cite 宏包. 但cite宏包和biblatex宏包有冲突, 因此使用此方案务必注释文件开头的\\
-\verb|\usepackage[style=gb7714-2015, backend=biber]{biblatex}|\\
-\verb|\addbibresource{reference.bib}|\\
-末尾的\\
+不想使用 biblatex 管理参考文献, 要得到形如~{\cite{r1,r3,r4,r5}} 的参考文献连续引用, 需要用到 cite 宏包. 但cite宏包和biblatex宏包有冲突, 因此使用此方案务必注释文件开头的有关 biblatex 的几行代码、末尾的
 \verb|\printbibliography|\\
 以及将文件开头的\\
 \verb|\usepackage{cite}|\\
@@ -273,26 +269,11 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 \begin{lstlisting}
     \upcite{r1,r3,r4,r5}
 \end{lstlisting}
-由于冲突的问题, 请自行查看.
+由于冲突的问题, 请自行查看效果.
 
 \subsection{定理环境设置引用}
 
-本模板定义了新定理环境样式, 包括: 定理 (theorem) 、定义 (definition) 、引理 (lemma) 、推论 (corollary) 、性质 (property) 、公理 (axiom) 、例 (example) 、注 (remark) .
-
-在 tex 文件能设置定理编号格式
-\begin{lstlisting}
-%% 定理格式相关设置
-\SetupTheorem{
-  counter-layer = chapter,
-  counter-mode  = shared
-}
-\GenerateTheoremEnvs
-\end{lstlisting}
-counter-layer 可设置为 article/chapter/section/subsection. 设置为 article 格式为定理1, 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
-公式定理不多用 article/chapter 就可以了, 另有要求按需修改.
-
-counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, separated 分开编号.
-
+本模板定义了新定理环境样式, 包括: 定理 (theorem) 、定义 (definition) 、引理 (lemma) 、推论 (corollary) 、性质 (property) 、公理 (axiom) 、例 (example) 、注 (remark).
 
 使用时用如下的格式:
 \begin{lstlisting}
@@ -356,6 +337,30 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
 \begin{corollary}
     在整数集合内, 相加、相减、相乘运算是封闭的.
 \end{corollary}
+\subsubsection{定理编号设置}
+定理编号格式在主文档的以下代码设置:
+\begin{lstlisting}
+\SetupTheorem{
+  counter-layer = none/chapter/section/subsection,
+  counter-mode  = shared/separated
+}
+\GenerateTheoremEnvs
+\end{lstlisting}
+counter-layer 设置为 none 不带章节编号, 样式为定理1 , 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
+counter-mode 设置为 shared 定理定义等共用编号, separated 分开编号.
+
+例如, 设置为
+\begin{lstlisting}
+    counter-layer = none,
+    counter-mode  = shared
+\end{lstlisting}
+则定理编号样式为: 定理1、定理2、定义3、定义4、性质5.
+设置为
+\begin{lstlisting}
+    counter-layer = section,
+    counter-mode  = separated
+\end{lstlisting}
+则定理编号样式为: 定理1.1.1、定理1.1.2、定义1.1.1、定义1.1.2、性质1.1.1
 
 \section{图形}
 
@@ -372,7 +377,7 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     \item 图与上下正文之间各空一行.
 
 \end{enumerate}
-如图~\ref{fig:colorfulpic} 是一个纳入~jpg 图片的例子.
+如图~\ref{fig:colorfulpic} 是一个放入 jpg 图片的例子.
 \begin{lstlisting}
 \begin{figure}[!ht]
     \centering
@@ -387,13 +392,13 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     \caption{一个彩色图片的例子}
     \label{fig:colorfulpic}
 \end{figure}
-如果需要标注资料来源, 可以搭配 minipage 环境使用, minipage 后面的第一个花括号\{ \}指定宽度, \verb|\includegraphics| 的 \verb|width=\textwidth| 是 minipage 里面的宽度, 即实际图片宽度为 \verb|0.5 * 1 \textwidth| , 如图\ref{fig:resourcefig}
+如果需要标注资料来源, 可以搭配 minipage 环境使用, minipage 后面的第一个花括号\{ \}指定宽度, \verb|\includegraphics| 的 \verb|width=\textwidth| 是 minipage 里面的宽度, 即实际图片宽度为 \verb|0.5 * 0.9 \textwidth|, 如图\ref{fig:resourcefig}
 \begin{lstlisting}
 \begin{figure}[!ht]
     \centering
     \zihao{5}
     \begin{minipage}{0.5\textwidth}{
-            \includegraphics[width=\textwidth]{gdufelogo-Colorful.jpg}
+            \includegraphics[width=0.9 \textwidth]{gdufelogo-Colorful.jpg}
             \caption{图片标注资料来源\cite{anon-cn1}}
             \label{fig:resourcefig}
             }
@@ -405,7 +410,7 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     \centering
     \zihao{5}
     \begin{minipage}{0.5\textwidth}{
-            \includegraphics[width=\textwidth]{gdufelogo-Colorful.jpg}
+            \includegraphics[width=0.9\textwidth]{gdufelogo-Colorful.jpg}
             \caption{图片标注资料来源\cite{anon-cn1}}
             \label{fig:resourcefig}
         }
@@ -526,7 +531,7 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     \end{minipage}
 \end{table}
 
-跨页表格需要用 longtable 环境, 不要改变 \verb|\caption, \label |的位置, 需要用\verb|\zihao{5}|修饰列格式, 注意\verb|\multicolumn{*}| 中的数字, 需要和列数对应, 且最后的换行不能去掉. 长表格示例\ref{table:longtable}如下
+跨页表格需要用 longtable 环境, 不要改变 \verb|\caption, \label |的位置, 用\verb|\zihao{5}| 修饰列格式, 注意\verb|\multicolumn{*}| 中的数字, 需要和列数对应, 且最后的换行不能去掉. 长表格示例\ref{table:longtable}如下
 \begin{lstlisting}
     \begin{longtable}[!h]{*{2}{>{\rowmac\zihao{5}}c}<{\clearrow}}
     \caption{1995-2005 年珠三角、东西两翼和山区邮电业务总量比较}\label{longtable} \\
@@ -551,8 +556,8 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     % 表格数据 (示例多行)
     1 & 内容1\\
     2 & 内容2 \\
-    3 & 内容3 \\
     % 继续添加直到分页
+    3 & 内容3 \\
 \end{longtable}
 \end{lstlisting}
 \begin{longtable}[!h]{*{2}{>{\rowmac\zihao{5}}c}<{\clearrow}}
@@ -626,7 +631,6 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
     8                      & 内容8                                    \\
     9                      & 内容9                                    \\
     10                     & 内容10                                   \\
-    % 继续添加直到分页
 \end{longtable}
 
 \section{程序代码}
@@ -662,59 +666,36 @@ counter-mode 可设置为 shared/separated. shared 定理定义等共用编号, 
 \end{tikzpicture}
 
 \section{列表}
-列表环境 (enumerate, describe, itemrize) 需要在参数添加 left = * 修改左侧空白大小, 其余参数按需调整.
+列表环境 (enumerate, describe, itemrize) 可以在参数添加 left = * 修改左侧空白大小, 默认为 0pt , 其余参数按需调整.
 
 \begin{lstlisting}
-\begin{enumerate}[left = 0pt, label=(\alph*), ref=(\alph*)]
-    \item item
-    \item item
-    \item item
+\begin{enumerate}[label=(\alph*), ref=(\alph*)]
+    \item item1
+    \item item2
+    \item item3
 \end{enumerate}
 \end{lstlisting}
 
-\begin{enumerate}[left = 0pt, label=(\alph*), ref=(\alph*)]
-    \item item
-    \item item
-    \item item
+\begin{enumerate}[label=(\alph*), ref=(\alph*)]
+    \item item1
+    \item item2
+    \item item3
 \end{enumerate}
+
 
 \begin{lstlisting}
 \begin{enumerate}[left = 2\ccwd, label=(\arabic*), ref=(\arabic*)]
-    \item item
-    \item item
-    \item item
+    \item item1
+    \item item2
+    \item item3
 \end{enumerate}
 \end{lstlisting}
 \begin{enumerate}[left = 2\ccwd, label=(\arabic*), ref=(\arabic*)]
-    \item item
-    \item item
-    \item item
+    \item item1
+    \item item2
+    \item item3
 \end{enumerate}
 
-\section{定理编号}
-定理编号格式在主文档的以下代码设置:
-\begin{lstlisting}
-\SetupTheorem{
-  counter-layer = none/chapter/section/subsection,
-  counter-mode  = shared/separated
-}
-\GenerateTheoremEnvs
-\end{lstlisting}
-counter-layer 设置为 none 不带章节编号, 样式为定理1 , 设置为chapter/section/subsection 等会在前面添加章/节/条的编号.
-counter-mode 设置为 shared 定理定义等共用编号, separated 分开编号.
-
-例如, 设置为
-\begin{lstlisting}
-    counter-layer = none,
-    counter-mode  = shared
-\end{lstlisting}
-则定理样式为: 定理1、定理2、定义3、定义4、性质5.
-设置为
-\begin{lstlisting}
-    counter-layer = section,
-    counter-mode  = separated
-\end{lstlisting}
-则定理样式为: 定理1.1.1、定理1.1.2、定义1.1.1、定义1.1.2、性质1.1.1
 
 \section{其他}
 figures 文件夹内提供了一张 1x1 纯白图片用于替换签名图片 none.jpg , 重命名为签名图片可将代码生成的封面、扉页、声明去除手写签名.

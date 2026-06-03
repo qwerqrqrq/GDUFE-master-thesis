@@ -3,6 +3,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.6]
 
+% 添加空白页设置, 来源 sysu-thesis.cls
+\newcommand{\newclearpage}{\clearpage} % 设置文章为电子版格式（不添加多余空白页）
+\DeclareOption{print-both-sides}{ % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+    \renewcommand{\newclearpage}{
+        \clearpage{
+            \pagestyle{empty}
+            \cleardoublepage
+        }
+    }
+}
+
+
 % ---------声明变量-------------
 \newcommand{\masterClass}{学术}
 % ---------选项设置-------------
@@ -21,7 +33,7 @@
 \DeclareOption{forprint}{\printtrue}
 
 % 消除 fix diff 需要的选项
-\PassOptionsToPackage{no-math}{fontspec}
+% \PassOptionsToPackage{no-math}{fontspec}
 
 % 捕获未声明的选项并传递给 ctexbook
 % 根据类型加载ctexbook类不同的基础字号
@@ -49,7 +61,7 @@
 
 %% tag: 宏包
 %% 排版与页面控制
-\RequirePackage{lmodern}
+% \RequirePackage{lmodern}
 \RequirePackage{fontspec}
 \RequirePackage[titles]{tocloft}
 \RequirePackage{changepage}
@@ -62,6 +74,7 @@
 \RequirePackage{expl3}
 %% 数学相关
 \RequirePackage{amsmath,amssymb}
+\RequirePackage{unicode-math} % 设置数学公式字体
 % \RequirePackage{amsmath,amssymb,mathscr}
 \RequirePackage[scr=rsfs]{mathalpha}
 \RequirePackage{amsthm,thmtools}
@@ -103,7 +116,7 @@
                 left=3truecm,
                 right=2.2truecm,
                 paper=a4paper,
-                headsep=1.04truecm,
+                headsep=0.54truecm,
                 footskip=0.79truecm,
                 headheight=16pt]{geometry}}
         {proposal}{\RequirePackage[top=2.54truecm,
@@ -126,23 +139,24 @@
 
 \AtBeginDocument{%
     \setlength{\baselineskip}{20pt} \selectfont
-    \raggedbottom
+    % \raggedbottom
 }
 
 %% tag: 字体
-\defaultfontfeatures{Path = fonts/}
+% \defaultfontfeatures{Path = fonts/} %适配 TeX Gyre Termes Math 取消
 % 设置英文字体
-\setmainfont[BoldFont = timesbd.ttf,
+\setmainfont[Path=fonts/,
+    BoldFont = timesbd.ttf,
     ItalicFont = timesi.ttf,
     BoldItalicFont = timesbi.ttf]{times.ttf}
 % 设置中文字体
-\setCJKmainfont{simsun.ttc}
-\setCJKsansfont{simhei.ttf}
-\setCJKmonofont{simfang.ttf}
-\setCJKfamilyfont{zhsong}{simsun.ttc}
-\setCJKfamilyfont{zhhei}{simhei.ttf}
-\setCJKfamilyfont{zhfs}{simfang.ttf}
-\setCJKfamilyfont{zhkai}{simkai.ttf}
+\setCJKmainfont[Path = "fonts/"]{simsun.ttc}
+\setCJKsansfont[Path = "fonts/"]{simhei.ttf}
+\setCJKmonofont[Path = "fonts/"]{simfang.ttf}
+\setCJKfamilyfont{zhsong}[Path = "fonts/"]{simsun.ttc}
+\setCJKfamilyfont{zhhei}[Path = "fonts/"]{simhei.ttf}
+\setCJKfamilyfont{zhfs}[Path = "fonts/"]{simfang.ttf}
+\setCJKfamilyfont{zhkai}[Path = "fonts/"]{simkai.ttf}
 
 
 %% tag: 行距
@@ -166,7 +180,7 @@
 \fancyhead{}                                    % clear all header fields
 \fancyhead[L]{\zihao{5}广东财经大学{\masterClass}学位硕士论文}
 \fancyhead[R]{\zihao{5} \ctitle}
-\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\headrulewidth}{0.5pt}
 \fancyfoot{}                                    % clear all footer fields
 \fancyfoot[C]{\thepage}
 }
@@ -397,52 +411,44 @@
 % \newtheorem{proof}{\hspace{2em}证明}
 
 %%%%%%%-------------------------------------------------
-%%%===  suppress extra inter-line spacing in \list environments
-% \makeatletter \setlength\partopsep{0pt}
-% \def\@listI{\leftmargin\leftmargini
-%     \parsep 0pt
-%     \topsep \parsep
-%     \itemsep \parsep}
-% \@listI
-% \def\@listii {\leftmargin\leftmarginii
-%     \labelwidth\leftmarginii
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listiii{\leftmargin\leftmarginiii
-%     \labelwidth\leftmarginiii
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listiv{\leftmargin\leftmarginiv
-%     \labelwidth\leftmarginiv
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listv{\leftmargin\leftmarginv
-%     \labelwidth\leftmarginv
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
-% \def\@listvi{\leftmargin\leftmarginvi
-%     \labelwidth\leftmarginvi
-%     \advance\labelwidth-\labelsep
-%     \parsep    \z@ \@plus\z@  \@minus\z@
-%     \topsep    \parsep
-%     \itemsep   \parsep}
+%%===  suppress extra inter-line spacing in \list environments
+\makeatletter \setlength\partopsep{0pt}
+\def\@listI{\leftmargin\leftmargini
+    \parsep 0pt
+    \topsep \parsep
+    \itemsep \parsep}
+\@listI
+\def\@listii {\leftmargin\leftmarginii
+    \labelwidth\leftmarginii
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listiv{\leftmargin\leftmarginiv
+    \labelwidth\leftmarginiv
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listv{\leftmargin\leftmarginv
+    \labelwidth\leftmarginv
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
+\def\@listvi{\leftmargin\leftmarginvi
+    \labelwidth\leftmarginvi
+    \advance\labelwidth-\labelsep
+    \parsep    \z@ \@plus\z@  \@minus\z@
+    \topsep    \parsep
+    \itemsep   \parsep}
 
-% % %
-% % % % Change default margins for \list environments
-% \setlength\leftmargini   {2\ccwd} \setlength\leftmarginii
-% {\leftmargini} \setlength\leftmarginiii {\leftmargini}
-% \setlength\leftmarginiv  {\leftmargini} \setlength\leftmarginv
-% {\ccwd} \setlength\leftmarginvi  {\ccwd} \setlength\leftmargin
-% {\leftmargini} \setlength\labelsep      {.5\ccwd}
-% \setlength\labelwidth    {\leftmargini}
 % %
 % \setlength\listparindent{2\ccwd}
 % % Change \listparindent to 2\ccwd in \list
@@ -517,6 +523,10 @@
 \setlist[enumerate]{itemsep=0pt, topsep=0pt, parsep=0pt}
 \setlist[description]{itemsep=0pt, topsep=0pt, parsep=0pt}
 \setlist[itemize]{itemsep=0pt, topsep=0pt, parsep=0pt}
+
+%% tag: 列表
+\setlist{nosep}
+
 
 %---------------------------------------------------
 %% tag: 图片、表格
@@ -796,21 +806,21 @@
 \setfnsymbol{circled}
 
 %% tag: cleardoublepage 设置清除双面打印时的空白页
-\makeatletter
-\def\cleardoublepage{%
-    \clearpage
-    \if@twoside
-        \ifodd\c@page
-            % 当前是奇数页，不插空白页
-        \else
-            \hbox{}%
-            \thispagestyle{empty}%
-            \newpage
-            \if@twocolumn\hbox{}\newpage\fi
-        \fi
-    \fi
-}
-\makeatother
+% \makeatletter
+% \def\cleardoublepage{%
+%     \clearpage
+%     \if@twoside
+%         \ifodd\c@page
+%             % 当前是奇数页，不插空白页
+%         \else
+%             \hbox{}%
+%             \thispagestyle{empty}%
+%             \newpage
+%             \if@twocolumn\hbox{}\newpage\fi
+%         \fi
+%     \fi
+% }
+% \makeatother
 
 %% tag: 信息宏定义
 \newtoks{\etitle}
@@ -890,8 +900,8 @@
             \par\vspace*{2mm}
             {\heiti \fontsize{48pt}{\baselinestretch} {\masterClass 学位硕士论文}}\\
             \vspace{60pt}
-            {\heiti \zihao{-2} \bfseries \ctitle}\\
-            {\heiti \zihao{-2} \bfseries \the\etitle \par}
+            {\songti \zihao{2} \bfseries \ctitle}\\
+            {\zihao{-2} \bfseries \the\etitle \par}
             % \vspace*{2em}
             \vfill\vfill\vfill
             % {\fangsong \infoTable}
