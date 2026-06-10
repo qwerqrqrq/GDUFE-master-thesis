@@ -130,7 +130,10 @@
 \ExplSyntaxOff
 \RequirePackage{fancyhdr}
 \RequirePackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,bookmarksnumbered=true]{hyperref}
-\hypersetup{pdfencoding=auto}
+\makeatletter
+\hypersetup{pdfencoding=auto
+}
+\makeatother
 \ifprint
     \hypersetup{hidelinks}
 \fi
@@ -637,6 +640,7 @@
     \chapter[摘要]{\heiti\ziju{1}摘要}
     \zihao{-4}
     \setcounter{page}{1}
+    \pagenumbering{Roman}
 }
 {\newline
     \par}
@@ -654,7 +658,7 @@
 % \titlespacing*{\chapter}{80pt}{0pt}{0pt}  % 修改为 0pt 贴紧顶部
 
 \apptocmd{\frontmatter}{
-    \pagenumbering{Roman}
+    \pagenumbering{roman}
     \pagestyle{plain}
     \ctexset{
         chapter={
