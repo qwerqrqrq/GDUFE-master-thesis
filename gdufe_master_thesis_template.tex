@@ -1,4 +1,4 @@
-\documentclass[class = academic, type=thesis, AutoFakeBold=3.17, AutoFakeSlant=0.2]{gdufe_master}
+\documentclass[class = academic, type=thesis, print-both-sides, AutoFakeBold=3.17, AutoFakeSlant=0.2]{gdufe_master}
 % \documentclass[forprint,draft, class = professional, print-both-sides, AutoFakeBold=3.17,AutoFakeSlant=0.2]{gdufe_master}
 % class=academic: 学术学位论文
 % class=professional: 专业学位论文
@@ -72,7 +72,7 @@
 % 页面底部强制对齐
 \flushbottom
 %-----------------------------------------------------------------------------
-\pagestyle{empty}
+\frontmatter
 
 %% 导入封面、扉页、声明格式用pdf导入或者使用latex生成的页面
 \pdfbookmark[0]{封面}{title}         % 封面页加到 pdf 书签
@@ -96,7 +96,7 @@
 
 %% 觉得行距有问题添加下行代码 %%%%
 % \setlength{\baselineskip}{20pt} % 设置行距
-\frontmatter
+
 %-----------------------------------------------------------------------------
 \include{includefile/abstract.tex}    % 加入摘要.
 %%%%---- 把目录加入到书签 ----%%%%
@@ -109,7 +109,6 @@
 %% 允许公式跨页展示
 \allowdisplaybreaks
 %%%%---- main matter ----%%%%
-\newclearpage
 \include{includefile/chapter1.tex}
 \newclearpage
 \include{includefile/chapter2.tex}

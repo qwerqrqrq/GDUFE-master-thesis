@@ -520,13 +520,12 @@
 
 
 %% tag: enumerate 设置
-\setlist[enumerate]{itemsep=0pt, topsep=0pt, parsep=0pt}
-\setlist[description]{itemsep=0pt, topsep=0pt, parsep=0pt}
-\setlist[itemize]{itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[enumerate]{left=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[description]{left=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[itemize]{left=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
 
 %% tag: 列表
 \setlist{nosep}
-\setlist{leftmargin=0pt}
 
 %---------------------------------------------------
 %% tag: 图片、表格
@@ -637,6 +636,7 @@
 \newenvironment{cnabstract}{%
     \chapter[摘要]{\heiti\ziju{1}摘要}
     \zihao{-4}
+    \setcounter{page}{1}
 }
 {\newline
     \par}
@@ -666,9 +666,14 @@
     }
 }{}{}
 
-\apptocmd{\mainmatter}{
+
+\makeatletter
+\renewcommand{\mainmatter}{
+    \newclearpage
+    \@mainmattertrue
+    \pagenumbering{arabic}
     \pagestyle{master-thesis-mainmatter}
-    \ctexset{
+    \ctexset {
         chapter={
           format = {\zihao{3}\heiti\raggedright},
           % titleformat={\zihao{3}\heiti\raggedright},
@@ -721,8 +726,8 @@
             }
     }
     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
-}{}{}
-
+}
+\makeatother
 
 % \renewcommand{\frontmatter}{
 %     \@mainmatterfalse
@@ -737,65 +742,6 @@
 %          }
 %     }
 % }
-
-% \renewcommand{\mainmatter}{
-%     \@mainmattertrue
-%     \pagenumbering{arabic}
-%     \pagestyle{master-thesis-mainmatter}
-%     \ctexset{
-%         chapter={
-%             format = {\zihao{3}\heiti\raggedright},
-%             % titleformat={\zihao{3}\heiti\raggedright},
-%             % nameformat={\zihao{3}\heiti\raggedright},
-%             pagestyle={master-thesis-mainmatter},
-%             fixskip = true,
-%             afterskip={20pt},
-%             beforeskip={0pt},
-%             number={\arabic{chapter}},
-%             name={,},
-%             % aftername={\quad},
-%             aftername={}
-%          },
-%         section={
-%             format={\zihao{-3}\heiti\raggedright},
-%             % nameformat={\zihao{-3}\heiti\raggedright},
-%             % titleformat={\zihao{-3}\heiti\raggedright},
-%             afterskip={6pt},
-%             beforeskip={6pt},
-%             % aftername={\quad},
-%             aftername={},
-%             name={,},
-%             % fixskip = true,
-%          },
-%         subsection={
-%             format={\zihao{4}\heiti\raggedright},
-%             % nameformat={\zihao{4}\heiti\raggedright},
-%             % titleformat={\zihao{4}\heiti\raggedright},
-%             afterskip={3pt},
-%             beforeskip={3pt},
-%             % aftername={\quad},
-%             aftername={},
-%             name={,},
-%             % fixskip = true,
-%             },
-%         subsubsection={
-%             format={\zihao{-4}\heiti\raggedright},
-%             % titleformat={\zihao{-4}\heiti\raggedright},
-%             % nameformat={\zihao{-4}\heiti\raggedright},
-%             afterskip={0pt},
-%             beforeskip={0pt},
-%             % aftername={\quad},
-%             aftername={},
-%             name={,},
-%             % fixskip = true,
-%             }
-%     }
-%     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
-% }
-
-
-% \apptocmd{\appendix}{\ctexset{chapter={pagestyle={plain}}}
-% }{}{}
 
 
 %% tag: 脚注 设置为带编号数字
@@ -885,7 +831,8 @@
 }
 %% tag: 封面
 \newcommand{\makecover}{%
-    \begin{titlepage}
+    % \begin{titlepage}
+    \newpage
         \thispagestyle{empty}%
         \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
         {\noindent\fangsong\zihao{-4}\bfseries 分类号： UDC\\[-3pt]
@@ -910,7 +857,7 @@
             {\fangsong\zihao{3} \bfseries \the\CoverPageDate}
             \vspace{1em}
         \end{center}
-    \end{titlepage}
+    % \end{titlepage}
     \restoregeometry
 }
 
@@ -982,7 +929,7 @@
         \makebox[9.5cm][l]{学位论文作者签名：\includegraphics[width=3.5cm]{sign-author}} \makebox[5truecm][l]{导师签名：\includegraphics[width=3.5cm]{sign-supervisor}}\\
         \makebox[9.5cm][l]{签字日期：\the\SignDate} \makebox[5truecm][l]{签字日期：\the\SignDate}
     \end{spacing}
-    \songti
+    % \songti
     \restoregeometry
     % \makeatother
 }

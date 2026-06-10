@@ -37,17 +37,35 @@
 
 \usepackage{emptypage}
 \begin{document}
+\frontmatter
+%% 导入封面、扉页、声明格式用pdf导入或者使用latex生成的页面
+\pdfbookmark[0]{封面}{title}         % 封面页加到 pdf 书签
+% 封面文件需要自己在doc文件修改后导出pdf文件，注意文件名.
+\includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
+% \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(专业学位).pdf}
+%% latex 生成的页面, 和学校的有细微不同, 谨慎使用
+% 使用代码生成封面
+\makecover
+% 使用代码生成扉页
+\maketitlepage
+% 使用代码生成声明
+\makeclaim
+%-----------------------------------------------------------------------------
 
-% \makeProposal
-% \makecover
-% \maketitlepage
-% \makeclaim
+\include{includefile/abstract.tex}    % 加入摘要.
+%%%%---- 把目录加入到书签 ----%%%%
+\addcontentsline{toc}{chapter}{目录}  % 目录加入到目录
+\tableofcontents
+
+% \typeout{\meaning\frontmatter}
 
 \mainmatter
-啊手动阀手动阀手动阀手动阀手动阀啊手动阀手动阀手动阀手动阀手动阀啊手动阀手动阀手动阀手动阀手动阀啊手动阀手动阀手动阀手动阀手动阀啊手动阀手动阀手动阀手动阀手动阀啊手动阀手动阀手动阀手动阀手动阀
-\begin{enumerate}[label=(\alph*), ref=(\alph*)]
-    \item item1
-    \item item2
-    \item item3
-\end{enumerate}
+%% 允许页面底部不对齐，让内容自然结束. 有问题尝试删除
+% \raggedbottom
+% %% 允许公式跨页展示
+% \allowdisplaybreaks
+% %%%%---- main matter ----%%%%
+% \newclearpage
+% \include{includefile/chapter1.tex}
+\chapter{11234}
 \end{document}

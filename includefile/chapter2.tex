@@ -666,17 +666,17 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
 \end{tikzpicture}
 
 \section{列表}
-列表环境 (enumerate, describe, itemrize) 可以在参数添加 left = * 修改左侧空白大小, 其余参数按需调整.
+列表环境 (enumerate, describe, itemrize) 可以在参数添加 left = * 修改左侧空白大小, 默认为 0pt, 其余参数按需调整.
 
 \begin{lstlisting}
-\begin{enumerate}[left = 0pt, label=(\alph*), ref=(\alph*)]
+\begin{enumerate}[label=(\alph*), ref=(\alph*)]
     \item item1
     \item item2
     \item item3
 \end{enumerate}
 \end{lstlisting}
 
-\begin{enumerate}[left = 0pt, label=(\alph*), ref=(\alph*)]
+\begin{enumerate}[label=(\alph*), ref=(\alph*)]
     \item item1
     \item item2
     \item item3
@@ -695,6 +695,14 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     \item item2
     \item item3
 \end{enumerate}
+
+要全局修改 enumerate, describe, itemrize 的左侧空白大小为2中文字符, 可以使用:
+
+\begin{lstlisting}
+\setlist[enumerate]{left=2\ccwd}
+\setlist[description]{left=2\ccwd}
+\setlist[itemize]{left=2\ccwd}
+\end{lstlisting}
 
 
 \section{其他}
