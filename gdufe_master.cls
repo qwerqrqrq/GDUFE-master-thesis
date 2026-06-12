@@ -129,11 +129,8 @@
 }{}{}
 \ExplSyntaxOff
 \RequirePackage{fancyhdr}
-\RequirePackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,bookmarksnumbered=true]{hyperref}
-\makeatletter
-\hypersetup{pdfencoding=auto
-}
-\makeatother
+\RequirePackage[colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,bookmarksnumbered=true,pdfencoding=auto]{hyperref}
+
 \ifprint
     \hypersetup{hidelinks}
 \fi
@@ -142,6 +139,12 @@
 
 \AtBeginDocument{%
     \setlength{\baselineskip}{20pt} \selectfont
+    \makeatletter
+    \hypersetup{%
+        pdftitle={\@title},
+        pdfauthor={\@author}
+    }
+    \makeatother
     % \raggedbottom
 }
 
