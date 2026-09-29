@@ -17,6 +17,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: show branch
+        run: |
+          echo "Current branch is ${{ github.ref }}"
+
       # Compile the LaTeX document with XeLaTeX
       - name: Compile latex documents
         uses: xu-cheng/latex-action@v3
