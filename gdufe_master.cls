@@ -206,6 +206,9 @@
     {thesis}{
             \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
         }
+    {proposal}{
+        \renewcommand{\theequation}{\thesection-\arabic{equation}}
+    }
 }
 
 %------------------------定理----------------------
@@ -666,6 +669,7 @@
 }{}{}
 
 
+\ifdefstring{\type}{thesis}{
 \renewcommand{\mainmatter}{
     \newclearpage
     \@mainmattertrue
@@ -724,6 +728,9 @@
             }
     }
     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
+}
+}{
+    \providecommand{\mainmatter}{}
 }
 
 % \renewcommand{\frontmatter}{
