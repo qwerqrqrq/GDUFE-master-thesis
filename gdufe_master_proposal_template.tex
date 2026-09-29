@@ -15,12 +15,6 @@
 \CoverPageDate{2026年6月4日}
 \gender{男}
 
-\SetupTheorem{
-  counter-layer = none,
-  counter-mode  = shared
-}
-\GenerateTheoremEnvs
-
 
 %%%% --------biblatex 与cite  bibliographystyle二选一-------------
 %% 使用biblatex. 如果手写参考文献请注释下两行
@@ -30,6 +24,12 @@
 % % 不使用biblatex.
 % \usepackage{cite} % 使用cite宏包, 以便合并引用文献, 例如 [1-3] 的形式.
 % \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}  %自定义新命令\upcite, 使参考文献引用以上标出现
+
+\SetupTheorem{
+  counter-layer = section,
+  counter-mode  = shared
+}
+\GenerateTheoremEnvs
 
 
 \begin{document}
@@ -70,12 +70,32 @@
     \section{选题研究的基本内容、结构框架、创新之处}
     选题研究的基本内容、结构框架、创新之处.
 
+    \begin{definition}[整数]
+        正整数(例如 1, 2, 3)、负整数(例如 ${-1}$, $-2$, $-3$)与零(0)合起来统称为{\heiti 整数}.
+    \end{definition}
+
+    \begin{remark}
+        整数集合在数学上通常表示为 $\mathbf{Z}$ 或 $\mathbb{Z}$, 该记号源于德语单词 Zahlen(意为``数'')的首字母.
+    \end{remark}
+
+    \begin{property}
+        任意两个整数相加、相减、相乘的结果, 仍然是整数.
+    \end{property}
+
+    \begin{example}
+        $1+2=3$.
+    \end{example}
+
+    \begin{corollary}
+        在整数集合内, 相加、相减、相乘运算是封闭的.
+    \end{corollary}
+
     公式引用\ref{eq}.
     \begin{equation}
-        E=mc^2.
+        E=mc^2. \label{eq}
     \end{equation}
     \begin{equation*}
-        E=mc^2.\label{eq}
+        E=mc^2.
     \end{equation*}
     \begin{gather}
         E=mc^2,\\
