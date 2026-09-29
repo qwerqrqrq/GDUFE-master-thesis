@@ -666,6 +666,7 @@
 }{}{}
 
 
+\ifdefstring{\type}{thesis}{
 \renewcommand{\mainmatter}{
     \newclearpage
     \@mainmattertrue
@@ -724,6 +725,9 @@
             }
     }
     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
+}
+}{
+    \providecommand{\mainmatter}{}
 }
 
 % \renewcommand{\frontmatter}{

@@ -14,6 +14,7 @@
 * 分离了封面、扉页、声明页与摘要、目录页的页码格式
 * 添加了作者与标题的pdf元数据
 * 删除了cls文件里多余\makeatletter 和 \makeatother
+* 修复了开题报告由于载入ctexart类没有 \mainmatter 而无法编译的问题
 
 ## v0.5.5
 
