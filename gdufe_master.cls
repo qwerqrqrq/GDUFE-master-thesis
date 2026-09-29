@@ -139,12 +139,10 @@
 
 \AtBeginDocument{%
     \setlength{\baselineskip}{20pt} \selectfont
-    \makeatletter
     \hypersetup{%
         pdftitle={\@title},
         pdfauthor={\@author}
     }
-    \makeatother
     % \raggedbottom
 }
 
@@ -348,7 +346,6 @@
 \ExplSyntaxOff
 
 % 证明不斜体, 空两格
-\makeatletter
 \renewenvironment{proof}[1][\proofname]{%
     \par\pushQED{\qed}%
     \normalfont
@@ -358,7 +355,6 @@
 }{%
     \popQED\endtrivlist\@endpefalse
 }
-\makeatother
 
 
 % \theoremstyle{plain}
@@ -418,7 +414,7 @@
 
 %%%%%%%-------------------------------------------------
 %%===  suppress extra inter-line spacing in \list environments
-\makeatletter \setlength\partopsep{0pt}
+\setlength\partopsep{0pt}
 \def\@listI{\leftmargin\leftmargini
     \parsep 0pt
     \topsep \parsep
@@ -469,7 +465,6 @@
 %     \advance\@totalleftmargin \leftmargin
 %     \parshape \@ne \@totalleftmargin \linewidth
 %     \ignorespaces}
-\makeatother
 
 % %%%%%%%%listings 设置%%%%%%%%%%%%
 % % \usepackage{textcomp}
@@ -629,9 +624,6 @@
 \setlength{\cftsubsecindent}{0pt}                    % subsection 不缩进
 
 
-
-
-
 %% tag: 摘要、关键词
 \newcommand\cnkeywords[1]{ {\heiti\zihao{-4}\cnkeywordsname: }\songti\zihao{-4}#1}
 \newcommand\cnkeywordsname{关键词}
@@ -674,7 +666,6 @@
 }{}{}
 
 
-\makeatletter
 \renewcommand{\mainmatter}{
     \newclearpage
     \@mainmattertrue
@@ -734,7 +725,6 @@
     }
     \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
 }
-\makeatother
 
 % \renewcommand{\frontmatter}{
 %     \@mainmatterfalse
@@ -759,7 +749,6 @@
 \setfnsymbol{circled}
 
 %% tag: cleardoublepage 设置清除双面打印时的空白页
-% \makeatletter
 % \def\cleardoublepage{%
 %     \clearpage
 %     \if@twoside
@@ -773,7 +762,7 @@
 %         \fi
 %     \fi
 % }
-% \makeatother
+
 
 %% tag: 信息宏定义
 \newtoks{\etitle}
@@ -788,10 +777,9 @@
 \newtoks{\SignDate}
 \newtoks{\CoverPageDate}
 
-\makeatletter
+
 \newcommand{\cname}{\@author}
 \newcommand{\ctitle}{\@title}
-\makeatother
 
 \ExplSyntaxOn
 \cs_new:Npn \__thesis_infoTableOne: {
@@ -938,7 +926,6 @@
     \end{spacing}
     % \songti
     \restoregeometry
-    % \makeatother
 }
 
 
