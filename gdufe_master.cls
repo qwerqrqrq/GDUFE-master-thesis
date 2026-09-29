@@ -206,6 +206,9 @@
     {thesis}{
             \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
         }
+    {proposal}{
+        \renewcommand{\theequation}{\thesection-\arabic{equation}}
+    }
 }
 
 %------------------------定理----------------------

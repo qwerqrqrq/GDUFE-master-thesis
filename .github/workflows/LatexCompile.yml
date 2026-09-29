@@ -18,33 +18,36 @@ jobs:
         uses: actions/checkout@v4
 
       # Compile the LaTeX document with XeLaTeX
-      - name: Compile gdufe_master_thesis_template
+      - name: Compile latex documents
         uses: xu-cheng/latex-action@v3
         with:
           # root_file: compare.tex
-          root_file: gdufe_master_thesis_template.tex
+          root_file: |
+            gdufe_master_thesis_template.tex
+            gdufe_master_proposal_template.tex
           args: -xelatex
           # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
           extra_fonts: |
             ./fonts/*.ttf
             ./fonts/*.ttc
+            ./fonts/*.otf
           # extra_system_packages: "fontconfig"
           # pre_compile: "fc-cache -f"
           post_compile: "latexmk -c"
 
-      - name: Compile gdufe_master_proposal_template
-        uses: xu-cheng/latex-action@v3
-        with:
-          # root_file: compare.tex
-          root_file: gdufe_master_proposal_template.tex
-          args: -xelatex
-          # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
-          # extra_fonts: |
-          #   ./fonts/*.ttf
-          #   ./fonts/*.ttc
-          # extra_system_packages: "fontconfig"
-          # pre_compile: "fc-cache -f"
-          post_compile: "latexmk -c"
+      # - name: Compile gdufe_master_proposal_template
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     # root_file: compare.tex
+      #     root_file:
+      #     args: -xelatex
+      #     # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
+      #     # extra_fonts: |
+      #     #   ./fonts/*.ttf
+      #     #   ./fonts/*.ttc
+      #     # extra_system_packages: "fontconfig"
+      #     # pre_compile: "fc-cache -f"
+      #     post_compile: "latexmk -c"
 
       # Upload compiled pdf to artifacts if compiled successfully
       - name: Upload pdfs
