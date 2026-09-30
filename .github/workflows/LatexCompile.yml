@@ -4,10 +4,10 @@ permissions:
   contents: write
 name: LaTeX Compile
 
-on:
-  push:
-    branches: [dev, master]
-    tags: ["v*"]
+on: [push]
+  # push:
+    # branches: [dev, master]
+    # tags: ["v*"]
   # pull_request:
   #   branches: [master]
 jobs:
