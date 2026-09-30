@@ -9,18 +9,18 @@ This chapter is modified based on the test section of the Wuhan University thesi
 \begin{table}[!ht]\centering
     \begin{tabular}{lll}
         \toprule
-        命令               & 宋体效果                & Times New Roman 效果                       \\
+        命令               & 宋体效果                    & Times New Roman 效果                       \\
         \midrule
-        & 宋体正常 & Times New Roman\\
-        \verb|\rmfamily| & {\rmfamily 宋体罗马字族}  & {\rmfamily Times New Roman Roman Family} \\
+                         & 宋体正常                    & Times New Roman                          \\
+        \verb|\rmfamily| & {\rmfamily 宋体罗马字族}      & {\rmfamily Times New Roman Roman Family} \\
         \verb|\sffamily| & {\sffamily 宋体无衬线字族（黑体）} & {\sffamily Times New Roman Sans Serif}   \\
-        \verb|\ttfamily| & {\ttfamily 宋体打字机}   & {\ttfamily Times New Roman Typewriter}   \\
-        \verb|\bfseries| & {\bfseries 宋体加粗}    & {\bfseries Times New Roman Bold}         \\
-        \verb|\textbf{}| & \textbf{宋体加粗} & \textbf{Times New Roman Bold} \\
+        \verb|\ttfamily| & {\ttfamily 宋体打字机}       & {\ttfamily Times New Roman Typewriter}   \\
+        \verb|\bfseries| & {\bfseries 宋体加粗}        & {\bfseries Times New Roman Bold}         \\
+        \verb|\textbf{}| & \textbf{宋体加粗}           & \textbf{Times New Roman Bold}            \\
         \verb|\itshape|  & {\itshape 宋体意大利（倾斜）}    & {\itshape Times New Roman Italic}        \\
-        \verb|\textit{}| & \textit{宋体意大利（倾斜）} & \textit{Times New Roman Italic} \\
-        \verb|\slshape|  & {\slshape 宋体倾斜}     & {\slshape Times New Roman Slanted}       \\
-        \verb|\textsl{}| & \textsl{宋体倾斜} & \textsl{Times New Roman Slanted} \\
+        \verb|\textit{}| & \textit{宋体意大利（倾斜）}      & \textit{Times New Roman Italic}          \\
+        \verb|\slshape|  & {\slshape 宋体倾斜}         & {\slshape Times New Roman Slanted}       \\
+        \verb|\textsl{}| & \textsl{宋体倾斜}           & \textsl{Times New Roman Slanted}         \\
 
         \bottomrule
     \end{tabular}
@@ -32,7 +32,7 @@ This chapter is modified based on the test section of the Wuhan University thesi
         \toprule
         测试类型 & {\songti 宋体}             & {\heiti 黑体}                    & {\kaishu 楷书}                    & {\fangsong 仿宋}                    & Times New Roman               \\
         \midrule
-        & {字体测试} &{\heiti 字体测试} & {\kaishu 字体测试} & {\fangsong 字体测试} & {Font test} \\
+             & {字体测试}                   & {\heiti 字体测试}                  & {\kaishu 字体测试}                  & {\fangsong 字体测试}                  & {Font test}                   \\
         伪粗体  & {\bfseries 字体测试}         & {\bfseries\heiti 字体测试}         & {\bfseries\kaishu 字体测试}         & {\bfseries\fangsong 字体测试}         & {\bfseries Font test}         \\
         伪斜体  & {\itshape 字体测试}          & {\itshape\heiti 字体测试}          & {\itshape\kaishu 字体测试}          & {\itshape\fangsong 字体测试}          & {\itshape Font test}          \\
         叠加测试 & {\bfseries\itshape 字体测试} & {\bfseries\itshape\heiti 字体测试} & {\bfseries\itshape\kaishu 字体测试} & {\bfseries\itshape\fangsong 字体测试} & {\bfseries\itshape Font test} \\
@@ -41,35 +41,43 @@ This chapter is modified based on the test section of the Wuhan University thesi
     \caption{不同字体下伪粗体、伪斜体及叠加效果测试}
 \end{table}
 
+abcdefghijklmnopqrstuvwxyz
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 
-\section{公式\the\baselineskip}
+\section{数学环境\the\baselineskip}
 
-\subsection{算符、希腊字母\the\baselineskip}
+\subsection{字母表、算符、希腊字母\the\baselineskip}
+\begin{tabular}{ll}
+    Normal           & $ABCDEFGHIJKLMNOPQRSTUVWXYZ$            \\
+                     & $abcdefghijklmnopqrstuvwxyz$            \\
+    \verb|\mathbf|   & $\mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$   \\
+                     & $\mathbf{abcdefghijklmnopqrstuvwxyz}$   \\
+    \verb|\mathsf|   & $\mathsf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$   \\
+                     & $\mathsf{abcdefghijklmnopqrstuvwxyz}$   \\
+    \verb|\mathbb|   & $\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$   \\
+                     & $\mathbb{abcdefghijklmnopqrstuvwxyz}$   \\
+    \verb|\mathcal|  & $\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$  \\
+                     & $\mathcal{abcdefghijklmnopqrstuvwxyz}$  \\
+    \verb|\mathfrak| & $\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \\
+                     & $\mathfrak{abcdefghijklmnopqrstuvwxyz}$ \\
+    \verb|\mathscr|  & $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+\end{tabular}
+
 \begin{gather*}
-    +-*/\times\cdot\frac{abc}{xyz} \frac{\d^n y}{\d x^n} \frac{\partial^n y}{\partial^n x} \int_{a}^{b} x \,\d x  \lim_{x \to \infty}  \sum_{n = 1}^{\infty}  \iint \oint \prod \coprod  \\
+    +-*\times/ \div  \cdot\frac{abc}{xyz} \frac{\d^n y}{\d x^n} \frac{\partial^n y}{\partial^n x} \int_{a}^{b} x \,\d x  \lim_{x \to \infty}  \sum_{n = 1}^{\infty}  \iint \oint \prod \coprod  \\
     \alpha\beta\gamma\delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \kappa \lambda \mu \nu \xi o \pi \varpi \rho \varrho \sigma \varsigma \tau \upsilon \phi \varphi \chi \psi \omega\\
     A B \Gamma \varGamma \Delta \varDelta E Z H \Theta \varTheta I K \Lambda \varLambda M N \Xi \varXi O \Pi \varPi P \Sigma \varSigma T \Upsilon \varUpsilon \Phi \varPhi X \Psi \varPsi \Omega \varOmega
 \end{gather*}
-
 公式直接接在标题会有不正常的空白, 接在文字后面就是正常的.
-\begin{gather*}
-    \frac{abc}{xyz} \frac{\d^n y}{\d x^n} \frac{\partial^n y}{\partial^n x} \int_{a}^{b} x \,\d x  \lim_{x \to \infty}  \sum_{n = 1}^{\infty}  \iint \oint \prod \coprod  \\
-    \alpha\beta\gamma\delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \kappa \lambda \mu \nu \xi o \pi \varpi \rho \varrho \sigma \varsigma \tau \upsilon \phi \varphi \chi \psi \omega\\
-    A B \Gamma \varGamma \Delta \varDelta E Z H \Theta \varTheta I K \Lambda \varLambda M N \Xi \varXi O \Pi \varPi P \Sigma \varSigma T \Upsilon \varUpsilon \Phi \varPhi X \Psi \varPsi \Omega \varOmega
-\end{gather*}
-\subsection{几类数学字母表\the\baselineskip}
-
-\begin{itemize}
-    \item \verb|\mathcal|: $\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \the\baselineskip
-    \item \verb|\mathbb|: $\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \the\baselineskip
-    \item \verb|\mathfrak|: $\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \the\baselineskip
-    \item \verb|\mathsf|: $\mathsf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \the\baselineskip
-    \item \verb|\mathbf|: $\mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \the\baselineskip
-    \item \verb|\mathscr|: $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ \the\baselineskip
-\end{itemize}
-
+% \begin{gather*}
+%     \frac{abc}{xyz} \frac{\d^n y}{\d x^n} \frac{\partial^n y}{\partial^n x} \int_{a}^{b} x \,\d x  \lim_{x \to \infty}  \sum_{n = 1}^{\infty}  \iint \oint \prod \coprod  \\
+%     \alpha\beta\gamma\delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \kappa \lambda \mu \nu \xi o \pi \varpi \rho \varrho \sigma \varsigma \tau \upsilon \phi \varphi \chi \psi \omega\\
+%     A B \Gamma \varGamma \Delta \varDelta E Z H \Theta \varTheta I K \Lambda \varLambda M N \Xi \varXi O \Pi \varPi P \Sigma \varSigma T \Upsilon \varUpsilon \Phi \varPhi X \Psi \varPsi \Omega \varOmega
+% \end{gather*}
 
 \subsection{（不）带编号单行公式\the\baselineskip}
 
@@ -120,6 +128,99 @@ Use \texttt{align*} environment:
         a_{21} & a_{22} & a_{23} \\
         a_{31} & a_{32} & a_{33} \\
     \end{Bmatrix}\]
+
+\subsection{已定义的数学定理环境}
+
+\begin{definition}[测度]
+    (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
+\end{definition}
+
+\begin{theorem}
+    这是一段文字 $E = m c^2$
+\end{theorem}
+
+\begin{proof}
+    这是一段文字 $E = m c^2$
+\end{proof}
+
+\begin{proof}[定理xx的证明]
+    这是一段文字 $E = m c^2$
+\end{proof}
+
+\begin{example}
+    这是一段文字 $E = m c^2$
+\end{example}
+
+\begin{property}
+    这是一段文字 $E = m c^2$
+\end{property}
+
+\begin{corollary}
+    这是一段文字 $E = m c^2$
+\end{corollary}
+
+\begin{lemma}
+    这是一段文字 $E = m c^2$
+\end{lemma}
+
+\begin{remark}
+    这是一段文字 $E = m c^2$
+\end{remark}
+
+\begin{axiom}
+    这是一段文字 $E = m c^2$
+\end{axiom}
+
+\begin{theorem}[Banach-Steinhaus]\label{thm:test}
+    设 $E$ 是 Banach 空间, $F$ 是赋范空间, $(u_i)_{i\in I}$ 是一族从 $E$ 到 $F$ 的有界线性算子,
+    即 $(u_i)_{i\in I}\subset \mathcal{B}(E,F)$. 若对每一点 $x\in E$, 有
+    $\sup_{i\in I} \|u_i(x)\|<\infty$, 则
+    \begin{equation}\label{eq:test1}
+        \sup_{i\in I} \|u_i\| < \infty.
+    \end{equation}
+\end{theorem}
+
+我想引用定理~\ref{thm:test} 和公式~\ref{eq:test1}
+
+定理括号测试：
+
+\begin{theorem}
+    测试
+    \begin{enumerate}
+        \item 中文（括号）没输入空格的效果
+        \item 中文 （括号） 输入空格的效果
+        \item 西文(括号)没输入空格的效果
+        \item 西文 (括号) 输入空格的效果
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    test
+    $\int_{0}^{1} x^2 \d x$
+\end{proof}
+
+\begin{proof}
+    test
+    \begin{equation*}
+        \int_{0}^{1} x^2 \d x
+    \end{equation*}
+\end{proof}
+
+\begin{proof}
+    test
+    \begin{equation}
+        \int_{0}^{1} x^2 \d x
+    \end{equation}
+\end{proof}
+
+\begin{proof}
+    test
+    \begin{equation*}
+        \int_{0}^{1} x^2 \d x
+    \end{equation*}
+    test
+\end{proof}
+
 
 \section{脚注测试}
 
@@ -230,104 +331,9 @@ Use \texttt{align*} environment:
 引用表~\ref{table:简单的表格}
 引用表~\ref{table:三线表格}
 
-
-
-\section{已定义好的一些数学定理环境}
-
-\begin{definition}[测度]
-    (参见文献xxx) 这是一段文字 $E = m c^2$  （中文括号）和 (西文括号)
-\end{definition}
-
-\begin{theorem}
-    这是一段文字 $E = m c^2$
-\end{theorem}
-
-\begin{proof}
-    这是一段文字 $E = m c^2$
-\end{proof}
-
-\begin{proof}[定理xx的证明]
-    这是一段文字 $E = m c^2$
-\end{proof}
-
-\begin{example}
-    这是一段文字 $E = m c^2$
-\end{example}
-
-\begin{property}
-    这是一段文字 $E = m c^2$
-\end{property}
-
-\begin{corollary}
-    这是一段文字 $E = m c^2$
-\end{corollary}
-
-\begin{lemma}
-    这是一段文字 $E = m c^2$
-\end{lemma}
-
-\begin{remark}
-    这是一段文字 $E = m c^2$
-\end{remark}
-
-\begin{axiom}
-    这是一段文字 $E = m c^2$
-\end{axiom}
-
-\begin{theorem}[Banach-Steinhaus]\label{thm:test}
-    设 $E$ 是 Banach 空间, $F$ 是赋范空间, $(u_i)_{i\in I}$ 是一族从 $E$ 到 $F$ 的有界线性算子,
-    即 $(u_i)_{i\in I}\subset \mathcal{B}(E,F)$. 若对每一点 $x\in E$, 有
-    $\sup_{i\in I} \|u_i(x)\|<\infty$, 则
-    \begin{equation}\label{eq:test1}
-        \sup_{i\in I} \|u_i\| < \infty.
-    \end{equation}
-\end{theorem}
-
-我想引用定理~\ref{thm:test} 和公式~\ref{eq:test1}
-
-定理括号测试：
-
-\begin{theorem}
-    测试
-    \begin{enumerate}
-        \item 中文（括号）没输入空格的效果
-        \item 中文 （括号） 输入空格的效果
-        \item 西文(括号)没输入空格的效果
-        \item 西文 (括号) 输入空格的效果
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    test
-    $\int_{0}^{1} x^2 \d x$
-\end{proof}
-
-\begin{proof}
-    test
-    \begin{equation*}
-        \int_{0}^{1} x^2 \d x
-    \end{equation*}
-\end{proof}
-
-\begin{proof}
-    test
-    \begin{equation}
-        \int_{0}^{1} x^2 \d x
-    \end{equation}
-\end{proof}
-
-\begin{proof}
-    test
-    \begin{equation*}
-        \int_{0}^{1} x^2 \d x
-    \end{equation*}
-    test
-\end{proof}
-
 \section{算法}
-
-\begin{algorithm}
-    \caption{An algorithm with caption}
+\begin{algorithm}[!h]
+    \caption{An algorithm with caption} \label{alg:cap}
     \begin{algorithmic}
         \Require $n \geq 0$
         \Ensure $y = x^n$
@@ -344,7 +350,6 @@ Use \texttt{align*} environment:
         \EndIf
         \EndWhile
     \end{algorithmic}
-    \label{alg:cap}
 \end{algorithm}
 
 引用 \autoref{alg:cap}
