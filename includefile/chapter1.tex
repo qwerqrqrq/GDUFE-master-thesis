@@ -38,8 +38,7 @@ XeLaTeX $\to$ Biber $\to$ XeLaTeX $\to$ XeLaTeX 四次编译,
     \centering
     \includegraphics[width=0.6\textwidth]{overleaf upload.png}
     \includegraphics[width=0.6\textwidth]{overleaf settings.png}
-    \caption{Overleaf 上传设置示意图}
-    \label{fig:overleafsettings}
+    \caption{Overleaf 上传设置示意图}\label{fig:overleafsettings}
 \end{figure}
 \begin{remark}
     由于学位论文一般比较大, 可能会出现超时现象，建议换成本地编译, 或者使用草稿模式.
@@ -52,7 +51,7 @@ Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地�
 在构建中修改默认编译器, 默认文献管理工具根据是否使用 bib 文件管理文献选择 biber 或者 bibTex. 编译时在工具栏选择 ``编译'' 即可.
 
 {\bfseries 方式二:}使用自定义编译命令
-在构建中添加自定义编译命令, 点击齿轮按钮添加 XeLaTeX + Biber + XeLaTeX + XeLaTeX 四步编译.  或者使用 latexmk , 注意需要手动设置 latexmk 的路径, 并添加执行参数:
+在构建中添加自定义编译命令, 点击齿轮按钮添加 XeLaTeX + Biber + XeLaTeX + XeLaTeX 四步编译.  或者使用 latexmk, 注意需要手动设置 latexmk 的路径, 并添加执行参数:
 \begin{lstlisting}
     -synctex=1 -interaction=nonstopmode -file-line-error -xelatex %
 \end{lstlisting}
@@ -68,7 +67,7 @@ Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地�
 \section{打印的问题}
 \begin{enumerate}[label=\roman*)]
     \item  关于文档选项 forprint: 交付打印时, 建议加上选项 forprint, 以消除链接文字之彩色, 避免打印字迹偏淡.
-    \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无''(Adobe Reader XI 是选择``实际大小'').
+    \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无'' (Adobe Reader XI 是选择 ``实际大小'').
           有可能页面放缩方式默认为``适合可打印区域'', 会导致打印为原页面大小的 $97\%$.
           文字不要居中打印, 是因为考虑到装订, 左侧的空白留得稍多一点(模板已作预留).
     \item  使用 latex 命令生成的封面、扉页、声明不一定好用, 可以使用了 doc 文件导出的 pdf 文件, 直接打印即可.
