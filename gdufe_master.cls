@@ -171,29 +171,73 @@
     }
 }%
 
-% 中文
+% ---------------- 宋体 ----------------
 \IfFontExistsTF{SimSun}{%
-    % ---- Windows 全家族 ----
-    \setCJKfamilyfont{zhsong}{SimSun}%
-    \setCJKfamilyfont{zhhei} {SimHei}%
-    \setCJKfamilyfont{zhfs}  {FangSong}%
-    \setCJKfamilyfont{zhkai} {KaiTi}%
+    \setCJKmainfont{SimSun}%             Windows
 }{%
     \IfFontExistsTF{Noto Serif CJK SC}{%
-        % ---- Ubuntu：Noto 全家桶 ----
-        % 注意：Noto 没有独立楷体/仿宋，视觉上会统一
-        \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}%
-        \setCJKfamilyfont{zhhei} {Noto Sans CJK SC}%
-        \setCJKfamilyfont{zhfs}  {Noto Serif CJK SC}%
-        \setCJKfamilyfont{zhkai} {Noto Serif CJK SC}%
+        \setCJKmainfont{Noto Serif CJK SC}% Ubuntu
     }{%
-        % ---- 兜底：Fandol 系列（texlive 自带，最保底）----
-        \setCJKfamilyfont{zhsong}{FandolSong-Regular}%
-        \setCJKfamilyfont{zhhei} {FandolHei-Regular}%
-        \setCJKfamilyfont{zhfs}  {FandolFang-Regular}%
-        \setCJKfamilyfont{zhkai} {FandolKai-Regular}%
+        \setCJKmainfont{FandolSong-Regular}%
     }%
 }%
+
+% ---------------- 黑体 ----------------
+\IfFontExistsTF{SimHei}{%
+    \setCJKsansfont{SimHei}%             Windows
+}{%
+    \IfFontExistsTF{Noto Sans CJK SC}{%
+        \setCJKsansfont{Noto Sans CJK SC}%  Ubuntu
+    }{%
+        \setCJKsansfont{FandolHei-Regular}%
+    }%
+}%
+
+% ---------------- 仿宋（等宽位） ----------------
+\IfFontExistsTF{FangSong}{%
+    \setCJKmonofont{FangSong}%           Windows
+}{%
+    \IfFontExistsTF{Noto Serif CJK SC}{%
+        \setCJKmonofont{Noto Serif CJK SC}% Ubuntu
+    }{%
+        \setCJKmonofont{FandolFang-Regular}%
+    }%
+}%
+
+% ---------------- 楷书 ----------------
+\IfFontExistsTF{KaiTi}{%
+    \setCJKmonofont{KaiTi}%           Windows
+}{%
+    \IfFontExistsTF{Noto Serif CJK SC}{%
+        \setCJKmonofont{Noto Serif CJK SC}% Ubuntu
+    }{%
+        \setCJKmonofont{FandolKai-Regular}%
+    }%
+}%
+
+
+% \IfFontExistsTF{SimSun}{%
+%     % ---- Windows 全家族 ----
+%     \setCJKfamilyfont{zhsong}{SimSun}%
+%     \setCJKfamilyfont{zhhei} {SimHei}%
+%     \setCJKfamilyfont{zhfs}  {FangSong}%
+%     \setCJKfamilyfont{zhkai} {KaiTi}%
+% }{%
+%     \IfFontExistsTF{Noto Serif CJK SC}{%
+%         % ---- Ubuntu：Noto 全家桶 ----
+%         % 注意：Noto 没有独立楷体/仿宋，视觉上会统一
+%         \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}%
+%         \setCJKfamilyfont{zhhei} {Noto Sans CJK SC}%
+%         \setCJKfamilyfont{zhfs}  {Noto Serif CJK SC}%
+%         \setCJKfamilyfont{zhkai} {Noto Serif CJK SC}%
+%     }{%
+%         % ---- 兜底：Fandol 系列（texlive 自带，最保底）----
+%         \setCJKfamilyfont{zhsong}{FandolSong-Regular}%
+%         \setCJKfamilyfont{zhhei} {FandolHei-Regular}%
+%         \setCJKfamilyfont{zhfs}  {FandolFang-Regular}%
+%         \setCJKfamilyfont{zhkai} {FandolKai-Regular}%
+%     }%
+% }%
 
 
 
@@ -558,9 +602,9 @@
 
 
 %% tag: enumerate 设置
-\setlist[enumerate]{left=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
-\setlist[description]{left=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
-\setlist[itemize]{left=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=0pt, labelsep=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[description]{leftmargin=0pt, labelsep=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[itemize]{leftmargin=0pt, labelsep=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
 
 %% tag: 列表
 \setlist{nosep}
