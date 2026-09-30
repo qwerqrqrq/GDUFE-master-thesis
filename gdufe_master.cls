@@ -146,21 +146,55 @@
     % \raggedbottom
 }
 
-%% tag: 字体
-% \defaultfontfeatures{Path = fonts/} %适配 TeX Gyre Termes Math 取消
-% 设置英文字体
-\setmainfont[Path=fonts/,
-    BoldFont = timesbd.ttf,
-    ItalicFont = timesi.ttf,
-    BoldItalicFont = timesbi.ttf]{times.ttf}
-% 设置中文字体
-\setCJKmainfont[Path = "fonts/"]{simsun.ttc}
-\setCJKsansfont[Path = "fonts/"]{simhei.ttf}
-\setCJKmonofont[Path = "fonts/"]{simfang.ttf}
-\setCJKfamilyfont{zhsong}[Path = "fonts/"]{simsun.ttc}
-\setCJKfamilyfont{zhhei}[Path = "fonts/"]{simhei.ttf}
-\setCJKfamilyfont{zhfs}[Path = "fonts/"]{simfang.ttf}
-\setCJKfamilyfont{zhkai}[Path = "fonts/"]{simkai.ttf}
+% %% tag: 字体
+% % \defaultfontfeatures{Path = fonts/} %适配 TeX Gyre Termes Math 取消
+% % 设置英文字体
+% \setmainfont[Path=fonts/,
+%     BoldFont = timesbd.ttf,
+%     ItalicFont = timesi.ttf,
+%     BoldItalicFont = timesbi.ttf]{times.ttf}
+% % 设置中文字体
+% \setCJKmainfont[Path = "fonts/"]{simsun.ttc}
+% \setCJKsansfont[Path = "fonts/"]{simhei.ttf}
+% \setCJKmonofont[Path = "fonts/"]{simfang.ttf}
+% \setCJKfamilyfont{zhsong}[Path = "fonts/"]{simsun.ttc}
+% \setCJKfamilyfont{zhhei}[Path = "fonts/"]{simhei.ttf}
+% \setCJKfamilyfont{zhfs}[Path = "fonts/"]{simfang.ttf}
+% \setCJKfamilyfont{zhkai}[Path = "fonts/"]{simkai.ttf}
+
+% times new roman
+\IfFontExistsTF{Times New Roman}{%
+    \setmainfont{Times New Roman}%       Windows
+}{%
+    \IfFontExistsTF{TeX Gyre Termes}{%
+        \setmainfont{TeX Gyre Termes}%     Ubuntu (texlive 自带)
+    }
+}%
+
+% 中文
+\IfFontExistsTF{SimSun}{%
+    % ---- Windows 全家族 ----
+    \setCJKfamilyfont{zhsong}{SimSun}%
+    \setCJKfamilyfont{zhhei} {SimHei}%
+    \setCJKfamilyfont{zhfs}  {FangSong}%
+    \setCJKfamilyfont{zhkai} {KaiTi}%
+}{%
+    \IfFontExistsTF{Noto Serif CJK SC}{%
+        % ---- Ubuntu：Noto 全家桶 ----
+        % 注意：Noto 没有独立楷体/仿宋，视觉上会统一
+        \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}%
+        \setCJKfamilyfont{zhhei} {Noto Sans CJK SC}%
+        \setCJKfamilyfont{zhfs}  {Noto Serif CJK SC}%
+        \setCJKfamilyfont{zhkai} {Noto Serif CJK SC}%
+    }{%
+        % ---- 兜底：Fandol 系列（texlive 自带，最保底）----
+        \setCJKfamilyfont{zhsong}{FandolSong-Regular}%
+        \setCJKfamilyfont{zhhei} {FandolHei-Regular}%
+        \setCJKfamilyfont{zhfs}  {FandolFang-Regular}%
+        \setCJKfamilyfont{zhkai} {FandolKai-Regular}%
+    }%
+}%
+
 
 
 %% tag: 行距
@@ -206,9 +240,9 @@
     {thesis}{
             \renewcommand{\theequation}{\thechapter-\arabic{equation}} % 公式编号格式
         }
-    {proposal}{
-        \renewcommand{\theequation}{\thesection-\arabic{equation}}
-    }
+        {proposal}{
+            \renewcommand{\theequation}{\thesection-\arabic{equation}}
+        }
 }
 
 %------------------------定理----------------------
@@ -647,8 +681,8 @@
 \newenvironment{enabstract}{%
     \chapter[ABSTRACT]{\bfseries ABSTRACT}
     \zihao{-4}
-    }
-    % \noindent}
+}
+% \noindent}
 {\newline\par}
 
 %% tag: 章节格式调整
@@ -670,65 +704,65 @@
 
 
 \ifdefstring{\type}{thesis}{
-\renewcommand{\mainmatter}{
-    \newclearpage
-    \@mainmattertrue
-    \pagenumbering{arabic}
-    \pagestyle{master-thesis-mainmatter}
-    \ctexset {
-        chapter={
-          format = {\zihao{3}\heiti\raggedright},
-          % titleformat={\zihao{3}\heiti\raggedright},
-          % nameformat={\zihao{3}\heiti\raggedright},
-          pagestyle={master-thesis-mainmatter},
-          fixskip = true,
-          afterskip={20pt},
-          beforeskip={0pt},
-          number={\arabic{chapter}},
-          name={,},
-          aftername={\quad},
-          % aftername={},
-          % indent = 2\ccwd,
-         },
-        section={
-          format={\zihao{-3}\heiti\raggedright},
-          % nameformat={\zihao{-3}\heiti\raggedright},
-          % titleformat={\zihao{-3}\heiti\raggedright},
-          afterskip={6pt},
-          beforeskip={6pt},
-          aftername={\quad},
-          % aftername={},
-          name={,},
-          % fixskip = true,
-          % indent = 2\ccwd,
-         },
-        subsection={
-                format={\zihao{4}\heiti\raggedright},
-                % nameformat={\zihao{4}\heiti\raggedright},
-                % titleformat={\zihao{4}\heiti\raggedright},
-                afterskip={3pt},
-                beforeskip={3pt},
-                aftername={\quad},
-                % aftername={},
-                name={,},
-                % fixskip = true,
-                % indent = 2\ccwd,
-            },
-        subsubsection={
-                format={\zihao{-4}\heiti\raggedright},
-                % titleformat={\zihao{-4}\heiti\raggedright},
-                % nameformat={\zihao{-4}\heiti\raggedright},
-                afterskip={0pt},
-                beforeskip={0pt},
-                aftername={\quad},
-                % aftername={},
-                name={,},
-                % fixskip = true,
-                % indent = 2\ccwd,
-            }
+    \renewcommand{\mainmatter}{
+        \newclearpage
+        \@mainmattertrue
+        \pagenumbering{arabic}
+        \pagestyle{master-thesis-mainmatter}
+        \ctexset {
+            chapter={
+              format = {\zihao{3}\heiti\raggedright},
+              % titleformat={\zihao{3}\heiti\raggedright},
+              % nameformat={\zihao{3}\heiti\raggedright},
+              pagestyle={master-thesis-mainmatter},
+              fixskip = true,
+              afterskip={20pt},
+              beforeskip={0pt},
+              number={\arabic{chapter}},
+              name={,},
+              aftername={\quad},
+              % aftername={},
+              % indent = 2\ccwd,
+             },
+            section={
+              format={\zihao{-3}\heiti\raggedright},
+              % nameformat={\zihao{-3}\heiti\raggedright},
+              % titleformat={\zihao{-3}\heiti\raggedright},
+              afterskip={6pt},
+              beforeskip={6pt},
+              aftername={\quad},
+              % aftername={},
+              name={,},
+              % fixskip = true,
+              % indent = 2\ccwd,
+             },
+            subsection={
+                    format={\zihao{4}\heiti\raggedright},
+                    % nameformat={\zihao{4}\heiti\raggedright},
+                    % titleformat={\zihao{4}\heiti\raggedright},
+                    afterskip={3pt},
+                    beforeskip={3pt},
+                    aftername={\quad},
+                    % aftername={},
+                    name={,},
+                    % fixskip = true,
+                    % indent = 2\ccwd,
+                },
+            subsubsection={
+                    format={\zihao{-4}\heiti\raggedright},
+                    % titleformat={\zihao{-4}\heiti\raggedright},
+                    % nameformat={\zihao{-4}\heiti\raggedright},
+                    afterskip={0pt},
+                    beforeskip={0pt},
+                    aftername={\quad},
+                    % aftername={},
+                    name={,},
+                    % fixskip = true,
+                    % indent = 2\ccwd,
+                }
+        }
+        \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
     }
-    \zihao{-4}\songti \setlength{\baselineskip}{20pt} \selectfont
-}
 }{
     \providecommand{\mainmatter}{}
 }
@@ -793,11 +827,11 @@
     \str_case:Nn \masterClass {
         {学术}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
-                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\major}}      \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\cname}}          \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}专业名称}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\major}}              \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学位申请人}   & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\cname}}                  \\%\hline
                     \makebox[3.5cm][s]{\zihao{4}导师姓名及职称} & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\supervisorAndTitle}} \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\studentid}}  \\%\hline
-                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\EnterDate}}  \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}学号}      & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\studentid}}          \\%\hline
+                    \makebox[3.5cm][s]{\zihao{4}入学时间}    & \underline{\makebox[5.75cm][c]{\zihao{4}\songti\the\EnterDate}}          \\%\hline
                 \end{tabular}}
             {专业}{\renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{ll}
@@ -835,30 +869,30 @@
 \newcommand{\makecover}{%
     % \begin{titlepage}
     \newpage
-        \thispagestyle{empty}%
-        \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
-        {\noindent\fangsong\zihao{-4}\bfseries 分类号： UDC\\[-3pt]
-            密\quad 级：\\[-3pt]
-            编\quad 号：
-        }
-        \vspace*{0.4cm}
-        \begin{center}%
-            \includegraphics[width=0.71\textwidth]{gdufelogo.jpg}
-            \par\vspace*{2mm} %插入空白
-            \rule{0.9\textwidth}{0.5pt}
-            \par\vspace*{2mm}
-            {\heiti \fontsize{48pt}{\baselinestretch} {\masterClass 学位硕士论文}}\\
-            \vspace{60pt}
-            {\songti \zihao{2} \bfseries \ctitle}\\
-            {\zihao{-2} \bfseries \the\etitle \par}
-            % \vspace*{2em}
-            \vfill\vfill\vfill
-            % {\fangsong \infoTable}
-            {\fangsong \__thesis_infoTableOne:}
-            \vfill
-            {\fangsong\zihao{3} \bfseries \the\CoverPageDate}
-            \vspace{1em}
-        \end{center}
+    \thispagestyle{empty}%
+    \newgeometry{top=3.7truecm,bottom=3.5truecm,left=2.8truecm,right=2.6truecm}
+    {\noindent\fangsong\zihao{-4}\bfseries 分类号： UDC\\[-3pt]
+        密\quad 级：\\[-3pt]
+        编\quad 号：
+    }
+    \vspace*{0.4cm}
+    \begin{center}%
+        \includegraphics[width=0.71\textwidth]{gdufelogo.jpg}
+        \par\vspace*{2mm} %插入空白
+        \rule{0.9\textwidth}{0.5pt}
+        \par\vspace*{2mm}
+        {\heiti \fontsize{48pt}{\baselinestretch} {\masterClass 学位硕士论文}}\\
+        \vspace{60pt}
+        {\songti \zihao{2} \bfseries \ctitle}\\
+        {\zihao{-2} \bfseries \the\etitle \par}
+        % \vspace*{2em}
+        \vfill\vfill\vfill
+        % {\fangsong \infoTable}
+        {\fangsong \__thesis_infoTableOne:}
+        \vfill
+        {\fangsong\zihao{3} \bfseries \the\CoverPageDate}
+        \vspace{1em}
+    \end{center}
     % \end{titlepage}
     \restoregeometry
 }

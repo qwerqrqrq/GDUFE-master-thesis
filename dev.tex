@@ -9,43 +9,29 @@
 
 
 \title{广东财经大学专业学位硕士论文论文题目}
-% \etitle{GDUFE professional master thesis title}
+\etitle{GDUFE professional master thesis title}
 \author{张三}
-% \major{数学}
-% \supervisorAndTitle{李四\quad 教授}
-% \supervisor{李四}
-% \supervisorOuter{王五\quad 教授} % 校外导师，仅专硕需要填写
-% \EnterDate{2000年9月5日}
-% \studentid{1234567890}
-% \EnterDate{2025年9月1日}
-% \SubmitDate{2026年6月1日}
-% \SignDate{2026年6月2日}
-% \DefenseDate{2026年6月3日}
-% \CoverPageDate{2026年6月4日}
+\major{数学}
+\supervisorAndTitle{李四\quad 教授}
+\supervisor{李四}
+\supervisorOuter{王五\quad 教授} % 校外导师，仅专硕需要填写
+\EnterDate{2000年9月5日}
+\studentid{1234567890}
+\EnterDate{2025年9月1日}
+\SubmitDate{2026年6月1日}
+\SignDate{2026年6月2日}
+\DefenseDate{2026年6月3日}
+\CoverPageDate{2026年6月4日}
 
 \usepackage[style=gb7714-2015, backend=biber]{biblatex}
 \addbibresource{reference.bib}
 
-% \captionsetup{subrefformat=parens}
-
-% \usepackage{unicode-math}
-% \setmathfont{TeX Gyre Termes Math}
-% \setmathfont{latinmodern-math.otf}
-% \setmathfont[Path = "fonts/"]{CambriaMath}
-
-% \usepackage{showframe}
-
-% \setmathfont{TeX Gyre Termes Math}
-% \setmathfont[Path = "fonts/"]{CambriaMath}  % Word 风格字体
+\setmathfont{TeX Gyre Termes Math}
 
 \begin{document}
 \frontmatter
 %% 导入封面、扉页、声明格式用pdf导入或者使用latex生成的页面
 \pdfbookmark[0]{封面}{title}         % 封面页加到 pdf 书签
-% 封面文件需要自己在doc文件修改后导出pdf文件，注意文件名.
-\includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(学术学位).pdf}
-% \includepdf[pages=-]{includefile/广东财经大学硕士学位论文封面扉页及声明格式(专业学位).pdf}
-%% latex 生成的页面, 和学校的有细微不同, 谨慎使用
 % 使用代码生成封面
 \makecover
 % 使用代码生成扉页
@@ -59,17 +45,42 @@
 \addcontentsline{toc}{chapter}{目录}  % 目录加入到目录
 \tableofcontents
 
-% \typeout{\meaning\frontmatter}
-
 \mainmatter
-%% 允许页面底部不对齐，让内容自然结束. 有问题尝试删除
-% \raggedbottom
-% %% 允许公式跨页展示
-% \allowdisplaybreaks
-% %%%%---- main matter ----%%%%
-% \newclearpage
-% \include{includefile/chapter1.tex}
-\chapter{11234}
+
+\section{字体测试}
+字体测试：
+
+\begin{table}[ht]\centering
+    \begin{tabular}{lll}
+        \toprule
+        命令               & 宋体效果                & Times New Roman 效果                       \\
+        \midrule
+        \verb|\rmfamily| & {\rmfamily 宋体罗马字族}  & {\rmfamily Times New Roman Roman Family} \\
+        \verb|\sffamily| & {\sffamily 宋体无衬线字族} & {\sffamily Times New Roman Sans Serif}   \\
+        \verb|\ttfamily| & {\ttfamily 宋体打字机}   & {\ttfamily Times New Roman Typewriter}   \\
+        \verb|\bfseries| & {\bfseries 宋体加粗}    & {\bfseries Times New Roman Bold}         \\
+        \verb|\itshape|  & {\itshape 宋体意大利}    & {\itshape Times New Roman Italic}        \\
+        \verb|\slshape|  & {\slshape 宋体倾斜}     & {\slshape Times New Roman Slanted}       \\
+        \bottomrule
+    \end{tabular}
+    \caption{宋体与 Times New Roman 字体命令效果对比}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        测试类型 & {\songti 宋体}             & {\heiti 黑体}                    & {\kaishu 楷书}                    & {\fangsong 仿宋}                    & Times new roman               \\
+        \midrule
+        伪粗体  & {\bfseries 字体测试}         & {\bfseries\heiti 字体测试}         & {\bfseries\kaishu 字体测试}         & {\bfseries\fangsong 字体测试}         & {\bfseries Font test}         \\
+        伪斜体  & {\itshape 字体测试}          & {\itshape\heiti 字体测试}          & {\itshape\kaishu 字体测试}          & {\itshape\fangsong 字体测试}          & {\itshape Font test}          \\
+        叠加测试 & {\bfseries\itshape 字体测试} & {\bfseries\itshape\heiti 字体测试} & {\bfseries\itshape\kaishu 字体测试} & {\bfseries\itshape\fangsong 字体测试} & {\bfseries\itshape Font test} \\
+        \bottomrule
+    \end{tabular}
+    \caption{不同字体下伪粗体、伪斜体及叠加效果测试}
+\end{table}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 
 \end{document}
