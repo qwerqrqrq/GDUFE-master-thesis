@@ -2,15 +2,15 @@
 \section{使用步骤}
 
 要获得完整的毕业论文, 要经过以下步骤操作
-\begin{description}
-    \item[封面、扉页、声明]   两种方式二选一：
-            \begin{description}
-                \item [pdf插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
+\begin{description}[labelsep = 1\ccwd]
+    \item[封面、扉页、声明] 两种方式二选一：
+            \begin{description}[left =2\ccwd, labelsep = 1\ccwd]
+                \item [PDF 插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
                 \item [\LaTeX{}生成] 使用 \verb|\makecover \maketitlepage \makeclaim| 生成, 有些不同于 doc 生成的地方, 谨慎使用.
             \end{description}
 
-    \item[撰写]
-    \begin{enumerate}
+    \item[撰写] \quad
+    \begin{enumerate}[left = 2\ccwd]
         \item  打开主文档 gdufe\_master\_thesis\_template.tex, 填写题目、作者等等信息, 在documentclass中选择参数, 具体见表\ref{table:documentclassparameters}.
         \item 在主文档下撰写正文或者在 includefile/ chapter*.tex分章节撰写. 主文档的文件名可以修改, 但最好用英文名. 如果不习惯用~\verb|\include{ }|~的方式加入``子文档'', 当然可以把它们合并在主文档, 成为一个文档. ({\kaishu 但是这样并不会给我们带来方便.})
         \item 进入 includefile 文件夹,  打开 abstract.tex, acknowledgment.tex, appendix.tex, 分别填写 (1) 中文摘要、英文摘要, (2) 致谢, (3) 附录.
@@ -57,7 +57,7 @@ Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地�
     -synctex=1 -interaction=nonstopmode -file-line-error -xelatex %
 \end{lstlisting}
 选择工具$\to$用户$\to$相应的命令即可编译.
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.6\textwidth]{TexStudio setting1.png}\\
     \includegraphics[width=0.8\textwidth]{TexStudio setting2.png}\\

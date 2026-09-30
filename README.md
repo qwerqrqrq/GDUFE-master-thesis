@@ -13,6 +13,8 @@
 
 + 使用 longtable 时可能会出现 "ignored: Infinite glue shrinkage found in box being split" 错误, 但是不影响使用, 能正常编译.
 
++ ubuntu 系统下使用 TeX Gyre Termes 字体可能会出现自动加粗的情况, 请自行下载后指定使用 Times New Roman 字体.
+
 ## 说明和使用方法：
 
 1. 在 release 中下载 gdufe_masther_thesis.zip 解压
