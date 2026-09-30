@@ -25,7 +25,7 @@ jobs:
           root_file: |
             gdufe_master_thesis_template.tex
             gdufe_master_proposal_template.tex
-          args: -xelatex
+          args: -xelatex -interaction=nonstopmode -file-line-error
           # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
           extra_fonts: |
             ./fonts/*.ttf
