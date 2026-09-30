@@ -86,8 +86,8 @@
 \begin{description}
     %=============================
     \item[排版与页面控制]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
-            %   \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
+          \begin{description}[labelindent= 2\ccwd, labelsep=1\ccwd]
+              %   \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
               \item[tocloft] 控制目录、图表目录的缩进与间距。
               \item[changepage] 用于局部调整页面边距。
               \item[setspace] 设置行距 (如 1.5 倍行距) 。
@@ -98,7 +98,7 @@
           \end{description}
           %=============================
     \item[数学]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[amsmath, amssymb] AMS 数学公式与符号支持。
               \item[mathalpha] 提供更好的数学花体字母 (选项 \texttt{scr=rsfs}) 。
               \item[unicode-math] 提供修改数学公式字体支持。
@@ -108,7 +108,7 @@
           \end{description}
           %=============================
     \item[图表与浮动体]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[array] 扩展表格列格式与对齐。
               \item[booktabs] 提供 \verb|\toprule|、\verb|\midrule| 等三线表命令。
               \item[longtable] 支持跨页长表格。
@@ -122,24 +122,24 @@
           \end{description}
           %=============================
     \item[列表环境]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[enumitem] 允许自定义 itemize、enumerate、description 的缩进、标签等格式。
           \end{description}
           %=============================
     \item[代码相关]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[listings] 插入源代码，提供基本语法高亮。
               \item[verbatim] 原样显示文本或代码。
           \end{description}
           %=============================
     \item[绘图]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[tikz] 强大的矢量绘图工具。
               \item[tcolorbox] 彩色盒子环境，用于开题报告。
           \end{description}
           %=============================
     \item[其他]\quad
-          \begin{description}[left=2\ccwd, labelsep=1\ccwd]
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[color, xcolor] 实现彩色功能。
               \item[pdfpages] 插入外部 PDF 页面 (封面、附录等) 。
               \item[lipsum] 生成排版测试用的占位文本。
@@ -177,6 +177,14 @@
     \end{tabularx}
     \label{table:documentclassparameters}
 \end{table}
+
+\section{标点符号的问题}
+建议使用半角的标点符号, 后边再键入一个空格. 特别是在英文书写中要注意此问题!
+
+双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边.
+
+但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
+原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
 
 \section{字体}
 字体调节命令:
@@ -221,14 +229,6 @@
 }
 \end{lstlisting}
 
-\section{标点符号的问题}
-
-建议使用半角的标点符号, 后边再键入一个空格. 特别是在英文书写中要注意此问题!
-
-双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边.
-
-但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
-原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
 \section{交叉引用的问题}
 首先要说明的是, 为了得到正确的引用结果, 要将tex主文档编译多次. 交叉引用是\LaTeX 的强项, 它的原理是为被引用对象 (图、表、公式、定理等) 设置一个标签, 例如: ~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
 \subsection{参考文献的引用}
@@ -403,7 +403,7 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     \end{minipage}
 \end{figure}
 \end{lstlisting}
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \zihao{5}
     \begin{minipage}{0.5\textwidth}{
@@ -453,7 +453,7 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     \bfseries 123 & \bfseries 4   & \bfseries 5  & \bfseries 123 \\
     \midrule
 \end{lstlisting}
-\begin{table}[!h]
+\begin{table}[!ht]
     \zihao{5}
     \caption{加粗列名示例}
     \label{table:simplebolditem}
@@ -471,7 +471,7 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     6& 7& 8& 9 & 10\\
     \setrow{\bfseries} 1 & 2 &3 &4 &5
 \end{lstlisting}
-\begin{table}[!h]
+\begin{table}[!ht]
     \zihao{5}
     \centering
     \caption{多行加粗示例}
@@ -601,33 +601,6 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     1                      & 内容1                                    \\
     2                      & 内容2                                    \\
     3                      & 内容3                                    \\
-    4                      & 内容4                                    \\
-    5                      & 内容5                                    \\
-    6                      & 内容6                                    \\
-    7                      & 内容7                                    \\
-    8                      & 内容8                                    \\
-    9                      & 内容9                                    \\
-    10                     & 内容10                                   \\
-    1                      & 内容1                                    \\
-    2                      & 内容2                                    \\
-    3                      & 内容3                                    \\
-    4                      & 内容4                                    \\
-    5                      & 内容5                                    \\
-    6                      & 内容6                                    \\
-    7                      & 内容7                                    \\
-    8                      & 内容8                                    \\
-    9                      & 内容9                                    \\
-    10                     & 内容10                                   \\
-    1                      & 内容1                                    \\
-    2                      & 内容2                                    \\
-    3                      & 内容3                                    \\
-    4                      & 内容4                                    \\
-    5                      & 内容5                                    \\
-    6                      & 内容6                                    \\
-    7                      & 内容7                                    \\
-    8                      & 内容8                                    \\
-    9                      & 内容9                                    \\
-    10                     & 内容10                                   \\
 \end{longtable}
 
 \section{程序代码}
@@ -663,40 +636,25 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
 \end{tikzpicture}
 
 \section{列表}
-列表环境 (enumerate, describe, itemrize) 在参数添加 left = * 修改标签左侧左侧空白大小, 添加 labelsep = * 修改标签右侧至正文的空白大小, 二者均默认为 0pt. 更多设置见 {\bfseries enumitem} 宏包说明.
+列表环境 (enumerate, describe, itemrize) 在参数添加 labelindent = xxx 修改标签左侧左侧空白大小, 添加 labelsep = xxx 修改标签右侧至正文的空白大小, 二者均默认为 0pt, ``!''表示使用其他参数计算. 更多参数说明设置见 {\bfseries enumitem} 宏包说明.
 
-\begin{lstlisting}
-\begin{enumerate}[label=(\alph*), ref=(\alph*)]
-    \item item1 **
-    \item item2 **
-    \item item3 **
-\end{enumerate}
-\end{lstlisting}
-
-\begin{enumerate}[label=(\alph*), ref=(\alph*)]
+默认效果为:
+\begin{enumerate}
     \item item1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
-didunt ut labore et dolore magna aliqua.
+          didunt ut labore et dolore magna aliqua.
     \item item2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
-didunt ut labore et dolore magna aliqua.
-    \item item3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
-didunt ut labore et dolore magna aliqua.
+          didunt ut labore et dolore magna aliqua.
 \end{enumerate}
 
-
+可能用的比较多的设置为:
 \begin{lstlisting}
-\begin{enumerate}[left = 2\ccwd, labelsep = 1\ccwd, label=(\arabic*), ref=(\arabic*)]
-    \item item1 **
-    \item item2 **
-    \item item3 **
-\end{enumerate}
+\begin{enumerate}[labelindent = 2\ccwd, labelsep = 0pt, labelwidth=!, leftmargin = 0pt, itemindent = !, label=(\arabic*), ref=(\arabic*)]
 \end{lstlisting}
-\begin{enumerate}[left = 2\ccwd, labelsep = 1\ccwd, label=(\arabic*), ref=(\arabic*)]
+\begin{enumerate}[labelindent = 2\ccwd, labelsep = 0pt, labelwidth=!, leftmargin = 0pt, itemindent = !, label=(\arabic*), ref=(\arabic*)]
     \item item1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
-didunt ut labore et dolore magna aliqua.
+          didunt ut labore et dolore magna aliqua.
     \item item2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
-didunt ut labore et dolore magna aliqua.
-    \item item3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
-didunt ut labore et dolore magna aliqua.
+          didunt ut labore et dolore magna aliqua.
 \end{enumerate}
 
 要全局修改 enumerate, describe, itemrize 的左侧空白大小为2中文字符, 可以使用:

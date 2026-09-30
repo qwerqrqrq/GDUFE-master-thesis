@@ -602,9 +602,9 @@
 
 
 %% tag: enumerate 设置
-\setlist[enumerate]{leftmargin=0pt, labelsep=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
-\setlist[description]{leftmargin=0pt, labelsep=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
-\setlist[itemize]{leftmargin=0pt, labelsep=0pt, itemsep=0pt, topsep=0pt, parsep=0pt}
+\setlist[enumerate]{labelindent = 0pt, labelsep = 0pt, leftmargin = 0pt, labelwidth=!, itemindent = !, itemsep=0pt, topsep=0pt, parsep=0pt, align = left}
+\setlist[description]{labelindent = 0pt, labelsep = 0pt, leftmargin = 0pt, labelwidth=!, itemindent = !, itemsep=0pt, topsep=0pt, parsep=0pt, align = left}
+\setlist[itemize]{labelindent = 0pt, labelsep = 0pt, leftmargin = 0pt, labelwidth=!, itemindent = !, itemsep=0pt, topsep=0pt, parsep=0pt, align = left}
 
 %% tag: 列表
 \setlist{nosep}

@@ -4,9 +4,9 @@
 要获得完整的毕业论文, 要经过以下步骤操作
 \begin{description}[labelsep = 1\ccwd]
     \item[封面、扉页、声明] 两种方式二选一：
-            \begin{description}[left =2\ccwd, labelsep = 1\ccwd]
+            \begin{description}[labelindent = 2\ccwd, labelsep = 1\ccwd, leftmargin = !, itemindent = !]
                 \item [PDF 插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
-                \item [\LaTeX{}生成] 使用 \verb|\makecover \maketitlepage \makeclaim| 生成, 有些不同于 doc 生成的地方, 谨慎使用.
+                \item [\LaTeX{}生成] 用 \verb|\makecover \maketitlepage \makeclaim| 生成, 有些不同于 doc 生成的地方, 谨慎使用.
             \end{description}
 
     \item[撰写] \quad
