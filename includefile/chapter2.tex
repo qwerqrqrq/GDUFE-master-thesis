@@ -1,45 +1,42 @@
-\chapter{使用说明 }
-
-\section{模板文件结构及功能介绍 }
-
+\chapter{使用说明}
+\section{模板文件结构及功能介绍}
 模板目录文件的结构与功能, 如表\ref{table:filestructure} 所示:
-\begin{table}[!htbp]
+\begin{table}[!ht]
     \centering
-    \caption{模板文件结构及功能说明}
+    \caption{模板文件结构及功能说明}\label{table:filestructure}
     \begin{tabular}{lll}
         \toprule
-        文件夹/文件名                             & 类型     & 功能说明                                  \\
+        文件夹/文件名                             & 类型     & 功能说明             \\
         \midrule
-        gdufe\_master\_thesis\_template.tex & 主文档    & 撰写正文、组织结构                             \\
-        gdufe\_master\_thesis.cls           & 类文件    & 定义排版格式和命令                             \\
-        reference.bib                       & bib文件  & 参考文献数据库                               \\
-        README.md                           & 文本     & 项目说明与使用方法                             \\
-        includefile/                        & 文件夹    & 存放各章节、摘要、致谢等                          \\
-        \quad abstract.tex                  & tex文件  & 中英文摘要                                 \\
-        \quad acknowledgment.tex            & tex文件  & 致谢                                    \\
-        \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件                      \\
-        \quad chapter*.tex                  & tex文件  & 各章节内容\\
-        \quad 论文封面、扉页及声明格式.doc              & Word文档 & 学校的封面、扉页及声明页文件                        \\
-        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于插入的封面、扉页及声明页                   \\
-        figures/                            & 文件夹    & 存放图片文件                                \\
-        \quad sign-author.jpg               & 图片     & 作者签名                                  \\
-        \quad sign-supervisor.jpg           & 图片     & 导师签名                                  \\
-        \quad sign-none.jpg                 & 图片     & 空白图片, 用于盲审/检测时替换                      \\
-        \quad gdufelogo.jpg                 & 图片     & 校徽图片                                  \\
-        \quad 其余图片                          & 图片   & 示例或说明用图片                              \\
-        fonts/                              & 文件夹    & 存放字体文件                                \\
-        \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体                                  \\
-        \quad CambriaMath                   & 字体     & Word 数学公式字体         \\
-        \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
-        \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
-        \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
-        \quad simfang.ttf                   & 字体     & 思源仿宋字体                                \\
-        \quad times.ttf                     & 字体     & Times New Roman 罗马正体                  \\
-        \quad timesbd.ttf                   & 字体     & Times New Roman 粗体                    \\
-        \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
+        gdufe\_master\_thesis\_template.tex & 主文档    & 撰写正文、组织结构        \\
+        gdufe\_master\_thesis.cls           & 类文件    & 定义排版格式和命令        \\
+        reference.bib                       & bib文件  & 参考文献数据库          \\
+        README.md                           & 文本     & 项目说明与使用方法        \\
+        includefile/                        & 文件夹    & 存放各章节、摘要、致谢等     \\
+        \quad abstract.tex                  & tex文件  & 中英文摘要            \\
+        \quad acknowledgment.tex            & tex文件  & 致谢               \\
+        \quad appendix.tex                  & tex文件  & 附录内容, 如有附录则包含此文件 \\
+        \quad chapter*.tex                  & tex文件  & 各章节内容            \\
+        \quad 论文封面、扉页及声明格式.doc              & Word文档 & 学校的封面、扉页及声明页文件   \\
+        \quad 论文封面、扉页及声明格式.pdf              & PDF    & 用于插入的封面、扉页及声明页   \\
+        figures/                            & 文件夹    & 存放图片文件           \\
+        \quad sign-author.jpg               & 图片     & 作者签名             \\
+        \quad sign-supervisor.jpg           & 图片     & 导师签名             \\
+        \quad sign-none.jpg                 & 图片     & 空白图片, 用于盲审/检测时替换 \\
+        \quad gdufelogo.jpg                 & 图片     & 校徽图片             \\
+        \quad 其余图片                          & 图片     & 示例或说明用图片         \\
+        fonts/                              & 文件夹    & 存放字体文件           \\
+        \quad 仿宋\_gb2312.ttf                & 字体     & 仿宋字体             \\
+        % \quad CambriaMath                   & 字体     & Word 数学公式字体         \\
+        % \quad simsun.ttc                    & 字体     & 思源宋体字体                                \\
+        % \quad simhei.ttf                    & 字体     & 思源黑体字体                                \\
+        % \quad simkai.ttf                    & 字体     & 思源楷体字体                                \\
+        % \quad simfang.ttf                   & 字体     & 思源仿宋字体                                \\
+        % \quad times.ttf                     & 字体     & Times New Roman 罗马正体                  \\
+        % \quad timesbd.ttf                   & 字体     & Times New Roman 粗体                    \\
+        % \quad timesi.ttf                    & 字体     & Times New Roman 斜体                    \\
         \bottomrule
     \end{tabular}
-    \label{table:filestructure}
 \end{table}
 
 无需也不要改变、移动上述文档的位置.
@@ -88,9 +85,9 @@
 
 \begin{description}
     %=============================
-    \item[排版与页面控制]
-          \begin{description}
-              \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
+    \item[排版与页面控制]\quad
+          \begin{description}[labelindent= 2\ccwd, labelsep=1\ccwd]
+              %   \item[lmodern] 使用 Latin Modern 字体以提升 PDF 显示质量。
               \item[tocloft] 控制目录、图表目录的缩进与间距。
               \item[changepage] 用于局部调整页面边距。
               \item[setspace] 设置行距 (如 1.5 倍行距) 。
@@ -100,8 +97,8 @@
               \item[fancyhdr] 控制页眉页脚格式、页码位置等。
           \end{description}
           %=============================
-    \item[数学]
-          \begin{description}
+    \item[数学]\quad
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[amsmath, amssymb] AMS 数学公式与符号支持。
               \item[mathalpha] 提供更好的数学花体字母 (选项 \texttt{scr=rsfs}) 。
               \item[unicode-math] 提供修改数学公式字体支持。
@@ -110,8 +107,8 @@
               \item[fixdif] 改善微分符号的排版。
           \end{description}
           %=============================
-    \item[图表与浮动体]
-          \begin{description}
+    \item[图表与浮动体]\quad
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[array] 扩展表格列格式与对齐。
               \item[booktabs] 提供 \verb|\toprule|、\verb|\midrule| 等三线表命令。
               \item[longtable] 支持跨页长表格。
@@ -124,25 +121,25 @@
               \item[float] 提供强制浮动体定位参数 H。
           \end{description}
           %=============================
-    \item[列表环境]
-          \begin{description}
+    \item[列表环境]\quad
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[enumitem] 允许自定义 itemize、enumerate、description 的缩进、标签等格式。
           \end{description}
           %=============================
-    \item[代码相关]
-          \begin{description}
+    \item[代码相关]\quad
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[listings] 插入源代码，提供基本语法高亮。
               \item[verbatim] 原样显示文本或代码。
           \end{description}
           %=============================
-    \item[绘图]
-          \begin{description}
+    \item[绘图]\quad
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[tikz] 强大的矢量绘图工具。
               \item[tcolorbox] 彩色盒子环境，用于开题报告。
           \end{description}
           %=============================
-    \item[其他]
-          \begin{description}
+    \item[其他]\quad
+          \begin{description}[labelindent=2\ccwd, labelsep=1\ccwd]
               \item[color, xcolor] 实现彩色功能。
               \item[pdfpages] 插入外部 PDF 页面 (封面、附录等) 。
               \item[lipsum] 生成排版测试用的占位文本。
@@ -154,9 +151,7 @@
 另外要说明的是, itemize, enumerate, description 这三种 list 环境, 已经调节了其间距为20pt.
 
 \section{文档命令的若干说明}
-文档中会有 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除.
-
-如果发现行距有问题, 在有问题的段落开头使用\\
+文档中会有 \verb|\the\baselineskip| 命令, 这是用来显示行距的, 正式写作中可以放心删除. 如果发现行距有问题, 在有问题的段落开头使用\\
 \verb|\setlength{\baselineskip}{20pt}\selectfont| 修正行间距为20磅.
 
 用 \verb|\include{*.tex}|导入正文章节时记得在上一行加上 \verb|\cleardoublepage|保证正文章节从右页开始.
@@ -179,11 +174,20 @@
         forprint                   & 打印模式    & 将彩色的超链接和 lstlisting 代码换成黑色       \\
 
         \bottomrule
-    \end{tabularx}
+    \end{tabularx}%
     \label{table:documentclassparameters}
 \end{table}
-\raggedbottom
-\section{字体调节}
+
+\section{标点符号的问题}
+建议使用半角的标点符号, 后边再键入一个空格. 特别是在英文书写中要注意此问题!
+
+双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边.
+
+但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
+原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
+
+\section{字体}
+字体调节命令:
 
 \begin{tabular}{ll}
     \verb|\songti|   & {\songti 宋体}   \\
@@ -192,8 +196,9 @@
     \verb|\kaishu|   & {\kaishu 楷书}
 \end{tabular}
 
-\section{字号调节}
-字号命令: \verb|\zihao| \index{zihao}
+不同字体的显示效果见 \ref{sec:fonttest} 节.
+
+中文字号调节命令: \verb|\zihao|.
 
 \begin{tabular}{ll}
     \verb|\zihao{0}|  & \zihao{0}  初号字 English \\
@@ -224,14 +229,6 @@
 }
 \end{lstlisting}
 
-\section{标点符号的问题}
-
-建议使用半角的标点符号, 后边再键入一个空格. 特别是在英文书写中要注意此问题!
-
-双引号是由两个左单引号、两个右单引号构成的: \verb|``  ''|. 左单引号在键盘上数字~1 的左边.
-
-但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
-原因可能是因为, 比如使用全角句号的句子结尾处的``$x$. ''容易误为数学式~$x_0$(\verb|$x_0$|)吧.
 \section{交叉引用的问题}
 首先要说明的是, 为了得到正确的引用结果, 要将tex主文档编译多次. 交叉引用是\LaTeX 的强项, 它的原理是为被引用对象 (图、表、公式、定理等) 设置一个标签, 例如: ~\verb|\label{<标签名>}|, 然后在需要引用的地方用 ~\verb|\ref{<标签名>}|, 就能得到被引用对象的数字编号.
 \subsection{参考文献的引用}
@@ -319,11 +316,11 @@ Zotero 软件和期刊网站大多支持导出bib文件, 因此使用 biblatex �
 
 %%%%----- 定义等环境的举例 --------
 \begin{definition}[整数]
-    正整数(例如 1, 2, 3)、负整数(例如 ${-1}$, $-2$, $-3$)与零(0)合起来统称为{\heiti 整数}.
+    正整数 (例如 1, 2, 3)、负整数 (例如 ${-1}$, $-2$, $-3$) 与零 (0) 合起来统称为{\heiti 整数}.
 \end{definition}
 
 \begin{remark}
-    整数集合在数学上通常表示为 $\mathbf{Z}$ 或 $\mathbb{Z}$, 该记号源于德语单词 Zahlen(意为``数'')的首字母.
+    整数集合在数学上通常表示为 $\mathbf{Z}$ 或 $\mathbb{Z}$, 该记号源于德语单词 Zahlen (意为``数'') 的首字母.
 \end{remark}
 
 \begin{property}
@@ -406,7 +403,7 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     \end{minipage}
 \end{figure}
 \end{lstlisting}
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \zihao{5}
     \begin{minipage}{0.5\textwidth}{
@@ -456,7 +453,7 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     \bfseries 123 & \bfseries 4   & \bfseries 5  & \bfseries 123 \\
     \midrule
 \end{lstlisting}
-\begin{table}[!h]
+\begin{table}[!ht]
     \zihao{5}
     \caption{加粗列名示例}
     \label{table:simplebolditem}
@@ -474,7 +471,7 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     6& 7& 8& 9 & 10\\
     \setrow{\bfseries} 1 & 2 &3 &4 &5
 \end{lstlisting}
-\begin{table}[!h]
+\begin{table}[!ht]
     \zihao{5}
     \centering
     \caption{多行加粗示例}
@@ -604,33 +601,6 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
     1                      & 内容1                                    \\
     2                      & 内容2                                    \\
     3                      & 内容3                                    \\
-    4                      & 内容4                                    \\
-    5                      & 内容5                                    \\
-    6                      & 内容6                                    \\
-    7                      & 内容7                                    \\
-    8                      & 内容8                                    \\
-    9                      & 内容9                                    \\
-    10                     & 内容10                                   \\
-    1                      & 内容1                                    \\
-    2                      & 内容2                                    \\
-    3                      & 内容3                                    \\
-    4                      & 内容4                                    \\
-    5                      & 内容5                                    \\
-    6                      & 内容6                                    \\
-    7                      & 内容7                                    \\
-    8                      & 内容8                                    \\
-    9                      & 内容9                                    \\
-    10                     & 内容10                                   \\
-    1                      & 内容1                                    \\
-    2                      & 内容2                                    \\
-    3                      & 内容3                                    \\
-    4                      & 内容4                                    \\
-    5                      & 内容5                                    \\
-    6                      & 内容6                                    \\
-    7                      & 内容7                                    \\
-    8                      & 内容8                                    \\
-    9                      & 内容9                                    \\
-    10                     & 内容10                                   \\
 \end{longtable}
 
 \section{程序代码}
@@ -666,38 +636,28 @@ counter-mode 设置为 shared 定理定义等共用编号, separated 分开编�
 \end{tikzpicture}
 
 \section{列表}
-列表环境 (enumerate, describe, itemrize) 可以在参数添加 left = * 修改左侧空白大小, 默认为 0pt, 其余参数按需调整.
+列表环境 (enumerate, describe, itemrize) 在参数添加 labelindent = xxx 修改标签左侧左侧空白大小, 添加 labelsep = xxx 修改标签右侧至正文的空白大小, 二者均默认为 0pt, ``!''表示使用其他参数计算. 更多参数说明设置见 {\bfseries enumitem} 宏包说明.
 
+默认效果为:
+\begin{enumerate}
+    \item item1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
+          didunt ut labore et dolore magna aliqua.
+    \item item2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
+          didunt ut labore et dolore magna aliqua.
+\end{enumerate}
+
+可能用的比较多的设置为:
 \begin{lstlisting}
-\begin{enumerate}[label=(\alph*), ref=(\alph*)]
-    \item item1
-    \item item2
-    \item item3
-\end{enumerate}
+\begin{enumerate}[labelindent = 2\ccwd, labelsep = 0pt, labelwidth=!, leftmargin = 0pt, itemindent = !, label=(\arabic*), ref=(\arabic*)]
 \end{lstlisting}
-
-\begin{enumerate}[label=(\alph*), ref=(\alph*)]
-    \item item1
-    \item item2
-    \item item3
-\end{enumerate}
-
-
-\begin{lstlisting}
-\begin{enumerate}[left = 2\ccwd, label=(\arabic*), ref=(\arabic*)]
-    \item item1
-    \item item2
-    \item item3
-\end{enumerate}
-\end{lstlisting}
-\begin{enumerate}[left = 2\ccwd, label=(\arabic*), ref=(\arabic*)]
-    \item item1
-    \item item2
-    \item item3
+\begin{enumerate}[labelindent = 2\ccwd, labelsep = 0pt, labelwidth=!, leftmargin = 0pt, itemindent = !, label=(\arabic*), ref=(\arabic*)]
+    \item item1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
+          didunt ut labore et dolore magna aliqua.
+    \item item2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci-
+          didunt ut labore et dolore magna aliqua.
 \end{enumerate}
 
 要全局修改 enumerate, describe, itemrize 的左侧空白大小为2中文字符, 可以使用:
-
 \begin{lstlisting}
 \setlist[enumerate]{left=2\ccwd}
 \setlist[description]{left=2\ccwd}

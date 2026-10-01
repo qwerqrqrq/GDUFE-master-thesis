@@ -2,15 +2,15 @@
 \section{使用步骤}
 
 要获得完整的毕业论文, 要经过以下步骤操作
-\begin{description}
-    \item[封面、扉页、声明]   两种方式二选一：
-            \begin{description}
-                \item [pdf插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
-                \item [\LaTeX{}生成] 使用 \verb|\makecover \maketitlepage \makeclaim| 生成, 有些不同于 doc 生成的地方, 谨慎使用.
+\begin{description}[labelsep = 1\ccwd]
+    \item[封面、扉页、声明] 两种方式二选一：
+            \begin{description}[labelindent = 2\ccwd, labelsep = 1\ccwd, leftmargin = !, itemindent = !]
+                \item [PDF 插入] 先在 font 文件夹安装仿宋\_GB2312.ttf 字体. 然后在 includefile 下填写学硕/专硕的 doc 文件并导出为pdf文件. 最后在主文档中用 \verb|\includepdf| 命令插入.
+                \item [\LaTeX{}生成] 用 \verb|\makecover \maketitlepage \makeclaim| 生成, 有些不同于 doc 生成的地方, 谨慎使用.
             \end{description}
 
-    \item[撰写]
-    \begin{enumerate}
+    \item[撰写] \quad
+    \begin{enumerate}[left = 2\ccwd]
         \item  打开主文档 gdufe\_master\_thesis\_template.tex, 填写题目、作者等等信息, 在documentclass中选择参数, 具体见表\ref{table:documentclassparameters}.
         \item 在主文档下撰写正文或者在 includefile/ chapter*.tex分章节撰写. 主文档的文件名可以修改, 但最好用英文名. 如果不习惯用~\verb|\include{ }|~的方式加入``子文档'', 当然可以把它们合并在主文档, 成为一个文档. ({\kaishu 但是这样并不会给我们带来方便.})
         \item 进入 includefile 文件夹,  打开 abstract.tex, acknowledgment.tex, appendix.tex, 分别填写 (1) 中文摘要、英文摘要, (2) 致谢, (3) 附录.
@@ -38,8 +38,7 @@ XeLaTeX $\to$ Biber $\to$ XeLaTeX $\to$ XeLaTeX 四次编译,
     \centering
     \includegraphics[width=0.6\textwidth]{overleaf upload.png}
     \includegraphics[width=0.6\textwidth]{overleaf settings.png}
-    \caption{Overleaf 上传设置示意图}
-    \label{fig:overleafsettings}
+    \caption{Overleaf 上传设置示意图}\label{fig:overleafsettings}
 \end{figure}
 \begin{remark}
     由于学位论文一般比较大, 可能会出现超时现象，建议换成本地编译, 或者使用草稿模式.
@@ -52,12 +51,12 @@ Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地�
 在构建中修改默认编译器, 默认文献管理工具根据是否使用 bib 文件管理文献选择 biber 或者 bibTex. 编译时在工具栏选择 ``编译'' 即可.
 
 {\bfseries 方式二:}使用自定义编译命令
-在构建中添加自定义编译命令, 点击齿轮按钮添加 XeLaTeX + Biber + XeLaTeX + XeLaTeX 四步编译.  或者使用 latexmk , 注意需要手动设置 latexmk 的路径, 并添加执行参数:
+在构建中添加自定义编译命令, 点击齿轮按钮添加 XeLaTeX + Biber + XeLaTeX + XeLaTeX 四步编译.  或者使用 latexmk, 注意需要手动设置 latexmk 的路径, 并添加执行参数:
 \begin{lstlisting}
     -synctex=1 -interaction=nonstopmode -file-line-error -xelatex %
 \end{lstlisting}
 选择工具$\to$用户$\to$相应的命令即可编译.
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.6\textwidth]{TexStudio setting1.png}\\
     \includegraphics[width=0.8\textwidth]{TexStudio setting2.png}\\
@@ -68,7 +67,7 @@ Overleaf 中使用 Texlive 2022 可以编译, 使用TexStudio + Texlive 本地�
 \section{打印的问题}
 \begin{enumerate}[label=\roman*)]
     \item  关于文档选项 forprint: 交付打印时, 建议加上选项 forprint, 以消除链接文字之彩色, 避免打印字迹偏淡.
-    \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无''(Adobe Reader XI 是选择``实际大小'').
+    \item  打印时留意不要缩小页面或居中. 即页面放缩方式应该是``无'' (Adobe Reader XI 是选择 ``实际大小'').
           有可能页面放缩方式默认为``适合可打印区域'', 会导致打印为原页面大小的 $97\%$.
           文字不要居中打印, 是因为考虑到装订, 左侧的空白留得稍多一点(模板已作预留).
     \item  使用 latex 命令生成的封面、扉页、声明不一定好用, 可以使用了 doc 文件导出的 pdf 文件, 直接打印即可.

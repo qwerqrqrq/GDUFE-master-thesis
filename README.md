@@ -5,7 +5,7 @@
 1. 本模板未经学校相关部门审核及授权，使用前请务必斟酌.
 2. 任何由于使用本模板而引起的论文格式审查问题均与本模板作者无关.
 
-## 已知问题：
+## 已知问题
 
 + 图片不会与上文空一行
 
@@ -13,7 +13,9 @@
 
 + 使用 longtable 时可能会出现 "ignored: Infinite glue shrinkage found in box being split" 错误, 但是不影响使用, 能正常编译.
 
-## 说明和使用方法：
++ 没有 Times New Roman 情况下使用 TeX Gyre Termes 字体正文可能会出现自动加粗的情况, 数学公式正常, 请自行下载安装 Times New Roman 字体.
+
+## 说明和使用方法
 
 1. 在 release 中下载 gdufe_masther_thesis.zip 解压
 
@@ -25,7 +27,7 @@
 
 5. 有问题在[github](https://github.com/qwerqrqrq/GDUFE-master-thesis)上发issue
 
-## 致谢：
+## 致谢
 
 + [武汉大学论文模板](https://github.com/whutug/whu-thesis)
 
@@ -34,7 +36,6 @@
 + [谭学忠老师的模板](https://blog.csdn.net/weixin_39730587/article/details/113085891)  微信公众号： 大哉数学之为用
 
 + [黄正华老师的模板](http://aff.whu.edu.cn/huangzh/)
-
 
 ## 快速跳转
 
