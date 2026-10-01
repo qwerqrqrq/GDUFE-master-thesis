@@ -438,60 +438,6 @@
 }
 
 
-% \theoremstyle{plain}
-% \theoremheaderfont{\heiti}
-% \theorembodyfont{\songti}
-% \theoremindent 0em
-% \theorempreskip{0pt}
-% \theorempostskip{0pt}
-% \theoremnumbering{arabic}
-
-% \newtheorem{theorem}{\hspace{2em}定理}
-% \newtheorem{definition}{\hspace{2em}定义}
-% \newtheorem{lemma}{\hspace{2em}引理}
-% \newtheorem{corollary}{\hspace{2em}推论}
-% \newtheorem{property}{\hspace{2em}性质}
-% \newtheorem{axiom}{\hspace{2em}公理}
-% \newtheorem{example}{\hspace{2em}例}
-% \newtheorem{remark}{\hspace{2em}注}
-
-% \newtheorem{theorem}{\hspace{2em}定理}[chapter]
-% \newtheorem{definition}{\hspace{2em}定义}[chapter]
-% \newtheorem{lemma}{\hspace{2em}引理}[chapter]
-% \newtheorem{corollary}{\hspace{2em}推论}[chapter]
-% \newtheorem{property}{\hspace{2em}性质}[chapter]
-% \newtheorem{axiom}{\hspace{2em}公理}[chapter]
-% \newtheorem{example}{\hspace{2em}例}[chapter]
-% \newtheorem{remark}{\hspace{2em}注}[chapter]
-
-% \newtheorem{theorem}{\hspace{2em}定理}
-% \newtheorem{definition}[theorem]{\hspace{2em}定义}
-% \newtheorem{lemma}[theorem]{\hspace{2em}引理}
-% \newtheorem{corollary}[theorem]{\hspace{2em}推论}
-% \newtheorem{property}[theorem]{\hspace{2em}性质}
-% \newtheorem{axiom}[theorem]{\hspace{2em}公理}
-% \newtheorem{example}[theorem]{\hspace{2em}例}
-% \newtheorem{remark}[theorem]{\hspace{2em}注}
-
-% \newtheorem{theorem}{\hspace{2em}定理}[chapter]
-% \newtheorem{definition}[theorem]{\hspace{2em}定义}
-% \newtheorem{lemma}[theorem]{\hspace{2em}引理}
-% \newtheorem{corollary}[theorem]{\hspace{2em}推论}
-% \newtheorem{property}[theorem]{\hspace{2em}性质}
-% \newtheorem{axiom}[theorem]{\hspace{2em}公理}
-% \newtheorem{example}[theorem]{\hspace{2em}例}
-% \newtheorem{remark}[theorem]{\hspace{2em}注}
-
-
-
-
-% \theoremstyle{nonumberplain}
-% \theoremheaderfont{\heiti}
-% \theorembodyfont{\normalfont \rm \songti}
-% \theoremindent 0em
-% \theoremseparator{:}
-% \theoremsymbol{$\square$}
-% \newtheorem{proof}{\hspace{2em}证明}
 
 %%%%%%%-------------------------------------------------
 %%===  suppress extra inter-line spacing in \list environments
@@ -547,32 +493,7 @@
 %     \parshape \@ne \@totalleftmargin \linewidth
 %     \ignorespaces}
 
-% %%%%%%%%listings 设置%%%%%%%%%%%%
-% % \usepackage{textcomp}
-% \definecolor{listinggray}{gray}{0.9}
-% \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
-% \lstset{
-%     backgroundcolor=\color{white},
-%     tabsize=4,
-%     rulecolor=,
-%     language=TeX,
-%     basicstyle=\scriptsize,
-%     upquote=true,
-%     aboveskip={\baselineskip},
-%     columns=fixed,
-%     showstringspaces=false,
-%     extendedchars=true,
-%     breaklines=true,
-%     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-%     frame=single,
-%     showtabs=false,
-%     showspaces=false,
-%     showstringspaces=false,
-%     identifierstyle=\ttfamily,
-%     keywordstyle=\color[rgb]{0,0,1},
-%     commentstyle=\color[rgb]{0.133,0.545,0.133},
-%     stringstyle=\color[rgb]{0.627,0.126,0.941},
-% }
+
 %% tag: lstlisting 设置
 \ifprint
     \lstset{
@@ -611,6 +532,7 @@
 
 %---------------------------------------------------
 %% tag: 图片、表格
+% 定义图表标题格式
 \DeclareCaptionFont{xbf}{\zihao{5}\bfseries\boldmath}
 %%% 设置图表与上下文之间的距离
 \setlength{\textfloatsep}{\baselineskip}
@@ -663,12 +585,8 @@
 \clearrow
 
 % 调整为5号字 这部分好像不起作用
-\AtBeginEnvironment{table}{\zihao{5}}
-\AtBeginEnvironment{tabularx}{\zihao{5}}
-
-%% tag: 列表
-\setlist{nosep}
-
+% \AtBeginEnvironment{table}{\zihao{5}}
+% \AtBeginEnvironment{tabularx}{\zihao{5}}
 
 %% tag: 目录
 \setcounter{tocdepth}{2}
@@ -832,21 +750,6 @@
 \DefineFNsymbols{circled}{{\ding{192}}{\ding{193}}{\ding{194}}
         {\ding{195}}{\ding{196}}{\ding{197}}{\ding{198}}{\ding{199}}{\ding{200}}{\ding{201}}}
 \setfnsymbol{circled}
-
-%% tag: cleardoublepage 设置清除双面打印时的空白页
-% \def\cleardoublepage{%
-%     \clearpage
-%     \if@twoside
-%         \ifodd\c@page
-%             % 当前是奇数页，不插空白页
-%         \else
-%             \hbox{}%
-%             \thispagestyle{empty}%
-%             \newpage
-%             \if@twocolumn\hbox{}\newpage\fi
-%         \fi
-%     \fi
-% }
 
 
 %% tag: 信息宏定义
@@ -1123,8 +1026,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{figures/}}        % 图片文件路径
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \allowdisplaybreaks
-
 \raggedbottom
 
 \endlinechar `\^^M
