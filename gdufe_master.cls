@@ -1,7 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.6]
+\ProvidesClass{gdufe_master}[2025/12/29 Master Thesis template for GDUFE v0.5.7]
 
 % 添加空白页设置, 来源 sysu-thesis.cls
 \newcommand{\newclearpage}{\clearpage} % 设置文章为电子版格式（不添加多余空白页）
