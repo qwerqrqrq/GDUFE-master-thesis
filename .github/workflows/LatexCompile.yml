@@ -13,6 +13,7 @@ on:
       - 'gdufe_master*.{tex,cls}'
       - '**/*.tex'
       - '*.bib'
+      - '.github/workflows/*.yml'
   workflow_dispatch:
 
 concurrency:
