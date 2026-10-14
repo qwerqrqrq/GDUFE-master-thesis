@@ -1,17 +1,21 @@
-# This workflow enables CI for compiling TeX file
-# GitHub Action Docs: https://help.github.com/en/actions
 permissions:
-  contents: write
+  contents: read
 name: LaTeX Compile
 
-on: [push]
-  # push:
-    # branches: [dev, master]
-    # tags: ["v*"]
-  # pull_request:
-  #   branches: [master]
+on:
+  push:
+    branches:
+      - dev
+      - master
+    tag:
+      - 'v*'
+    paths:
+      - 'gdufe_master*.{tex,cls}'
+      - '**/*.tex'
+      - '*.bib'
 jobs:
-  compile_to_release:
+  compile:
+    name: Compile LaTeX documents
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -26,7 +30,6 @@ jobs:
             gdufe_master_thesis_template.tex
             gdufe_master_proposal_template.tex
           args: -xelatex -interaction=nonstopmode -file-line-error
-          # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
           extra_fonts: |
             ./fonts/*.ttf
             ./fonts/*.ttc
@@ -35,21 +38,6 @@ jobs:
           # pre_compile: "fc-cache -f"
           post_compile: "latexmk -c"
 
-      # - name: Compile gdufe_master_proposal_template
-      #   uses: xu-cheng/latex-action@v3
-      #   with:
-      #     # root_file: compare.tex
-      #     root_file:
-      #     args: -xelatex
-      #     # args: -xelatex -file-line-error -interaction=nonstopmode -shell-escape
-      #     # extra_fonts: |
-      #     #   ./fonts/*.ttf
-      #     #   ./fonts/*.ttc
-      #     # extra_system_packages: "fontconfig"
-      #     # pre_compile: "fc-cache -f"
-      #     post_compile: "latexmk -c"
-
-      # Upload compiled pdf to artifacts if compiled successfully
       - name: Upload pdfs
         uses: actions/upload-artifact@v4
         if: success()
@@ -58,22 +46,33 @@ jobs:
           path: |
             gdufe_master_thesis_template.pdf
             gdufe_master_proposal_template.pdf
+          retention-days: 7
 
-      - name: Zip files
-        if: ${{startsWith(github.ref, 'refs/tags/v')}}
-        run: |
-          zip -r GDUFE-master-thesis.zip figures fonts includefile gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf gdufe_master_proposal_template.tex gdufe_master_proposal_template.pdf gdufe_master.cls reference.bib CHANGLOG.md README.md-x includefile/\*.aux
+  package_and_release:
+    name: Package & Release (on tag)
+    needs: compile
+    runs-on: ubuntu-latest
+    if: ${{startsWith(github.ref, 'refs/tags/v')}}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: show files
+      - name: Prepare zip
         run: |
-          ls -R ${{ github.workspace}}
+          zip -r GDUFE-master-thesis.zip \
+            figures fonts includefile \
+            gdufe_master_thesis_template.tex gdufe_master_thesis_template.pdf \
+            gdufe_master_proposal_template.tex gdufe_master_proposal_template.pdf \
+            gdufe_master.cls reference.bib CHANGELOG.md README.md -x includefile/*.aux
+
       - name: 上传到 Release
-        if: ${{startsWith(github.ref, 'refs/tags/v')}}
         uses: softprops/action-gh-release@v2
         with:
           files: GDUFE-master-thesis.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
